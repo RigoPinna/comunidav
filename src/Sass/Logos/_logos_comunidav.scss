@@ -1,0 +1,37 @@
+ .__logo_comunidav{
+     display:flex;
+     width:9.375em;
+     height:2.5em;
+     flex-direction: row;
+     align-items: center;
+     font-size: 1em;
+     p {
+         font-size:1.2em;
+     }
+     svg {
+         width:6.25em;
+         height:2.5em;
+         .circle_red {
+             fill:$color-primary-red;
+             transition: all 0.3s ease;
+         }
+         .circle_purple {
+             stroke:$color-primary-purple;
+             transition: all 0.3s ease;
+         }
+     }
+     &:hover {
+         svg {
+            .circle_red {
+                fill:$color-black-1;
+            }
+            .circle_purple {
+                stroke:$color-black-2;
+                
+            }
+         }
+
+     }
+    
+     
+ }

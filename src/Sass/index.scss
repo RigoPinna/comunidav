@@ -1,0 +1,20 @@
+@import './Bases/_bases';
+@import './Buttons/buttons';
+@import './Logos/logos_comunidav';
+@import './Loadings/loadingScreen';
+@import './NavBar/navbar.scss';
+@import './Items/items.scss';
+@import './Wrappers/wrappers';
+@import './SubMenu/_submenu';
+
+ * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    position: relative;
+    background:$bg_app;
+    color:$color-black-1;
+    font-family: 'SF-Regular';
+}

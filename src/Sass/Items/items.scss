@@ -1,0 +1,155 @@
+._item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50px;
+    font-size: 1em;
+    position: relative;
+    transition: all 0.3s ease;
+    img {
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        object-fit: cover;
+        image-rendering: pixelated;
+    }
+    .badge_short {
+        position: absolute;
+        bottom:2px;
+        left:25px;
+        padding:2px;
+        font-size: 10px;
+        border-radius: 10px;
+
+    }
+    .info-Contact {
+        display: flex;
+        width: calc(100% - 55px);
+        height:100%;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 0 0 5px;
+        font-size:1em;
+
+        strong {
+            font-size: 0.875em;
+            font-family: 'SF-Bold';
+            text-decoration: none;
+            color:$color-black-1;
+        }
+        p {
+            font-size: 0.875em;
+            font-family: 'SF-Regular';
+            text-decoration: none;
+            color:$color-black-3;
+        }
+        
+    }
+    .__item_image_loading {
+        display: block;
+        width:50px;
+        height:50px;
+        border-radius:100%;
+        background:lighten( $color-black-4, 18% );
+    }
+    ._item_name_loading, ._item_text_loading {
+        display:block;
+        height:10px;
+        margin-bottom: 5px;
+        border-radius:4px;
+    }
+    ._item_name_loading {
+        width: calc(100% - 50px);
+        background:lighten( $color-black-4, 18% );
+    }
+    ._item_text_loading {
+        width: 50%;
+        background:lighten( $color-black-4, 22% );
+    }
+}
+._item_loading {
+    animation: animation_loading_item 1.2s ease-in-out forwards infinite;
+}
+._item_sorces {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:60px;
+    height: 55px;
+    background: $always-white;
+    border-radius: $br-radius;
+    transition: all 0.3s ease;
+    color:$color-black-2;
+    text-decoration: none;
+    margin-right: 10px;
+    svg {
+        width:20px;
+        height:20px;
+    }
+    p {
+        font-size: 10px;
+    }
+    &:hover {
+        background: $color-black-1;
+        color:$always-white;
+        svg {
+            animation: animation_rotate_element 1.8s linear infinite;
+        }
+    }
+}
+.badge_short {
+    display: inline-block;
+    width:auto;
+    height:auto;
+    padding: 0 10px 2px 10px;
+    font-size: 16px;
+    font-family: 'SF-Regular';
+    border-radius: 20px;
+    
+}
+.badge_asc {
+    background:$color-asc;
+    color:#FFF;
+}
+.badge_vol {
+    background:$color-vol;
+    color:#FFF
+}
+.cat-bienestar {
+    background: $color-cat-bienestar;
+    color:$always-white;
+}
+.cat-salud {
+    background:$color-cat-salud;
+     color:$always-white;
+}
+.cat-PM {
+    background: $color-cat-PM;
+     color:$always-white;
+}
+.cat-Ma {
+    background: $color-cat-MediaAmb;
+     color:$always-white;
+}
+.cat-Cul {
+    background: $color-cat-Cultural;
+     color:$always-white;
+}
+.cat-Dep {
+    background: $color-cat-Dep;
+     color:$always-white;
+}
+.cat-Ani {
+    background: $color-cat-Anim;
+     color:$always-white;
+}
+@keyframes animation_loading_item {
+    from {
+        opacity: 0.5
+        
+    }
+    to {
+        opacity: 1
+    }
+}

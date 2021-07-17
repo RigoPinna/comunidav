@@ -1,0 +1,24 @@
+.__submenu {
+
+    display:flex;
+    flex-direction: row;
+    width: 100%;
+    height: 35px;
+
+    .__btn {
+        background:$always-white;
+        margin-left: 5px;
+        &:hover {
+            background: lighten( $color-primary-purple, 20% );
+        }
+        &:active {
+            background: $color-primary-purple;
+        }
+    }
+    .__submeu_otion_active {
+        background: $color-primary-purple;
+        box-shadow: $shadows-elements;
+        color:$always-white;
+    }
+
+}

@@ -1,0 +1,45 @@
+.__btn {
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    padding:10px;
+    border: 0;
+    outline:0;
+    font-family: 'SF-Regular';
+    border-radius: $br-radius;
+    transition: all 0.3s ease;
+    letter-spacing: 0.8px;
+    &:hover {
+        background:$color-primary-purple;
+        color:$always-white;
+        cursor: pointer;
+        box-shadow: $shadows-elements;
+    }
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+.btn_config {
+    display: inline;
+    color:$color-black-1;
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+    &:hover {
+        svg {
+            animation: animation_rotate_element 1.8s linear infinite;
+        }
+    }
+
+}
+@keyframes animation_rotate_element {
+    0% {
+        transform: rotate(0deg);
+        
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

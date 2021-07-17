@@ -1,0 +1,68 @@
+@font-face {
+    font-family: "SF-Bold";
+    src: url('./fonts/SF-Pro-Display-Bold.otf') format("truetype");
+}
+@font-face {
+    font-family: "SF-Semibold";
+    src: url('./fonts/SF-Pro-Display-Semibold.otf') format("truetype");
+}
+@font-face {
+    font-family: "SF-Medium";
+    src: url('./fonts/SF-Pro-Display-Medium.otf') format("truetype");
+}
+@font-face {
+    font-family: "SF-Regular";
+    src: url('./fonts/SF-Pro-Display-Regular.otf') format("truetype");
+}
+@font-face {
+    font-family: "SF-Light";
+    src: url('./fonts/SF-Pro-Display-Light.otf') format("truetype");
+}
+@font-face {
+    font-family: "SF-UltraLight";
+    src: url('./fonts/SF-Pro-Display-Ultralight.otf') format("truetype");
+}
+@font-face {
+    font-family: "SF-Thin";
+    src: url('./fonts/SF-Pro-Display-Thin.otf') format("truetype");
+}
+*::-webkit-scrollbar, body::-webkit-scrollbar {
+    background: transparent;
+    width: 5px;
+    
+}
+*::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+$bg_app:#F3F3F3;
+$bg_menu:#DBDBDB;
+$filter-blur: blur(5px);
+$color-saturaion:blur(5px);
+
+$color-black-1:#1C1E21;
+$color-black-2:#303338;
+$color-black-3:#808080;
+$color-black-4:#ADADAC;
+$color-black-5: #f5f5f5;
+$always-white: #FFFFFF;
+
+$color-primary-red: #D65D38;
+$color-primary-purple: #635BFF;
+
+$color-asc: #8FC7FF;
+$color-vol:#FFC45B;
+$color-asociation: #8FC7FF;
+$color-cat-bienestar:  #A9A8F6;
+$color-cat-salud:  #2A4B7C;
+$color-cat-PM:  #7F6C72;
+$color-cat-MediaAmb:  #97EAB9;
+$color-cat-Cultural:  #FF7F50;
+$color-cat-Dep:  #FF6C6C;
+$color-cat-Anim:  #B7BA26;
+
+$br-radius: 8px;
+$shadows-elements:rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+
