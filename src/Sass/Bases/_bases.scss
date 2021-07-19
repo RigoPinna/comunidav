@@ -54,7 +54,7 @@ $color-primary-purple: #635BFF;
 
 $color-asc: #8FC7FF;
 $color-vol:#FFC45B;
-$color-asociation: #8FC7FF;
+
 $color-cat-bienestar:  #A9A8F6;
 $color-cat-salud:  #2A4B7C;
 $color-cat-PM:  #7F6C72;
@@ -63,6 +63,42 @@ $color-cat-Cultural:  #FF7F50;
 $color-cat-Dep:  #FF6C6C;
 $color-cat-Anim:  #B7BA26;
 
+$color-blue-1: #77A7FF;
+$color-blue-2: hsla(219, 100%, 73%, 0.70);
+$color-blue-3: hsla(219, 100%, 73%, 0.50);
+$color-blue-4: hsla(219, 100%, 73%, 0.30);
+
+$color-button-primary:#F8F8F8;
+
+$color-red-1:#FF6C6C;
 $br-radius: 8px;
 $shadows-elements:rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+
+.bg_blur_effect_gray {
+    -webkit-backdrop-filter: blur(10px); /* Safari 9+ */
+    backdrop-filter: blur(10px); /* Chrome and Opera */
+    background-color: rgba(255, 255, 255, 0.3);
+}
+.bg_blur_effect_black {
+    -webkit-backdrop-filter: blur(10px); /* Safari 9+ */
+    backdrop-filter: blur(10px); /* Chrome and Opera */
+    background-color: rgba(0, 0, 0, 0.3);
+}
+@mixin small {
+    @media only screen and (max-width: 600px) {
+        @content;
+    }
+}
+
+@mixin medium {
+    @media only screen and (max-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin large {
+    @media only screen and (max-width: 1440px) {
+        @content;
+    }
+}
 

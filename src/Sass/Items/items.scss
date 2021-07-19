@@ -6,20 +6,14 @@
     font-size: 1em;
     position: relative;
     transition: all 0.3s ease;
-    img {
-        width: 50px;
-        height: 50px;
-        border-radius: 100%;
-        object-fit: cover;
-        image-rendering: pixelated;
-    }
     .badge_short {
         position: absolute;
-        bottom:2px;
-        left:25px;
-        padding:2px;
-        font-size: 10px;
-        border-radius: 10px;
+        bottom:0.125em;
+        left:2.5625em;
+        padding:0.125em;
+        font-size: 0.625em;
+        border-radius: 0.625em;
+        font-size: 0.65em;
 
     }
     .info-Contact {
@@ -66,6 +60,14 @@
         width: 50%;
         background:lighten( $color-black-4, 22% );
     }
+}
+.__itme_avatar {
+        width: 3.125em;
+        height: 3.125em;
+        border-radius: 100%;
+        object-fit: cover;
+        image-rendering: pixelated;
+        font-size: 1em;
 }
 ._item_loading {
     animation: animation_loading_item 1.2s ease-in-out forwards infinite;

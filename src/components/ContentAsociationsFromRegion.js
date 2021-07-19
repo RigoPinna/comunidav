@@ -8,7 +8,7 @@ import { ItemUserLoading } from './loadings/ItemUserLoading'
 export const ContentAsociationsFromRegion = () => {
 
     const [ dataAsociations, setDataAsociations ] = useState({ isLoading: true, data:[] } );
-    const { asociationsRegionReducer, userLogedReducer } = useSelector(state => state);
+    const { asociationsRegionReducer, userLogedReducer } = useSelector( state => state );
     const dispatch = useDispatch();
     const [ isMounted ] = useIsMounted();
     
@@ -16,8 +16,8 @@ export const ContentAsociationsFromRegion = () => {
         if ( isMounted ) {
             
             if ( userLogedReducer !== {} ) {
-                const {uid, idMunicipio} = userLogedReducer;
-                if( asociationsRegionReducer.length <= 0 ) {
+                const { uid, idMunicipio } = userLogedReducer;
+                if( asociationsRegionReducer.length <= 0 && !!uid ) {
                     dispatch( getAssociationsHaveRegion( uid, idMunicipio ) );
                     setDataAsociations({
                         isLoading: false,
@@ -35,13 +35,13 @@ export const ContentAsociationsFromRegion = () => {
           { dataAsociations.isLoading && <ItemUserLoading />}
           { 
             !dataAsociations.isLoading 
-                && asociationsRegionReducer.map( ({uid, ascName, userName, image }, i) => { 
+                && asociationsRegionReducer.map( ({uid, ascName, userName, image, category }, i) => { 
                     return ( 
                         <ItemUser 
                             handle={ ()=>{ console.log('click')}}
                             key ={ `ascFromRegion-${uid}` }
                             displayName = { ascName } 
-                            textSecondary = { userName } 
+                            textSecondary = { category ? `Categoria • ${ category }` : userName } 
                             image = { image }
                     />)
                 })

@@ -5,7 +5,9 @@
 @import './NavBar/navbar.scss';
 @import './Items/items.scss';
 @import './Wrappers/wrappers';
+@import './Modals/modal';
 @import './SubMenu/_submenu';
+@import './Icons/icons';
 
  * {
     box-sizing: border-box;
@@ -18,3 +20,5 @@ body {
     color:$color-black-1;
     font-family: 'SF-Regular';
 }
+
+

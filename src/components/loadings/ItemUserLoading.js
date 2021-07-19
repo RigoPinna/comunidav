@@ -6,7 +6,6 @@ export const ItemUserLoading = () => {
             {/* <Avatar image = { image } name = { displayName } /> */}
             {/* <BadgeShort typeUser = 'ASC' text='ASC'/> */}
             <div className = '__item_image_loading'>
-
             </div>
             <div className = "info-Contact">
                 <div className = "_item_name_loading">
