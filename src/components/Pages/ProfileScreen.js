@@ -19,7 +19,7 @@ export const ProfileScreen = ( { history } ) => {
     
     return (
         <section>
-            <div className="__title_pages"> <ButtonBackPage history={ history } /> <h1>Mi perfil</h1></div>
+            <div className="__title_pages"><h1>Mi perfil</h1></div>
            {
                userDataLoged.typeUser === 'ASC'
                 && <ProfileAsc {...userDataLoged } />
