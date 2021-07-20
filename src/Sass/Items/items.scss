@@ -60,6 +60,18 @@
         width: 50%;
         background:lighten( $color-black-4, 22% );
     }
+    .__modal_info_user {
+        display:block;
+        width:200px;
+        min-height: 100px;
+        position: absolute;
+        left: -210px;
+        top:0;
+        background:$always-white;
+        z-index: 2;
+        border-radius: $br-radius;
+        box-shadow:$shadows-elements;
+    }
 }
 .__itme_avatar {
         width: 3.125em;
@@ -109,6 +121,10 @@
     font-family: 'SF-Regular';
     border-radius: 20px;
     
+}
+.badge_color_blue {
+    background:$color-blue-5;
+    color:$color-blue-1;
 }
 .badge_asc {
     background:$color-asc;

@@ -5,5 +5,8 @@ export const types = {
     userLoged: '[data] userLoged',
     updateUserLoged: '[data] userUpdate',
     associationFromRegio: '[data-asc] FromRegion',
-    getHistoryRouter: '[router] history'
+    getHistoryRouter: '[router] history',
+    addMyEvent: '[ event-user ] Add-my-event',
+    deleteMyEvent: '[ event-user ] Delete-my-event(s)',
+    getMyEvent: '[ event-user ] Get-my-events',
 }

@@ -5,7 +5,7 @@ import { BadgeShort } from './BadgeShort'
 export const ContainerInfoProfile = ({ userName, displayName, typeUser, category, description, image }) => {
     const typeUserNameLong = typeUser === 'ASC' ? 'Asociación' : 'Voluntario';
     return (
-        <div className = "__wrapper_info">
+        <div className = "__wrapper_info  animate__animated animate__fadeIn">
                 <div className="__wrapper_info_header">
                     <Avatar image = { image } name = { displayName } /> 
                     <div className="__wrapper_info_header_text">

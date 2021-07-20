@@ -1,20 +1,22 @@
 
-import React from 'react'
-import { Link, Redirect } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom';
 
-import { useGetInfoUserLoged } from '../hooks/useGetInfoUserLoged';
+
 import { ContentAsociationsFromRegion } from './ContentAsociationsFromRegion';
 import { ItemUser } from './Items/ItemUser';
 import { IconConfig } from './iconos/IconConfig';
 import { InfoAndTools } from './InfoAndTools';
 import { FooterPage } from './FooterPage';
+import { useSelector } from 'react-redux';
 
 
 export const ColumnRight = ({history }) => {
 
-    const [ userDataLoged ] = useGetInfoUserLoged();
+    const { userLogedReducer } = useSelector( state => state );
+    const uid = localStorage.getItem( 'uid' );
     const handleGoMyProfile = () => {
-        history.push( '/profile' );
+        history.push( `/association/${uid}` );
     }
     return (
         <div className="__wrapper_column_right">
@@ -27,15 +29,15 @@ export const ColumnRight = ({history }) => {
             <hr/>
             <ItemUser 
                 handle = { () => { handleGoMyProfile() } }
-                displayName = { userDataLoged.displayName } 
-                textSecondary = { userDataLoged.category }
-                image = { userDataLoged.image }
+                displayName = { userLogedReducer.displayName } 
+                textSecondary = { userLogedReducer.category }
+                image = { userLogedReducer.image }
             />
             <div className="__wrapper_comunm_right_title_section">
-                <h5>Asociaciones en {userDataLoged.cityName}</h5>
+                <h5>Asociaciones en {userLogedReducer.cityName}</h5>
             </div>
             <hr/>
-            <ContentAsociationsFromRegion/>
+            <ContentAsociationsFromRegion historyRouter = { history }/>
             <div className="__wrapper_comunm_right_title_section">
                 <h5>Información y herramientas</h5>
             </div>

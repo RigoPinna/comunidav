@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export const HomeScreen = () => {
     return (
         <div>
-            Hola desde la home
+            <h1>HOME</h1>
             <Link to="/profile">
                 ir a perfil
             </Link>

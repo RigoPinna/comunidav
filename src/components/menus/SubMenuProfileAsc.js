@@ -1,7 +1,11 @@
 import React, { useRef } from 'react'
 import { useActiveSubmenuOption } from '../../hooks/useActiveSubmenuOption';
-
-export const SubMenuProfileAsc = () => {
+const OPTION_MENU = {
+    viewMyEvents: 1,
+    viewMyGroups: 2,
+    viewMyFav: 3,
+}
+export const SubMenuProfileAsc = ({ setViewOption }) => {
     const [ setActiveOption ] = useActiveSubmenuOption();
     const opMyEvents = useRef(null);
     const opMyFavorites = useRef(null);
@@ -16,15 +20,17 @@ export const SubMenuProfileAsc = () => {
         const arrayOptions = [ opMyEvents.current, opMyFavorites.current, opMyGroups.current]
         switch ( optuonType ) {
             case OPTIOS_TYPE.getMyEvents:
-               
+                setViewOption( OPTION_MENU.viewMyEvents )
                 setActiveOption( arrayOptions, opMyEvents.current )
                 
                 break;
             case OPTIOS_TYPE.getMyFavorites:
+                setViewOption( OPTION_MENU.viewMyFav )
                 setActiveOption( arrayOptions, opMyFavorites.current )
                 
                 break;
             case OPTIOS_TYPE.getMyGroups:
+                setViewOption( OPTION_MENU.viewMyGroups )
                 setActiveOption( arrayOptions, opMyGroups.current )
                 
                 break;
@@ -35,7 +41,7 @@ export const SubMenuProfileAsc = () => {
 
     }
     return (
-        <div className ="__submenu">
+        <div className ="__submenu  animate__animated animate__fadeIn">
             <button 
                 id="op-events" 
                 onClick= { () => { hanldeActionMenu( OPTIOS_TYPE.getMyEvents ) } } 
@@ -50,7 +56,7 @@ export const SubMenuProfileAsc = () => {
                 ref={ opMyGroups } 
                 className= "__btn">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                    <p>Grupos</p>
+                    <p>Grupos creados</p>
             </button>
             <button 
                 id="op-fav" 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { SubMenuEventPublic } from '../menus/SubMenuEventPublic'
+
 import { ItemUserLoading } from './ItemUserLoading'
 
 export const EventLoading = () => {

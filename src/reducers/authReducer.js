@@ -8,7 +8,20 @@ export const getDataUserLoged = ( uid ) => {
          fetchGetInfoUserLoged( uid ).then( dataUser => {
             const action = {
                 type: types.userLoged,
-                payload: dataUser,
+                payload: {
+                    typeUser: dataUser.typeUser,
+                    uid: dataUser.uid,
+                    userName: dataUser.userName ,
+                    image: dataUser.image,
+                    displayName:( dataUser?.nameAsc ) ? dataUser.nameAsc : dataUser.namePerson,
+                    text: dataUser.typeUser,
+                    cityName:dataUser.nameEstado,
+                    shortCityName: dataUser.abrestado,
+                    aid: dataUser?.aid,
+                    category: dataUser?.category ,
+                    description:  dataUser?.description,
+                    idMun: dataUser.idMunicipio,
+                }
             }
             dispatch( action );
         });

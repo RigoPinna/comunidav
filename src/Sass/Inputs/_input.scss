@@ -1,0 +1,44 @@
+.__input_wrapper {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    font-size: 1em;
+    margin: 10px 0;
+    .__input_icon {
+        display: block;
+        width:20px;
+        height: 20px;
+        position:absolute;
+        left:0;
+        top:0;
+        margin-top: calc(40px - 30px);
+        margin-left: 5px;
+        color:$color-black-4;
+        
+
+    }
+    .__input {
+        width: 100%;
+        height: 100%;
+        border-radius: $br-radius;
+        border: 1px solid $color-black-4;
+        outline:0;
+        font-family: 'SF-Regular';
+        font-size: 14px;
+        transition: all 0.3s ease;
+        &:focus {
+            border: 2px solid $color-primary-purple;
+            box-shadow: $shadow-purple-inputs;
+            font-size: 16px;
+            
+        }
+        &:focus~.__input_icon {
+            color:$color-primary-purple;
+        }
+        
+    }
+    .__input_with_icon {
+        padding: 5px 5px 5px 35px;
+    }
+}

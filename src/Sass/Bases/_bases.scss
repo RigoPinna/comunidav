@@ -51,6 +51,10 @@ $always-white: #FFFFFF;
 
 $color-primary-red: #D65D38;
 $color-primary-purple: #635BFF;
+$color-primary-purple-2: rgba(99, 91, 255, 0.50);
+$color-primary-purple-3: rgba(99, 91, 255, 0.40);
+$color-primary-purple-4: rgba(99, 91, 255, 0.20);
+$color-primary-purple-5: rgba(99, 91, 255, 0.10);
 
 $color-asc: #8FC7FF;
 $color-vol:#FFC45B;
@@ -67,12 +71,15 @@ $color-blue-1: #77A7FF;
 $color-blue-2: hsla(219, 100%, 73%, 0.70);
 $color-blue-3: hsla(219, 100%, 73%, 0.50);
 $color-blue-4: hsla(219, 100%, 73%, 0.30);
+$color-blue-5: hsla(219, 100%, 73%, 0.10);
 
 $color-button-primary:#F8F8F8;
 
 $color-red-1:#FF6C6C;
 $br-radius: 8px;
 $shadows-elements:rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+$shadow-purple-elements:$color-primary-purple-3 0px 10px 10px -10px;
+$shadow-purple-inputs:$color-primary-purple-4 0px 3px 12px;
 
 .bg_blur_effect_gray {
     -webkit-backdrop-filter: blur(10px); /* Safari 9+ */

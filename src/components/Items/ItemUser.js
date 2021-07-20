@@ -19,7 +19,6 @@ export const ItemUser = ( { typeUser = 'ASC', displayName='name lastname ', imag
                 <strong >{ displayName }</strong>
                 <p>{ textSecondary }</p>
             </div>
-            
         </div>
     )
 }

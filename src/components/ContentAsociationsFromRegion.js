@@ -5,40 +5,39 @@ import { getAssociationsHaveRegion } from '../reducers/asocitionsFromRegionReduc
 import { ItemUser } from './Items/ItemUser'
 import { ItemUserLoading } from './loadings/ItemUserLoading'
 
-export const ContentAsociationsFromRegion = () => {
+export const ContentAsociationsFromRegion = ({historyRouter}) => {
 
-    const [ dataAsociations, setDataAsociations ] = useState({ isLoading: true, data:[] } );
+    const [ isLoading, setIsLoading ] = useState( true );
     const { asociationsRegionReducer, userLogedReducer } = useSelector( state => state );
     const dispatch = useDispatch();
     const [ isMounted ] = useIsMounted();
-    
+    const { uid, idMun } = userLogedReducer;
     useEffect(() => {
         if ( isMounted ) {
-            
-            if ( userLogedReducer !== {} ) {
-                const { uid, idMunicipio } = userLogedReducer;
+            if ( !!uid && !!idMun ) {
                 if( asociationsRegionReducer.length <= 0 && !!uid ) {
-                    dispatch( getAssociationsHaveRegion( uid, idMunicipio ) );
-                    setDataAsociations({
-                        isLoading: false,
-                        data:asociationsRegionReducer,
-                    })
+                    dispatch( getAssociationsHaveRegion( uid, idMun ) );
+                    setIsLoading( false );
+                    
                 }
             }
         }
-    }, [ dispatch, isMounted, userLogedReducer ]);
-
+    }, [ dispatch, isMounted, uid, idMun ]);
+    
+    const handleRedirectToProfileAsc = ( uid ) => {
+        historyRouter.push(`/association/${ uid }`)
+    }
     return (
         <div className="__wrapper_colunm_right_content_asociations">
-          { dataAsociations.isLoading && <ItemUserLoading />}
-          { dataAsociations.isLoading && <ItemUserLoading />}
-          { dataAsociations.isLoading && <ItemUserLoading />}
+          { isLoading && <ItemUserLoading />}
+          { isLoading && <ItemUserLoading />}
+          { isLoading && <ItemUserLoading />}
           { 
-            !dataAsociations.isLoading 
+            !isLoading.isLoading 
                 && asociationsRegionReducer.map( ({uid, ascName, userName, image, category }, i) => { 
                     return ( 
                         <ItemUser 
-                            handle={ ()=>{ console.log('click')}}
+                            handle={ () => { handleRedirectToProfileAsc(uid) } }
                             key ={ `ascFromRegion-${uid}` }
                             displayName = { ascName } 
                             textSecondary = { category ? `Categoria • ${ category }` : userName } 

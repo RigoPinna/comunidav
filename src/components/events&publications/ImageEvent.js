@@ -2,8 +2,8 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { openModalImage } from '../../reducers/uiReducer';
 
-import imgEvtExample from '../../assets/imgEvtExample.png';
-export const ImageEvent = ( { image = imgEvtExample }) => {
+export const ImageEvent = ( { image }) => {
+
     const dispatch = useDispatch();
 
     const handleViewImage = () => {
@@ -12,7 +12,7 @@ export const ImageEvent = ( { image = imgEvtExample }) => {
 
     return (
         <div className = '__wrapper_image_event'>
-             <img src = {imgEvtExample}/>
+             <img src = { image } alt="image-event"/>
              <button onClick = { handleViewImage } className = '__btn_view_image bg_blur_effect_black'>
                 <svg 
                     fill="none" 
