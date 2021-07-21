@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-
+//No agregar las dependecias al useEffect
 export const useIsLoged = ( history, location ) => {
 
     useEffect(() => {
@@ -8,12 +8,8 @@ export const useIsLoged = ( history, location ) => {
             const uid = localStorage.getItem( 'uid' );
             history.replace( `/association/${ uid }` );
         } else {
-
             ( location.pathname !=='/login')
                 &&  history.replace(`/login`);
         }
-    }, []);
-
-    
-    
+    }, [ ]);
 }

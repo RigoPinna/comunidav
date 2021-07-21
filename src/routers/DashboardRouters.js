@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
@@ -15,6 +15,8 @@ import { SearchScreen } from '../components/Pages/SearchScreen'
 import { ProfileScreen } from '../components/Pages/ProfileScreen'
 import { ColumnRight } from '../components/ColumnRight'
 import { ModalViewImage } from '../components/modals/ModalViewImage'
+import { NavBarMovile } from '../components/menus/NavBarMobile'
+import { ModalSuscribeEvent } from '../components/modals/ModalSuscribeEvent'
 
 
 export const DashboardRouters = ({ history, location }) => {
@@ -23,9 +25,9 @@ export const DashboardRouters = ({ history, location }) => {
   const { uiReducer } = useSelector( state => state );
   const dispatch = useDispatch();
   const [ isMounted ] = useIsMounted();
+  const uid = localStorage.getItem( 'uid' );
   useEffect(() => {
     if ( isMounted )  {
-      const uid = localStorage.getItem( 'uid' );
       if( uid ) {
         dispatch( getDataUserLoged( uid ) );
         dispatch({
@@ -37,7 +39,7 @@ export const DashboardRouters = ({ history, location }) => {
       }
     }
     
-  }, [dispatch, isMounted ]);
+  }, [dispatch, isMounted, history, uid ]);
 
   if (uiReducer.loading ) {
       return ( <LoadingScreen />)
@@ -45,6 +47,7 @@ export const DashboardRouters = ({ history, location }) => {
   return (
       <>
         { uiReducer.viewModalImage && <ModalViewImage /> }
+        { uiReducer.viewModalSuscribe && <ModalSuscribeEvent /> }
         <NavBar />  
         <main>
             <Switch>
@@ -57,6 +60,7 @@ export const DashboardRouters = ({ history, location }) => {
             </Switch>
             <ColumnRight history = {history} />
         </main>
+        <NavBarMovile uid ={ uid }  />
       </>
   )
 }

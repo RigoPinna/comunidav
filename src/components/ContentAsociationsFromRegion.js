@@ -22,28 +22,36 @@ export const ContentAsociationsFromRegion = ({historyRouter}) => {
                 }
             }
         }
-    }, [ dispatch, isMounted, uid, idMun ]);
+    }, [ dispatch, isMounted, uid, idMun,asociationsRegionReducer ]);
     
     const handleRedirectToProfileAsc = ( uid ) => {
         historyRouter.push(`/association/${ uid }`)
     }
+    if ( isLoading ) {
+        return (
+            
+            <div className="__wrapper_colunm_right_content_asociations">
+                <ItemUserLoading />
+                <ItemUserLoading />
+                <ItemUserLoading />
+            </div>
+        );
+    }
     return (
         <div className="__wrapper_colunm_right_content_asociations">
-          { isLoading && <ItemUserLoading />}
-          { isLoading && <ItemUserLoading />}
-          { isLoading && <ItemUserLoading />}
           { 
-            !isLoading.isLoading 
-                && asociationsRegionReducer.map( ({uid, ascName, userName, image, category }, i) => { 
+            asociationsRegionReducer.length > 0
+                ? asociationsRegionReducer.map( ({ uid, ascName, userName, image, category }) => { 
                     return ( 
                         <ItemUser 
-                            handle={ () => { handleRedirectToProfileAsc(uid) } }
+                            handle={ () => { handleRedirectToProfileAsc( uid ) } }
                             key ={ `ascFromRegion-${uid}` }
                             displayName = { ascName } 
                             textSecondary = { category ? `Categoria • ${ category }` : userName } 
                             image = { image }
                     />)
                 })
+                :<p>No hay asociaciones</p>
           }
           
             

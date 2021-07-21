@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux'
-import { closeModalImage } from '../../reducers/uiReducer';
+import { closeAllModal } from '../../reducers/uiReducer';
 
 export const ButtonCloseModal = () => {
     const dispatch = useDispatch();
@@ -11,7 +11,7 @@ export const ButtonCloseModal = () => {
         const contenFather = btnClose.parentNode;
         contenFather.classList.add( 'animate__fadeOutDown' )
         setTimeout(() => {
-            dispatch( closeModalImage() );
+            dispatch( closeAllModal() );
         }, 200);
     }
     return (

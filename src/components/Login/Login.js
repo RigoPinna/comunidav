@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import { Link } from 'react-router-dom'
 import { useChangeForm } from '../../hooks/useChangeForm'
+import { useLoadingButton } from '../../hooks/useLoadingButton'
 
 import { fetchLogin } from '../../services/fetchLogin'
 import { FooterPage } from '../FooterPage'
@@ -13,21 +14,19 @@ import { LoadingInComponent } from '../loadings/LoadingInComponent'
 
 export const Login = ({history}) => {
     const [inputValues, handleOnChange ] = useChangeForm({ user:'', password: ''});
-    const [isLoading, setLoading] = useState( false );
-    const hanldeLogin = ( evt ) => {
+    const [ isLoading, setLoading ] = useLoadingButton( );
+    const verifyLogin = ( ) => {
         setLoading( !isLoading );
-        evt.preventDefault();
         fetchLogin( inputValues).then( resp => {
-            setLoading( false );
             if ( resp.isVerify ) {
+                setLoading( !isLoading );
                 localStorage.setItem( 'uid', resp.userID );
-                history.replace(`/${resp.userID}`)
+                history.replace(`/association/${resp.userID}`)
             } else {
 
             }
-        })
+        });
     }
-
     return (
         <div className="__wrapper_login">
         <ComunidavLogo />
@@ -55,7 +54,7 @@ export const Login = ({history}) => {
 
                 <Link to= "/" className ="__forgot_password">¿Olvidaste tu contraseña?</Link>
                 <button
-                    onClick = { hanldeLogin }
+                    onClick = { verifyLogin }
                     className = "__btn"
                     disabled = { isLoading }
                     >

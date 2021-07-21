@@ -1,19 +1,13 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import { ComunidavLogo } from '../iconos/ComunidavLogo'
+import { NavLink } from 'react-router-dom'
 import { IconHome } from '../iconos/IconHome'
 import { IconInbox } from '../iconos/IconInbox'
 import { IconSearch } from '../iconos/IconSearch'
-import { Avatar } from '../Items/Avatar'
+import { IconUser } from '../iconos/IconUser'
+export const NavBarMovile = ({uid}) => {
 
-export const NavBar = () => {
-    const handleOnClickAvatr = ( evt, state, setState ) => setState( !state );
-    
     return (
-        <header>
-            <Link className="__Logo"  to ="/home" >
-                <ComunidavLogo/>
-            </Link>
+        <div className ="__navbar_mobile">
             <nav>
                 <ul>
                     <li className ="_navbar_option_responsive">
@@ -35,11 +29,15 @@ export const NavBar = () => {
                             <span></span>
                         </NavLink>
                     </li>
-                    <li>
-                        <Avatar onClick={ handleOnClickAvatr }  />
+                    <li className ="_navbar_option_responsive">
+                        <NavLink activeClassName="__navbar_option_active " className="__navbar_option" to = {`/association/${uid}`}>
+                            <IconUser />
+                            <p>Mi perfil</p>
+                            <span></span>
+                        </NavLink>
                     </li>
                 </ul>
             </nav>
-        </header>
+        </div>
     )
 }

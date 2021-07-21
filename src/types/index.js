@@ -1,6 +1,9 @@
 export const types = {
     openModalImage: '[ui] open-Modal-Image',
     closeModalImage: '[ui] close-Modal-Image',
+    openModalSuscribe: '[ui] open-Modal-Suscribe',
+    closeModalSuscribe: '[ui] close-Modal-Suscribe',
+    closeAllModals: '[ui] close-All-Modals',
     loadigApp: '[ui] loadingApp',
     userLoged: '[data] userLoged',
     updateUserLoged: '[data] userUpdate',

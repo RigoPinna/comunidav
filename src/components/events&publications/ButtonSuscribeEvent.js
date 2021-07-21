@@ -1,11 +1,43 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { openModalSuscribe } from '../../reducers/uiReducer';
+import { IconArrowRight } from '../iconos/IconArrowRight';
+import { IconSuscribe } from '../iconos/IconSuscribe';
 
-export const ButtonSuscribeEvent = ( { text = "Inscribirme"}) => {
+export const ButtonSuscribeEvent = ( { text = "Inscribirme", isTheCreator, listParticipants, uid, eid, ascName, evtName }) => {
+    const dispatch = useDispatch();
+    let textButton = '';
+    let isSuscribe = false;
+    if ( isTheCreator ) {
+        isSuscribe = true;
+        textButton = 'Ver grupo';
+    } else {
+        isSuscribe = listParticipants.some( user => user.uid === uid );
+        text = isSuscribe ? 'Visitar grupo' : text;
+    }
+    const handleOnClick = () => {
+        if ( isSuscribe ) {
+            console.log('Mandar a página de evento')
+        } else {
+            dispatch( openModalSuscribe( ascName,evtName, eid ) );
+        }
+    }
     return (
-        <button className = "__btn __btn_suscribe">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" /></svg>
-            <p>{ text }</p>
+        <button
+            onClick={ handleOnClick } 
+            className = "__btn __btn_suscribe"
+            >
+            { 
+                !isTheCreator && <IconSuscribe /> 
+            }
+            <p>
+                { textButton != '' ? textButton : text }
+            </p>
+            { 
+                (isTheCreator || isSuscribe ) && <IconArrowRight /> 
+            }
             
         </button>
     )
+    
 }

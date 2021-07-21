@@ -7,7 +7,6 @@ export const useIsMounted = () => {
     useEffect(() => {
         
         return () => {
-            console.log('desmontado')
             isMounted.current = false;
         }
     }, [])

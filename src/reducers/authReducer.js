@@ -21,6 +21,7 @@ export const getDataUserLoged = ( uid ) => {
                     category: dataUser?.category ,
                     description:  dataUser?.description,
                     idMun: dataUser.idMunicipio,
+                    isVerify: dataUser.isVerify
                 }
             }
             dispatch( action );

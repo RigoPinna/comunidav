@@ -1,16 +1,14 @@
-import React from 'react'
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React,{ useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { useIsMounted } from '../../hooks/useIsMounted';
-import { addMyEvents } from '../../reducers/myEventsReducer';
 import { fetchGetInfoUserLoged } from '../../services/fetchGetInfoUserLoged';
-import { ContainerOptions } from '../ContainerOptions/ContainerOptions';
-import { ContainerInfoProfile } from '../Items/ContainerInfoProfile';
-import { DoPublicationHeader } from '../Items/DoPublicationHeader';
 
 import { ProfileScreenLoading } from '../loadings/ProfileScreenLoading';
+import { ContainerInfoProfile } from '../Items/ContainerInfoProfile';
+import { DoPublicationHeader } from '../Items/DoPublicationHeader';
+import { ContainerOptions } from '../ContainerOptions/ContainerOptions';
 import { SubMenuProfileAsc } from '../menus/SubMenuProfileAsc';
 
 const OPTION_MENU = {
@@ -40,7 +38,7 @@ export const ProfileScreen = (  ) => {
                 }
             }
         }
-    }, [ dispatch, userLogedReducer,uidURL ])
+    }, [ dispatch, userLogedReducer,uidURL, isMounted, isVisitProfileOltherProfile ])
     if( !userData?.uid ) {
         return (
          <section>
