@@ -1,5 +1,6 @@
 import React,{ useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useIsMounted } from '../../hooks/useIsMounted';
@@ -10,49 +11,50 @@ import { ContainerInfoProfile } from '../Items/ContainerInfoProfile';
 import { DoPublicationHeader } from '../Items/DoPublicationHeader';
 import { ContainerOptions } from '../ContainerOptions/ContainerOptions';
 import { SubMenuProfileAsc } from '../menus/SubMenuProfileAsc';
+import { OPTION_SUBMEN_USER } from '../../helpers/OPTION_SUBMENU_USER';
 
-const OPTION_MENU = {
-    viewMyEvents: 1,
-    viewMyGroups: 2,
-    viewMyFav: 3,
-}
+
 export const ProfileScreen = (  ) => {
-    
-    const { uid:uidURL } = useParams();
+
+    const { userLogedReducer } = useSelector( state => state );
     const dispatch = useDispatch();
-    const { userLogedReducer } = useSelector( state => state);
+
+    const location = useLocation();
+    const queryString = require('query-string');
+    const { q:uidURL } = queryString.parse(location.search);
+
     const [ isMounted ] = useIsMounted();
-    const [ viewOption, setViewOption ] = useState( OPTION_MENU.viewMyEvents );
-    const [ userData, setUserData ] = useState({})
-    let isVisitProfileOltherProfile = userLogedReducer?.uid ? ( userLogedReducer.uid === uidURL ): undefined;
+    const [ viewOption, setViewOption ] = useState( OPTION_SUBMEN_USER.viewMyEvents );
+    const [ userData, setUserData ] = useState({});
+
+    let isMyProfile = userLogedReducer?.uid ? ( userLogedReducer.uid === uidURL ): undefined;
+
     useEffect(() => {
         if ( isMounted ) {
-            if ( isVisitProfileOltherProfile !== undefined ) {
-                if ( isVisitProfileOltherProfile ) {
-                    setUserData( userLogedReducer );
-                } else {
-                    fetchGetInfoUserLoged( uidURL).then ( resp => {
-                        setUserData( resp );
-
-                    })
-                }
-            }
+            ( isMyProfile !== undefined )
+                && isMyProfile 
+                    ? setUserData( userLogedReducer ) 
+                    : fetchGetInfoUserLoged( uidURL ).then ( setUserData )
         }
-    }, [ dispatch, userLogedReducer,uidURL, isMounted, isVisitProfileOltherProfile ])
+        return () => {
+            setViewOption( OPTION_SUBMEN_USER.viewMyEvents )
+        }
+    }, [ dispatch, userLogedReducer,uidURL, isMounted, isMyProfile ])
+
     if( !userData?.uid ) {
         return (
-         <section>
-             <h1>Mi perfil</h1>
-             <ProfileScreenLoading />  
-         </section>
+            <>
+                <h1>Mi perfil</h1>
+                <ProfileScreenLoading />  
+            </>
         )
      }
     return (
-        <section>
+        <>
             <div className="__title_pages"><h1>Mi perfil</h1></div>
             <ContainerInfoProfile { ...userData }/>
             {
-                 (isVisitProfileOltherProfile && userData.typeUser === 'ASC') &&
+                 (isMyProfile && userData.typeUser === 'ASC') &&
                 <DoPublicationHeader 
                     displayName={ userData.displayName } 
                     textSecondary = { userData.userName } 
@@ -60,7 +62,7 @@ export const ProfileScreen = (  ) => {
                 />
             }
             { 
-                (isVisitProfileOltherProfile && userData.typeUser === 'ASC') 
+                (isMyProfile && userData.typeUser === 'ASC') 
                     && <SubMenuProfileAsc setViewOption = { setViewOption } />
             }
             <div className = '__wrapper_feed_publications'>
@@ -68,6 +70,6 @@ export const ProfileScreen = (  ) => {
                 !!viewOption && <ContainerOptions uid = { uidURL } optionMenu = { viewOption } />
             }
             </div>
-        </section>
+        </>
     )
 }

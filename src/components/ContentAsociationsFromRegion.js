@@ -25,7 +25,7 @@ export const ContentAsociationsFromRegion = ({historyRouter}) => {
     }, [ dispatch, isMounted, uid, idMun,asociationsRegionReducer ]);
     
     const handleRedirectToProfileAsc = ( uid ) => {
-        historyRouter.push(`/association/${ uid }`)
+        historyRouter.push( `/user?q=${uid}` );
     }
     if ( isLoading ) {
         return (

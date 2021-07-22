@@ -17,6 +17,10 @@ import { ColumnRight } from '../components/ColumnRight'
 import { ModalViewImage } from '../components/modals/ModalViewImage'
 import { NavBarMovile } from '../components/menus/NavBarMobile'
 import { ModalSuscribeEvent } from '../components/modals/ModalSuscribeEvent'
+import { ItemUser } from '../components/Items/ItemUser'
+import { ContentAsociationsFromRegion } from '../components/ContentAsociationsFromRegion'
+import { addAllGroups } from '../reducers/groupsEventReducer'
+import { addAllFavorites } from '../reducers/ascFavoritesReducer'
 
 
 export const DashboardRouters = ({ history, location }) => {
@@ -30,6 +34,8 @@ export const DashboardRouters = ({ history, location }) => {
     if ( isMounted )  {
       if( uid ) {
         dispatch( getDataUserLoged( uid ) );
+        dispatch(  addAllGroups( uid) );
+        dispatch( addAllFavorites( uid ));
         dispatch({
           type: types.loadigApp, 
           payload: false 
@@ -37,27 +43,39 @@ export const DashboardRouters = ({ history, location }) => {
       } else {
         history.replace('/login')
       }
+    } else {
+      localStorage.removeItem('uid');
     }
     
-  }, [dispatch, isMounted, history, uid ]);
+  }, [ dispatch, isMounted, history, uid ]);
 
-  if (uiReducer.loading ) {
+  if ( uiReducer.loading ) {
       return ( <LoadingScreen />)
   }  
   return (
       <>
         { uiReducer.viewModalImage && <ModalViewImage /> }
         { uiReducer.viewModalSuscribe && <ModalSuscribeEvent /> }
-        <NavBar />  
+        <NavBar history = { history } /> 
+        <div className ="__wrapper_associationFrom_responsive">
+                <strong>Asociaciones en ...</strong>
+                <div className ="__wrapper_colunm_right_content_asociations">
+                <ContentAsociationsFromRegion historyRouter = { history }/>
+                </div>
+              </div> 
         <main>
-            <Switch>
-              <Route exact path = "/home" component={HomeScreen}/>
-              <Route exact path = "/inbox" component={InboxScreen}/>
-              <Route exact path = "/search" component={SearchScreen}/>
-              <Route exact path ="/verify" component = { ProfileScreen } />
-              <Route path = "/association/:uid" component={ ProfileScreen }/>
-              <Redirect exact to="/home" />
-            </Switch>
+            <section>
+              
+              <Switch>
+                <Route exact path = "/home" component={HomeScreen}/>
+                <Route exact path = "/inbox" component={InboxScreen}/>
+                <Route exact path = "/search" component={SearchScreen}/>
+                <Route exact path ="/verify" component = { ProfileScreen } />
+                <Route exact path = "/user" component={ ProfileScreen }/>
+                <Route exact path = "/event" component={ ProfileScreen }/>
+                <Redirect exact to="/home" />
+              </Switch>
+            </section>
             <ColumnRight history = {history} />
         </main>
         <NavBarMovile uid ={ uid }  />

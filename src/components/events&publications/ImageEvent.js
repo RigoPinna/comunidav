@@ -12,7 +12,7 @@ export const ImageEvent = ( { image }) => {
 
     return (
         <div className = '__wrapper_image_event'>
-             <img src = { image } alt="image-event"/>
+             <img src = { image } alt="Evento"/>
              <button onClick = { handleViewImage } className = '__btn_view_image bg_blur_effect_black'>
                 <svg 
                     fill="none" 

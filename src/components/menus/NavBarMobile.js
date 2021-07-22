@@ -13,12 +13,14 @@ export const NavBarMovile = ({uid}) => {
                     <li className ="_navbar_option_responsive">
                         <NavLink activeClassName="__navbar_option_active " className="__navbar_option" to = "/home">
                             <IconHome/>
+                            <p>Eventos</p>
                             <span></span>
                         </NavLink >
                     </li>
                     <li className ="_navbar_option_responsive">
                         <NavLink activeClassName="__navbar_option_active " className="__navbar_option" to = "/inbox">
                             <IconInbox/>
+                            <p>Inbox</p>
                             <span></span>
                         </NavLink>
                     </li>
@@ -30,7 +32,7 @@ export const NavBarMovile = ({uid}) => {
                         </NavLink>
                     </li>
                     <li className ="_navbar_option_responsive">
-                        <NavLink activeClassName="__navbar_option_active " className="__navbar_option" to = {`/association/${uid}`}>
+                        <NavLink activeClassName="__navbar_option_active " className="__navbar_option" to = {`/user?q=${uid}`}>
                             <IconUser />
                             <p>Mi perfil</p>
                             <span></span>

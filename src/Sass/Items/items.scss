@@ -30,12 +30,23 @@
             font-family: 'SF-Bold';
             text-decoration: none;
             color:$color-black-1;
+            white-space:nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            display: block;
         }
         p {
             font-size: 0.875em;
             font-family: 'SF-Regular';
             text-decoration: none;
             color:$color-black-3;
+            white-space:nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            display: block;
+            
         }
         
     }

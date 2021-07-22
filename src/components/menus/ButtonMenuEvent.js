@@ -1,13 +1,10 @@
-import React, { useState } from 'react'
-import { useIsMounted } from '../../hooks/useIsMounted';
+import React from 'react'
+import { useViewSubMenu } from '../../hooks/useViewSubMenu';
 import { SubMenuEventCreated } from './SubMenuEventCreated'
 
 export const ButtonubMenuEvent = React.memo(({ eid, uidCreator, uidLoged, isTheCreator }) => {
-    const [ isMounted ] = useIsMounted();
-    const [ viewMenuIsActive, setViewMenuIsActive ] = useState( false );
-    const handleViewMenu = () => {
-       isMounted && setViewMenuIsActive( !viewMenuIsActive )
-    };
+    
+    const [ viewMenuIsActive, handleViewMenu ] = useViewSubMenu();
     
     return (
         <>

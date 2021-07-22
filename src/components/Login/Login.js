@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { Link } from 'react-router-dom'
 import { useChangeForm } from '../../hooks/useChangeForm'
@@ -21,7 +21,7 @@ export const Login = ({history}) => {
             if ( resp.isVerify ) {
                 setLoading( !isLoading );
                 localStorage.setItem( 'uid', resp.userID );
-                history.replace(`/association/${resp.userID}`)
+                history.replace(`user?q=${resp.userID}`)
             } else {
 
             }

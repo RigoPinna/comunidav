@@ -16,7 +16,7 @@ export const ColumnRight = ({history }) => {
     const { userLogedReducer } = useSelector( state => state );
     const uid = localStorage.getItem( 'uid' );
     const handleGoMyProfile = () => {
-        history.push( `/association/${uid}` );
+        history.push( `/user?q=${uid}` );
     }
     return (
         <div className="__wrapper_column_right">

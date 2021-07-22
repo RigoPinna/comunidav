@@ -31,7 +31,7 @@ export const ButtonSuscribeEvent = ( { text = "Inscribirme", isTheCreator, listP
                 !isTheCreator && <IconSuscribe /> 
             }
             <p>
-                { textButton != '' ? textButton : text }
+                { textButton !== '' ? textButton : text }
             </p>
             { 
                 (isTheCreator || isSuscribe ) && <IconArrowRight /> 

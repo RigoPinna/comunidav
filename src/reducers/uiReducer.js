@@ -43,6 +43,10 @@ export const closeModalSuscribe = () => ({
             viewModalSuscribe: false,
         }
 });
+export const uiLogout = () => ({
+    type:types.uiLogout,
+    payload: initialState
+});
 
 
 export const uiReducer = ( state = initialState, action ) => {
@@ -74,11 +78,12 @@ export const uiReducer = ( state = initialState, action ) => {
                 ...action.payload
             }
         case types.closeAllModals:
-           
             return {
                 ...state,
                 ...action.payload
             }
+            case types.uiLogout:
+                return action.payload;
         default:
             return state;
     }

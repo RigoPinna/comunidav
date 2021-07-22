@@ -63,7 +63,6 @@
 
     }
     svg {
-        
         width: 20px;
         height: 20px;
     }
@@ -119,7 +118,7 @@
 }
 @include small {
     .__btn {
-        font-size:16px;
+        font-size:12px;
     }
         
 }

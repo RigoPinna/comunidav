@@ -9,6 +9,7 @@ header, .__navbar_mobile {
     align-items: center;
     font-size:16px;
     padding:5px;
+    z-index: 1;
     .__Logo {
         text-decoration: none;
         color:$color-black-1;
@@ -79,9 +80,24 @@ header, .__navbar_mobile {
                 .__navbar_option_active {
                     color:$color-black-2;
                     font-family: 'SF-Bold';
+                    transition: all 0.3s ease;
                     span {
                         visibility:visible;
                         background:$color-black-2;
+                    }
+                    svg {
+                        // fill: $color-black-1;
+                        stroke:$color-black-2;
+                        fill:$color-black-2;
+                        .__path_on{
+                            stroke: #DBDBDB;
+                            fill:transparent
+                            
+                        }
+                        circle {
+                            fill: $color-black-2;
+                            stroke:$color-black-2;
+                        }
                     }
                 }
             }

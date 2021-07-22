@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+
+import { OPTION_SUBMEN_USER } from '../../helpers/OPTION_SUBMENU_USER';
 import { useIsMounted } from '../../hooks/useIsMounted';
-import { addMyEvents } from '../../reducers/myEventsReducer';
+import { addAllEvents } from '../../reducers/myEventsReducer';
 import { fetchGetEventUser } from '../../services/fetchGetEventUser';
 import { Event } from '../events&publications/Event';
-const OPTION_MENU = {
-    viewMyEvents: 1,
-    viewMyGroups: 2,
-    viewMyFav: 3,
-}
+import { ItemFavoriteAsc } from '../favoriteAsc/ItemFavoriteAsc';
+import { ItemGroup } from '../groupsEvents/ItemGroup';
+
+
+
 export const ContainerOptions = React.memo(({ uid, optionMenu }) => {
     
 
-    const { myEventsReducer,userLogedReducer } = useSelector( state => state )
+    const { myEventsReducer,userLogedReducer,groupsReducer, favoritesReducer } = useSelector( state => state )
     const [ isMounted ] = useIsMounted();
     const dispatch = useDispatch();
     const [ eventOtherUser, setEventOtherUser ] = useState([]);
@@ -21,14 +23,12 @@ export const ContainerOptions = React.memo(({ uid, optionMenu }) => {
     useEffect(() => {
         if ( isMounted ) {
             if ( uid === userLoged ) {
-                if ( myEventsReducer.length <= 0 ) {
-                    dispatch( addMyEvents( userLoged ))
-                } else {
-                    setEventOtherUser( myEventsReducer );
-                }
-               
+
+                ( myEventsReducer.length <= 0 ) 
+                    ? dispatch( addAllEvents( userLoged ))
+                    : setEventOtherUser( myEventsReducer );
+                    
             } else {
-                console.log( uid, userLoged )
                 fetchGetEventUser( uid ).then( events => {
                     setEventOtherUser(  events );
                 });
@@ -36,9 +36,8 @@ export const ContainerOptions = React.memo(({ uid, optionMenu }) => {
 
         }
     }, [ isMounted, uid,userLoged, dispatch, myEventsReducer ])
-
     switch ( optionMenu ) {
-        case OPTION_MENU.viewMyEvents:
+        case OPTION_SUBMEN_USER.viewMyEvents:
             return (
                 <div className = '__wrapper_feed_publications'>
                      {
@@ -53,8 +52,52 @@ export const ContainerOptions = React.memo(({ uid, optionMenu }) => {
                     }  
                 </div>
             )
+        case OPTION_SUBMEN_USER.viewMyGroups:
+            return (
+                <div className = '__wrapper_feed_groups_events'>
+                    {
+                        groupsReducer.length > 0 
+                            ? groupsReducer.map( ( { eid, nameEvent, infoCreator,participants }, i ) => {
+                                return (
+                                   <ItemGroup
+                                       key = {`gid-${ eid }`}
+                                       eid = { eid }
+                                       nameCreator = { infoCreator.displayName }
+                                       imageCreator = { infoCreator.image }
+                                       nameEvent = { nameEvent }
+                                       participants = { participants }
+                                   />
+                                   
+                               )
+                           })
+                           :<p>No te has inscrito a algun evento aun...</p>
+                    }
+                     
+                </div>
+            )
+        case OPTION_SUBMEN_USER.viewMyFav:
+            return (
+                <div className = '__wrapper_feed_publications'>
+                    { 
+                        favoritesReducer.length > 0
+                            ? favoritesReducer.map( (( { idFavorite,uid,displayName, image, description, category }, i ) => {
+                                return (
+                                    <ItemFavoriteAsc
+                                        key = {`fav-${ Date.now()+idFavorite+uid}`}
+                                        idFavorite = { idFavorite }
+                                        displayName = { displayName }
+                                        image = { image }
+                                        description = { description }
+                                        category = { category }/>
+                                )
+                            }))
+                            :<p>Aun no has agregado asociacionesa tus favoritos...</p> 
+                    }
+                    
+                </div>
+            );
         default:
-        return <p>hola?</p>
+            return <p>Ups...Hubo un error inesperado.</p>
     }
     
 })

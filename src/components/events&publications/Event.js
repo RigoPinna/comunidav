@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { ItemUser } from '../Items/ItemUser'
-import { ButtonubMenuEvent } from '../menus/SubMenuEventPublic'
+import { ButtonubMenuEvent } from '../menus/ButtonMenuEvent'
 import { ImageEvent } from './ImageEvent'
 import { ButtonSuscribeEvent } from './ButtonSuscribeEvent'
 import { ButtonSendMessage } from '../inbox/ButtonSendMessage'

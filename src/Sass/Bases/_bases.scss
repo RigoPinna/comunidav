@@ -26,12 +26,13 @@
     font-family: "SF-Thin";
     src: url('./fonts/SF-Pro-Display-Thin.otf') format("truetype");
 }
-*::-webkit-scrollbar, body::-webkit-scrollbar {
+*::-webkit-scrollbar,*::-webkit-scrollbar-button, body::-webkit-scrollbar,body::-webkit-scrollbar-button {
     background: transparent;
     width: 5px;
+    height: 5px;
     
 }
-*::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb,*::-webkit-scrollbar-button, body::-webkit-scrollbar-thumb,body::-webkit-scrollbar-button {
     background: gray;
     border-radius: 2px;
     padding: 5px;

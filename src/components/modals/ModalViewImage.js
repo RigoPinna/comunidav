@@ -9,7 +9,7 @@ export const ModalViewImage = () => {
             <div className ="__modal_container __modal_container_image animate__animated animate__fadeInUp ">
                 <ButtonCloseModal />    
                 {
-                    !!image && <img src={ image } alt="image-evt" />
+                    !!image && <img src={ image } alt="Evento" />
                 }
             </div>
             

@@ -6,8 +6,8 @@ import { IconInbox } from '../iconos/IconInbox'
 import { IconSearch } from '../iconos/IconSearch'
 import { Avatar } from '../Items/Avatar'
 
-export const NavBar = () => {
-    const handleOnClickAvatr = ( evt, state, setState ) => setState( !state );
+export const NavBar = ({ history }) => {
+    const handleOnClickAvatar = ( evt, state, setState ) => setState( !state );
     
     return (
         <header>
@@ -19,12 +19,14 @@ export const NavBar = () => {
                     <li className ="_navbar_option_responsive">
                         <NavLink activeClassName="__navbar_option_active " className="__navbar_option" to = "/home">
                             <IconHome/>
+                            <p>Eventos</p>
                             <span></span>
                         </NavLink >
                     </li>
                     <li className ="_navbar_option_responsive">
                         <NavLink activeClassName="__navbar_option_active " className="__navbar_option" to = "/inbox">
                             <IconInbox/>
+                            <p>Inbox</p>
                             <span></span>
                         </NavLink>
                     </li>
@@ -36,7 +38,7 @@ export const NavBar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <Avatar onClick={ handleOnClickAvatr }  />
+                        <Avatar history = { history } onClick={ handleOnClickAvatar }  />
                     </li>
                 </ul>
             </nav>

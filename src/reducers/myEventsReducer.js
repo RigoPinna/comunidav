@@ -3,11 +3,11 @@ import { types } from "../types";
 
 const initialState = [];
 
-export const addMyEvents = ( uid ) => {
+export const addAllEvents = ( uid ) => {
     return ( dispatch ) => {
         fetchGetEventUser( uid ).then( myEvents => {
             const action = {
-                type: types.addMyEvent,
+                type: types.addAllMyEvents,
                 payload:myEvents
             }
             dispatch( action );
@@ -15,17 +15,20 @@ export const addMyEvents = ( uid ) => {
 
     }
 }
-
+export const resetMyEvent = ( ) => ({
+    type: types.resetMyEvent,
+    payload: []
+})
 export const myEventsReducer = ( state = initialState, action ) => {
     switch ( action.type ) {
 
-        case types.addMyEvent:
+        case types.addAllMyEvents:
+            return [ ...state, ...action.payload ];
 
-            return [ ...state, ...action.payload ]
         case types.getMyEvents:
-
-        return state
-    
+            return state;
+        case types.resetMyEvents:
+           return action.payload;
         default:
             return state
     }

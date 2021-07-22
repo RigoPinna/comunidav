@@ -20,7 +20,6 @@ main {
             color: $color-black-1;
             margin-bottom:10px;
         }
-    
     }
 }
 .__wrapper_info {
@@ -56,7 +55,7 @@ main {
                 text-decoration: none;
                 font-style: normal;
                 color:$color-black-1;
-                letter-spacing: 0.125em;
+                letter-spacing: 0.2px;
                 font-size: 2.5em;
             }
             .badge_short {
@@ -195,6 +194,90 @@ main {
             box-shadow: $shadows-elements;
         }
     
+    }
+}
+.__wrapper_feed_groups_events{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
+    width: 100%;
+    min-height: 100px;
+    .__wrapper_group_event {
+        display: block;
+        width: 230px;
+        min-height: 100px;
+        background:$always-white;
+        padding: 10px;
+        border-radius: $br-radius;
+        margin: 5px;
+        h1 {
+            display: block;
+            width: 100%;
+            position: relative;
+            font-size:14px;
+            color:$color-black-2;
+            &::before {
+                content:'';
+                display: block;
+                background:$color-black-2;
+                position: absolute;
+                width: 20%;
+                height:5px;
+                border-radius: $br-radius;
+                bottom: -5px;
+                left:0;
+            }
+        }
+        & > p {
+            margin:15px 0 5px 0;
+        }
+        .__wrapper_group_event_body {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            min-height: 50px;
+            padding-top: 5px;
+            
+            img {
+                width: 50px;
+                height: 50px;
+            }
+            & > div {
+                padding-left: 5px;
+                strong {
+                    font-size:'SF-Bold'
+                }
+            }
+        }
+        .__wrapper_group_event_footer {
+            display:flex;
+            width: 100%;
+            height: 40px;
+            flex-direction: row;
+            .__btn {
+                font-size:12px;
+                padding: 5px;
+                height:100%;
+            }
+            svg {
+                width:15px;
+                height:15px;
+            }
+        }
+    }
+}
+.__wrapper_list_avatars {
+    display: flex;
+    width: 100px;
+    height:40px;
+    img {
+        display:block;
+        position: relative;
+        width: 40px;
+        height: 40px;
+        margin-left: -8px;
+        border: 2px solid $always-white;
+        
     }
 }
 .__wrapper_column_right {
@@ -388,6 +471,9 @@ footer {
         margin-top: 20px;
     }
 }
+.__wrapper_associationFrom_responsive {
+    display: none;
+}
 @include medium {
     .__wrapper_info {
         font-size:11px;
@@ -408,6 +494,13 @@ footer {
     
 }
 @include small {
+    body { 
+        overflow-x: hidden;
+        padding-bottom: 40px;
+    }
+    .__title_pages {
+        display:none;
+    }
     .__wrapper_column_right {
         display: none;
     }
@@ -423,16 +516,61 @@ footer {
         height:50%;
     }
     main {
-        height: auto;
-        padding-top: 55px;
-        padding-bottom: 55px;
+        height: 100vh;
+        padding-top: 15px;
+        
+        // overflow-y: hidden;
         section {
             grid-column: 1 / 16;
             grid-row: 1 / 11;
             display: block;
             width: 100%;
             padding-right: 5px;
-    
+            // overflow-y: hidden;
+            
         }
     }
+    .__wrapper_feed_groups_events{
+        justify-content: center;
+        flex-direction: column;
+        .__wrapper_group_event {
+            width: 100%;
+            margin: 5px 0;
+        }
+    }
+    .__wrapper_associationFrom_responsive {
+        display: block;
+        width: 100%;
+        height:auto;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-top: 50px;
+        background:#DBDBDB;
+        strong {
+            padding-left: 10px;
+            font-family: 'SF-Bold';
+            font-size: 16px;
+        }
+        .__wrapper_colunm_right_content_asociations {
+            display:flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+            height:100%;
+            overflow-y: hidden;
+            overflow-x: auto;
+            padding: 10px 5px;
+            ._item {
+                margin: 0 5px;
+                .info-Contact {
+                    display:none;
+                }
+                .badge_short {
+                    bottom:-6px;
+                }
+            }
+            
+        }
+    }
+    
 }
