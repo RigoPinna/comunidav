@@ -5,24 +5,24 @@ import { getAssociationsHaveRegion } from '../reducers/asocitionsFromRegionReduc
 import { ItemUser } from './Items/ItemUser'
 import { ItemUserLoading } from './loadings/ItemUserLoading'
 
-export const ContentAsociationsFromRegion = ({historyRouter}) => {
-
-    const [ isLoading, setIsLoading ] = useState( true );
-    const { asociationsRegionReducer, userLogedReducer } = useSelector( state => state );
+export const ContentAsociationsFromRegion = ({ historyRouter, userData}) => {
+    const [isLoading, setIsLoading] = useState( true )
+    const { asociationsRegionReducer } = useSelector( state => state );
     const dispatch = useDispatch();
     const [ isMounted ] = useIsMounted();
-    const { uid, idMun } = userLogedReducer;
     useEffect(() => {
         if ( isMounted ) {
-            if ( !!uid && !!idMun ) {
-                if( asociationsRegionReducer.length <= 0 && !!uid ) {
-                    dispatch( getAssociationsHaveRegion( uid, idMun ) );
-                    setIsLoading( false );
-                    
+            if ( userData !== undefined ) {
+                if( isLoading ) {
+                    const { uid, idMun } = userData;
+                    ( asociationsRegionReducer.length <= 0 ) 
+                        ? dispatch( getAssociationsHaveRegion( uid, idMun ) )
+                        : setIsLoading( !isLoading );
+
                 }
             }
         }
-    }, [ dispatch, isMounted, uid, idMun,asociationsRegionReducer ]);
+    }, [ userData,asociationsRegionReducer, setIsLoading, isMounted, dispatch, isLoading ] );
     
     const handleRedirectToProfileAsc = ( uid ) => {
         historyRouter.push( `/user?q=${uid}` );

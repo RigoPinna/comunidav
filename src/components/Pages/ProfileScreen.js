@@ -34,10 +34,7 @@ export const ProfileScreen = (  ) => {
             ( isMyProfile !== undefined )
                 && isMyProfile 
                     ? setUserData( userLogedReducer ) 
-                    : fetchGetInfoUserLoged( uidURL ).then ( setUserData )
-        }
-        return () => {
-            setViewOption( OPTION_SUBMEN_USER.viewMyEvents )
+                    : fetchGetInfoUserLoged( uidURL ).then ( setUserData );
         }
     }, [ dispatch, userLogedReducer,uidURL, isMounted, isMyProfile ])
 
@@ -52,22 +49,23 @@ export const ProfileScreen = (  ) => {
     return (
         <>
             <div className="__title_pages"><h1>Mi perfil</h1></div>
-            <ContainerInfoProfile { ...userData }/>
+            <ContainerInfoProfile { ...userData } />
             {
                  (isMyProfile && userData.typeUser === 'ASC') &&
                 <DoPublicationHeader 
                     displayName={ userData.displayName } 
-                    textSecondary = { userData.userName } 
+                    textSecondary = { `Categoria • ${ userData.category }` } 
                     image = { userData.image } 
                 />
             }
             { 
                 (isMyProfile && userData.typeUser === 'ASC') 
-                    && <SubMenuProfileAsc setViewOption = { setViewOption } />
+                    && <SubMenuProfileAsc setViewOption = { setViewOption } setUserData = {setUserData} />
             }
             <div className = '__wrapper_feed_publications'>
             {
-                !!viewOption && <ContainerOptions uid = { uidURL } optionMenu = { viewOption } />
+                !!viewOption && <ContainerOptions uid = { uidURL } optionMenu = { isMounted ? viewOption : 1 } />
+                    
             }
             </div>
         </>

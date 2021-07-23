@@ -2,7 +2,7 @@ import React from 'react'
 import { useViewSubMenu } from '../../hooks/useViewSubMenu'
 import { SubmenuFavorite } from './SubmenuFavorite';
 
-export const ButtonMenuFavorite = () => {
+export const ButtonMenuFavorite = ({ aid }) => {
     const [ viewMenuIsActive, handleViewMenu ] = useViewSubMenu();
     return (
         <>
@@ -21,7 +21,7 @@ export const ButtonMenuFavorite = () => {
         </button>
         { 
             viewMenuIsActive 
-                && <SubmenuFavorite /> 
+                && <SubmenuFavorite aid = {aid} /> 
         }
         </>
     )

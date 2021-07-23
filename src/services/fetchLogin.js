@@ -1,6 +1,6 @@
 import { SERVER_API } from "../SERVER-API/SERVER-API";
 
-export const fetchLogin = async( {user, password}, setLoading ) => {
+export const fetchLogin = async( { user, password } ) => {
     
     const { API } = SERVER_API;
     const formData = new FormData();

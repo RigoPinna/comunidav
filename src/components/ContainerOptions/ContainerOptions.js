@@ -8,13 +8,14 @@ import { fetchGetEventUser } from '../../services/fetchGetEventUser';
 import { Event } from '../events&publications/Event';
 import { ItemFavoriteAsc } from '../favoriteAsc/ItemFavoriteAsc';
 import { ItemGroup } from '../groupsEvents/ItemGroup';
+import { LoadingInComponent } from '../loadings/LoadingInComponent';
 
 
 
 export const ContainerOptions = React.memo(({ uid, optionMenu }) => {
     
-
     const { myEventsReducer,userLogedReducer,groupsReducer, favoritesReducer } = useSelector( state => state )
+    const [isLoading, setIsLoading] = useState( true )
     const [ isMounted ] = useIsMounted();
     const dispatch = useDispatch();
     const [ eventOtherUser, setEventOtherUser ] = useState([]);
@@ -23,24 +24,27 @@ export const ContainerOptions = React.memo(({ uid, optionMenu }) => {
     useEffect(() => {
         if ( isMounted ) {
             if ( uid === userLoged ) {
-
+                
                 ( myEventsReducer.length <= 0 ) 
                     ? dispatch( addAllEvents( userLoged ))
                     : setEventOtherUser( myEventsReducer );
-                    
+                setIsLoading( !isLoading );
             } else {
                 fetchGetEventUser( uid ).then( events => {
                     setEventOtherUser(  events );
+                    setIsLoading( !isLoading );
                 });
             }
-
         }
     }, [ isMounted, uid,userLoged, dispatch, myEventsReducer ])
     switch ( optionMenu ) {
         case OPTION_SUBMEN_USER.viewMyEvents:
             return (
                 <div className = '__wrapper_feed_publications'>
-                     {
+                    { 
+                        isLoading && <LoadingInComponent /> 
+                    }
+                    {
                         eventOtherUser.length >= 0 
                             ?  eventOtherUser.map( evt => {
                                 return  <Event key = {`my-evt-${evt.evtID}`} {...evt}/>
@@ -80,15 +84,17 @@ export const ContainerOptions = React.memo(({ uid, optionMenu }) => {
                 <div className = '__wrapper_feed_publications'>
                     { 
                         favoritesReducer.length > 0
-                            ? favoritesReducer.map( (( { idFavorite,uid,displayName, image, description, category }, i ) => {
+                            ? favoritesReducer.map( (( { idFavorite,idAsociacion,uid,displayName, image, description, category }, i ) => {
                                 return (
                                     <ItemFavoriteAsc
                                         key = {`fav-${ Date.now()+idFavorite+uid}`}
                                         idFavorite = { idFavorite }
+                                        idAsociacion = { idAsociacion }
                                         displayName = { displayName }
                                         image = { image }
                                         description = { description }
-                                        category = { category }/>
+                                        category = { category }
+                                    />
                                 )
                             }))
                             :<p>Aun no has agregado asociacionesa tus favoritos...</p> 

@@ -28,7 +28,15 @@ export const resetFavorites = () => ({
     payload: initialState
 
 });
-
+export const removeFavorite = ( aid ) => ({
+    type: types.removeFavorite,
+    payload: aid,
+})
+export const addToFavorites = ( dataAsc ) => ({
+    type: types.addToFavorite,
+    payload: [ dataAsc ],
+    
+})
 
 
 export const favoritesReducer = ( state = initialState, action ) => {
@@ -36,10 +44,14 @@ export const favoritesReducer = ( state = initialState, action ) => {
         case types.addAllFavoriteAsc:
             
             return [...state,...action.payload ];
+        case types.addToFavorite: 
+            
+            return [...state, ...action.payload ];
 
         case types.resetFavorites:
-
             return action.payload;
+        case types.removeFavorite: 
+            return state.filter( ({ idAsociacion }) => idAsociacion !== action.payload );
         default:
             return state;
     }

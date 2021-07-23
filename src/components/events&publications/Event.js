@@ -17,9 +17,14 @@ export const Event = ({ evtID, uid, aid,nameAsc,userImg, category,evtName, date,
   
             <ButtonubMenuEvent 
                 eid = { evtID } 
-                uidCreator = { uid }
                 uiLoged = { uidLoged }  
-                isTheCreator = { isTheCreator } 
+                isTheCreator = { isTheCreator }
+                dataCreator = {{
+                    uid,
+                    aid,
+                    displayName: nameAsc,
+                    category,
+                }}
             />
          
             

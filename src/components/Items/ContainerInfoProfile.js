@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Avatar } from './Avatar'
 import { BadgeShort } from './BadgeShort'
 
 export const ContainerInfoProfile = ({ userName, displayName, typeUser, category, description, image }) => {
     const typeUserNameLong = typeUser === 'ASC' ? 'Asociación' : 'Voluntario';
+    useEffect(() => {
+    }, [])
     return (
         <div className = "__wrapper_info  animate__animated animate__fadeIn">
                 <div className="__wrapper_info_header">

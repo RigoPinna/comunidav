@@ -18,5 +18,7 @@ export const types = {
     addGroupsEvent: '[ groups-event ] Add-Groups',
     resetGroups:'[ groups-event ] Reset-Groups',
     addAllFavoriteAsc: '[ favorite ] Add-all-favorite',
-    resetFavorites: '[ favorite ] Reset-favorites'
+    addToFavorite: '[ favorite ] Add-To-favorite',
+    resetFavorites: '[ favorite ] Reset-favorites',
+    removeFavorite: '[ favorite ] Remove-favorite'
 }

@@ -1,8 +1,9 @@
 import React from 'react'
+import { useIsMounted } from '../../hooks/useIsMounted';
 import { useViewSubMenu } from '../../hooks/useViewSubMenu';
 import { SubMenuEventCreated } from './SubMenuEventCreated'
 
-export const ButtonubMenuEvent = React.memo(({ eid, uidCreator, uidLoged, isTheCreator }) => {
+export const ButtonubMenuEvent = React.memo(({ eid, uidLoged, isTheCreator,  dataCreator }) => {
     
     const [ viewMenuIsActive, handleViewMenu ] = useViewSubMenu();
     
@@ -25,9 +26,9 @@ export const ButtonubMenuEvent = React.memo(({ eid, uidCreator, uidLoged, isTheC
                 viewMenuIsActive 
                     && <SubMenuEventCreated 
                             eid = { eid }
-                            uidCreator = { uidCreator }
                             uidLoged = { uidLoged }
-                            isTheCreator = { isTheCreator } 
+                            isTheCreator = { isTheCreator }
+                            dataCreator = { dataCreator } 
                         /> 
             }
         </>

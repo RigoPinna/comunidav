@@ -1,16 +1,24 @@
 import React, { useRef } from 'react'
+import { useEffect } from 'react';
 import { OPTION_SUBMEN_USER } from '../../helpers/OPTION_SUBMENU_USER';
 import { useActiveSubmenuOption } from '../../hooks/useActiveSubmenuOption';
 import { IconEvent } from '../iconos/IconEvent';
 import { IconFavorite } from '../iconos/IconFavorite';
 import { IconGroups } from '../iconos/IconGroups';
 
-export const SubMenuProfileAsc = ({ setViewOption }) => {
+export const SubMenuProfileAsc = ({ setViewOption, setUserData }) => {
 
     const [ setActiveOption ] = useActiveSubmenuOption();
     const opMyEvents = useRef( null );
     const opMyFavorites = useRef( null );
     const opMyGroups = useRef( null );
+    useEffect(() => {
+        //Si el usuario visita otro perfil, se resetea a la opcion 1 para ver los eventso creados del usuario
+        return () => {
+            setViewOption( OPTION_SUBMEN_USER.viewMyEvents );
+            setUserData({})
+        }
+    }, []);
     
     const hanldeActionMenu = ( optiontype ) => {
         
