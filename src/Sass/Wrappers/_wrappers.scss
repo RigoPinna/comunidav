@@ -145,6 +145,7 @@ main {
                 width: 100%;
                 min-height: 20px;
                 align-items: center;
+                padding-left: 10px;
                 svg {
                     width:20px;
                     height: 20px;
@@ -241,7 +242,7 @@ main {
                 width: 20%;
                 height:5px;
                 border-radius: $br-radius;
-                bottom: -5px;
+                bottom: -7px;
                 left:0;
             }
         }

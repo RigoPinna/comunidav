@@ -1,5 +1,5 @@
 import React from 'react'
-import { useIsMounted } from '../../hooks/useIsMounted';
+
 import { useViewSubMenu } from '../../hooks/useViewSubMenu';
 import { SubMenuEventCreated } from './SubMenuEventCreated'
 

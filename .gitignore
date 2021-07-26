@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/src/SERVER-API
 /.pnp
 .pnp.js
 

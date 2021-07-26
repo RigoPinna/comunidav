@@ -16,9 +16,9 @@ export const SubMenuProfileAsc = ({ setViewOption, setUserData }) => {
         //Si el usuario visita otro perfil, se resetea a la opcion 1 para ver los eventso creados del usuario
         return () => {
             setViewOption( OPTION_SUBMEN_USER.viewMyEvents );
-            setUserData({})
+            setUserData({});
         }
-    }, []);
+    }, [ ]);
     
     const hanldeActionMenu = ( optiontype ) => {
         

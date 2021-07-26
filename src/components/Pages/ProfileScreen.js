@@ -60,12 +60,14 @@ export const ProfileScreen = (  ) => {
             }
             { 
                 (isMyProfile && userData.typeUser === 'ASC') 
-                    && <SubMenuProfileAsc setViewOption = { setViewOption } setUserData = {setUserData} />
+                    && <SubMenuProfileAsc 
+                            setViewOption = { setViewOption }
+                            setUserData  = { setUserData }
+                        />
             }
             <div className = '__wrapper_feed_publications'>
             {
                 !!viewOption && <ContainerOptions uid = { uidURL } optionMenu = { isMounted ? viewOption : 1 } />
-                    
             }
             </div>
         </>

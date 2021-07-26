@@ -28,11 +28,12 @@ export const ContainerOptions = React.memo(({ uid, optionMenu }) => {
                 ( myEventsReducer.length <= 0 ) 
                     ? dispatch( addAllEvents( userLoged ))
                     : setEventOtherUser( myEventsReducer );
-                setIsLoading( !isLoading );
+
+                isLoading && setIsLoading( !isLoading );
             } else {
                 fetchGetEventUser( uid ).then( events => {
                     setEventOtherUser(  events );
-                    setIsLoading( !isLoading );
+                    isLoading && setIsLoading( !isLoading );
                 });
             }
         }
