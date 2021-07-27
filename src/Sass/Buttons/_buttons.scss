@@ -116,6 +116,17 @@
 
     }
 }
+.__btn_register {
+    text-decoration:none;
+    color:$color-black-2;
+    font-family: 'SF-Bold';
+    font-size: 14px;
+    &:hover {
+        color:$color-primary-purple;
+        text-decoration: underline;
+    }
+
+}
 @include small {
     .__btn {
         font-size:12px;

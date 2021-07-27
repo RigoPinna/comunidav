@@ -75,8 +75,8 @@ export const DashboardRouters = ({ history, location }) => {
                 <Redirect exact to="/home" />
               </Switch>
             </section>
-            <ColumnRight history = {history} />
         </main>
+            <ColumnRight history = {history} />
         <NavBarMovile uid ={ uid }  />
       </>
   )

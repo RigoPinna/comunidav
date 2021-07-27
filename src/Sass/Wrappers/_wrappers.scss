@@ -11,8 +11,6 @@ main {
         grid-row: 1 / 11;
         display: block;
         width: 100%;
-        overflow-y: auto;
-        overflow-x: hidden;
         padding-right: 15px;
         h1, h2 {
             font-size: 30px;
@@ -300,15 +298,14 @@ main {
 }
 .__wrapper_column_right {
     display:flex;
-    // background:$always-white;
     flex-direction: column;
-    grid-column: 12 / 16;
-    grid-row: 1 / 11;
-    width:calc(100% - 35px);
     height: calc(100% - 45px);
     margin-left: 35px;
     margin-top: 45px;
     border-radius: $br-radius;
+    position: fixed;
+    top:55px;
+    right: 16px;
     .__wrapper_comunm_right_title_section {
         display: flex;
         flex-direction: row;
@@ -400,7 +397,7 @@ footer {
         }
     }
 }
-.__wrapper_main_login {
+.__wrapper_main_login, .__wrapper_register {
     display:flex;
     flex-wrap: wrap;
     flex-direction:column;
@@ -411,18 +408,24 @@ footer {
     .__wrapper_login {
         display:block;
         width: 25em;
-        height:400px;
+        min-height:400px;
         background: $always-white;
         border-radius: $br-radius;
         box-shadow: $shadow-purple-elements;
         padding:1.25em 0.625em 0.625em 0.625em;
         font-size: 1rem;
+        & > p {
+            margin-top: 20px;
+            color:$color-black-3;
+
+        }
         h1 {
             position: relative;
             color:$color-black-2;
             font-size: 1.3em;
             font-family: 'SF-Bold';
-            span {
+            &::after {
+                content:'';
                 position:absolute;
                 bottom:-10px;
                 left:0;
@@ -436,7 +439,7 @@ footer {
             display: flex;
             margin-top:10px;
             width: 100%;
-            height:238px;
+            min-height:238px;
             flex-wrap: wrap;
             align-items: center;
             & > form {
@@ -473,6 +476,25 @@ footer {
                 }
             }
         }
+        .__wrapper_login_footer {
+            display:flex;
+            justify-content:center;
+            align-items: center;
+            width: 100%;
+            min-height:55px;
+            flex-wrap: wrap;
+            .__btn {
+                width: 100%;
+                height:50px;
+                transition: all 0.2s ease;
+                margin-bottom: 30px;
+                &:disabled {
+                    width:50px;
+                    border-radius:100%;
+                }
+            }
+
+        }
         .__logo_comunidav {
             align-items: center;
             margin-bottom: 5px;
@@ -487,6 +509,16 @@ footer {
     }
     footer {
         margin-top: 20px;
+    }
+}
+.__wrapper_register {
+    .__wrapper_register_content {
+        display: block;
+        width:900px;
+        min-height:400px;
+        & > h1 {
+            font-family: 'SF-Bold';
+        }
     }
 }
 .__wrapper_associationFrom_responsive {
@@ -534,10 +566,8 @@ footer {
         height:50%;
     }
     main {
-        height: 100vh;
-        padding-top: 15px;
-        
-        // overflow-y: hidden;
+        height: auto;
+        padding:15px 2px;
         section {
             grid-column: 1 / 16;
             grid-row: 1 / 11;
@@ -563,7 +593,7 @@ footer {
         overflow-x: auto;
         overflow-y: hidden;
         padding-top: 50px;
-        background:#DBDBDB;
+        // background:pink;
         strong {
             padding-left: 10px;
             font-family: 'SF-Bold';
@@ -588,6 +618,13 @@ footer {
                 }
             }
             
+        }
+    }
+    .__wrapper_register {
+        height:100vh;
+        .__wrapper_register_content {
+            width:100%;
+            height:100vh;
         }
     }
     
