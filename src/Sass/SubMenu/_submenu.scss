@@ -13,21 +13,25 @@
         margin-left: 0.3125em;
         border-radius:3.125em;
         font-size: 0.8em;
+        background-size: 700%;
         svg{
             width:1.5em;
             height: 1.5em;
             font-size:1em;
         }
         &:hover {
-            background: lighten( $color-primary-purple, 10% );
+            background: rgb(159,91,255);
+            background-image: linear-gradient(338deg, rgba(159,91,255,1) 0%, rgba(132,91,255,1) 47%, rgba(99,91,255,1) 100%);
             box-shadow: $shadows-elements;
+            background-position: 50%;
         }
         &:active {
             background: $color-primary-purple;
         }
     }
     .__submenu_option_active {
-        background: $color-primary-purple;
+        background: rgb(159,91,255);
+        background: linear-gradient(338deg, rgba(159,91,255,1) 0%, rgba(132,91,255,1) 47%, rgba(99,91,255,1) 100%);
         box-shadow: $shadows-elements;
         color:$always-white;
         &:hover {

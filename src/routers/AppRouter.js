@@ -17,10 +17,10 @@ export const AppRouter = () => {
             <Router>
                 <Switch>
                     <Route exact path ="/login" component = { LoginScreen } />
-                    <RegisterContext.Provider value = { { stateProgress, dispatch } }>
+                    {/* <RegisterContext.Provider value = { { stateProgress, dispatch } }>
                         <Route exact path ="/register" component = { RegisterScreen } />
 
-                    </RegisterContext.Provider>
+                    </RegisterContext.Provider> */}
                     <Route path="/" component = { DashboardRouters } />
                 </Switch>
             </Router>
