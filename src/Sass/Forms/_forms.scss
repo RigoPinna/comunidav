@@ -1,0 +1,16 @@
+.__form_register {
+    display: block;
+    width: 370px;
+    min-height: 300px;
+    background:$always-white;
+    border-radius: $br-radius;
+    padding:10px;
+    box-shadow: $shadows-elements;
+    h2 {
+        font-size:16px;
+        font-family: 'SF-Bold';
+        margin-top:10px;
+        position: relative;
+        
+    }
+}

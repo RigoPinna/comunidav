@@ -5,10 +5,17 @@ export const initialState = {
     userData:false,
     associationData: false,
     isFinish: false,
-    stepNumber: 0,
-    
+    stepRegister: {
+        titles: [
+            "Datos personales",
+            "Indica tu localidad",
+            "Ingresa los datos para tu usuario",
+            "Indica los datos de tu asociación" ],
+        progress: 0,
+    },
+    formData: {}
 }
-export const goToPersonData = () => ({
+export const goToPersonData = ( formData ) => ({
     type:'start-register',
     payload:{
         startRegister: false,
@@ -18,9 +25,18 @@ export const goToPersonData = () => ({
         associationData: false,
         isFinish: false,
         stepNumber:1,
+        stepRegister: {
+            titles: [
+                "Datos personales",
+                "Indica tu localidad",
+                "Ingresa los datos para tu usuario",
+                "Indica los datos de tu asociación" ],
+            progress: 25,
+        },
+        formData
     }
 });
-export const goToLocationData = () => ({
+export const goToLocationData = ( formData) => ({
     type:'start-register',
     payload:{
         startRegister: false,
@@ -29,10 +45,18 @@ export const goToLocationData = () => ({
         userData:false,
         associationData: false,
         isFinish: false,
-        stepNumber:2,
+        stepRegister: {
+            titles: [
+                "Datos personales",
+                "Indica tu localidad",
+                "Ingresa los datos para tu usuario",
+                "Indica los datos de tu asociación" ],
+            progress: 50,
+        },
+        formData
     }
 });
-export const goToUserData = () => ({
+export const goToUserData = ( formData ) => ({
     type:'start-register',
     payload:{
         startRegister: false,
@@ -41,10 +65,18 @@ export const goToUserData = () => ({
         userData:true,
         associationData: false,
         isFinish: false,
-        stepNumber:3,
+        stepRegister: {
+            titles: [
+                "Datos personales",
+                "Indica tu localidad",
+                "Ingresa los datos para tu usuario",
+                "Indica los datos de tu asociación" ],
+            progress: 75,
+        },
+        formData
     }
 });
-export const goToassociationData = () => ({
+export const goToassociationData = ( formData ) => ({
     type:'start-register',
     payload:{
         startRegister: false,
@@ -53,7 +85,15 @@ export const goToassociationData = () => ({
         userData:false,
         associationData: true,
         isFinish: false,
-        stepNumber:4,
+        stepRegister: {
+            titles: [
+                "Datos personales",
+                "Indica tu localidad",
+                "Ingresa los datos para tu usuario",
+                "Indica los datos de tu asociación" ],
+            progress: 100,
+        },
+        formData
     }
 });
 export const isFinishProcess = () => ({

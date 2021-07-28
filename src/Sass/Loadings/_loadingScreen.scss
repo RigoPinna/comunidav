@@ -90,6 +90,40 @@ $thickness:  4px; // Odd numbers created a "wobble" effect.
   border-radius: 50%;
   display: inline-block;
 }
+.__loading_linear {
+    display: block;
+    width:350px;
+    height:5px;
+    background:rgba(128, 128, 128, 0.172);
+    border-radius: $br-radius;
+    position: relative;
+    .__loading_linear_progress {
+        display:block;
+        width: 0%;
+        height:100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background:$color-primary-purple;
+        transition: all 0.3s ease;
+        border-radius: $br-radius;
+    }
+    .__loading_linear_progress_step {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width:30px;
+        height:30px;
+        border-radius: 100%;
+        background:#DFDFDF;
+        position: absolute;
+        top: calc(100% - 20px);
+        p {
+            font-style: 'SF-Bold';
+        }
+
+    }
+}
 @keyframes rotate-forever {
     0%    { transform:(rotate(0deg)); }
     100%  { transform:(rotate(360deg)); }

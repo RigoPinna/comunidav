@@ -1,22 +1,16 @@
-import React, { useContext } from 'react'
+import React, { useReducer } from 'react'
 import { RegisterContext } from '../RegisterUser/RegisterContext'
-
-import { StartRegister } from '../RegisterUser/StartRegister'
+import { initialState, registerReducer } from '../RegisterUser/registerReducer'
+import { WrapperMainRegister } from '../RegisterUser/WrapperMainRegister'
 
 export const RegisterScreen = () => {
-    const {stateProgress } = useContext( RegisterContext );
+    const [ stateProgress, dispatch ] = useReducer( registerReducer,  initialState );
     
-   
     return (
         <section className = "__wrapper_register">
-                <div className = "__wrapper_register_content animate__animated animate__fadeIn">
-                    {
-                        stateProgress.startRegister && <StartRegister />
-                    }
-                    {
-                        stateProgress.personData && <p>Aqui van los inputs de registro de datos</p>
-                    }
-                </div>
+            <RegisterContext.Provider value = { { stateProgress, dispatch } }>
+                <WrapperMainRegister />
+            </RegisterContext.Provider>
         </section>
     )
 }
