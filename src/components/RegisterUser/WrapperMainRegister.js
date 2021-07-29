@@ -1,13 +1,16 @@
 import React, { useContext } from 'react'
+import { IconArrowRight } from '../iconos/IconArrowRight';
+import { SelectsLocation } from '../Inputs/SelectsLocation';
 import { LodingLinear } from '../loadings/LodingLinear';
 import { FormRegisterLayout } from './FormRegisterLayout';
 import { RegisterContext } from './RegisterContext';
 import { StartRegister } from './StartRegister'
+import { TitleRegister } from './TitleRegister';
+import { WrapperButtonsRegister } from './WrapperButtonsRegister';
 import { WrapperInputsPersonData } from './WrapperInputsPersonData';
 
 export const WrapperMainRegister = () => {
-    const { stateProgress} = useContext( RegisterContext );
-    const { stepRegister } = stateProgress;
+    const { stateProgress } = useContext( RegisterContext );
     return (
         <>
             { stateProgress.startRegister 
@@ -17,14 +20,22 @@ export const WrapperMainRegister = () => {
                     )
             }
              { ( !stateProgress.startRegister ) 
-             &&<FormRegisterLayout>
-                    <LodingLinear 
-                        progress = { stepRegister.progress } 
-                        totallyStep = { stepRegister.totallyStep }
+                && <FormRegisterLayout>
+                        <LodingLinear 
+                            progress = { stateProgress.progress } 
+                            totallyStep = { stateProgress.totallyStep }
                         />
-                     <h2>Ingresa tus datos personales</h2>
-                    { stateProgress.personData && <WrapperInputsPersonData /> }
-                </FormRegisterLayout>
+                        <TitleRegister />
+                        { 
+                            stateProgress.personData 
+                                && <WrapperInputsPersonData /> 
+                        }
+                        {
+                            stateProgress.locationData 
+                                && <SelectsLocation />
+                        }
+                       
+                    </FormRegisterLayout>
             }
         </>
         

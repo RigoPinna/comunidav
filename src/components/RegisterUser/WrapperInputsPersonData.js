@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useChangeForm } from '../../hooks/useChangeForm'
 import { Input } from '../Inputs/Input'
+import { RegisterContext } from './RegisterContext';
+import { WrapperButtonsRegister } from './WrapperButtonsRegister';
 
 export const WrapperInputsPersonData = () => {
-    const  [ inputFormValues, handdleInputChange ] = useChangeForm({ name:'',lastName:'',SecondlastName:'', phone:'', rfc:'' });
+
+    const { stateProgress } = useContext( RegisterContext );
+    const  [ inputFormValues, handdleInputChange ] = useChangeForm({ name:'',lastName:'',secondlastName:'', phone:'', rfc:'' });
+   
     return (
-            <>
+            <div className="animate__animated animate__fadeIn">
                 <Input 
                     name = {'name'}
                     inputStyle = {'__input'}
                     typeInput = {'text'}
                     value = { inputFormValues.personName }
-                    placeholder = {'Tu nombre completo'}
+                    placeholder = {'Tu nombre(s)'}
                     onChange = { handdleInputChange }
                 />
                 <Input 
@@ -23,7 +28,7 @@ export const WrapperInputsPersonData = () => {
                     onChange = { handdleInputChange }
                 />
                 <Input 
-                    name = {'SecondlastName'}
+                    name = {'secondlastName'}
                     inputStyle = {'__input'}
                     typeInput = {'text'}
                     value = { inputFormValues.SecondlastName }
@@ -35,19 +40,20 @@ export const WrapperInputsPersonData = () => {
                     inputStyle = {'__input'}
                     typeInput = {'number'}
                     value = { inputFormValues.phone }
-                    placeholder = {'Nùmero de telèfono'}
+                    placeholder = {'Número de teléfono'}
                     onChange = { handdleInputChange }
                 />
                 <Input 
-                    name = {'phone'}
+                    name = {'rfc'}
                     inputStyle = {'__input'}
                     typeInput = {'text'}
                     value = { inputFormValues.rfc }
                     placeholder = {'RFC'}
                     onChange = { handdleInputChange }
                 />
-                <button>Clic aqui para asignar RFC genèrico</button>
-                
-            </>          
+                 <WrapperButtonsRegister 
+                    actualStep = { stateProgress.actualStep } 
+                />
+            </ div>          
     )
 }

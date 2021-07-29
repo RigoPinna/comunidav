@@ -5,6 +5,11 @@
     height: 40px;
     font-size: 1em;
     margin: 10px 0;
+    select {
+        width: 100%;
+        height:100%;
+        background:  $color-black-4;
+    }
     .__input_icon {
         display: block;
         width:20px;
@@ -43,3 +48,6 @@
         padding: 5px 5px 5px 35px;
     }
 }
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }

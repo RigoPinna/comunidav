@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { RegisterContext } from './RegisterContext';
-import { goToPersonData } from './registerReducer';
+import { goToPersonData, seTotallyStep } from './registerReducer';
 
 
 export const CardRegister = ({ title, sentence, Illustration, colorClass }) => {
@@ -8,7 +8,10 @@ export const CardRegister = ({ title, sentence, Illustration, colorClass }) => {
     const { stateProgress, dispatch } = useContext( RegisterContext );
     
     const handleStarRegister = () => {
-        dispatch( goToPersonData() );
+        ( title === 'Asociación' ) 
+            ? dispatch( goToPersonData( 4, 'userAsc' ) )
+            : dispatch( goToPersonData( 3, 'userVol' ) );
+        
 
     }
     return (
