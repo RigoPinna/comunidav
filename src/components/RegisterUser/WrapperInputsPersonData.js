@@ -52,7 +52,8 @@ export const WrapperInputsPersonData = () => {
                     onChange = { handdleInputChange }
                 />
                  <WrapperButtonsRegister 
-                    actualStep = { stateProgress.actualStep } 
+                    actualStep = { stateProgress.actualStep }
+                    formData = {inputFormValues} 
                 />
             </ div>          
     )

@@ -1,0 +1,37 @@
+
+    .__wrapper_alert {
+        display: block;
+        background:$always-white;
+        min-width: 200px;
+        max-width: 300px;
+        height:auto;
+        border-radius: $br-radius;
+        .__alert_header {
+            padding:10px;
+            border-bottom: 1px solid #DBDBDB;
+            h3 {
+                font-size:14px;
+                font-family: 'SF-Bold';
+            }
+        }
+        .__alert_body {
+            padding: 10px;
+            p {
+                font-size:12px;
+            }
+        }
+        .__alert_footer {
+            display: flex;
+            width: 100%;
+            height:30px;
+            padding:10px;
+            border-top: 1px solid #DBDBDB;
+            .__btn {
+                background:transparent;
+                &:hover {
+                    background:$color-primary-purple;
+                }
+            }
+        }
+    
+    }

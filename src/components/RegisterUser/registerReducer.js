@@ -5,10 +5,12 @@ export const initialState = {
     userData:false,
     associationData: false,
     isFinish: false,
+    isFinishFetch: false,
+    typeRegister:'',
     titles: [
             "Muy bien, ingresa tus datos personales",
             "Genial, ahora indica tu localidad",
-            "Ingresa los datos para tu usuario",
+            "Excelente, ingresa los datos para tu usuario",
             "Indica los datos de tu asociación" ],
     progress: 0,
     totallyStep:0,
@@ -32,9 +34,10 @@ export const goToPersonData = ( totallyStep, typeRegister ) => ({
         totallyStep,
         actualStep:1,
         typeRegister,
+        formData: {},
     }
 });
-export const goToLocationData = () => ({
+export const goToLocationData = ( formData) => ({
     type:'start-register',
     payload:{
         startRegister: false,
@@ -45,6 +48,7 @@ export const goToLocationData = () => ({
         isFinish: false,
         progress: 50,
         actualStep:2,
+        formData,
     }
 });
 export const goToUserData = ( formData ) => ({
@@ -58,9 +62,10 @@ export const goToUserData = ( formData ) => ({
         isFinish: false,
         progress: 75,
         actualStep:3,
+        formData,
     }
 });
-export const goToassociationData = ( ) => ({
+export const goToassociationData = ( formData ) => ({
     type:'start-register',
     payload:{
         startRegister: false,
@@ -70,21 +75,31 @@ export const goToassociationData = ( ) => ({
         associationData: true,
         isFinish: false,
         progress: 100,
-        actualStep:3,
+        actualStep:4,
+        formData
     }
 });
-export const isFinishProcess = () => ({
+export const isFinishProcess = ( formData ) => ({
     type:'start-register',
-    payload:{ isFinish: true }
+    payload:{ isFinish: true, formData }
 });
+export const isFinishFetching = () =>({
+    type:'is-finished-fetch',
+    payload:{ isFinishFetch: true }
+})
 export const registerReducer = ( state = initialState , action ) => {
+    
+    const { formData } = state;
+    const { formData:dataSended } = action.payload;
+    const newFormData = {...formData, ...dataSended};
+    action.payload = {...action.payload, ...{ formData: newFormData }};
+
     switch ( action.type ) {
         case 'go-to-start':
             return action.payload
         case 'start-register':
             return { ...state, ...action.payload}
         case 'location-data':
-            
             return { ...state, ...action.payload}
         case 'user-data':
             return { ...state, ...action.payload}
@@ -92,7 +107,9 @@ export const registerReducer = ( state = initialState , action ) => {
         case 'association-data':
             return { ...state, ...action.payload}
         case 'is-finished':
-            return { ...state, ...{ isFinished:true }};
+            return { ...state, ...action.payload};
+        case 'is-finished-fetch':
+            return { ...state, ...action.payload };
         default:
             return state;
     }

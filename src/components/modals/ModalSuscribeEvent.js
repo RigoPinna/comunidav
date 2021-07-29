@@ -6,6 +6,7 @@ import { GroupButtonsHello } from './GroupButtonsHello'
 import { GroupButtonsWelcome } from './GroupButtonsWelcome'
 import { SuscribeHello } from './SuscribeHello'
 import { SuscribeWelcome } from './SuscribeWelcome'
+import { WrapperModalsOrAlerts } from './WrapperModalsOrAlerts'
 
 export const ModalSuscribeEvent = () => {
     const { uiReducer, userLogedReducer } = useSelector( state => state );
@@ -13,7 +14,7 @@ export const ModalSuscribeEvent = () => {
     const { displayName } = userLogedReducer;
     const [ stateSuscription, setStateSuscription ] = useState( true );
     return (
-        <div className="__modal_wrapper ">
+        <WrapperModalsOrAlerts>
             <div className ="__modal_normal animate__animated animate__fadeInUp ">
                 <ButtonCloseModal />
                 <h1>{ stateSuscription ? 'Inscripción' : '¡Inscrito al evento!'}<span></span></h1>   
@@ -32,6 +33,6 @@ export const ModalSuscribeEvent = () => {
                     
                 </div>
             </div>
-        </div>
+        </WrapperModalsOrAlerts>
     )
 }

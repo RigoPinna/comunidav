@@ -76,6 +76,14 @@ $thickness:  4px; // Odd numbers created a "wobble" effect.
     height:100%;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
+    flex-direction:column;
+    p {
+        font-size: 14px;
+        color: $color-black-3;
+        width: 100%;
+        text-align: center;
+    }
 }
 .__loading-spinner {
     display:block;

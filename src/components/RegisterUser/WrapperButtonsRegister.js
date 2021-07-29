@@ -1,11 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
+import { fetchGetStates } from '../../services/fetchGetStates';
+import { Alert } from '../alerts/Alert';
 import { IconArrowRight } from '../iconos/IconArrowRight'
 import { RegisterContext } from './RegisterContext';
-import { goToassociationData, goToLocationData, goToPersonData, goToStartRegister, goToUserData } from './registerReducer';
+import { goToassociationData, goToLocationData, goToPersonData, goToStartRegister, goToUserData, isFinishFetching, isFinishProcess } from './registerReducer';
 
-export const WrapperButtonsRegister = ({ actualStep }) => {
-    const { dispatch } = useContext( RegisterContext );
-
+export const WrapperButtonsRegister = ({ actualStep, formData }) => {
+    const { stateProgress, dispatch } = useContext( RegisterContext );
     const handleGoBackStep = ( evt ) => {
         evt.preventDefault();
         switch ( actualStep ) {
@@ -13,13 +14,13 @@ export const WrapperButtonsRegister = ({ actualStep }) => {
                     dispatch( goToStartRegister() )
                 break;
             case 2:
-                    dispatch( goToPersonData() )
+                    dispatch( goToPersonData( stateProgress.totallyStep, stateProgress.typeRegister ) )
                 break;
             case 3:
-                    dispatch( goToLocationData() )
+                    dispatch( goToLocationData({}) )
                 break;
             case 4:
-                    dispatch( goToUserData() )
+                    dispatch( goToUserData({}) )
                 break;
         
             default:
@@ -30,34 +31,49 @@ export const WrapperButtonsRegister = ({ actualStep }) => {
         evt.preventDefault();
         switch ( actualStep ) {
             case 1:
-                dispatch( goToLocationData() )
+                dispatch( goToLocationData(formData) )
                 break;
             case 2:
-                dispatch( goToUserData() )
+                dispatch( goToUserData(formData) )
                 break;
             case 3:
-                    dispatch( goToassociationData() )
+                    dispatch( goToassociationData(formData) )
                 break;
             default:
                 break;
         }
     }
-    return (
-        <div className = "__form_register_wrapper_buttons_footer">
-            <button
-                onClick={ handleGoBackStep }
-                className = "__btn" 
-            >
-                Volver
-            </button>
-            <button 
-                onClick = { handleGoToNextStep }
-                className = "__btn" 
-            >
-                <p>Siguiente</p>
-                <IconArrowRight />
-            </button>
+    const hanldeStartCreateUser = ( evt ) => {
+        evt.preventDefault();
 
-        </div>
+        if ( stateProgress.totallyStep === actualStep ) {
+            dispatch( isFinishProcess( formData) );
+            fetchGetStates().then( states => {
+                
+                dispatch( isFinishFetching() );
+            })
+        }
+    }
+    return (
+        <>
+            <div className = "__form_register_wrapper_buttons_footer">
+                <button
+                    onClick={ handleGoBackStep }
+                    className = "__btn" 
+                >
+                    Volver
+                </button>
+                { 
+                    ( stateProgress.totallyStep === actualStep )
+                        ? <button onClick = { hanldeStartCreateUser }className = "__btn" >
+                            Crear cuenta
+                        </button> 
+                        : <button onClick = { handleGoToNextStep }className = "__btn" >
+                            <p>Siguiente</p>
+                            <IconArrowRight />
+                            </button>  
+                }
+            </div>
+        </>
     )
 }
