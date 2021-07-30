@@ -15,7 +15,13 @@ export const initialState = {
     progress: 0,
     totallyStep:0,
     actualStep:0,
-    formData: {}
+    formData: {
+        name:'',
+        lastName:'',
+        secondlastName: '',
+        phone:'',
+        rfc:'',
+    }
 }
 export const goToStartRegister = () => ({
     type:'go-to-start',

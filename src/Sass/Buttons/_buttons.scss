@@ -127,6 +127,14 @@
     }
 
 }
+.__btn_created {
+    background:#BDDEC6;
+    color:#3A5642;
+    &:hover {
+        background:#3A5642;
+        color:$always-white;
+    }
+}
 @include small {
     .__btn {
         font-size:12px;

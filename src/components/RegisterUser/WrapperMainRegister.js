@@ -24,11 +24,11 @@ export const WrapperMainRegister = () => {
             }
              { ( !stateProgress.startRegister ) 
                 && <FormRegisterLayout>
+                        <TitleRegister />   
                         <LodingLinear 
                             progress = { stateProgress.progress } 
                             totallyStep = { stateProgress.totallyStep }
                         />
-                        <TitleRegister />
                         { 
                             stateProgress.personData 
                                 && <WrapperInputsPersonData /> 

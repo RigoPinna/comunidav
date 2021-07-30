@@ -6,7 +6,6 @@ export const useChangeForm = ( initialState = {} ) => {
 
     const handdleInputChange = ( evt ) => {
         evt.preventDefault();
-        
         const inputName = evt.target.name;
         const inputValue = ( inputName === 'rfc' ) ? evt.target.value.toUpperCase() : evt.target.value;
         setInputFormValues({
@@ -16,6 +15,6 @@ export const useChangeForm = ( initialState = {} ) => {
         
     }
 
-    return [ inputFormValues, handdleInputChange ];
+    return [ inputFormValues, handdleInputChange,setInputFormValues ];
     
 }

@@ -1,10 +1,19 @@
 import React, { useState } from 'react'
+import { IconNotViewPassword } from '../iconos/IconNotViewPassword';
+import { IconViewPassword } from '../iconos/IconViewPassword';
 
-export const Input = ({name, typeInput, inputStyle, placeholder, InputIcon, value, onChange }) => {
-    const [ valueInput , setvalueInput ] = useState('')
+export const Input = ({name, typeInput, inputStyle, placeholder, InputIcon, value, onChange, setValue, formValues }) => {
+    const [ type, setType ] = useState( typeInput );
     const handleSetRfcGeneric = ( evt ) => {
         evt.preventDefault();
-        ( name === 'rfc' ) && setvalueInput('RFCGENERIC');
+        ( name === 'rfc' ) && setValue({...formValues, ...{rfc:'RFCGENERIC'}});
+    }
+    const handleToggleViewPassword = ( evt ) => {
+        evt.preventDefault();
+        setType( ( type === 'password' ) 
+                    ? 'text' : 
+                    'password' 
+                );
     }
     return (
         <>
@@ -13,21 +22,32 @@ export const Input = ({name, typeInput, inputStyle, placeholder, InputIcon, valu
                 name = {name} 
                 autoComplete ="false" 
                 className = {inputStyle}  
-                type={typeInput} 
+                type={ type} 
                 placeholder={placeholder}
-                value = { valueInput.length > 0  ? valueInput : value }
+                value = { value }
                 onChange={onChange}
             />
             {
                 !!InputIcon && <InputIcon />
             }
+            {
+                ( typeInput === 'password' )
+                    && <button onClick = { handleToggleViewPassword } className ="__btn __btn_password">
+                            {
+                                ( type === 'password')
+                                    ? <IconViewPassword />
+                                    :<IconNotViewPassword />
+                            }
+                        </button>
+            }
         </div>
         {
             name === 'rfc' 
                 &&  <div className="__form_button_generic_rfc">
-                        <button onClick = { handleSetRfcGeneric } className="__btn __btn_not_border">Generar RFC genérico</button>
+                        <span onClick = { handleSetRfcGeneric } className="__btn __btn_not_border">Generar RFC genérico</span>
                     </div> 
         }
+        
         </>
     )
 }

@@ -12,59 +12,58 @@
         height: 100px;
     }
     .__form_register_title {
-        display: flex;
+        display: block;
         width: 100%;
-        height: 40px;
-        align-items: center;
-        // justify-content: center;
-        margin-block: 10px;
+        height: auto;
+        margin-bottom: 20px;
+        position: relative;
+        // background:pink;
         span {
-            display: flex;
-            width:40px;
-            height:40px;
-            align-items: center;
-            justify-content: center;
-            background: rgb(159,91,255);
-            background: linear-gradient(338deg, rgba(159,91,255,1) 0%, rgba(132,91,255,1) 47%, rgba(99,91,255,1) 100%);
-            border-radius:100%;
-            // padding: 5px;
-            margin-right: 5px;
-            p {
-                font-size: 12px;
-                font-family: 'SF-Bold';
-                color:$always-white;
-            }
+            position:absolute;
+            color: $color-black-4;
+            font-family: 'SF-Bold';
+            font-size:14px;
+            right: 0;
+            top:0;
         }
-        h2 {
+        h1 {
             color: $color-black-2;
             font-size:16px;
             font-family: 'SF-Bold';
             position: relative;
-            
+        }
+        & > p {
+            display: block;
+            font-family: 'SF-Regular';
+            color: $color-black-3;
+            font-size: 14px;
+            width: 100%;
+            padding-left: 85px;
+            margin-top: 20px;
+            position: relative;
+        }
+        .__btn {
+            position:absolute;
+            top:33px;
+            left: 0;
+            background: $always-white; 
+            color:$color-primary-purple-2;
+            z-index: 1;
+            padding:4px;
+            width: 75px;
+            &:hover {
+                color:$color-primary-purple;
+                box-shadow:none;
+            }
         }
     }
     .__form_register_wrapper_buttons_footer {
         display: flex;
         width: 100%;
         height: 40px;
-        justify-content: space-evenly;
+        justify-content: flex-end;
         margin-top: 30px;
-        .__btn {
-            width:40%;
-        }
-        .__btn:nth-child( 1 ) {
-            background: transparent;
-            color:$color-primary-red-3;
-            border: 1px solid $color-primary-red-3;
-            &:hover {
-                color:$color-primary-red;
-                border: 1px solid $color-primary-red;
-            }
-            &:active {
-                color:$always-white;
-                background:$color-primary-red;
-            }
-        }
+        
     }
 }
 .__form_button_generic_rfc {
@@ -75,11 +74,30 @@
     justify-content: flex-end;
     .__btn {
         background:transparent;
+        font-size: 12px;
         &:hover {
             background:#DBDBDB;
             color: $color-black-2;
         } 
     }
+}
+.__form_wrapper_info_password {
+    display: block;
+    width: 100%;
+    border-left: 5px solid $color-primary-purple;
+    background:$color-bg-alert-in-forms;
+    padding:5px;
+    border-radius: 0 $br-radius $br-radius 0;
+    h5 {
+        color: $color-black-2;
+        font-family: 'SF-Bold';
+        font-size: 14px;
+    }
+    p {
+        font-size: 12px;
+        margin: 5px 0;
+    }
+
 }
 @include small {
     .__form_register {

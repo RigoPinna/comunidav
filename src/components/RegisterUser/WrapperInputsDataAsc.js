@@ -10,7 +10,11 @@ import { WrapperButtonsRegister } from './WrapperButtonsRegister';
 export const WrapperInputsDataAsc = () => {
     const { stateProgress } = useContext( RegisterContext );
     const [ isMounted ] = useIsMounted();
-    const  [ inputFormValues, handdleInputChange ] = useChangeForm({ associationName:'',category:'',description:'' });
+    const { formData } = stateProgress;
+    const  [ inputFormValues, handdleInputChange ] = useChangeForm({ 
+                                                        associationName:formData.associationName || '',
+                                                        category:1,
+                                                        description:formData.associationName || '' });
     const [ arrayCategories, setarrayCategories ] = useState([]);
     useEffect(() => {
         if ( isMounted ) {
