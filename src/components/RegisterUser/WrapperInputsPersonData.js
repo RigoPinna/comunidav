@@ -22,6 +22,7 @@ export const WrapperInputsPersonData = () => {
         secondlastName:false,
         phone:false, 
         rfc:false});
+   
     return (
             <div className="animate__animated animate__fadeIn">
                 <Input 
@@ -35,9 +36,9 @@ export const WrapperInputsPersonData = () => {
                 {
                     validForm.name 
                         && <AlertInForm 
-                                styleAlert={'__alert_error_inForm'}
-                                title = {'Error en tu Nombre'}
-                                descriptionError = {'Debe contener mínimo dos letras, evite usar acentos y la letra "ñ"'}
+                                styleAlert={ '__alert_error_inForm' }
+                                title = { 'Error en tu Nombre' }
+                                descriptionError = { validForm.errorname }
                             />
                 }
                 <Input 
@@ -45,15 +46,15 @@ export const WrapperInputsPersonData = () => {
                     inputStyle = {'__input'}
                     typeInput = {'text'}
                     value = { inputFormValues.lastName }
-                    placeholder = {'Apellido paterno'}
+                    placeholder = {'Tu apellido paterno'}
                     onChange = { handdleInputChange }
                 />
                 {
                     validForm.lastName 
                         && <AlertInForm 
-                                styleAlert={'__alert_error_inForm'}
-                                title = {'Error en tu apellido paterno'}
-                                descriptionError = {'Debe contener mínimo dos letras, evite usar acentos y la letra "ñ"'}
+                                styleAlert = { '__alert_error_inForm' }
+                                title = { 'Error en tu apellido paterno' }
+                                descriptionError = { validForm.errorlastName }
                             />
                 }
                 <Input 
@@ -61,15 +62,15 @@ export const WrapperInputsPersonData = () => {
                     inputStyle = {'__input'}
                     typeInput = {'text'}
                     value = { inputFormValues.secondlastName }
-                    placeholder = {'Apellido materno'}
+                    placeholder = {'Tu apellido materno'}
                     onChange = { handdleInputChange }
                 />
                 {
                     validForm.secondlastName 
                         && <AlertInForm 
-                                styleAlert={'__alert_error_inForm'}
-                                title = {'Error en tu apellido materno'}
-                                descriptionError = {'Debe contener mínimo dos letras, evite usar acentos y la letra "ñ"'}
+                                styleAlert = { '__alert_error_inForm' }
+                                title = { 'Error en tu apellido materno' }
+                                descriptionError = { validForm.errorsecondlastName }
                             />
                 }
                 <Input 
@@ -77,15 +78,15 @@ export const WrapperInputsPersonData = () => {
                     inputStyle = {'__input'}
                     typeInput = {'number'}
                     value = { inputFormValues.phone }
-                    placeholder = {'Número de teléfono'}
+                    placeholder = {'Tu número de teléfono'}
                     onChange = { handdleInputChange }
                 />
                 {
-                    validForm.secondlastName 
+                    validForm.phone 
                         && <AlertInForm 
                                 styleAlert={'__alert_error_inForm'}
                                 title = {'Error en tu numero de teléfono'}
-                                descriptionError = {'Debe contener diez dígitos ej. 000-000-0000'}
+                                descriptionError = {validForm.errorphone}
                             />
                 }
                 <Input 
@@ -93,15 +94,23 @@ export const WrapperInputsPersonData = () => {
                     inputStyle = {'__input'}
                     typeInput = {'text'}
                     value = { inputFormValues.rfc }
-                    placeholder = {'RFC'}
+                    placeholder = {' Tu RFC'}
                     onChange = { handdleInputChange }
                     setValue = { setInputFormValues }
                     formValues = { inputFormValues }
                 />
+                {
+                    validForm.rfc 
+                    && <AlertInForm 
+                            styleAlert = { '__alert_error_inForm' }
+                            title = { 'Error en tu RFC' }
+                            descriptionError = { validForm.errorrfc }
+                        />
+                }
                  <WrapperButtonsRegister 
                     actualStep = { stateProgress.actualStep }
-                    formData = {inputFormValues}
-                    validForm = {validForm} 
+                    formData = { inputFormValues }
+                    validForm = { validForm } 
                     setValidForm= { setValidForm }
                 />
             </ div>          

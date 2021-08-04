@@ -8,7 +8,7 @@ const REGEX_PERSON_DATA = {
 }
 const REGEX_LOCATION = {
     state:/(^([0-9]{1,2}))$/,
-    country:/(^([0-9]{1,2}))$/,
+    country:/(^([0-9]{1,4}))$/,
 }
 const REGEX_USER_DATA = {
     email:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/,
@@ -28,7 +28,7 @@ export const REGEX_INPUT_VALUES = {
     phone:new RegExp( '^([0-9]{10})$'),
     rfc:new RegExp( '^((^[A-Z]{1})([A-Z0-9]{12}))$' ),
     state:/(^([0-9]{1,2}))$/,
-    country:/(^([0-9]{1,2}))$/,
+    country:/(^([0-9]{1,4}))$/,
     email:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/,
     userName:/(^([A-Za-z]+)([\w]*))$/,
     password:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)([$@!%*?&]*)([A-Za-z\d@$!%*?&]|[^ ]){8,32}$/,

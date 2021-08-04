@@ -6,6 +6,7 @@
         max-width: 300px;
         height:auto;
         border-radius: $br-radius;
+        overflow: hidden;
         .__alert_header {
             padding:10px;
             border-bottom: 1px solid #DBDBDB;
@@ -23,13 +24,23 @@
         .__alert_footer {
             display: flex;
             width: 100%;
-            height:30px;
-            padding:10px;
+            height:40px;
+            flex-flow: row wrap;
+            flex-direction: row;
             border-top: 1px solid #DBDBDB;
+            justify-content: center;
+            align-items: center;
+            // padding: 2px;
+            
             .__btn {
-                background:transparent;
+                flex: 1 50%;
+                border-radius: 0;
+                background: $always-white;
+
                 &:hover {
-                    background:$color-primary-purple;
+                    background:#dbdbdb4f;
+                    color:$color-black-2;
+                    box-shadow:0;
                 }
             }
         }

@@ -4,7 +4,7 @@ import { RegisterContext } from '../RegisterUser/RegisterContext'
 import { initialState, registerReducer } from '../RegisterUser/registerReducer'
 import { WrapperMainRegister } from '../RegisterUser/WrapperMainRegister'
 
-export const RegisterScreen = () => {
+export const RegisterScreen = ({ history }) => {
     const [ stateProgress, dispatch ] = useReducer( registerReducer,  initialState );
     
     return (
@@ -19,7 +19,7 @@ export const RegisterScreen = () => {
         </Helmet>
         <section className = "__wrapper_register">
             <RegisterContext.Provider value = { { stateProgress, dispatch } }>
-                <WrapperMainRegister />
+                <WrapperMainRegister history = { history }/>
             </RegisterContext.Provider>
         </section>
         </>

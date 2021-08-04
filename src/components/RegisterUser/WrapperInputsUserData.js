@@ -1,19 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { useChangeForm } from '../../hooks/useChangeForm';
+import { AlertInForm } from '../alerts/AlertInForm';
 import { Input } from '../Inputs/Input';
 import { RegisterContext } from './RegisterContext';
+import { RequirementPassword } from './RequirementPassword';
 import { WrapperButtonsRegister } from './WrapperButtonsRegister';
 
 export const WrapperInputsUserData = () => {
     const { stateProgress } = useContext( RegisterContext );
     const { formData } = stateProgress;
-    const [ inputFormValues, handdleInputChange ] = useChangeForm({ 
-                                                        email:formData.email || '', 
-                                                        userName:formData.userName || '', 
-                                                        password:formData.password || '',
-                                                        confirmPass:formData.confirmPass || '' });
-    
+    const [ inputFormValues, handdleInputChange ] = useChangeForm({ email:formData.email || '', userName:formData.userName || '', 
+                                                                    password:formData.password || '',confirmPass:formData.confirmPass || '' });
+
+    const [ validForm, setValidForm ] = useState({ email: false, userName: false, password: false,confirmPass: false })
     return (
         <div className="animate__animated animate__fadeIn">
             <Input
@@ -24,6 +24,14 @@ export const WrapperInputsUserData = () => {
                 value  = { inputFormValues.email }
                 placeholder = {'Correo electrónico'}
             />
+            {
+                validForm.email 
+                && <AlertInForm 
+                        styleAlert={'__alert_error_inForm'}
+                        title = {'Error en tu correo electrónico'}
+                        descriptionError = { validForm.erroremail }
+                    />
+            }
             <Input
                 name = { 'userName' }
                 onChange = { handdleInputChange }
@@ -32,6 +40,14 @@ export const WrapperInputsUserData = () => {
                 value  = { inputFormValues.userName }
                 placeholder = {'Nombre de usuario'}
             />
+            {
+                validForm.userName 
+                && <AlertInForm 
+                        styleAlert={'__alert_error_inForm'}
+                        title = {'Error en tu nombre de usuario'}
+                        descriptionError = { validForm.erroruserName }
+                    />
+            }
             <Input
                 name = { 'password' }
                 onChange = { handdleInputChange }
@@ -40,13 +56,15 @@ export const WrapperInputsUserData = () => {
                 value  = { inputFormValues.password }
                 placeholder = {'Contraseña'}
             />
-            <div className="__form_wrapper_info_password">
-                <h5>Requisitos de contraseña</h5>
-                <p> -Al menos 8 caracteres</p>
-                <p> -Sin espacios en blanco</p>
-                <p> -Al menos un dígito</p>
-                <p> -Al menos un letra MAYÚSCULA y una letra minúscula</p>
-            </div>
+            {
+                validForm.password 
+                && <AlertInForm 
+                        styleAlert={'__alert_error_inForm'}
+                        title = {'Error en tu nombre de usuario'}
+                        descriptionError = { validForm.errorpassword }
+                    />
+            }
+           <RequirementPassword />
             <Input
                 name = { 'confirmPass' }
                 onChange = { handdleInputChange }
@@ -55,9 +73,20 @@ export const WrapperInputsUserData = () => {
                 value  = { inputFormValues.confirmPass }
                 placeholder = {'Confirmar contraseña'}
             />
-            
-           
-            <WrapperButtonsRegister actualStep = { stateProgress.actualStep } formData = {inputFormValues} />
+            {
+                validForm.confirmPass 
+                && <AlertInForm 
+                        styleAlert={'__alert_error_inForm'}
+                        title = {'Error en tu nombre de usuario'}
+                        descriptionError = { validForm.errorconfirmPass }
+                    />
+            }
+            <WrapperButtonsRegister 
+                actualStep = { stateProgress.actualStep } 
+                formData = { inputFormValues }
+                validForm = { validForm }
+                setValidForm = { setValidForm } 
+            />
         </div>
     )
 }

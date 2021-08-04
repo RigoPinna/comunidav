@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+
 import { IconNotViewPassword } from '../iconos/IconNotViewPassword';
 import { IconViewPassword } from '../iconos/IconViewPassword';
 
@@ -6,7 +7,7 @@ export const Input = ({name, typeInput, inputStyle, placeholder, InputIcon, valu
     const [ type, setType ] = useState( typeInput );
     const handleSetRfcGeneric = ( evt ) => {
         evt.preventDefault();
-        ( name === 'rfc' ) && setValue({...formValues, ...{rfc:'RFCGENERIC'}});
+        ( name === 'rfc' ) && setValue({...formValues, ...{ rfc:'XAXX010101000' } });
     }
     const handleToggleViewPassword = ( evt ) => {
         evt.preventDefault();
@@ -22,10 +23,10 @@ export const Input = ({name, typeInput, inputStyle, placeholder, InputIcon, valu
                 name = {name} 
                 autoComplete ="false" 
                 className = {inputStyle}  
-                type={ type} 
-                placeholder={placeholder}
+                type = { type} 
+                placeholder = {placeholder}
                 value = { value }
-                onChange={onChange}
+                onChange = {onChange}
             />
             {
                 !!InputIcon && <InputIcon />

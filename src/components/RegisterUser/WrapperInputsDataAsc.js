@@ -38,7 +38,7 @@ export const WrapperInputsDataAsc = () => {
                 onChange = { handdleInputChange }
                 typeInput = {'text'}
                 inputStyle = {'__input'}
-                value  = { inputFormValues.associationName }
+                value  = { inputFormValues.description }
                 placeholder = {'Ingresa una descripción para tu asociaión'}
             />
             <div className="__input_wrapper">

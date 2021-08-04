@@ -6,6 +6,7 @@ export const initialState = {
     associationData: false,
     isFinish: false,
     isFinishFetch: false,
+    respFetch:'',
     typeRegister:'',
     titles: [
             "Muy bien, ingresa tus datos personales",
@@ -21,8 +22,15 @@ export const initialState = {
         secondlastName: '',
         phone:'',
         rfc:'',
-    }
+    },
+    isAceptedRFC: false,
 }
+export const viewAlertRFC = ( view ) => ({
+    type: 'view-alert-rfc',
+    payload: {
+        isAceptedRFC: view
+    }
+})
 export const goToStartRegister = () => ({
     type:'go-to-start',
     payload: initialState,
@@ -85,13 +93,17 @@ export const goToassociationData = ( formData ) => ({
         formData
     }
 });
-export const isFinishProcess = ( formData ) => ({
+export const isFinishProcess = ( formData, viewAlert ) => ({
     type:'start-register',
-    payload:{ isFinish: true, formData }
+    payload:{ isFinish: viewAlert, formData }
 });
-export const isFinishFetching = () =>({
+export const isFinishFetching = ( respFetch, status = false ) =>({
     type:'is-finished-fetch',
-    payload:{ isFinishFetch: true }
+    payload:{ 
+        isFinishFetch: true,
+        respFetch,
+        status
+    }
 })
 export const registerReducer = ( state = initialState , action ) => {
     
@@ -115,6 +127,8 @@ export const registerReducer = ( state = initialState , action ) => {
         case 'is-finished':
             return { ...state, ...action.payload};
         case 'is-finished-fetch':
+            return { ...state, ...action.payload };
+        case 'view-alert-rfc':
             return { ...state, ...action.payload };
         default:
             return state;

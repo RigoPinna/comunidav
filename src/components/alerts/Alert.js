@@ -2,10 +2,10 @@ import React from 'react'
 import { WrapperModalsOrAlerts } from '../modals/WrapperModalsOrAlerts';
 import { LoadingInComponent } from '../loadings/LoadingInComponent'
 
-export const Alert = ({ title, contentText = '', isAlertLoading = false }, textButton = 'Aceptar') => {
+export const Alert = ({ title, contentText = '', isAlertLoading = false,addButtonAccepter = false, actionButtonAccept, textButton = 'Aceptar' }) => {
     return (
         <WrapperModalsOrAlerts>
-            <div className="__wrapper_alert">
+            <div className="__wrapper_alert animate__animated animate__shakeX">
                 <div className="__alert_header">
                     <h3>{title}</h3>
                 </div>
@@ -17,6 +17,15 @@ export const Alert = ({ title, contentText = '', isAlertLoading = false }, textB
                 }
                 </div>
                 <div className = "__alert_footer">
+                    {
+                        addButtonAccepter 
+                            && <button 
+                                    onClick = { actionButtonAccept }
+                                    className = "__btn">
+                                        { textButton }
+                                </button>
+                    }
+                    
                     
                 </div>
             </div>

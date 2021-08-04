@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { RegisterContext } from './RegisterContext';
 import { WrapperButtonsRegister } from './WrapperButtonsRegister';
@@ -6,11 +6,12 @@ import { LoadingInComponent } from '../loadings/LoadingInComponent'
 import { InputSelect } from '../Inputs/InputSelect';
 import { useChangeForm } from '../../hooks/useChangeForm';
 import { useChangeEffectLocation } from '../../hooks/useChangeEffectLocation';
+import { AlertInForm } from '../alerts/AlertInForm';
 export const SelectsLocation = () => {
     const { stateProgress } = useContext( RegisterContext );
-    const [ inputFormValues,  handdleInputChange ] = useChangeForm({state:1, country:0});
+    const [ inputFormValues,  handdleInputChange ] = useChangeForm({ state:1, country:0 });
     const [arrayStates, arrayCountries] = useChangeEffectLocation( inputFormValues );
-    
+    const [validForm, setValidForm] = useState({ state:false, country:false });
     return (
         <div className="animate__animated animate__fadeIn">
             <div className = "__input_wrapper">
@@ -28,6 +29,14 @@ export const SelectsLocation = () => {
                             />
                 }
             </div>
+            {
+                validForm.state 
+                && <AlertInForm 
+                        styleAlert={'__alert_error_inForm'}
+                        title = {'Error en seleccionar tu estado'}
+                        descriptionError = { validForm.errorstate }
+                    />
+            }
             <div className = "__input_wrapper">
                 { 
                     ( arrayCountries.length > 0 ) 
@@ -41,7 +50,20 @@ export const SelectsLocation = () => {
                         : <LoadingInComponent textLoading = 'Cargando municipios...' />
                 }
             </div>
-            <WrapperButtonsRegister actualStep = { stateProgress.actualStep } formData ={inputFormValues}/>
+            {
+                validForm.country 
+                && <AlertInForm 
+                        styleAlert={'__alert_error_inForm'}
+                        title = {'Error en seleccionar tu municipio'}
+                        descriptionError = { validForm.errorcountry }
+                    />
+            }
+            <WrapperButtonsRegister 
+                actualStep = { stateProgress.actualStep } 
+                formData ={inputFormValues}
+                validForm = { validForm }
+                setValidForm = { setValidForm }
+            />
         </div>
     )
 }
