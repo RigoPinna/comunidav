@@ -10,8 +10,9 @@ import { ProfileScreenLoading } from '../loadings/ProfileScreenLoading';
 import { ContainerInfoProfile } from '../Items/ContainerInfoProfile';
 import { DoPublicationHeader } from '../Items/DoPublicationHeader';
 import { ContainerOptions } from '../ContainerOptions/ContainerOptions';
-import { SubMenuProfileAsc } from '../menus/SubMenuProfileAsc';
+import { SubMenuUser } from '../menus/SubMenuUser';
 import { OPTION_SUBMEN_USER } from '../../helpers/OPTION_SUBMENU_USER';
+import { useLayoutEffect } from 'react';
 
 
 export const ProfileScreen = (  ) => {
@@ -24,7 +25,7 @@ export const ProfileScreen = (  ) => {
     const { q:uidURL } = queryString.parse(location.search);
 
     const [ isMounted ] = useIsMounted();
-    const [ viewOption, setViewOption ] = useState( OPTION_SUBMEN_USER.viewMyEvents );
+    const [ viewOption, setViewOption ] = useState( userLogedReducer.typeUser === 'ASC' ? OPTION_SUBMEN_USER.viewMyEvents : OPTION_SUBMEN_USER.viewMyGroups);
     const [ userData, setUserData ] = useState({});
 
     let isMyProfile = userLogedReducer?.uid ? ( userLogedReducer.uid === uidURL ): undefined;
@@ -36,7 +37,12 @@ export const ProfileScreen = (  ) => {
                     ? setUserData( userLogedReducer ) 
                     : fetchGetInfoUserLoged( uidURL ).then ( setUserData );
         }
-    }, [ dispatch, userLogedReducer,uidURL, isMounted, isMyProfile ])
+    }, [ dispatch, userLogedReducer,uidURL, isMounted, isMyProfile ]);
+    useLayoutEffect(() => {
+        ( isMyProfile !== undefined )
+            && setViewOption( userLogedReducer.typeUser === 'ASC' ? OPTION_SUBMEN_USER.viewMyEvents : OPTION_SUBMEN_USER.viewMyGroups )
+        
+    }, [ uidURL ])
 
     if( !userData?.uid ) {
         return (
@@ -59,15 +65,17 @@ export const ProfileScreen = (  ) => {
                 />
             }
             { 
-                (isMyProfile && userData.typeUser === 'ASC') 
-                    && <SubMenuProfileAsc 
+                (isMyProfile ) 
+                    && <SubMenuUser 
                             setViewOption = { setViewOption }
                             setUserData  = { setUserData }
+                            typeUser = { userData.typeUser }
                         />
+                    
             }
             <div className = '__wrapper_feed_publications'>
             {
-                !!viewOption && <ContainerOptions uid = { uidURL } optionMenu = { isMounted ? viewOption : 1 } />
+                !!viewOption && <ContainerOptions uid = { uidURL } optionMenu = { isMyProfile ? viewOption : 1 } />
             }
             </div>
         </>

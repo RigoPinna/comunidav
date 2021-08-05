@@ -24,62 +24,60 @@ import { VerifyScreen } from '../components/Pages/VerifyScreen'
 
 
 export const DashboardRouters = ({ history, location }) => {
+    useIsLoged( history, location );
+    const { uiReducer } = useSelector( state => state );
+    const dispatch = useDispatch();
+    const [ isMounted ] = useIsMounted();
+    const uid = localStorage.getItem( 'uid' );
+    useEffect(() => {
+        if ( isMounted )  {
+          if( uid ) {
+            dispatch( getDataUserLoged( uid ) );
+            dispatch(  addAllGroups( uid) );
+            dispatch( addAllFavorites( uid ));
+            dispatch({
+              type: types.loadigApp, 
+              payload: false 
+            });
+          } else {
+            history.replace('/login')
+          }
+        } else {
+          localStorage.removeItem('uid');
+        }
+      
+    }, [ dispatch, isMounted, history, uid ]);
 
-  useIsLoged( history, location );
-  const { uiReducer } = useSelector( state => state );
-  const dispatch = useDispatch();
-  const [ isMounted ] = useIsMounted();
-  const uid = localStorage.getItem( 'uid' );
-  useEffect(() => {
-    if ( isMounted )  {
-      if( uid ) {
-        console.log(uid)
-        dispatch( getDataUserLoged( uid ) );
-        dispatch(  addAllGroups( uid) );
-        dispatch( addAllFavorites( uid ));
-        dispatch({
-          type: types.loadigApp, 
-          payload: false 
-        });
-      } else {
-        history.replace('/login')
-      }
-    } else {
-      localStorage.removeItem('uid');
-    }
-    
-  }, [ dispatch, isMounted, history, uid ]);
-
-  if ( uiReducer.loading ) {
-      return ( <LoadingScreen />)
-  }  
-  return (
-      <>
-        { uiReducer.viewModalImage && <ModalViewImage /> }
-        { uiReducer.viewModalSuscribe && <ModalSuscribeEvent /> }
-        <NavBar history = { history } /> 
-        <div className ="__wrapper_associationFrom_responsive">
-                <strong>Asociaciones en ...</strong>
-                <div className ="__wrapper_colunm_right_content_asociations">
-                <ContentAsociationsFromRegion historyRouter = { history }/>
-                </div>
-              </div> 
-        <main>
-            <section>
-              
-              <Switch>
-                <Route exact path = "/home" component={HomeScreen}/>
-                <Route exact path = "/inbox" component={InboxScreen}/>
-                <Route exact path = "/search" component={SearchScreen}/>
-                <Route exact path ="/verify" component = { VerifyScreen } />
-                <Route exact path = "/user" component={ ProfileScreen }/>
-                <Route exact path = "/event" component={ ProfileScreen }/>
-                <Redirect exact to="/home" />
-              </Switch>
-            </section>
-        </main>
-            <ColumnRight history = {history} />
-        <NavBarMovile uid ={ uid }  />
-      </>
-  )
+    if ( uiReducer.loading ) {
+        return ( <LoadingScreen />)
+    }  
+    return (
+        <>
+          { uiReducer.viewModalImage && <ModalViewImage /> }
+          { uiReducer.viewModalSuscribe && <ModalSuscribeEvent /> }
+          <NavBar history = { history } /> 
+          <div className ="__wrapper_associationFrom_responsive">
+                  <strong>Asociaciones en ...</strong>
+                  <div className ="__wrapper_colunm_right_content_asociations">
+                  <ContentAsociationsFromRegion historyRouter = { history }/>
+                  </div>
+                </div> 
+          <main>
+              <section>
+                
+                <Switch>
+                  <Route exact path = "/home" component={HomeScreen}/>
+                  <Route exact path = "/inbox" component={InboxScreen}/>
+                  <Route exact path = "/search" component={SearchScreen}/>
+                  <Route exact path ="/verify" component = { VerifyScreen } />
+                  <Route exact path = "/user" component={ ProfileScreen }/>
+                  <Route exact path = "/event" component={ ProfileScreen }/>
+                  <Redirect exact to="/home" />
+                </Switch>
+              </section>
+          </main>
+              <ColumnRight history = {history} />
+          <NavBarMovile uid ={ uid }  />
+        </>
+    )
 }

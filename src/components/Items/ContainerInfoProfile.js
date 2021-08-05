@@ -12,7 +12,7 @@ export const ContainerInfoProfile = ({ userName, displayName, typeUser, category
                     <Avatar image = { image } name = { displayName } /> 
                     <div className="__wrapper_info_header_text">
                         <h2>{ displayName }</h2>
-                        <BadgeShort typeUser = { typeUser } text = { typeUserNameLong }/>
+                        <BadgeShort typeUser = { typeUser } text = { typeUserNameLong } color = { typeUser }/>
                         { 
                             ( !!category )
                                 && <BadgeShort color = { category } text = {`Categoria ${ category }`}/>

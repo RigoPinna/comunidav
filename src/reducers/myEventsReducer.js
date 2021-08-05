@@ -28,6 +28,7 @@ export const myEventsReducer = ( state = initialState, action ) => {
         case types.getMyEvents:
             return state;
         case types.resetMyEvents:
+            console.log(action.payload)
            return action.payload;
         default:
             return state

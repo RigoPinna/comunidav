@@ -19,16 +19,16 @@ export const ContainerOptions = React.memo(({ uid, optionMenu }) => {
     const [ isMounted ] = useIsMounted();
     const dispatch = useDispatch();
     const [ eventOtherUser, setEventOtherUser ] = useState([]);
-    const { uid:userLoged } = userLogedReducer;
+    const { uid:userLoged, typeUser } = userLogedReducer;
     
     useEffect(() => {
         if ( isMounted ) {
             if ( uid === userLoged ) {
-                
-                ( myEventsReducer.length <= 0 ) 
-                    ? dispatch( addAllEvents( userLoged ))
-                    : setEventOtherUser( myEventsReducer );
-
+                if ( typeUser === 'ASC') {
+                    ( myEventsReducer.length <= 0 ) 
+                        ? dispatch( addAllEvents( userLoged ))
+                        : setEventOtherUser( myEventsReducer );
+                }
                 isLoading && setIsLoading( !isLoading );
             } else {
                 fetchGetEventUser( uid ).then( events => {

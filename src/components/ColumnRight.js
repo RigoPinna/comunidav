@@ -48,8 +48,9 @@ export const ColumnRight = ({history }) => {
                     ? <ItemUser 
                         handle = { () => { handleGoMyProfile() } }
                         displayName = { userLogedReducer.displayName } 
-                        textSecondary = { `Categoria • ${userLogedReducer.category}` }
-                        image = { userLogedReducer.image }    
+                        textSecondary = {userLogedReducer.typeUser === 'ASC' ? `Categoria • ${userLogedReducer.category}`: userLogedReducer.userName }
+                        image = { userLogedReducer.image }
+                        typeUser = {userLogedReducer.typeUser}    
                     />
                     : <ItemUserLoading />
             }

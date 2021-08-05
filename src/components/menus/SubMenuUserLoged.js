@@ -25,7 +25,7 @@ export const SubMenuUserLoged = ({ history }) => {
         history.replace('/login');
     }
     return (
-        <ul className="__modal_submenu_event __submenu_bg_white animate__animated animate__fadeIn">
+        <ul className="__modal_submenu_event __submenu_bg_white">
             <li>
                 <button className = "__btn">
                     <IconUser />
