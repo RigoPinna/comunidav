@@ -44,7 +44,7 @@ export const WrapperInputsUserData = () => {
                 validForm.userName 
                 && <AlertInForm 
                         styleAlert={'__alert_error_inForm'}
-                        title = {'Error en tu nombre de usuario'}
+                        title = {'Error en la contraseña'}
                         descriptionError = { validForm.erroruserName }
                     />
             }
@@ -60,7 +60,7 @@ export const WrapperInputsUserData = () => {
                 validForm.password 
                 && <AlertInForm 
                         styleAlert={'__alert_error_inForm'}
-                        title = {'Error en tu nombre de usuario'}
+                        title = {'Error en contraseñas'}
                         descriptionError = { validForm.errorpassword }
                     />
             }
@@ -77,7 +77,7 @@ export const WrapperInputsUserData = () => {
                 validForm.confirmPass 
                 && <AlertInForm 
                         styleAlert={'__alert_error_inForm'}
-                        title = {'Error en tu nombre de usuario'}
+                        title = {'Error en contraseñas'}
                         descriptionError = { validForm.errorconfirmPass }
                     />
             }

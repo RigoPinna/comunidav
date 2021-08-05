@@ -121,6 +121,8 @@
     color:$color-black-2;
     font-family: 'SF-Bold';
     font-size: 14px;
+    width: 100%;
+    text-align: center;
     &:hover {
         color:$color-primary-purple;
         text-decoration: underline;

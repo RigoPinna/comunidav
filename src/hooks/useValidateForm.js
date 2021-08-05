@@ -12,7 +12,7 @@ export const useValidateForm = ( formValidations , formData ) => {
             ...OBJ_VALIDATE_TEMPORALLY,
             ...validValue( keyName, formData[ keyName ] )
         };
-        if ( keyName === 'confirPass' ) {
+        if ( keyName === 'confirmPass' ) {
             OBJ_VALIDATE_TEMPORALLY = {
                 ...OBJ_VALIDATE_TEMPORALLY,
                 ...validConfirmPassword( formData, keyName )
@@ -35,9 +35,9 @@ const validValue = ( keyName, value ) => {
     };
 }
 const validConfirmPassword = ( formData, keyName ) => {
-
+    console.log(formData[ 'password' ] !== formData[ keyName ])
     return ( formData[ 'password' ] !== formData[ keyName ] ) 
-                ? { confirPass:true, errorconfirmPass:'Las contraseñas no coinciden' }
-                : { confirPass:false, errorconfirmPass:'' }
+                ? { confirmPass:true, errorconfirmPass:'Las contraseñas no coinciden' }
+                : { confirmPass:false, errorconfirmPass:'' }
     
 }

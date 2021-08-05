@@ -19,18 +19,21 @@ export const Login = ({history}) => {
     const verifyLogin = ( ) => {
         setStateResp({...stateResp,...{isLoading:true}});
         fetchLogin( inputValues).then( resp => {
+            console.log(resp)
             if ( !resp.isError ) {
+                setStateResp({
+                    isError: false,
+                    message: '',
+                    isLoading: false,
+                });
                 if ( resp.isVerify ) {
-                    setStateResp({
-                        isError: false,
-                        message: '',
-                        isLoading: false,
-                    });
                     localStorage.setItem( 'uid', resp.userID );
                     history.replace(`user?q=${resp.userID}`)
-                } else {
-    
-                }
+                } 
+                
+                localStorage.setItem( 'uid', resp.userID );
+                history.replace('verify');
+                
             } else {
                 setStateResp({
                     isError: true,

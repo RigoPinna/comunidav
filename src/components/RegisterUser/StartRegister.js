@@ -1,9 +1,7 @@
-import React, { useContext, useReducer } from 'react'
+import React from 'react'
 import { IllustrationAsc } from '../iconos/IllustrationAsc'
 import { IllustrationVol } from '../iconos/IllustrationVol'
 import { CardRegister } from './CardRegister'
-import { RegisterContext } from './RegisterContext'
-import { registerReducer } from './registerReducer'
 
 export const StartRegister = () => {
     

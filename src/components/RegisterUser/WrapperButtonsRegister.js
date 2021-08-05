@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { useValidateForm } from '../../hooks/useValidateForm';
-import { fetchGetStates } from '../../services/fetchGetStates';
 import { fetchRegisterUser } from '../../services/fetchRegisterUser';
 import { fetchValidateRFC } from '../../services/fetchValidateRFC';
+import { fetchValidateUser } from '../../services/fetchValidateUser';
 import { IconArrowRight } from '../iconos/IconArrowRight'
 import { LoadingInComponent } from '../loadings/LoadingInComponent';
 import { RegisterContext } from './RegisterContext';
@@ -12,6 +12,7 @@ export const WrapperButtonsRegister = ({ actualStep, formData, validForm, setVal
     const { stateProgress, dispatch } = useContext( RegisterContext );
     const [ OBJ_VALIDATED, isValid ] = useValidateForm(validForm ,formData );
     const [ isLoading, setisLoading ] = useState( false );
+
     const handleGoToNextStep = ( evt ) => {
         evt.preventDefault();
         switch ( actualStep ) {
@@ -35,9 +36,21 @@ export const WrapperButtonsRegister = ({ actualStep, formData, validForm, setVal
                     : setValidForm( OBJ_VALIDATED );
                 break;
             case 3:
-                ( isValid ) 
-                    ? dispatch( goToassociationData( formData ) )
-                    : setValidForm( OBJ_VALIDATED );
+                if ( isValid ) {
+                    setisLoading( true );
+                    fetchValidateUser(formData.userName, formData.email).then( resp => {
+                        if ( resp.status === 'accepted') {
+                            ( isValid ) 
+                                ? dispatch( goToassociationData( formData ) )
+                                : setValidForm( OBJ_VALIDATED );
+                        } else {
+                            alert(`email:${resp.errorEmail}, username:${resp.errorUserName}`)
+                        }
+                        setisLoading( false );
+                    })
+                } else {
+                    setValidForm( OBJ_VALIDATED );
+                }
                 break;
             default:
                 break;
@@ -47,16 +60,22 @@ export const WrapperButtonsRegister = ({ actualStep, formData, validForm, setVal
         evt.preventDefault();
 
         if ( stateProgress.totallyStep === actualStep ) {
-            dispatch( isFinishProcess( formData, true ) );
-            const userData = {...stateProgress.formData, ...formData };
-            fetchRegisterUser( userData ).then( resp => {
-                if ( resp.status === 'error') {
-                    const msg = `${resp.errorRFC}\n ${resp.errorEmail}\n ${resp.errorUserName}`;
-                    dispatch(isFinishFetching( msg ))
-                } else {
-                    dispatch(isFinishFetching( resp.msg, resp.status ))
-                }
-            }).catch( err => console.log( err ));
+            if ( isValid ) {
+                dispatch( isFinishProcess( formData, true ) );
+                const userData = {...stateProgress.formData, ...formData };
+                console.log( userData );
+                fetchRegisterUser( userData ).then( resp => {
+                    if ( resp.status === 'error') {
+                        const msg = `${resp.errorRFC}\n ${resp.errorEmail}\n ${resp.errorUserName}`;
+                        dispatch(isFinishFetching( msg ))
+                    } else {
+                        dispatch(isFinishFetching( resp.msg, resp.status ))
+                    }
+                }).catch( err => console.log( err ));
+                
+            } else {
+                setValidForm( OBJ_VALIDATED );
+            }
         }
     }
     return (
