@@ -15,7 +15,7 @@ export const Avatar = ( { image = avatarImg, name, onClick = () => { }, history 
                 alt = {name} 
             />
             {
-                selectItemNavBar && <SubMenuUserLoged history = { history } />
+                selectItemNavBar && <SubMenuUserLoged setView = { setSelectItemNavBar } history = { history } />
             }
         </>
     )

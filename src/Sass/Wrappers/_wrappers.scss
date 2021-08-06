@@ -85,6 +85,7 @@ main {
     width: 100%;
     min-height: 100px;
     font-size: 1rem;
+    padding-bottom:10px;
     & > .__loading_wrapper_in_component {
         padding:15px;
     }
@@ -524,6 +525,51 @@ footer {
 }
 .__wrapper_associationFrom_responsive {
     display: none;
+}
+.__wrapper_verify {
+    display: block;
+    width: 100%;
+    min-height: 200px;
+    background:$always-white;
+    border-radius: $br-radius;
+    box-shadow: $shadows-elements;
+    .__wrapper_verify_header {
+        display: block;
+        width: 100%;
+        height: auto;
+        padding:10px;
+        border-bottom: 1px solid #DBDBDB;
+        h4 {
+            font-family: 'SF-Bold';
+        }
+    }
+    .__wrapper_verify_body {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        p, strong {
+            font-size:14px;
+        }
+        strong {
+            display: block;
+            margin-top: 20px;
+            font-family: 'SF-Bold';
+        }
+        form {
+            display: flex;
+            width: 100%;
+            min-height: 45px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            div {
+                margin-block: 10px;
+            }
+            .__btn {
+                width: 100%;
+            }
+        }
+    }
 }
 @include medium {
     .__wrapper_info {

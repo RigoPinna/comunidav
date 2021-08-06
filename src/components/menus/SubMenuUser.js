@@ -12,13 +12,13 @@ export const SubMenuUser = ({ setViewOption, setUserData, typeUser }) => {
     const opMyEvents = useRef( null );
     const opMyFavorites = useRef( null );
     const opMyGroups = useRef( null );
-    useEffect(() => {
-        //Si el usuario visita otro perfil, se resetea a la opcion 1 para ver los eventso creados del usuario
-        return () => {
-            setViewOption( OPTION_SUBMEN_USER.viewMyEvents );
-            setUserData({});
-        }
-    }, [ ]);
+    // useEffect(() => {
+    //     //Si el usuario visita otro perfil, se resetea a la opcion 1 para ver los eventso creados del usuario
+    //     return () => {
+    //         setViewOption( OPTION_SUBMEN_USER.viewMyEvents );
+    //         setUserData({});
+    //     }
+    // }, [ ]);
     
     const hanldeActionMenu = ( optiontype ) => {
         

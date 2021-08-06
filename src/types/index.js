@@ -7,6 +7,7 @@ export const types = {
     uiLogout: '[ui] logout',
     loadigApp: '[ui] loadingApp',
     userLoged: '[data] userLoged',
+    updateVerifier: '[data] upate-Verification',
     userLogout: '[data] user-Logout',
     updateUserLoged: '[data] userUpdate',
     associationFromRegio: '[data-asc] FromRegion',

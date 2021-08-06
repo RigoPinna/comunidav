@@ -13,5 +13,7 @@ export const REGEX_INPUT_VALUES = {
     confirmPass:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)([$@!%*?&]*)([A-Za-z\d@$!%*?&]|[^ ]){8,32}$/,
     associationName:/^([A-Za-z.0-9\s]{3,50})$/,
     category:/(^([0-9]{1}))$/,
-    description:/^(([a-zA-Z0-9A-ZÀ-ÿ\u00f1\u00d1.$%&/()=?¿!.¡",:;\-_\s]){30,1000})$/
+    description:/^(([a-zA-Z0-9A-ZÀ-ÿ\u00f1\u00d1.$%&/()=?¿!.¡",:;\-_\s]){30,1000})$/,
+    code:new RegExp( '^([0-9]{3})-([0-9]{3})-([0-9]{3})$'),
+    numberCode: new RegExp('^([0-9]{1,3})$'),
 }

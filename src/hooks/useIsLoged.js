@@ -6,7 +6,7 @@ export const useIsLoged = ( history, location ) => {
     useEffect(() => {
         if ( localStorage.getItem('uid') ) {
             const uid = localStorage.getItem( 'uid' );
-            history.replace( `/association/${ uid }` );
+            history.replace( `/user?q=${ uid }` );
         } else {
             ( location.pathname !=='/login')
                 &&  history.replace(`/login`);

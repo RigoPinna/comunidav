@@ -21,11 +21,12 @@ import { ContentAsociationsFromRegion } from '../components/ContentAsociationsFr
 import { addAllGroups } from '../reducers/groupsEventReducer'
 import { addAllFavorites } from '../reducers/ascFavoritesReducer'
 import { VerifyScreen } from '../components/Pages/VerifyScreen'
+import { ConfigScreen } from '../components/Pages/ConfigScreen'
 
 
 export const DashboardRouters = ({ history, location }) => {
     useIsLoged( history, location );
-    const { uiReducer } = useSelector( state => state );
+    const { uiReducer, userLogedReducer } = useSelector( state => state );
     const dispatch = useDispatch();
     const [ isMounted ] = useIsMounted();
     const uid = localStorage.getItem( 'uid' );
@@ -47,6 +48,13 @@ export const DashboardRouters = ({ history, location }) => {
         }
       
     }, [ dispatch, isMounted, history, uid ]);
+    useEffect(()=> {
+      if ( isMounted ) {
+        if ( !!userLogedReducer ) {
+          userLogedReducer.isVerify === '0' && history.replace('/verify')
+        }
+      }
+    },[ userLogedReducer ]);
 
     if ( uiReducer.loading ) {
         return ( <LoadingScreen />)
@@ -64,19 +72,22 @@ export const DashboardRouters = ({ history, location }) => {
                 </div> 
           <main>
               <section>
-                
                 <Switch>
-                  <Route exact path = "/home" component={HomeScreen}/>
-                  <Route exact path = "/inbox" component={InboxScreen}/>
-                  <Route exact path = "/search" component={SearchScreen}/>
+                  <Route exact path = "/user" component = { ProfileScreen }/>
+                  <Route exact path = "/home" component = { HomeScreen }/>
+                  <Route exact path = "/event" component = { ProfileScreen }/>
+                  <Route exact path = "/inbox" component = { InboxScreen }/>
+                  <Route exact path = "/search" component = { SearchScreen }/>
+                  <Route exact path = "/config" component = { ConfigScreen }/>
                   <Route exact path ="/verify" component = { VerifyScreen } />
-                  <Route exact path = "/user" component={ ProfileScreen }/>
-                  <Route exact path = "/event" component={ ProfileScreen }/>
                   <Redirect exact to="/home" />
                 </Switch>
               </section>
           </main>
-              <ColumnRight history = {history} />
+              {
+                !userLogedReducer.isVerify === '0' && 
+                  <ColumnRight history = {history} />
+              }
           <NavBarMovile uid ={ uid }  />
         </>
     )

@@ -1,4 +1,5 @@
 import { fetchGetInfoUserLoged } from "../services/fetchGetInfoUserLoged";
+import { verifyUserCode } from "../services/fetchVerifyUserCode";
 import { types } from "../types";
 
 
@@ -12,6 +13,7 @@ export const getDataUserLoged = ( uid ) => {
                     typeUser: dataUser.typeUser,
                     uid: dataUser.uid,
                     userName: dataUser.userName ,
+                    email: dataUser.email,
                     image: dataUser.image,
                     displayName:dataUser.displayName,
                     text: dataUser.typeUser,
@@ -32,6 +34,10 @@ export const logout = () => ({
     type: types.userLogout,
     payload: {}
 })
+export const updateVerify = () => ({
+    type:types.updateVerifier,
+    payload: {isVerify:'0'}
+}) 
 export const userLogedReducer = ( state = {}, action ) => {
     
     switch ( action.type ) {
@@ -39,6 +45,9 @@ export const userLogedReducer = ( state = {}, action ) => {
            return action.payload;
         case types.userLogout:
            return action.payload;
+        case types.updateVerifier:
+           return {...state, ...action.payload}
+
         default:
             return state;
     }

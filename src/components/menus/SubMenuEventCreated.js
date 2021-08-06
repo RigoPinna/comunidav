@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useIsMounted } from '../../hooks/useIsMounted'
 import { addToFavorites, removeFavorite } from '../../reducers/ascFavoritesReducer'
@@ -15,8 +15,6 @@ export const SubMenuEventCreated = ({ eid,uidLoged, isTheCreator, dataCreator })
     const { uid } = userLogedReducer;
     const isFavorite = favoritesReducer.some( itemFav => itemFav.idAsociacion == dataCreator.aid );
     const [ state, setstate ] = useState( isFavorite )
-
-    
     const handleAddToFavorite = () => {
         isMounted && dispatch( addToFavorites( dataCreator ) );
         setstate( true );
