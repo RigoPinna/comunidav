@@ -1,4 +1,5 @@
 
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { REGEX_INPUT_VALUES } from '../helpers/REGULAR_EXPRESSIONS';
@@ -11,7 +12,13 @@ export const useValidateCode = (c1, c2, c3 ) => {
     const { email } = useSelector( state => state.userLogedReducer );
 
     const [ codes, setCode ] = useState({c1:'',c2:'',c3:''});
-    const [isLoading, setisLoading] = useState( false );
+    const [isLoading, setisLoading] = useState({loadingVerify: false, loadingFordwardCode: false, errorCode:false});
+    const [ fordwardCode, setForwadCode ] = useState({ idInterval: undefined, isSended:false }); 
+    useEffect(() => {
+        return () => {
+            !!fordwardCode.idInterval && clearInterval( fordwardCode.idInterval );
+        }
+    }, [ fordwardCode ]);
 
     const handdleInputChange = ( evt ) => {
         evt.preventDefault();
@@ -60,17 +67,25 @@ export const useValidateCode = (c1, c2, c3 ) => {
     }
     const verifyCode = ( evt ) => {
         evt.preventDefault();
-        setisLoading( true );
+        setisLoading({...isLoading,...{ loadingVerify:true} });
         fetchVerifyUserCode( codes, email ).then( resp => {
-            if ( resp.status === 'accept') {
+            
+            if ( resp.status === 'accept' ) {
+                setisLoading({...isLoading,...{ loadingVerify:false, errorCode:false } });
                 dispatch( updateVerify() );
-                console.log( resp );
+            } else {
+                setisLoading({...isLoading,...{ loadingVerify:false, errorCode:true } });
             }
-            setisLoading( false )
         }).catch( err => {
-            setisLoading( false );
+            console.log( err );
+            setisLoading({...isLoading,...{ loadingVerify:false } });
         })
-
     }
-    return [ codes, handdleInputChange, verifyCode,isLoading];
+    const handleFordwardCode = ( evt ) => {
+        evt.preventDefault();
+        setisLoading({...isLoading,...{ loadingFordwardCode: true } });
+        // setForwadCode({...fordwardCode, ...{ isSended:true }});
+        
+    }
+    return [ codes, handdleInputChange, verifyCode, isLoading, handleFordwardCode, fordwardCode ];
 }

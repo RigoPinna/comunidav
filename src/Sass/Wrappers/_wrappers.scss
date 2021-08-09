@@ -568,6 +568,33 @@ footer {
             .__btn {
                 width: 100%;
             }
+            .__wrapper_verify_footer {
+                display: block;
+                width: 100%;
+                padding-top:48px;
+                border-radius: $br-radius;
+                strong {
+                    display: inline-block;
+                }
+                .__btn {
+                    background:transparent;
+                    border: 1px solid $color-primary-purple-3;
+                    color: $color-primary-purple-3;
+                    margin-top:10px;
+                    &:hover {
+                        border: 1px solid $color-primary-purple;
+                        color: $color-primary-purple;
+                    }
+                }
+            }
+        }
+        .__wrapper_verify_footer_sended {
+            background: $color-green-4;
+        }
+        svg {
+            width:240px;
+            height: 240px;
+            margin-left: calc(50% - 120px);
         }
     }
 }

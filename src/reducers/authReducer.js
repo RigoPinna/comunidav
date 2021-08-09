@@ -23,7 +23,7 @@ export const getDataUserLoged = ( uid ) => {
                     category: dataUser?.category ,
                     description:  dataUser?.description,
                     idMun: dataUser.idMunicipio,
-                    isVerify: dataUser.isVerify
+                    isVerify: (dataUser.isVerify === '1') || false, 
                 }
             }
             dispatch( action );
@@ -36,7 +36,7 @@ export const logout = () => ({
 })
 export const updateVerify = () => ({
     type:types.updateVerifier,
-    payload: {isVerify:'0'}
+    payload: {isVerify:true}
 }) 
 export const userLogedReducer = ( state = {}, action ) => {
     

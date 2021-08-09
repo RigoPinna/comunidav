@@ -51,7 +51,7 @@ export const DashboardRouters = ({ history, location }) => {
     useEffect(()=> {
       if ( isMounted ) {
         if ( !!userLogedReducer ) {
-          userLogedReducer.isVerify === '0' && history.replace('/verify')
+          !userLogedReducer.isVerify && history.replace('/verify')
         }
       }
     },[ userLogedReducer ]);
