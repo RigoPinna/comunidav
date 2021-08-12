@@ -64,12 +64,12 @@ export const DashboardRouters = ({ history, location }) => {
           { uiReducer.viewModalImage && <ModalViewImage /> }
           { uiReducer.viewModalSuscribe && <ModalSuscribeEvent /> }
           <NavBar history = { history } /> 
-          <div className ="__wrapper_associationFrom_responsive">
+          {/* <div className ="__wrapper_associationFrom_responsive">
                   <strong>Asociaciones en ...</strong>
                   <div className ="__wrapper_colunm_right_content_asociations">
                   <ContentAsociationsFromRegion historyRouter = { history }/>
                   </div>
-                </div> 
+                </div>  */}
           <main>
               <section>
                 <Switch>

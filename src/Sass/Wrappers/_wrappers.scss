@@ -651,7 +651,7 @@ footer {
     }
     main {
         height: auto;
-        padding:15px 2px;
+        padding:52px 2px;
         section {
             grid-column: 1 / 16;
             grid-row: 1 / 11;
@@ -710,6 +710,9 @@ footer {
             height:100vh;
             padding: 10px;
         }
+    }
+    .__wrapper_verify .__wrapper_verify_body form .__wrapper_verify_footer {
+        padding-top: 14px;
     }
     
 }

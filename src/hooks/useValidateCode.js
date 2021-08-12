@@ -1,24 +1,19 @@
-
-import { useEffect } from 'react';
 import { useState } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
-import { REGEX_INPUT_VALUES } from '../helpers/REGULAR_EXPRESSIONS';
+
 import { updateVerify } from '../reducers/authReducer';
+import { REGEX_INPUT_VALUES } from '../helpers/REGULAR_EXPRESSIONS';
 import { fetchVerifyUserCode } from '../services/fetchVerifyUserCode';
 
-export const useValidateCode = (c1, c2, c3 ) => {
+export const useValidateCode = (c1, c2, c3, email, displayName ) => {
 
     const dispatch = useDispatch();
     const { email } = useSelector( state => state.userLogedReducer );
 
     const [ codes, setCode ] = useState({c1:'',c2:'',c3:''});
     const [isLoading, setisLoading] = useState({loadingVerify: false, loadingFordwardCode: false, errorCode:false});
-    const [ fordwardCode, setForwadCode ] = useState({ idInterval: undefined, isSended:false }); 
-    useEffect(() => {
-        return () => {
-            !!fordwardCode.idInterval && clearInterval( fordwardCode.idInterval );
-        }
-    }, [ fordwardCode ]);
+    const [ forwardCode, setForwadCode ] = useState( false ); 
 
     const handdleInputChange = ( evt ) => {
         evt.preventDefault();
@@ -34,7 +29,6 @@ export const useValidateCode = (c1, c2, c3 ) => {
                    case 'c2':
                        c3.current.select()
                        break;
-               
                    default:
                        break;
                }
@@ -67,19 +61,25 @@ export const useValidateCode = (c1, c2, c3 ) => {
     }
     const verifyCode = ( evt ) => {
         evt.preventDefault();
-        setisLoading({...isLoading,...{ loadingVerify:true} });
-        fetchVerifyUserCode( codes, email ).then( resp => {
-            
-            if ( resp.status === 'accept' ) {
-                setisLoading({...isLoading,...{ loadingVerify:false, errorCode:false } });
-                dispatch( updateVerify() );
-            } else {
-                setisLoading({...isLoading,...{ loadingVerify:false, errorCode:true } });
-            }
-        }).catch( err => {
-            console.log( err );
-            setisLoading({...isLoading,...{ loadingVerify:false } });
-        })
+        const valueCodes = Object.values( codes );
+        if ( !valueCodes.includes('') ) {
+            setisLoading({...isLoading,...{ loadingVerify:true} });
+            fetchVerifyUserCode( codes, email ).then( resp => {
+                
+                if ( resp.status === 'accept' ) {
+                    setisLoading({...isLoading,...{ loadingVerify:false, errorCode:false } });
+                    dispatch( updateVerify() );
+                } else {
+                    setisLoading({...isLoading,...{ loadingVerify:false, errorCode:true } });
+                }
+            }).catch( err => {
+                console.log( err );
+                setisLoading({...isLoading,...{ loadingVerify:false } });
+            })
+        } else {
+            setisLoading({...isLoading,...{ loadingVerify:false, errorCode:true } });
+        }
+        
     }
     const handleFordwardCode = ( evt ) => {
         evt.preventDefault();
@@ -87,5 +87,5 @@ export const useValidateCode = (c1, c2, c3 ) => {
         // setForwadCode({...fordwardCode, ...{ isSended:true }});
         
     }
-    return [ codes, handdleInputChange, verifyCode, isLoading, handleFordwardCode, fordwardCode ];
+    return [ codes, handdleInputChange, verifyCode, isLoading, handleFordwardCode, forwardCode ];
 }

@@ -9,7 +9,7 @@ export const Verify = ({ uid, email, isVerify, history }) => {
     const c2 = useRef( null );
     const c3 = useRef( null );
 
-    const [codes, handdleInputChange, verifyCode,isLoading, handleFordwardCode, fordwardCode ] = useValidateCode( c1, c2, c3 );
+    const [codes, handdleInputChange, verifyCode,isLoading, handleFordwardCode, forwardCode ] = useValidateCode( c1, c2, c3,emil );
 
     return (
         <>
@@ -58,23 +58,23 @@ export const Verify = ({ uid, email, isVerify, history }) => {
                         }
                 </button>
                 <div 
-                    className = { fordwardCode.isSended 
+                    className = { forwardCode
                                         ? '__wrapper_verify_footer __wrapper_verify_footer_sended animate__animated animate__fadeIn'
                                         :'__wrapper_verify_footer'
                                 }
                 >
                     <p>
-                        { fordwardCode.isSended 
+                        { forwardCode
                                 ? 'Código enviado correctamente' 
                                 : '¿No has recibido tu código de verifiación?'
                         }
                     </p>
                     {
-                        fordwardCode.isSended
+                        forwardCode
                             && <p>Se ha enviado un nuevo código de verifiación a <strong>{ email }</strong></p>         
                     }
                     {
-                        !fordwardCode.isSended
+                        !forwardCode.isSended
                             && <button
                                     onClick = { handleFordwardCode }
                                     className = "__btn"
