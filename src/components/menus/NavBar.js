@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import { ComunidavLogo } from '../iconos/ComunidavLogo'
 import { IconHome } from '../iconos/IconHome'
@@ -7,6 +8,7 @@ import { IconSearch } from '../iconos/IconSearch'
 import { Avatar } from '../Items/Avatar'
 
 export const NavBar = ({ history }) => {
+    const { image }  = useSelector(state => state.userLogedReducer )
     const handleOnClickAvatar = ( evt, state, setState ) => setState( !state );
     
     return (
@@ -38,7 +40,7 @@ export const NavBar = ({ history }) => {
                         </NavLink>
                     </li>
                     <li>
-                        <Avatar history = { history } onClick={ handleOnClickAvatar }  />
+                        <Avatar image={image } history = { history } onClick={ handleOnClickAvatar }  />
                     </li>
                 </ul>
             </nav>

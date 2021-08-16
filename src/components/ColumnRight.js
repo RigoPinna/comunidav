@@ -37,7 +37,7 @@ export const ColumnRight = ({history }) => {
                 <h5>Mi perfil • </h5>
                 { 
                     !isLoading 
-                        && <Link className = "btn_config" to ="/configuration">
+                        && <Link className = "btn_config" to ="/config">
                                 <IconConfig />
                             </Link>
                 }

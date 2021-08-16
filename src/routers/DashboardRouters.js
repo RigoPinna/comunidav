@@ -22,14 +22,16 @@ import { addAllGroups } from '../reducers/groupsEventReducer'
 import { addAllFavorites } from '../reducers/ascFavoritesReducer'
 import { VerifyScreen } from '../components/Pages/VerifyScreen'
 import { ConfigScreen } from '../components/Pages/ConfigScreen'
+import { useIsVerify } from '../hooks/useIsVerify'
 
 
 export const DashboardRouters = ({ history, location }) => {
     useIsLoged( history, location );
     const { uiReducer, userLogedReducer } = useSelector( state => state );
     const dispatch = useDispatch();
-    const [ isMounted ] = useIsMounted();
     const uid = localStorage.getItem( 'uid' );
+    const [ isMounted ] = useIsMounted();
+   
     useEffect(() => {
         if ( isMounted )  {
           if( uid ) {
@@ -46,15 +48,8 @@ export const DashboardRouters = ({ history, location }) => {
         } else {
           localStorage.removeItem('uid');
         }
-      
     }, [ dispatch, isMounted, history, uid ]);
-    useEffect(()=> {
-      if ( isMounted ) {
-        if ( !!userLogedReducer ) {
-          !userLogedReducer.isVerify && history.replace('/verify')
-        }
-      }
-    },[ userLogedReducer ]);
+    useIsVerify( history, userLogedReducer );
 
     if ( uiReducer.loading ) {
         return ( <LoadingScreen />)
@@ -64,12 +59,12 @@ export const DashboardRouters = ({ history, location }) => {
           { uiReducer.viewModalImage && <ModalViewImage /> }
           { uiReducer.viewModalSuscribe && <ModalSuscribeEvent /> }
           <NavBar history = { history } /> 
-          {/* <div className ="__wrapper_associationFrom_responsive">
+          <div className ="__wrapper_associationFrom_responsive">
                   <strong>Asociaciones en ...</strong>
                   <div className ="__wrapper_colunm_right_content_asociations">
                   <ContentAsociationsFromRegion historyRouter = { history }/>
                   </div>
-                </div>  */}
+                </div> 
           <main>
               <section>
                 <Switch>
@@ -84,10 +79,9 @@ export const DashboardRouters = ({ history, location }) => {
                 </Switch>
               </section>
           </main>
-              {
-                !userLogedReducer.isVerify === '0' && 
-                  <ColumnRight history = {history} />
-              }
+          {
+            userLogedReducer.isVerify && <ColumnRight history = {history} />
+          }
           <NavBarMovile uid ={ uid }  />
         </>
     )

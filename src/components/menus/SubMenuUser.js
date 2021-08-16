@@ -6,19 +6,13 @@ import { IconEvent } from '../iconos/IconEvent';
 import { IconFavorite } from '../iconos/IconFavorite';
 import { IconGroups } from '../iconos/IconGroups';
 
-export const SubMenuUser = ({ setViewOption, setUserData, typeUser }) => {
+export const SubMenuUser = ({ setViewOption, typeUser }) => {
 
     const [ setActiveOption ] = useActiveSubmenuOption();
     const opMyEvents = useRef( null );
     const opMyFavorites = useRef( null );
     const opMyGroups = useRef( null );
-    // useEffect(() => {
-    //     //Si el usuario visita otro perfil, se resetea a la opcion 1 para ver los eventso creados del usuario
-    //     return () => {
-    //         setViewOption( OPTION_SUBMEN_USER.viewMyEvents );
-    //         setUserData({});
-    //     }
-    // }, [ ]);
+
     
     const hanldeActionMenu = ( optiontype ) => {
         
@@ -75,7 +69,6 @@ export const SubMenuUser = ({ setViewOption, setUserData, typeUser }) => {
                     <IconFavorite />
                     <p>Mis favoritos</p>
             </button>
-            
         </div>
     )
 }

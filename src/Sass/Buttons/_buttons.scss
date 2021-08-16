@@ -140,6 +140,28 @@
         transition: all 0.5s ease;
     }
 }
+.__btn_camera {
+    display: flex;
+    padding:5px;
+    border-radius:100%;
+    position: absolute;
+    bottom: 5px;
+    right: 16px;
+    border: 2px solid $always-white;
+    justify-content:center;
+    align-items: center;
+    background: linear-gradient(338deg, rgba(159,91,255,1) 0%, rgba(132,91,255,1) 47%, rgba(99,91,255,1) 100%);
+    color:$always-white;
+    transition: all 0.3s ease;
+    svg {
+        width: 22px;
+        height: 22px;
+    }
+    &:hover {
+        opacity:0.9;
+        cursor: pointer;
+    }
+}
 @include small {
     .__btn {
         font-size:12px;

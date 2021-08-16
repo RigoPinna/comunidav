@@ -16,6 +16,9 @@ export const getDataUserLoged = ( uid ) => {
                     email: dataUser.email,
                     image: dataUser.image,
                     displayName:dataUser.displayName,
+                    namePerson: dataUser.namePerson,
+                    lastName: dataUser.lastName,
+                    secondlastName: dataUser.lastName2,
                     text: dataUser.typeUser,
                     cityName:dataUser.nameEstado,
                     shortCityName: dataUser.abrestado,
@@ -37,6 +40,11 @@ export const logout = () => ({
 export const updateVerify = () => ({
     type:types.updateVerifier,
     payload: {isVerify:true}
+})
+export const updateAvatar = ( image ) => ({
+    type: types.updateAvatar,
+    payload: { image }
+
 }) 
 export const userLogedReducer = ( state = {}, action ) => {
     
@@ -46,6 +54,8 @@ export const userLogedReducer = ( state = {}, action ) => {
         case types.userLogout:
            return action.payload;
         case types.updateVerifier:
+           return {...state, ...action.payload}
+        case types.updateAvatar:
            return {...state, ...action.payload}
 
         default:

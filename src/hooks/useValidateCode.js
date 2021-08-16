@@ -5,16 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateVerify } from '../reducers/authReducer';
 import { REGEX_INPUT_VALUES } from '../helpers/REGULAR_EXPRESSIONS';
 import { fetchVerifyUserCode } from '../services/fetchVerifyUserCode';
+import { fetchForwardCode } from '../services/fetchForwardCode';
 
-export const useValidateCode = (c1, c2, c3, email, displayName ) => {
+export const useValidateCode = ( c1, c2, c3 ) => {
 
     const dispatch = useDispatch();
-    const { email } = useSelector( state => state.userLogedReducer );
+    const { email, displayName } = useSelector( state => state.userLogedReducer );
 
     const [ codes, setCode ] = useState({c1:'',c2:'',c3:''});
-    const [isLoading, setisLoading] = useState({loadingVerify: false, loadingFordwardCode: false, errorCode:false});
-    const [ forwardCode, setForwadCode ] = useState( false ); 
-
+    const [isLoading, setisLoading] = useState({loadingVerify: false, forwardCode:false, loadingFordwardCode: false, errorCode:false});
     const handdleInputChange = ( evt ) => {
         evt.preventDefault();
         const inputName = evt.target.name
@@ -84,8 +83,11 @@ export const useValidateCode = (c1, c2, c3, email, displayName ) => {
     const handleFordwardCode = ( evt ) => {
         evt.preventDefault();
         setisLoading({...isLoading,...{ loadingFordwardCode: true } });
-        // setForwadCode({...fordwardCode, ...{ isSended:true }});
+        fetchForwardCode( email, displayName ).then( resp =>{
+            resp.status === 'accept' && setisLoading({...isLoading,...{ forwardCode: true, loadingFordwardCode: false } })
+                
+        })
         
     }
-    return [ codes, handdleInputChange, verifyCode, isLoading, handleFordwardCode, forwardCode ];
+    return [ codes, handdleInputChange, verifyCode, isLoading, handleFordwardCode ];
 }

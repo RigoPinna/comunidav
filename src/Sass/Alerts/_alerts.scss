@@ -76,5 +76,14 @@
         & > p:nth-child( 2 ) {
             color:$color-red-1;
         }
-
+    }
+    .__alert_success_inForm {
+        background:$color-green-4;
+        border-color: $color-black-2;
+        & > p:nth-child( 1 ) {
+            color:$color-red-1;
+        }
+        & > p:nth-child( 2 ) {
+            color:$color-red-1;
+        }
     }
