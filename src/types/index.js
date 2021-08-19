@@ -22,5 +22,6 @@ export const types = {
     addToFavorite: '[ favorite ] Add-To-favorite',
     resetFavorites: '[ favorite ] Reset-favorites',
     removeFavorite: '[ favorite ] Remove-favorite',
-    updateAvatar: '[user] Update-avatar-user-loged'
+    updateAvatar: '[user] Update-avatar-user-loged',
+    updateUserData: '[user] Update-user-data'
 }

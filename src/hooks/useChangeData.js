@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 
 export const useChangeData = ( newData, oldData ) => {
-const [ isDiferent, setisDiferent ] = useState( false );
+const [ isDiferent, setIsDiferent ] = useState( false );
     useEffect(() => {
         console.log('ej')
         const arrayNewValues = JSON.stringify( Object.values( newData ) ) ;
         const arrayOldValues = JSON.stringify( Object.values( oldData ) );
         ( arrayNewValues === arrayOldValues )
-            ? setisDiferent( false )
-            : setisDiferent( true );
+            ? setIsDiferent( false )
+            : setIsDiferent( true );
     }, [ newData ])
-    return [ isDiferent ]
+    return [ isDiferent,setIsDiferent ]
 }

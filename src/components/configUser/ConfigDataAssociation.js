@@ -1,22 +1,28 @@
 import React,{ useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux'
+
 import { useChangeForm } from '../../hooks/useChangeForm'
 import { useChangeData } from '../../hooks/useChangeData'
 import { Input } from '../Inputs/Input'
 import { InputSelect } from '../Inputs/InputSelect';
 import { fetchGetCategories } from '../../services/fetchGetCategories';
+import { updateUserData } from '../../reducers/authReducer'
 
-export const ConfigDataAssociation = ({displayName, cid, description})=>{
+export const ConfigDataAssociation = ( oldData )=>{
+    const dispatch = useDispatch()
+    const { displayName, cid, description } = oldData;
     const [ inputFormValues, handdleInputChange ]= useChangeForm({ associationName:displayName, category:cid, description});
-    const [ isDiferent ] = useChangeData( inputFormValues, { displayName, cid, description } );
+    const [ isDiferent,  setIsDiferent ] = useChangeData( inputFormValues, { displayName, cid, description } );
     const [categories, setCategories] = useState([])
 
     useEffect(() => {
-        fetchGetCategories().then( resp => {
-            setCategories( resp );
-
-        })
-
-    }, [])
+        fetchGetCategories().then( setCategories );
+    }, []);
+    const handleSaveData = (evt ) => {
+        evt.preventDefault();
+        dispatch( updateUserData( inputFormValues, oldData ) );
+        setIsDiferent( false );
+    }
     return (
         <div className = "animate__animated animate__bounce animate__fadeIn">
             <p>Nombre de asociación:</p>
@@ -51,7 +57,7 @@ export const ConfigDataAssociation = ({displayName, cid, description})=>{
                  />
              </div>
              {
-                isDiferent &&  <button className="__btn ">Guardar</button> 
+                isDiferent &&  <button onClick = { handleSaveData } className="__btn ">Guardar</button> 
             }
         </div>
     )
