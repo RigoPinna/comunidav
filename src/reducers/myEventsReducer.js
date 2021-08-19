@@ -17,18 +17,16 @@ export const addAllEvents = ( uid ) => {
 }
 export const resetMyEvent = ( ) => ({
     type: types.resetMyEvent,
-    payload: []
+    payload: initialState
 })
 export const myEventsReducer = ( state = initialState, action ) => {
     switch ( action.type ) {
 
         case types.addAllMyEvents:
+
             return [ ...state, ...action.payload ];
 
-        case types.getMyEvents:
-            return state;
-        case types.resetMyEvents:
-            console.log(action.payload)
+        case types.resetMyEvent:
            return action.payload;
         default:
             return state

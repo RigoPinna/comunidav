@@ -66,7 +66,7 @@ export const WrapperInputsDataAsc = () => {
                     name = { 'category' }
                     arrayData = { arrayCategories }
                     textDefault = {'Selecciona tu categoria'}
-                    
+                    optionDefault = { inputFormValues.category}
                 />
 
             </div>

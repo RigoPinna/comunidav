@@ -33,13 +33,13 @@ export const Input = ({name, typeInput, inputStyle, placeholder, InputIcon, valu
             }
             {
                 ( typeInput === 'password' )
-                    && <button onClick = { handleToggleViewPassword } className ="__btn __btn_password">
+                    && <span onClick = { handleToggleViewPassword } className ="__btn __btn_password">
                             {
                                 ( type === 'password')
                                     ? <IconViewPassword />
                                     :<IconNotViewPassword />
                             }
-                        </button>
+                        </span>
             }
         </div>
         {

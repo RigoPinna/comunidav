@@ -26,18 +26,20 @@ export const ConfigImg = ({ imageOld, displayName }) => {
         dispatch( updateAvatar( image ) );
     }
     return (
-        <div>
-             <div>
-             <img src = { image } alt = { displayName }/>
-             <button onClick = { handleClick } className="__btn_camera"><IconCamera /></button>
-             </div>
-             <input onChange = { handleChangeImage }ref ={ inputFile } type ={'file'} />
-             {
-                 image !== imageOld
-                    && <button onClick={handleUpdateImage} className="__btn animate__animated animate__bounce animate__fadeIn">
-                        <IconCheck />
-                        <p>Guardar</p></button>
-             }
-        </div>
+        <>
+            <div>
+                <div>
+                    <img src = { image } alt = { displayName }/>
+                    <button onClick = { handleClick } className="__btn_camera"><IconCamera /></button>
+                </div>
+                <input onChange = { handleChangeImage }ref ={ inputFile } type ={'file'} />
+            </div>
+                {
+                    image !== imageOld
+                        && <button onClick={handleUpdateImage} className="__btn animate__animated animate__bounce animate__fadeIn">
+                            <IconCheck />
+                            <p>Guardar</p></button>
+                }
+        </>
     )
 }

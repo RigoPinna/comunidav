@@ -15,12 +15,12 @@ import { IconUser } from '../iconos/IconUser'
 export const SubMenuUserLoged = ({ history, setView }) => {
     const dispatch = useDispatch();
     const hanldeLogout = () => {
-        dispatch( logout() );
-        dispatch( resetMyEvent() );
-        dispatch( uiLogout() );
         dispatch( restAssociationFromRegio() );
         dispatch( resetFavorites() );
         dispatch( resetGroups() );
+        dispatch( logout() );
+        dispatch( resetMyEvent() );
+        dispatch( uiLogout() );
         localStorage.removeItem( 'uid' );
         history.replace('/login');
     }

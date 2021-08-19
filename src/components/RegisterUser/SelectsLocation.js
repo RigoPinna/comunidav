@@ -9,7 +9,7 @@ import { useChangeEffectLocation } from '../../hooks/useChangeEffectLocation';
 import { AlertInForm } from '../alerts/AlertInForm';
 export const SelectsLocation = () => {
     const { stateProgress } = useContext( RegisterContext );
-    const [ inputFormValues,  handdleInputChange ] = useChangeForm({ state:1, country:0 });
+    const [ inputFormValues,  handdleInputChange ] = useChangeForm({ state:1, country:1 });
     const [arrayStates, arrayCountries] = useChangeEffectLocation( inputFormValues );
     const [validForm, setValidForm] = useState({ state:false, country:false });
     return (
@@ -25,7 +25,8 @@ export const SelectsLocation = () => {
                                 name = { 'state' } 
                                 arrayData = { arrayStates } 
                                 textDefault = {'Selecciona tu estado'}
-                                keyName = {'state'} 
+                                keyName = {'state'}
+                                optionDefault = { inputFormValues.state } 
                             />
                 }
             </div>
@@ -38,17 +39,15 @@ export const SelectsLocation = () => {
                     />
             }
             <div className = "__input_wrapper">
-                { 
-                    ( arrayCountries.length > 0 ) 
-                        ? <InputSelect
+                <InputSelect
                                 onChange = { handdleInputChange }
                                 name = { 'country' } 
                                 arrayData = { arrayCountries } 
                                 textDefault = {'Selecciona tu municipio'}
-                                keyName = {'contry'} 
+                                keyName = {'contry'}
+                                optionDefault = { inputFormValues.country }  
                             />
-                        : <LoadingInComponent textLoading = 'Cargando municipios...' />
-                }
+                
             </div>
             {
                 validForm.country 

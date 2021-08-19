@@ -18,7 +18,6 @@ export const LoginScreen = ({ history, location }) => {
                 
             </Helmet>
             <div className="__wrapper_main_login">
-               
                 <Login history = { history } />
             </div>
         </>

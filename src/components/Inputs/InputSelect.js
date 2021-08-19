@@ -1,11 +1,12 @@
 import React from 'react'
 
-export const InputSelect = ({ name, value, onChange, arrayData, textDefault, keyName }) => {
+export const InputSelect = ({ name, value, onChange, arrayData, textDefault, keyName, optionDefault = 1 }) => {
     return (
         <select 
             name = { name } 
             onChange = {  onChange } 
             className = "__input"
+            value = { optionDefault }
             >
             <option value = { value } disabled = { true }> --{ textDefault }</option>
             {

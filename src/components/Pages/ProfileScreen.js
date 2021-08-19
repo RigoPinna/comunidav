@@ -8,6 +8,7 @@ import { fetchGetInfoUserLoged } from '../../services/fetchGetInfoUserLoged';
 
 import { ProfileScreenLoading } from '../loadings/ProfileScreenLoading';
 import { Profile } from '../profile/Profile';
+import { Helmet } from 'react-helmet';
 
 
 export const ProfileScreen = (  ) => {
@@ -36,16 +37,20 @@ export const ProfileScreen = (  ) => {
     
     return (
         <>
-        {
-            ( !userData?.uid ) 
-                ? <ProfileScreenLoading />
-                : <Profile 
-                    uidURL = { uidURL } 
-                    userData = { userData } 
-                    userLogedReducer = { userLogedReducer }
-                    isMyProfile = {  isMyProfile }
-                />
-        }
+            <Helmet>
+                <title>Comunidav | { isMyProfile ?`${userLogedReducer.displayName}`  : `${userData.displayName}`}</title>
+            </Helmet>
+
+            {
+                ( !userData?.uid ) 
+                    ? <ProfileScreenLoading />
+                    : <Profile 
+                        uidURL = { uidURL } 
+                        userData = { userData } 
+                        userLogedReducer = { userLogedReducer }
+                        isMyProfile = {  isMyProfile }
+                    />
+            }
             
         </>
     )

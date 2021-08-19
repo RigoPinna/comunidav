@@ -598,36 +598,105 @@ footer {
 .__wrapper_config {
     display: flex;
     width: 100%;
-    min-height: 200px;
+    min-height: 12.5rem;
     background: $always-white;
-    margin-top: 44px;
+    margin-top: 2.75rem;
     border-radius: $br-radius;
     box-shadow: $shadows-elements;
     justify-content:center;
-    padding: 10px;
+    padding: 0.625rem;
     flex-wrap: wrap;
-    h1 {
+    flex-direction:column;
+    align-items: center;
+    font-size:1rem;
+    & > h1 {
         width: 100%;
         text-align: center;
-        font-size:18px;
+        font-size:1.375em;
     }
-    div {
+    & > div {
         display: flex;
-        width: 180px;
+        width: 11.25em;
         position: relative;
         justify-content:center;
         flex-wrap: wrap;
+        font-size: 1em;
         input[type="file"] {
             display: none;
         }
+        img {
+            width: 11.25em;
+            height: 11.25em;
+            object-fit: cover;
+            border-radius: 100%;
+            margin-bottom: 0.3125em;
+            border: 0;
+            box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%,0.2);
+            font-size:1em;
+        }
     }
-    img {
-        width: 180px;
-        height: 180px;
-        object-fit: cover;
-        border-radius: 100%;
-        margin-bottom: 5px;
+    & > strong {
+        width: 100%;
+        text-align: center;
+        font-family: 'SF-Bold';
+        margin-block: 0.625em;
+        font-size: 1.125em;
+        
     }
+}
+.__wrapper_details{
+    display: block;
+    background: $color-primary-purple-5;
+    width: 100%;
+    border-radius: $br-radius;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-block: 10px;
+    &[open]{
+        background: $color-blue-6;
+        & summary {
+            border-bottom: 1px solid #DBDBDB;
+        }
+        & summary .arrowDown {
+           transform: rotate(180deg);
+        }
+    }
+    summary {
+        padding-left: 15px;
+        color: $color-black-2;
+        padding: 10px 10px 10px 20px;
+        display: flex;
+        align-items: center;
+        font-family: 'SF-Medium';
+        position: relative;
+        transition: all 0.3s ease;
+        svg {
+            width: 22px;
+            height: 22px;
+            margin-right: 5px;
+        }
+        .arrowDown {
+            transition: all 0.3s ease;
+            position: absolute;
+            right: 0;
+            top:11px;
+        }
+        &:hover {
+            cursor: pointer;
+            background:$color-blue-4;
+        }
+    }
+    summary::marker {
+        color: transparent;
+    }
+    & > div {
+        padding: 10px;
+        & > .__btn {
+            margin-top: 10px;
+            width: 100%;
+        }
+    }
+    
 }
 @include medium {
     .__wrapper_info {

@@ -9,14 +9,6 @@ import { SubMenuUser } from '../menus/SubMenuUser'
 export const Profile = ({ uidURL, userData, userLogedReducer, isMyProfile }) => {
     const [ viewOption, setViewOption ] = useState( userLogedReducer.typeUser === 'ASC' ? OPTION_SUBMEN_USER.viewMyEvents : OPTION_SUBMEN_USER.viewMyGroups);
     const [ isMounted ] = useIsMounted();
-    // useEffect(() => {
-    //     ( isMounted ) 
-    //         && setViewOption( 
-    //             userLogedReducer.typeUser === 'ASC' 
-    //             ? OPTION_SUBMEN_USER.viewMyEvents 
-    //             : OPTION_SUBMEN_USER.viewMyGroups);
-    
-    // }, [ uidURL ])
     useLayoutEffect(() => {
         if   ( isMounted ) {
             ( isMyProfile !== undefined )
@@ -27,6 +19,7 @@ export const Profile = ({ uidURL, userData, userLogedReducer, isMyProfile }) => 
         }
     }, [ uidURL ])
     return (
+        
         <>
             {
                 isMyProfile &&

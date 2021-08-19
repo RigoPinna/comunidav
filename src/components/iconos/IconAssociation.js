@@ -3,15 +3,13 @@ import React from 'react'
 export const IconAssociation = () => {
     return (
         <svg 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24" >
-                <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" 
-                />
+        fill="currentColor" 
+        viewBox="0 0 20 20">
+            <path 
+                fillRule="evenodd" 
+                d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" 
+                clipRule="evenodd" 
+            />
         </svg>
     )
 }
