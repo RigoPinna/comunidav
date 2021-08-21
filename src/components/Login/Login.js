@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
+import { useRef } from 'react'
 
 import { Link } from 'react-router-dom'
 import { useChangeForm } from '../../hooks/useChangeForm'
-import { useLoadingButton } from '../../hooks/useLoadingButton'
-
 import { fetchLogin } from '../../services/fetchLogin'
-import { FooterPage } from '../FooterPage'
 import { ComunidavLogo } from '../iconos/ComunidavLogo'
 import { IconInputPassword } from '../iconos/IconInputPassword'
 import { IconInputUser } from '../iconos/IconInputUser'
@@ -16,10 +14,10 @@ import { MessageErrorInput } from '../MessageError/MessageErrorInput'
 export const Login = ({history}) => {
     const [ stateResp, setStateResp ] = useState({isError: false, message:'',isLoading:false});
     const [ inputValues, handleOnChange ] = useChangeForm({ user:'', password: ''});
+    const btnSubmit = useRef( null );
     const verifyLogin = ( ) => {
         setStateResp({...stateResp,...{isLoading:true}});
         fetchLogin( inputValues).then( resp => {
-            console.log(resp)
             if ( !resp.isError ) {
                 setStateResp({
                     isError: false,
@@ -28,9 +26,10 @@ export const Login = ({history}) => {
                 });
                 if ( resp.isVerify ) {
                     localStorage.setItem( 'uid', resp.userID );
-                    history.replace(`user?q=${resp.userID}`)
+                    sessionStorage.setItem( 'token',resp.token );
+                    history.replace(`user?q=${resp.userID}`);
+                    return ;
                 } 
-                
                 localStorage.setItem( 'uid', resp.userID );
                 history.replace('verify');
                 
@@ -77,6 +76,7 @@ export const Login = ({history}) => {
            </form>
            <div className ="__wrapper_login_footer">
                 <button
+                    ref ={ btnSubmit }
                     onClick = { verifyLogin }
                     className = "__btn"
                     disabled = {  stateResp.isLoading }

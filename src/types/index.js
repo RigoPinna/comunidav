@@ -23,5 +23,6 @@ export const types = {
     resetFavorites: '[ favorite ] Reset-favorites',
     removeFavorite: '[ favorite ] Remove-favorite',
     updateAvatar: '[user] Update-avatar-user-loged',
-    updateUserData: '[user] Update-user-data'
+    updateUserData: '[user] Update-user-data',
+    addTOKEN: '[user] Add-TOKEN'
 }

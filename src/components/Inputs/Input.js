@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { IconNotViewPassword } from '../iconos/IconNotViewPassword';
 import { IconViewPassword } from '../iconos/IconViewPassword';
 
-export const Input = ({name, typeInput, inputStyle, placeholder, InputIcon, value, onChange, setValue, formValues }) => {
+export const Input = ({name, typeInput, inputStyle, placeholder, InputIcon, value, onChange, setValue, formValues}) => {
     const [ type, setType ] = useState( typeInput );
     const handleSetRfcGeneric = ( evt ) => {
         evt.preventDefault();

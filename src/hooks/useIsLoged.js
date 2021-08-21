@@ -4,7 +4,7 @@ import { useEffect } from "react";
 export const useIsLoged = ( history, location ) => {
 
     useEffect(() => {
-        if ( localStorage.getItem('uid') ) {
+        if ( localStorage.getItem('uid') && sessionStorage.getItem('token') ) {
             const uid = localStorage.getItem( 'uid' );
             history.replace( `/user?q=${ uid }` );
         } else {

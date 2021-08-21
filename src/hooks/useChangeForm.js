@@ -4,7 +4,7 @@ import { useState } from "react"
 export const useChangeForm = ( initialState = {} ) => {
     const [ inputFormValues, setInputFormValues ] = useState( initialState );
 
-    const handdleInputChange = ( evt ) => {
+    const handdleInputChange = ( evt, sendForm ) => {
         evt.preventDefault();
         const inputName = evt.target.name;
         const inputValue = ( inputName === 'rfc' ) ? evt.target.value.toUpperCase() : evt.target.value;
@@ -12,7 +12,7 @@ export const useChangeForm = ( initialState = {} ) => {
             ...inputFormValues, 
             ...{ [inputName]: inputValue} 
         });
-        
+       
     }
 
     return [ inputFormValues, handdleInputChange,setInputFormValues ];

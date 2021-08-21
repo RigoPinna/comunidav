@@ -30,11 +30,12 @@ export const DashboardRouters = ({ history, location }) => {
     const { uiReducer, userLogedReducer } = useSelector( state => state );
     const dispatch = useDispatch();
     const uid = localStorage.getItem( 'uid' );
+    const token = sessionStorage.getItem( 'token' );
     const [ isMounted ] = useIsMounted();
    
     useEffect(() => {
         if ( isMounted )  {
-          if( uid ) {
+          if( uid && token) {
             dispatch( getDataUserLoged( uid ) );
             dispatch(  addAllGroups( uid) );
             dispatch( addAllFavorites( uid ));
@@ -48,7 +49,7 @@ export const DashboardRouters = ({ history, location }) => {
         } else {
           localStorage.removeItem('uid');
         }
-    }, [ dispatch, isMounted, history, uid ]);
+    }, [ dispatch, isMounted, uid, token ]);
     useIsVerify( history, userLogedReducer );
 
     if ( uiReducer.loading ) {
