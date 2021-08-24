@@ -5,6 +5,7 @@
     height: 40px;
     font-size: 1em;
     margin: 10px 0;
+
     .__input_icon {
         display: block;
         width:20px;
@@ -51,6 +52,16 @@
         &:hover {
             color:$color-primary-purple;
         }
+    }
+    .flag {
+            position:absolute;
+            left: 0;
+            top:0px;
+            margin-right: 5px;
+            width: 30px;
+            height:25px;
+            border-radius: 5px;
+        
     }
 }
 .__input_code {

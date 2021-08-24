@@ -2,7 +2,7 @@ import { useState } from "react"
 
 
 export const useChangeForm = ( initialState = {} ) => {
-    const [ inputFormValues, setInputFormValues ] = useState( initialState );
+    const [ inputFormValues, setInputFormValues] = useState( initialState );
 
     const handdleInputChange = ( evt, sendForm ) => {
         evt.preventDefault();

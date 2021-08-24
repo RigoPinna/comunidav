@@ -2,13 +2,14 @@ import React from 'react'
 
 export const InputSelect = ({ name, value, onChange, arrayData, textDefault, keyName, optionDefault = 1 }) => {
     return (
+        <>
         <select 
             name = { name } 
             onChange = {  onChange } 
             className = "__input"
             value = { optionDefault }
             >
-            <option value = { value } disabled = { true }> --{ textDefault }</option>
+            <option value = { 0 } > --{ textDefault }</option>
             {
                arrayData.length > 0
                     && arrayData.map( ({ id, value }) => {
@@ -21,5 +22,9 @@ export const InputSelect = ({ name, value, onChange, arrayData, textDefault, key
                     
             }
         </select>
+        {/* {
+            name === 'land' && <img className="flag" src="https://restcountries.eu/data/mex.svg"/>
+        } */}
+        </>
     )
 }

@@ -1,38 +1,41 @@
-import { useEffect, useState } from "react";
+import { useEffect,useLayoutEffect, useState } from "react";
 import { useIsMounted } from "./useIsMounted";
 import { fetchGetCountrys } from "../services/fetchGetCountrys";
 import { fetchGetStates } from "../services/fetchGetStates";
+import { fetchGetLands } from "../services/fetchGetLands";
 
-export const useChangeEffectLocation = ( inputFormValues ) => {
+export const useChangeEffectLocation = ({land, state,country }) => {
     const [ isMounted ] = useIsMounted();
+    const [ arrayLands, setArrayLands ] = useState([]);
     const [ arrayStates, setArrayStates ] = useState([]);
     const [ arrayCountries, setArrayCountries ] = useState([]);
     useEffect(() => {
         if ( isMounted ) {
-            if ( !localStorage.getItem( 'statesLocation' )) {
-                ( arrayStates.length <= 0 )
-                && fetchGetStates().then( states => {
-                    localStorage.setItem( 'statesLocation', JSON.stringify( states ) );
+            setArrayStates([])
+            fetchGetLands().then( lands => {
+                setArrayLands( lands );
+            });
+
+        }
+    }, [isMounted])
+    useLayoutEffect(() => {
+        if ( isMounted ) {
+            setArrayCountries([])
+                fetchGetStates( land ).then( states => {
                     setArrayStates( states );
                 });
-            } else {
-                if ( arrayStates.length <= 0 ) {
-                    const state = JSON.parse( localStorage.getItem( 'statesLocation' ) );
-                    setArrayStates( state );
-                }
             }
-        }
-    }, [ isMounted, arrayStates ]);
-    useEffect(() => {
+        
+    }, [ isMounted, land ]);
+    useLayoutEffect(() => {
         if ( isMounted ) {
-            ( inputFormValues.state > 0 )
-                && fetchGetCountrys( inputFormValues.state ).then( countries => {
-                    setArrayCountries( countries );
 
+                fetchGetCountrys( state ).then( countries => {
+                    setArrayCountries( countries );
                 })   
         }
-        
-    }, [ inputFormValues.state ])
 
-    return [ arrayStates, arrayCountries ];
+    }, [isMounted, state])
+
+    return [ arrayLands, arrayStates, arrayCountries ];
 }
