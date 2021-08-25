@@ -1,17 +1,14 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useIsMounted } from '../../hooks/useIsMounted'
+import { useToggleFavorite } from '../../hooks/useToggleFavorite'
 import { removeFavorite } from '../../reducers/ascFavoritesReducer'
 import { IconAssociation } from '../iconos/IconAssociation'
 import { IconTrash } from '../iconos/IconTrash'
 
 export const SubmenuFavorite = ({ aid }) => {
 
-    const dispatch = useDispatch();
-    const [ isMounted ] = useIsMounted();
-    const handleDeleteFavorite = () => {
-        isMounted && dispatch( removeFavorite( aid ) );
-    }
+    const { handleRemoveFavorite } = useToggleFavorite({ aid });
     return (
         <ul className="__modal_submenu_event animate__animated animate__fadeIn">
                 <li>
@@ -22,7 +19,7 @@ export const SubmenuFavorite = ({ aid }) => {
                 </li>
                 <li>
                     <button 
-                        onClick = { handleDeleteFavorite }
+                        onClick = { handleRemoveFavorite }
                         className = "__btn">
                             <IconTrash />
                             <p>Eliminar de mis favoritos</p>

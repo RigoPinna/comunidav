@@ -22,45 +22,73 @@ main {
 }
 .__wrapper_info {
     background: $always-white;
-    display:block;
+    display:flex;
+    flex-direction:column;
     width: 100%;
     min-height: 12.5em;
     border-radius: $br-radius;
     padding:0.625em;
     box-shadow: $shadows-elements;
     font-size: 1rem;
+    position: relative;
+    overflow: hidden;
     .__wrapper_info_header {
         display:flex;
-        flex-direction: row;
+        flex-direction: column;
         width: 100%;
-        height:7.5em;
+        min-height:7.5em;
         font-size: 1em;
+        align-items:center;
+        & > strong {
+            font-family: 'SF-Bold';
+            margin-block: 10px;
+        }
         img, .__item_image_loading {
-            width: 7.5em;
-            height: 7.5em;
+            width: 10.5em;
+            height: 10.5em;
             border-radius: 100%;
             object-fit:cover;
             font-size: 1em;
+            box-shadow: none;
+            z-index: 1;
+            border: 3px solid $always-white;
         }
-        .__wrapper_info_header_text {
-            display:block;
-            width: calc( 100% - 7.8125em );
-            height:100%;
-            padding-left: 0.3125em;
-            font-size: 1em;
-            h2 {
-                font-family: 'SF-UltraLight';
-                text-decoration: none;
-                font-style: normal;
-                color:$color-black-1;
-                letter-spacing: 0.2px;
-                font-size: 1.8em;
-            }
+        h2 {
+            font-family: 'SF-Bold';
+            text-decoration: none;
+            font-style: normal;
+            color:$color-black-1;
+            letter-spacing: 0.2px;
+            font-size: 1.4em;
+            margin-bottom: 5px;
+        }
             .badge_short {
                 margin-right: 0.3125em;
                 font-size: 1em;
             }
+        
+        .__wrapper_info_description {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            justify-content:center;
+            align-items: center;
+            svg {
+                width: 22px;
+                height: 22px;
+                margin-right: 2px;
+            }
         }
+    }
+    & > span {
+        width:100%;
+        height:100px;
+        position:absolute;
+        left:0;
+        top:0;
+        z-index: 0;
     }
 }
 .__wrapper_doPublication {

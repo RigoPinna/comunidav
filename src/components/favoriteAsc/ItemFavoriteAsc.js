@@ -5,13 +5,12 @@ import { ItemUser } from '../Items/ItemUser'
 import { ButtonMenuFavorite } from '../menus/ButtonMenuFavorite'
 import { ItemInfoFav } from './ItemInfoFav'
 
-export const ItemFavoriteAsc = ({ idFavorite,idAsociacion, displayName, image,category, description, nameMun, abrvEstado }) => {
+export const ItemFavoriteAsc = ({ idFavorite, aid, displayName, image,category, description, nameMun, abrvEstado }) => {
     const location = ( !!nameMun && !!abrvEstado ) ? `${nameMun},${abrvEstado}`: undefined;
-    console.log( idAsociacion );
     return (
         
         <div className = "__wrapper_publication_and_event animate__animated animate__fadeIn">
-            <ButtonMenuFavorite aid = {idAsociacion} />
+            <ButtonMenuFavorite aid = {aid} />
             <div className = "__wrapper_publication_and_event_header">
                 <ItemUser 
                     typeUser = {'ASC'} 

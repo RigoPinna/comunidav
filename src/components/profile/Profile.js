@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import { OPTION_SUBMEN_USER } from '../../helpers/OPTION_SUBMENU_USER'
 import { useIsMounted } from '../../hooks/useIsMounted'
 import { ContainerOptions } from '../ContainerOptions/ContainerOptions'
@@ -27,7 +27,7 @@ export const Profile = ({ uidURL, userData, userLogedReducer, isMyProfile }) => 
                         <h1>Mi perfil</h1>
                     </div>
             }
-            <ContainerInfoProfile { ...userData } />
+            <ContainerInfoProfile { ...userData } isMyProfile ={ isMyProfile } />
             {
                 ( isMyProfile && userData.typeUser === 'ASC' ) 
                     && <DoPublicationHeader 

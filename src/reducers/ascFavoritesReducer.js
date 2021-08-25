@@ -42,16 +42,13 @@ export const addToFavorites = ( dataAsc ) => ({
 export const favoritesReducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case types.addAllFavoriteAsc:
-            
             return [...state,...action.payload ];
         case types.addToFavorite: 
-            
             return [...state, ...action.payload ];
-
         case types.resetFavorites:
             return action.payload;
         case types.removeFavorite: 
-            return state.filter( ({ idAsociacion }) => idAsociacion !== action.payload );
+            return state.filter( ({ aid }) => +aid !== +action.payload );
         default:
             return state;
     }

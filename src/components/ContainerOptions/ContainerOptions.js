@@ -85,16 +85,11 @@ export const ContainerOptions = React.memo(({ uid, optionMenu }) => {
                 <div className = '__wrapper_feed_publications'>
                     { 
                         favoritesReducer.length > 0
-                            ? favoritesReducer.map( (( { idFavorite,idAsociacion,uid,displayName, image, description, category }, i ) => {
+                            ? favoritesReducer.map( (( ascFav, i ) => {
                                 return (
                                     <ItemFavoriteAsc
-                                        key = {`fav-${ Date.now()+idFavorite+uid}`}
-                                        idFavorite = { idFavorite }
-                                        idAsociacion = { idAsociacion }
-                                        displayName = { displayName }
-                                        image = { image }
-                                        description = { description }
-                                        category = { category }
+                                        key = {`fav-${ Date.now()+ascFav.idFavorite+uid}`}
+                                        {...ascFav }
                                     />
                                 )
                             }))

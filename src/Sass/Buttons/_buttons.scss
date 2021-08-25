@@ -162,6 +162,33 @@
         cursor: pointer;
     }
 }
+.__btn_favorite {
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: $always-white;
+    -webkit-backdrop-filter: blur(10px); /* Safari 9+ */
+    backdrop-filter: blur(10px); /* Chrome and Opera */
+    background-color: rgba(0, 0, 0, 0.3);
+    &:hover {
+        background:$bg-button-favorite;
+        svg {
+            fill: $color-button-favorite;
+            stroke: $color-button-favorite;
+        }
+    }
+}
+.__btn_favorite_active {
+    svg {
+        fill: $color-button-favorite;
+        stroke: $color-button-favorite;
+    }
+
+}
 @include small {
     .__btn {
         font-size:12px;
