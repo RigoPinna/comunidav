@@ -20,8 +20,8 @@ export const ContainerInfoProfile = ({ userName,aid, displayName, typeUser, cate
             <div className="__wrapper_info_header">
                 <canvas ref={canvasRef} style={{display: 'none'}}/>
                 <img ref={img} src={image} crossOrigin="anonymous"/>
-                    <h2 style ={{color:palleteColors[0]}}>{ displayName }</h2>
-                    <strong style={{color:palleteColors[3]}}>9 eventos creados</strong>
+                    <h2>{ displayName }</h2>
+                    <strong>9 eventos creados</strong>
                     <div>
                         <BadgeShort typeUser = { typeUser } text = { typeUserNameLong } color = { typeUser }/>
                         { 

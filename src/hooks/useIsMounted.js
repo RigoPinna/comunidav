@@ -7,6 +7,7 @@ export const useIsMounted = () => {
     useEffect(() => {
         
         return () => {
+            console.log('aqui')
             isMounted.current = false;
         }
     }, [])

@@ -23,6 +23,7 @@ import { addAllFavorites } from '../reducers/ascFavoritesReducer'
 import { VerifyScreen } from '../components/Pages/VerifyScreen'
 import { ConfigScreen } from '../components/Pages/ConfigScreen'
 import { useIsVerify } from '../hooks/useIsVerify'
+import { addAllEvents } from '../reducers/myEventsReducer'
 
 
 export const DashboardRouters = ({ history, location }) => {
@@ -49,9 +50,12 @@ export const DashboardRouters = ({ history, location }) => {
         } else {
           localStorage.removeItem('uid');
         }
-    }, [ dispatch, isMounted, uid, token ]);
+    }, [ uid, token ]);
     useIsVerify( history, userLogedReducer );
+    useEffect(()=> {
+      userLogedReducer?.uid && dispatch( addAllEvents( userLogedReducer.uid ))
 
+    },[ userLogedReducer.uid ])
     if ( uiReducer.loading ) {
         return ( <LoadingScreen />)
     }  
