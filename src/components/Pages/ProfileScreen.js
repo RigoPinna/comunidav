@@ -52,7 +52,7 @@ export const ProfileScreen = (  ) => {
             </Helmet>
             {
                 loading 
-                    ? 'Cargando...' 
+                    ? <ProfileScreenLoading />
                     : <Profile 
                         uidURL = { uidURL } 
                         userData = { userData } 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRef } from 'react'
 
 import { Link } from 'react-router-dom'
@@ -15,6 +15,11 @@ export const Login = ({history}) => {
     const [ stateResp, setStateResp ] = useState({isError: false, message:'',isLoading:false});
     const [ inputValues, handleOnChange ] = useChangeForm({ user:'', password: ''});
     const btnSubmit = useRef( null );
+    useEffect(() => {
+        const haveToken = sessionStorage.getItem('token');
+        const uid = localStorage.getItem('uid');
+        haveToken && history.replace( `/user?q=${uid}` )
+    }, [])
     const verifyLogin = ( ) => {
         setStateResp({...stateResp,...{isLoading:true}});
         fetchLogin( inputValues).then( resp => {

@@ -6,7 +6,7 @@ import { ButtonFavorite } from '../profile/ButtonFavorite';
 import { BadgeShort } from './BadgeShort'
 
 
-export const ContainerInfoProfile = ({ userName,aid, displayName, typeUser, category, description, image, isMyProfile }) => {
+export const ContainerInfoProfile = ({ aid, displayName, typeUser, category, description, image, isMyProfile }) => {
 
     const typeUserNameLong = typeUser === 'ASC' ? 'Asociación' : 'Voluntario';
     const canvasRef = useRef( null )
@@ -21,16 +21,14 @@ export const ContainerInfoProfile = ({ userName,aid, displayName, typeUser, cate
                 <canvas ref={canvasRef} style={{display: 'none'}}/>
                 <img ref={img} src={image} crossOrigin="anonymous"/>
                     <h2>{ displayName }</h2>
-                    <strong>9 eventos creados</strong>
                     <div>
                         <BadgeShort typeUser = { typeUser } text = { typeUserNameLong } color = { typeUser }/>
                         { 
                             ( !!category )
-                                && <BadgeShort color = { category } text = {`Categoria • ${ category }`}/>
+                            && <BadgeShort color = { category } text = {`Categoria • ${ category }`}/>
                         }
                     </div>
-                    
-                {/* </div>  */}
+                    {/* <strong>9 eventos creados</strong> */}
                 <div className="__wrapper_info_description">
                     <IconDescription />
                         <p >{ !!description ? description : 'Esta asociación no tiene descripción...' }</p>

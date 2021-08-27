@@ -1,8 +1,18 @@
 import React from 'react'
+import { useState } from 'react'
+import { ModalCreateEvent } from '../modals/ModalCreateEvent'
 
 export const ButtonCreateEvent = () => {
+    const [viewModal, setviewModal] = useState( false )
+    const hanldeCreateEvent = ( evt ) => {
+        setviewModal( true)
+
+    }
     return (
-        <button className="__btn">
+        <>
+        <button 
+            onClick = { hanldeCreateEvent }
+            className="__btn">
             <svg 
                 fill="currentColor" 
                 viewBox="0 0 20 20" 
@@ -13,5 +23,9 @@ export const ButtonCreateEvent = () => {
             </svg>
            <p>Crear evento</p>
         </button>
+        {
+            viewModal && <ModalCreateEvent />
+        }
+        </>
     )
 }
