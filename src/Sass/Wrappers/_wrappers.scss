@@ -101,6 +101,7 @@ main {
     margin: 0.75em 0;
     padding:0.625em;
     font-size: 16px;
+    z-index: 4;
     .__btn {
         margin-top: 0.625em;
         width:100%;
@@ -417,6 +418,21 @@ main {
         height:100%;
         color:$color-black-1;
     }
+}
+.__wrapper_data_modals {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: rgba(219, 219, 219, 0.15);
+    border-radius: $br-radius;
+    margin-block: 8px;
+    & > p:nth-child(1) {
+        font-size:12px;
+    }
+}
+.__wrapper_drawAndDrop {
+    width: 100%;
+    height: 200px;background-color:pink;
 }
 footer {
     display: flex;

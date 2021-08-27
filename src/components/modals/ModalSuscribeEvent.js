@@ -15,8 +15,6 @@ export const ModalSuscribeEvent = () => {
     const [ stateSuscription, setStateSuscription ] = useState( true );
     return (
         <WrapperModalsOrAlerts>
-            <div className ="__modal_normal animate__animated animate__fadeInUp ">
-                <ButtonCloseModal />
                 <h1>{ stateSuscription ? 'Inscripción' : '¡Inscrito al evento!'}<span></span></h1>   
                 <div className = "__modal_body">
                     
@@ -32,7 +30,6 @@ export const ModalSuscribeEvent = () => {
                     }
                     
                 </div>
-            </div>
         </WrapperModalsOrAlerts>
     )
 }

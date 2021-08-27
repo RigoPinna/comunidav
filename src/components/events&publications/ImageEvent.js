@@ -2,12 +2,12 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { openModalImage } from '../../reducers/uiReducer';
 
-export const ImageEvent = ( { image }) => {
+export const ImageEvent = ( { image, title }) => {
 
     const dispatch = useDispatch();
 
     const handleViewImage = () => {
-        dispatch( openModalImage( image ) )
+        dispatch( openModalImage( image, title ) )
     }
 
     return (

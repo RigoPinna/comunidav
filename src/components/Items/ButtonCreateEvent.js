@@ -2,12 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import { ModalCreateEvent } from '../modals/ModalCreateEvent'
 
-export const ButtonCreateEvent = () => {
-    const [viewModal, setviewModal] = useState( false )
-    const hanldeCreateEvent = ( evt ) => {
-        setviewModal( true)
-
-    }
+export const ButtonCreateEvent = ({ hanldeCreateEvent }) => {
+    
     return (
         <>
         <button 
@@ -23,9 +19,6 @@ export const ButtonCreateEvent = () => {
             </svg>
            <p>Crear evento</p>
         </button>
-        {
-            viewModal && <ModalCreateEvent />
-        }
         </>
     )
 }

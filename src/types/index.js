@@ -24,5 +24,6 @@ export const types = {
     removeFavorite: '[ favorite ] Remove-favorite',
     updateAvatar: '[user] Update-avatar-user-loged',
     updateUserData: '[user] Update-user-data',
-    addTOKEN: '[user] Add-TOKEN'
+    addTOKEN: '[user] Add-TOKEN',
+    openModalCreateEvent: '[ui] open-Modal-Create-event'
 }

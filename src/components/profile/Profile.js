@@ -9,6 +9,7 @@ import { ContainerInfoProfile } from '../Items/ContainerInfoProfile'
 import { DoPublicationHeader } from '../Items/DoPublicationHeader'
 import { ProfileScreenLoading } from '../loadings/ProfileScreenLoading'
 import { SubMenuUser } from '../menus/SubMenuUser'
+import { ModalCreateEvent } from '../modals/ModalCreateEvent'
 
 export const Profile = ({ uidURL, userData, userLogedReducer, isMyProfile }) => {
     const [ viewOption, setViewOption ] = useState( undefined );

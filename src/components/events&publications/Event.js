@@ -41,7 +41,7 @@ export const Event = ({ evtID, uid, aid,nameAsc,userImg, category,evtName, date,
                 <h3>{evtName}</h3>
                 <p>Este evento inicia el <time>{date} • {hours}</time></p>
                 { 
-                    !!imageEvt  && <ImageEvent image = { imageEvt } />
+                    !!imageEvt  && <ImageEvent image = { imageEvt } title = { evtName } />
                 }
                 {
                     !!description && <p>{description}</p>
