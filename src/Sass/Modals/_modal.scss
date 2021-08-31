@@ -25,6 +25,11 @@
         background:$always-white;
         width:40vw;
         height:80vh;
+        & > div {
+            width: 100%;
+            height:100%;
+            overflow: hidden;
+        }
         h1 {
             position: relative;
             color:$color-black-1;
@@ -87,7 +92,7 @@
             }
 
         }
-        & > img {
+        & > div > img {
             position: relative;
             width:100%;
             height:100%;

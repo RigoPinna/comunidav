@@ -24,6 +24,7 @@ import { VerifyScreen } from '../components/Pages/VerifyScreen'
 import { ConfigScreen } from '../components/Pages/ConfigScreen'
 import { useIsVerify } from '../hooks/useIsVerify'
 import { addAllEvents } from '../reducers/myEventsReducer'
+import { CreateEventScreen } from '../components/Pages/CreateEventScreen'
 
 
 export const DashboardRouters = ({ history, location }) => {
@@ -74,6 +75,7 @@ export const DashboardRouters = ({ history, location }) => {
               <section>
                 <Switch>
                   <Route exact path = "/user" component = { ProfileScreen }/>
+                  <Route exact path = "/create" component = { CreateEventScreen }/>
                   <Route exact path = "/home" component = { HomeScreen }/>
                   <Route exact path = "/event" component = { ProfileScreen }/>
                   <Route exact path = "/inbox" component = { InboxScreen }/>

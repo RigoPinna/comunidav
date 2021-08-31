@@ -6,7 +6,9 @@ export const WrapperModalsOrAlerts = ({ children }) => {
         <div className="__modal_wrapper">
             <div className ="__modal_normal animate__animated animate__fadeInUp ">
                 <ButtonCloseModal />
-                { children }
+                <div>
+                    { children }
+                </div>
             </div>
         </div>
     )

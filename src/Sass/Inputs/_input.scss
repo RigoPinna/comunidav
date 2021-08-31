@@ -15,6 +15,7 @@
         margin-top: calc(40px - 30px);
         margin-left: 5px;
         color:$color-black-4;
+        // fill: transparent;
     }
     .__input {
         width: 100%;
@@ -101,10 +102,10 @@
         border-color: #DBDBDB;
     }
 }
-.react-datetime-picker--open {
+.react-datetime-picker__calendar .react-datetime-picker--open {
     border: 2px solid $color-primary-purple;
     border-radius: 6px;
-    .react-calendar, .react-datetime-picker__clock {
+    .react-calendar{
         margin-top:5px;
         margin-left: -3px;
         padding: 5px;
@@ -126,11 +127,7 @@
         }
 
     }
-    .react-datetime-picker__clock {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+    
 }
 .__input_file {
     width: 100%;
@@ -139,6 +136,28 @@
         display: none;
     }
 
+}
+textarea {
+    width: 100%;
+    height:100px;
+    margin-top: 10px;
+    background: $color-blue-6;
+    border-radius: $br-radius;
+    background:$always-white;
+    resize: none;
+    border: 1px solid $color-black-4;
+    outline: none;
+    padding:10px;
+    font-size: 12px;
+    font-family: 'SF-Regular';
+    color: $color-black-1;
+    transition: all 0.3s ease-in-out;
+    &:focus {
+        border: 2px solid $color-primary-purple;
+        box-shadow: $shadow-purple-inputs;
+        font-size: 16px;
+        
+    }
 }
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;

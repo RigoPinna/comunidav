@@ -10,6 +10,7 @@
     transition: all 0.3s ease;
     letter-spacing: 0.8px;
     background:$color-button-primary;
+    text-decoration: none;
     
     &:hover {
         background:$color-primary-purple;
@@ -67,28 +68,7 @@
         height: 20px;
     }
 }
-.__btn_view_image {
-    display: flex;
-    justify-content:center;
-    align-items:center;
-    padding:10px;
-    border: none;
-    outline: none;
-    border-radius:$br-radius;
-    transition: all 0.3s ease;
-    svg {
-        width: 20px;
-        height: 20px;
-       path {
-           stroke:$always-white;
-       }
-    }
-    &:hover {
-        background:$color-black-2;
-        cursor: pointer;
-        transform: scale(1.1);
-    }
-}
+
 .__btn_close {
     border-radius: 100%;
     &:hover {
@@ -188,6 +168,17 @@
         stroke: $color-button-favorite;
     }
 
+}
+.__btn_back {
+    border-radius:100%;
+    svg {
+        width:22px;
+        height: 22px;
+    }
+}
+.__btn_image {
+    background:$color-blue-5;
+    color:$color-blue-1;
 }
 @include small {
     .__btn {

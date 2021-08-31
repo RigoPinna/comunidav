@@ -1,13 +1,10 @@
 import React from 'react'
-import { useState } from 'react'
-import { ModalCreateEvent } from '../modals/ModalCreateEvent'
-
-export const ButtonCreateEvent = ({ hanldeCreateEvent }) => {
+import { Link } from 'react-router-dom'
+export const ButtonCreateEvent = () => {
     
     return (
         <>
-        <button 
-            onClick = { hanldeCreateEvent }
+        <Link to={'/create'}
             className="__btn">
             <svg 
                 fill="currentColor" 
@@ -18,7 +15,7 @@ export const ButtonCreateEvent = ({ hanldeCreateEvent }) => {
                     />
             </svg>
            <p>Crear evento</p>
-        </button>
+        </Link>
         </>
     )
 }

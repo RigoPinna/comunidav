@@ -1,32 +1,22 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { openModalImage } from '../../reducers/uiReducer';
+import { ButtonZoomImage } from './ButtonZoomImage';
 
-export const ImageEvent = ( { image, title }) => {
+export const ImageEvent = React.memo(( { image, title, zoomButton= true, ButtonExtra = undefined } ) => {
 
-    const dispatch = useDispatch();
-
-    const handleViewImage = () => {
-        dispatch( openModalImage( image, title ) )
-    }
 
     return (
-        <div className = '__wrapper_image_event'>
+        <div className = '__wrapper_image_event animate__animated animate__fadeIn'>
              <img src = { image } alt="Evento"/>
-             <button onClick = { handleViewImage } className = '__btn_view_image bg_blur_effect_black'>
-                <svg 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                >
-                    <path 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round" 
-                        strokeWidth={2} 
-                        d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" 
-                        />
-                </svg>
-             </button>
+             <div className = '__wrapper_image_event_list_buttons'>
+                {
+                    zoomButton && <ButtonZoomImage image={image} title = { title } />
+
+                }
+                {
+                    ButtonExtra && <ButtonExtra />
+                }
+             </div>
+            
         </div>
     )
-}
+})

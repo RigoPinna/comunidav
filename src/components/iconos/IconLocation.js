@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const IconLocation = ({ color ='#303338' }) => {
+export const IconLocation = ({ color ='#DBDBDB' }) => {
     return (
         <svg 
         fill="currentColor" 
