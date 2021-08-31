@@ -3,6 +3,7 @@ import { EventLoading } from './EventLoading'
 import { ItemUserLoading } from './ItemUserLoading'
 
 export const ProfileScreenLoading = () => {
+    
     return (
         <>
         <div className = "__wrapper_info">

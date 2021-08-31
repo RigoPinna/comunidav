@@ -39,8 +39,6 @@ export const DashboardRouters = ({ history, location }) => {
         if ( isMounted )  {
           if( uid && token) {
             dispatch( getDataUserLoged( uid ) );
-            dispatch(  addAllGroups( uid) );
-            dispatch( addAllFavorites( uid ));
             dispatch({
               type: types.loadigApp, 
               payload: false 
@@ -54,8 +52,11 @@ export const DashboardRouters = ({ history, location }) => {
     }, [ uid, token ]);
     useIsVerify( history, userLogedReducer );
     useEffect(()=> {
-      userLogedReducer?.uid && dispatch( addAllEvents( userLogedReducer.uid ))
+      if ( userLogedReducer?.uid ) {
+        userLogedReducer.typeUser ==="ASC" && dispatch( addAllEvents( userLogedReducer.uid ));
+        dispatch(  addAllGroups( uid) );
 
+      }
     },[ userLogedReducer.uid ])
     if ( uiReducer.loading ) {
         return ( <LoadingScreen />)
@@ -74,7 +75,7 @@ export const DashboardRouters = ({ history, location }) => {
           <main>
               <section>
                 <Switch>
-                  <Route exact path = "/user" component = { ProfileScreen }/>
+                  <Route exact path = "/user" component = { ProfileScreen  }/>
                   <Route exact path = "/create" component = { CreateEventScreen }/>
                   <Route exact path = "/home" component = { HomeScreen }/>
                   <Route exact path = "/event" component = { ProfileScreen }/>

@@ -14,17 +14,17 @@ export const Profile = ({ uidURL, userData, userLogedReducer, isMyProfile }) => 
     const [ isMounted ] = useIsMounted();
     useEffect(() => {
         if   ( isMounted ) {
-            if ( !!isMyProfile ) {
+            if ( isMyProfile ) {
                 setViewOption( 
                     userLogedReducer.typeUser === 'ASC' 
                     ? OPTION_SUBMEN_USER.viewMyEvents 
                     : OPTION_SUBMEN_USER.viewMyGroups);
             } else {
+                console.log('entra');
                 ( typeof isMyProfile !== undefined ) && setViewOption( 1 )
             }
         }
-    }, [ uidURL ])
-
+    }, [ uidURL,isMyProfile ])
     return (
         
         <>
@@ -53,7 +53,7 @@ export const Profile = ({ uidURL, userData, userLogedReducer, isMyProfile }) => 
                 }
                <WrapperFeed>
                     {
-                        ( viewOption === OPTION_SUBMEN_USER.viewMyEvents )
+                        ( viewOption === OPTION_SUBMEN_USER.viewMyEvents && userData.typeUser === 'ASC' )
                             && <EventsUser  uid={ uidURL } />
                     }
                     {

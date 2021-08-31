@@ -21,6 +21,7 @@
     "redux-thunk": "2.3.0",
     "web-vitals": "1.1.2"
   },
+  "homepage": "https://prueba.comunidav.org",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

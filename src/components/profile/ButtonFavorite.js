@@ -2,8 +2,8 @@ import React from 'react'
 import ReactTooltip from 'react-tooltip';
 import { useToggleFavorite } from '../../hooks/useToggleFavorite';
 import { IconFavorite } from '../iconos/IconFavorite';
-export const ButtonFavorite = ({ aid }) => {
-    const  { isFavorite, hanldeToggleActionButton } = useToggleFavorite({ aid });
+export const ButtonFavorite = ( dataCreator ) => {
+    const  { isFavorite, hanldeToggleActionButton } = useToggleFavorite( dataCreator );
     return (
         <>
             <button

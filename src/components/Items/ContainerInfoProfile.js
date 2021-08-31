@@ -7,7 +7,6 @@ import { BadgeShort } from './BadgeShort'
 
 
 export const ContainerInfoProfile = ({ aid, displayName, typeUser, category, description, image, isMyProfile }) => {
-
     const typeUserNameLong = typeUser === 'ASC' ? 'Asociación' : 'Voluntario';
     const canvasRef = useRef( null )
     const img = useRef( null )
@@ -15,7 +14,7 @@ export const ContainerInfoProfile = ({ aid, displayName, typeUser, category, des
     return (
         <div className = "__wrapper_info  animate__animated animate__fadeIn">
             <span style = {{background: palleteColors[0] }}></span>
-            { !isMyProfile && <ButtonFavorite aid = { aid } /> }
+            { !isMyProfile && <ButtonFavorite aid = {aid} displayName = {displayName} category = { category } image = { image } description = { description }/> }
 
             <div className="__wrapper_info_header">
                 <canvas ref={canvasRef} style={{display: 'none'}}/>

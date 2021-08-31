@@ -1,3 +1,4 @@
+  
 const msgErrorNames = 'Debe contener mínimo dos letras, evite usar acentos y la letra "ñ"'
 export const MESSAGES_ERRORS =  {
     name:msgErrorNames,
@@ -5,6 +6,7 @@ export const MESSAGES_ERRORS =  {
     secondlastName:msgErrorNames,
     phone:'Debe contener diez dígitos ej. 000-000-0000',
     rfc:'RFC inválido, comprueba tu RFC',
+    land:'Por favor, seleccione el su pais',
     state:'Por favor, selecciona un estado',
     country:'Por favor, selecciona un municipio',
     email:'Al parecer el correo electrónico que proporcionaste es inválido, comprueba con otro.',

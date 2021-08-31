@@ -30,16 +30,14 @@ export const ProfileScreen = (  ) => {
             if( isMyProfile ) {
                 setUserData( userLogedReducer )
             } else {
-                setLoading( true )
+                // setLoading( true )
                 fetchGetInfoUserLoged( uidURL ).then( data => {
                     setUserData( data )
-                    setLoading( false )
+                    // setLoading( false )
 
                 })
 
             }
-            
-            
         })();
         
         return () => controller?.abort();
@@ -50,7 +48,7 @@ export const ProfileScreen = (  ) => {
             <Helmet>
                 <title>Comunidav | { isMyProfile ?`${userLogedReducer.displayName}`  : `${userData.displayName}`}</title>
             </Helmet>
-            {
+            {/* {
                 loading 
                     ? <ProfileScreenLoading />
                     : <Profile 
@@ -60,7 +58,13 @@ export const ProfileScreen = (  ) => {
                         isMyProfile = {  isMyProfile }
                     />
 
-            }
+            } */}
+            <Profile 
+                        uidURL = { uidURL } 
+                        userData = { userData } 
+                        userLogedReducer = { userLogedReducer }
+                        isMyProfile = {  isMyProfile }
+                    />
             
         </>
     )
