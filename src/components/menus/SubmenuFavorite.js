@@ -1,8 +1,6 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { useIsMounted } from '../../hooks/useIsMounted'
+
 import { useToggleFavorite } from '../../hooks/useToggleFavorite'
-import { removeFavorite } from '../../reducers/ascFavoritesReducer'
 import { IconAssociation } from '../iconos/IconAssociation'
 import { IconTrash } from '../iconos/IconTrash'
 

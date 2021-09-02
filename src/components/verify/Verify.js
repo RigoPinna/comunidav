@@ -9,7 +9,7 @@ export const Verify = ({ uid, email, isVerify, history }) => {
     const c2 = useRef( null );
     const c3 = useRef( null );
 
-    const [codes, handdleInputChange, verifyCode,isLoading, handleFordwardCode, forwardCode ] = useValidateCode( c1, c2, c3 );
+    const [codes, handdleInputChange, verifyCode,isLoading, handleFordwardCode ] = useValidateCode( c1, c2, c3 );
 
     return (
         <>

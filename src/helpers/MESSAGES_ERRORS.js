@@ -1,3 +1,5 @@
+import { paseDate } from "./paseDate"
+
   
 const msgErrorNames = 'Debe contener mínimo dos letras, evite usar acentos y la letra "ñ"'
 export const MESSAGES_ERRORS =  {
@@ -15,6 +17,11 @@ export const MESSAGES_ERRORS =  {
     confirmPass:'Las contraseñas no coinciden',
     associationName:'No se aceptan los siguienets simbolos:!¡¿?#$%&/()=[]{}-_><, no utilices acentos y asegurate de no utilizar la letra "ñ".',
     category:'Por favor, selecciona una categoria.',
-    description:'La descripción para tu asociación es muy corta, al menos debe de contener 30 caracteres',
+    description:'La descripción es muy corta, al menos debe de contener 30 caracteres',
+    nameEvent:'El nombre del evento es muy corto, al menos debe contener 10 caracteres',
+    ubication:'Ubicación erronea',
+    image:'Asegurate de subir una imagen de tipo .png, .PNG, .jpg, .JPG, .jpeg, .JPEG',
+    dateInit:`No puedes ingrear una fecha inicial menor al ${ paseDate( new Date() ).date }`,
+    dateFinally:`Asegúrate que la fecha y hora de finalización sea posterior a la fecha de inicio establecida.`
     
 }

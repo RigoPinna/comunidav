@@ -17,7 +17,6 @@ import { ColumnRight } from '../components/ColumnRight'
 import { ModalViewImage } from '../components/modals/ModalViewImage'
 import { NavBarMovile } from '../components/menus/NavBarMobile'
 import { ModalSuscribeEvent } from '../components/modals/ModalSuscribeEvent'
-import { ContentAsociationsFromRegion } from '../components/ContentAsociationsFromRegion'
 import { addAllGroups } from '../reducers/groupsEventReducer'
 import { addAllFavorites } from '../reducers/ascFavoritesReducer'
 import { VerifyScreen } from '../components/Pages/VerifyScreen'
@@ -39,6 +38,7 @@ export const DashboardRouters = ({ history, location }) => {
         if ( isMounted )  {
           if( uid && token) {
             dispatch( getDataUserLoged( uid ) );
+            dispatch(addAllFavorites( uid ))
             dispatch({
               type: types.loadigApp, 
               payload: false 
@@ -49,7 +49,7 @@ export const DashboardRouters = ({ history, location }) => {
         } else {
           localStorage.removeItem('uid');
         }
-    }, [ uid, token ]);
+    }, [ uid, token, dispatch,isMounted ]);
     useIsVerify( history, userLogedReducer );
     useEffect(()=> {
       if ( userLogedReducer?.uid ) {
@@ -57,7 +57,7 @@ export const DashboardRouters = ({ history, location }) => {
         dispatch(  addAllGroups( uid) );
 
       }
-    },[ userLogedReducer.uid ])
+    },[ userLogedReducer.uid, dispatch, uid,userLogedReducer.typeUser ])
     if ( uiReducer.loading ) {
         return ( <LoadingScreen />)
     }  

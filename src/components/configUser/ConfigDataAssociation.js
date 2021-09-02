@@ -1,12 +1,10 @@
 import React,{ useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux'
 
 import { useChangeForm } from '../../hooks/useChangeForm'
 import { useChangeData } from '../../hooks/useChangeData'
 import { Input } from '../Inputs/Input'
 import { InputSelect } from '../Inputs/InputSelect';
 import { fetchGetCategories } from '../../services/fetchGetCategories';
-import { updateUserData } from '../../reducers/authReducer'
 import { AlertInForm } from '../alerts/AlertInForm';
 import { useValidateForm } from '../../hooks/useValidateForm';
 import { useUpdateUserData } from '../../hooks/useUpdateUserData';

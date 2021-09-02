@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import { useActionButtonsRegister } from '../../hooks/useActionButtonsRegister';
 
 import { IconArrowRight } from '../iconos/IconArrowRight'

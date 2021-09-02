@@ -13,14 +13,14 @@ export const FavoritesAssociations = () => {
     const { favoritesReducer } = useSelector( state => state );
     const [ isMounted ] = useIsMounted();
     const [ favorites, setfavorites ] = useState( statusMountedFavorites.loading );
-    useEffect(() => {
 
+    useEffect(() => {
         isMounted && setfavorites( 
             ( favoritesReducer.length > 0 ) 
                 ? favoritesReducer 
                 : statusMountedFavorites.empty 
         );
-    }, [ favoritesReducer ])
+    }, [ favoritesReducer, isMounted ])
     return (
         <>
              {

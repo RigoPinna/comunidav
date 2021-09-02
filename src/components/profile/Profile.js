@@ -24,7 +24,7 @@ export const Profile = ({ uidURL, userData, userLogedReducer, isMyProfile }) => 
                 ( typeof isMyProfile !== undefined ) && setViewOption( 1 )
             }
         }
-    }, [ uidURL,isMyProfile ])
+    }, [ uidURL,isMyProfile,isMounted,userLogedReducer.typeUser ])
     return (
         
         <>

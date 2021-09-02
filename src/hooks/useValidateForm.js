@@ -2,7 +2,6 @@ import { REGEX_INPUT_VALUES } from "../helpers/REGULAR_EXPRESSIONS";
 import { MESSAGES_ERRORS } from "../helpers/MESSAGES_ERRORS";
 
 export const useValidateForm = ( formValidations , formData ) => {
-
     const keys = Object.keys( formData );//Se obtienen el nombre de los datos dentro del objeto
     let OBJ_VALIDATE_TEMPORALLY = { ...formValidations };
     keys.forEach( keyName => {
@@ -20,21 +19,24 @@ export const useValidateForm = ( formValidations , formData ) => {
 
     const isValid = !Object.values(  OBJ_VALIDATE_TEMPORALLY ).includes( true );
     
+    
+
+    function validValue( keyName, value ){
+        const { [keyName]:regex } =  REGEX_INPUT_VALUES;
+        return { 
+            [ keyName ]: keyName !== 'dateFinally' ? !regex.test( value ) : !regex.test( value, formData.dateInit ),
+            [ 'error'+keyName ]: MESSAGES_ERRORS[ keyName ]
+        };
+    }
+    
+    function validConfirmPassword( formData, keyName ){
+        return (
+            ( formData[ 'password' ] !== formData[ keyName ] ) 
+                    ? { confirmPass:true, errorconfirmPass:'Las contraseñas no coinciden' }
+                    : { confirmPass:false, errorconfirmPass:'' }
+        );
+        
+    }
     return [ OBJ_VALIDATE_TEMPORALLY, isValid ];
 }
 
-const validValue = ( keyName, value ) => {
-    const { [keyName]:regex } =  REGEX_INPUT_VALUES;
-    return { 
-        [ keyName ]: !regex.test( value ),
-        [ 'error'+keyName ]: MESSAGES_ERRORS[ keyName ]
-    };
-}
-const validConfirmPassword = ( formData, keyName ) => {
-    return (
-        ( formData[ 'password' ] !== formData[ keyName ] ) 
-                ? { confirmPass:true, errorconfirmPass:'Las contraseñas no coinciden' }
-                : { confirmPass:false, errorconfirmPass:'' }
-    );
-    
-}

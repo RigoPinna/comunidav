@@ -24,7 +24,7 @@ export const WrapperInputsDataAsc = () => {
             ( arrayCategories.length <= 0 )
                 && fetchGetCategories().then ( setarrayCategories );
         }
-    }, [ setarrayCategories, arrayCategories ])
+    }, [ setarrayCategories, arrayCategories, isMounted ])
 
     return (
         <div className="animate__animated animate__fadeIn">

@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react'
-import { useLayoutEffect } from 'react';
+import React, { useLayoutEffect }  from 'react'
 import { useState } from 'react';
 import { useSelector } from 'react-redux'
-import { useIsMounted } from '../../hooks/useIsMounted';
 import { fetchGetEventUser } from '../../services/fetchGetEventUser';
 import { IllustrationEmpty } from '../iconos/IllustrationEmpty';
 import { LoadingInComponent } from '../loadings/LoadingInComponent';
@@ -14,7 +12,6 @@ const statusMountedEvents = {
 export const EventsUser = React.memo(({ uid }) => {
     const { userLogedReducer, myEventsReducer } = useSelector( state => state );
     const [ events, setEvents ] = useState( statusMountedEvents.loading )
-    const [isMounted ] = useIsMounted();
     useLayoutEffect(() => {
         let controller = new AbortController();
         ( async () => {
@@ -26,7 +23,7 @@ export const EventsUser = React.memo(({ uid }) => {
         return () => {
             return controller?.abort()
         };
-    }, [ myEventsReducer, uid ])
+    }, [ myEventsReducer, uid,userLogedReducer ])
     return (
         <>
             {

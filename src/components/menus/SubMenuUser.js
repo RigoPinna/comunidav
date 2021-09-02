@@ -1,5 +1,4 @@
 import React, { useRef } from 'react'
-import { useEffect } from 'react';
 import { OPTION_SUBMEN_USER } from '../../helpers/OPTION_SUBMENU_USER';
 import { useActiveSubmenuOption } from '../../hooks/useActiveSubmenuOption';
 import { IconEvent } from '../iconos/IconEvent';

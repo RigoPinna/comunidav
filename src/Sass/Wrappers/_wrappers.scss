@@ -369,13 +369,6 @@ main {
         width: 85%;
         margin-bottom: 5px;
     }
-    ._item:hover {
-        background:$always-white;
-        border-radius:$br-radius;
-        opacity: 0.8;
-        cursor: pointer;
-
-    }
     .__wrapper_comunm_right_title_section {
         margin-top: 30px;
     }
@@ -390,6 +383,17 @@ main {
     overflow-y: auto;
     ._item {
         margin-bottom: 5px;
+    }
+    //El div se genera por el toolTip
+    & > div > ._item:hover {
+        background:$always-white;
+        border-radius:$br-radius;
+        opacity: 0.8;
+        cursor: pointer;
+
+    }
+    & > .__react_component_tooltip {
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     }
 }
 .__wrapper_column_right_grid_sources {

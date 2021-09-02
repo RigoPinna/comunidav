@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import { RegisterContext } from './RegisterContext';
-import { goToPersonData, seTotallyStep } from './registerReducer';
+import { goToPersonData } from './registerReducer';
 
 
 export const CardRegister = ({ title, sentence, Illustration, colorClass }) => {
 
-    const { stateProgress, dispatch } = useContext( RegisterContext );
+    const { dispatch } = useContext( RegisterContext );
     
     const handleStarRegister = () => {
         ( title === 'Asociación' ) 

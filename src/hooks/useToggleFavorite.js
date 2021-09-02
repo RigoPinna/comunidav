@@ -10,7 +10,7 @@ export const useToggleFavorite = ( dataCreator ) => {
     useEffect(() => {
         const isFav = favoritesReducer.some( itemFav => +itemFav.aid === +dataCreator.aid);
         setIsFavorite( isFav );
-    }, [favoritesReducer])
+    }, [ favoritesReducer,dataCreator ])
 
     const handleAddToFavorite = () => {
         dispatch( addToFavorites( dataCreator ) );

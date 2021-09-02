@@ -18,9 +18,9 @@ export const useDragAndDrop = () => {
     const [ file, setFile ] = useState( null )
     const [ imgURL , setImgURL ] = useState( null )
     useEffect(() => {
-        if ( file ) {
-            setImgURL( URL.createObjectURL( file ) )
-        }
+        console.log( file);
+        ( file ) ? setImgURL( URL.createObjectURL( file ) ) : setImgURL( null)
+        
     }, [ file ])
     const hanldeDragEnter = ( evt ) => {
         evt.preventDefault();
@@ -37,5 +37,5 @@ export const useDragAndDrop = () => {
         setFile( evt.dataTransfer.files[0] )
        
     }
-    return [ imgURL, file,setFile, setImgURL,drag, hanldeDragEnter, hanldeDragLeave, hanldeDrop, STYLE_DRAG_OVER, DRAG_IMAGE_STATE ]
+    return { imgURL, file,setFile, setImgURL,drag, hanldeDragEnter, hanldeDragLeave, hanldeDrop, STYLE_DRAG_OVER, DRAG_IMAGE_STATE }
 }

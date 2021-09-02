@@ -37,7 +37,7 @@ export const ItemGroup = ({ nameEvent = 'Name Event', nameCreator = 'Name Creato
                     </div>
                 </div>
             </div>
-            <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9EV6ww-i3DSr2UyyFwFna5fmfIBADKFVbLg&usqp=CAU"}/>
+            <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9EV6ww-i3DSr2UyyFwFna5fmfIBADKFVbLg&usqp=CAU"} alt="illustration-event"/>
         </div>
     )
 }

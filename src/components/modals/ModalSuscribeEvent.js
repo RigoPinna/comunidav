@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import { ButtonCloseModal } from './ButtonCloseModal'
 import { GroupButtonsHello } from './GroupButtonsHello'
 import { GroupButtonsWelcome } from './GroupButtonsWelcome'
 import { SuscribeHello } from './SuscribeHello'

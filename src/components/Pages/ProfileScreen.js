@@ -1,27 +1,19 @@
-import React,{ useState, useEffect, useLayoutEffect } from 'react'
+import React,{ useState, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 
-import { useDispatch, useSelector } from 'react-redux';
-
-import { useIsMounted } from '../../hooks/useIsMounted';
+import {  useSelector } from 'react-redux';
 import { fetchGetInfoUserLoged } from '../../services/fetchGetInfoUserLoged';
-
-import { ProfileScreenLoading } from '../loadings/ProfileScreenLoading';
 import { Profile } from '../profile/Profile';
 import { Helmet } from 'react-helmet';
-import { types } from '../../types';
 
 
 export const ProfileScreen = (  ) => {
 
-    const { userLogedReducer, uiReducer } = useSelector( state => state );
+    const { userLogedReducer } = useSelector( state => state );
     const location = useLocation();
-    const dispatch = useDispatch();
     const queryString = require('query-string');
     const { q:uidURL } = queryString.parse(location.search);
     const [ userData, setUserData ] = useState({});
-    const [ loading, setLoading ] = useState( false );
-    const [isMounted] = useIsMounted();
     let isMyProfile = userLogedReducer?.uid ? ( userLogedReducer.uid === uidURL ): undefined;
     useLayoutEffect(() => {
         let controller = new AbortController();
@@ -41,7 +33,7 @@ export const ProfileScreen = (  ) => {
         })();
         
         return () => controller?.abort();
-    }, [ uidURL ]);
+    }, [ uidURL,isMyProfile,userLogedReducer ]);
     return (
         <>
             

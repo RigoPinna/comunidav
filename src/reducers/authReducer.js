@@ -1,10 +1,7 @@
 import { generateFormDataFromObject } from "../helpers/generateFormDataFromObject";
 import { fetchGetInfoUserLoged } from "../services/fetchGetInfoUserLoged";
 import { fetchUpdateUserData } from "../services/fetchUpdateUserData";
-import { verifyUserCode } from "../services/fetchVerifyUserCode";
 import { types } from "../types";
-
-
 
 export const getDataUserLoged = ( uid ) => {
     return ( dispatch ) => {

@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 import { useGetPalleterColorImg } from '../../hooks/useGetPalleterColorImg';
 import { IconDescription } from '../iconos/IconDescription';
-import { IconFavorite } from '../iconos/IconFavorite';
 import { ButtonFavorite } from '../profile/ButtonFavorite';
 import { BadgeShort } from './BadgeShort'
 
@@ -18,7 +17,7 @@ export const ContainerInfoProfile = ({ aid, displayName, typeUser, category, des
 
             <div className="__wrapper_info_header">
                 <canvas ref={canvasRef} style={{display: 'none'}}/>
-                <img ref={img} src={image} crossOrigin="anonymous"/>
+                <img ref={img} src={image} crossOrigin="anonymous" alt={displayName}/>
                     <h2>{ displayName }</h2>
                     <div>
                         <BadgeShort typeUser = { typeUser } text = { typeUserNameLong } color = { typeUser }/>

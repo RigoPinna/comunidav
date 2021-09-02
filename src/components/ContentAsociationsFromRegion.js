@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useIsMounted } from '../hooks/useIsMounted'
 import { getAssociationsHaveRegion } from '../reducers/asocitionsFromRegionReducer'
-import { ItemUser } from './Items/ItemUser'
+import { ItemAssociationFromRegion } from './Items/ItemAssociationFromRegion'
+// import { ItemUser } from './Items/ItemUser'
 import { ItemUserLoading } from './loadings/ItemUserLoading'
 
 export const ContentAsociationsFromRegion = ( { historyRouter, userData } ) => {
@@ -22,9 +23,7 @@ export const ContentAsociationsFromRegion = ( { historyRouter, userData } ) => {
         }
     }, [ userData, asociationsRegionReducer, setIsLoading, isMounted, dispatch, isLoading ] );
     
-    const handleRedirectToProfileAsc = ( uid ) => {
-        historyRouter.push( `/user?q=${uid}` );
-    }
+
     if ( isLoading ) {
         return (
             
@@ -39,16 +38,11 @@ export const ContentAsociationsFromRegion = ( { historyRouter, userData } ) => {
         <div className="__wrapper_colunm_right_content_asociations">
           { 
             asociationsRegionReducer.length > 0
-                ? asociationsRegionReducer.map( ({ uid, ascName, userName, image, category }) => { 
-                    return ( 
-                        <ItemUser 
-                            handle={ () => { handleRedirectToProfileAsc( uid ) } }
-                            key ={ `ascFromRegion-${uid}` }
-                            displayName = { ascName } 
-                            textSecondary = { category ? `Categoria • ${ category }` : userName } 
-                            image = { image }
-                    />)
-                })
+                ? asociationsRegionReducer.map( associationData => 
+                    <ItemAssociationFromRegion 
+                        key={`From-Asc-${associationData.uid}`}
+                        {...associationData} 
+                        historyRouter = { historyRouter }/>  )
                 :<p>No hay asociaciones</p>
           }
           

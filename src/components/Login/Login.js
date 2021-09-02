@@ -18,8 +18,8 @@ export const Login = ({history}) => {
     useEffect(() => {
         const haveToken = sessionStorage.getItem('token');
         const uid = localStorage.getItem('uid');
-        haveToken && history.replace( `/user?q=${uid}` )
-    }, [])
+        ( haveToken && uid ) && history.replace( `/user?q=${uid}` )
+    }, [history])
     const verifyLogin = ( ) => {
         setStateResp({...stateResp,...{isLoading:true}});
         fetchLogin( inputValues).then( resp => {

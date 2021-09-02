@@ -1,3 +1,5 @@
+const date = /(^(lunes|martes|miércoles|jueves|viernes|sabado|domingo), ([0-9]{1,2}) (de) (enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre) (de) ([0-9]{4}))$/;
+const imageFile = /(^(lunes|martes|miercoles|jueves|viernes|sabado|domingo), ([0-9]{1,2}) (de) (enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre) (de) ([0-9]{4}))$/;
 export const REGEX_INPUT_VALUES = {
     name:/(^([A-Za-z]+)([\w]*))$/,
     lastName:/([A-Za-z\s]{2,20})$/,
@@ -34,4 +36,25 @@ export const REGEX_INPUT_VALUES = {
     description:/^(([a-zA-Z0-9A-ZÀ-ÿ\u00f1\u00d1.$%&/()=?¿!.¡",:;\-_\s]){30,1000})$/,
     code:new RegExp( '^([0-9]{3})-([0-9]{3})-([0-9]{3})$'),
     numberCode: new RegExp('^([0-9]{1,3})$'),
+    nameEvent:/^(([a-zA-Z0-9A-ZÀ-ÿ\u00f1\u00d1.$%&/()=?¿!.¡",:;\-_\s]){10,1000})$/,
+    dateInit:{
+        test: ( value ) => {
+            const now = new Date();
+            return ( value >= now );
+   
+        }
+    },
+    dateFinally:{
+        test: ( dateFinally, dateInit ) => {
+            return (  dateFinally > dateInit );
+        }
+    },
+    ubication:/^(([a-zA-Z0-9A-ZÀ-ÿ\u00f1\u00d1.$%&/()=?¿!.¡",:;\-_\s]){10,1000})$/,
+    image:{
+        test: ( file ) => {
+
+            return ( !!file ) ? imageFile.test( file.name ) : true;
+
+        }
+    }
 }
