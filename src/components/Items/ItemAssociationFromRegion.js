@@ -3,25 +3,27 @@ import ReactTooltip from 'react-tooltip';
 import { ItemHoverAscFrom } from './ItemHoverAscFrom';
 import { ItemUser } from './ItemUser';
 
-export const ItemAssociationFromRegion = ({uid,image, ascName,category,userName, description, historyRouter }) => {
+export const ItemAssociationFromRegion = ( props ) => {
     const handleRedirectToProfileAsc = ( uid ) => {
-        historyRouter.push( `/user?q=${uid}` );
+        props.historyRouter.push( `/user?q=${uid}` );
 
     }
     return (
         <>
-            <div  data-for= {`tooltTip-Asc-${uid}`} data-tip = {JSON.stringify({ uid, ascName,image, category, userName, description })}>
+            <div  data-for= {`tooltTip-Asc-${props.uid}`} data-tip = {JSON.stringify({...props} )}>
                 <ItemUser
                    
-                    handle={ () => { handleRedirectToProfileAsc( uid ) } }
-                    displayName = { ascName } 
-                    textSecondary = { category ? `Categoria • ${ category }` : userName } 
-                    image = { image }
+                    handle={ () => { handleRedirectToProfileAsc( props.uid ) } }
+                    displayName = { props.ascName } 
+                    textSecondary = { props.category ? `Categoria • ${ props.category }` : props.userName } 
+                    image = { props.image }
                 />
             </div>
             <ReactTooltip 
-                id = {`tooltTip-Asc-${uid}`}
-                backgroundColor ={"#DFDFDF"}
+                id = {`tooltTip-Asc-${props.uid}`}
+                type="info"
+                backgroundColor="white"
+                borderColor="#DBDBDB"
                 textColor={"black"}
                 effect = 'solid'
                 delayHide={500}

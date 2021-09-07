@@ -15,6 +15,11 @@ export const addAllEvents = ( uid ) => {
 
     }
 }
+export const createEvent = () => {
+    return ( dispatch ) => {
+        
+    }
+}
 export const resetMyEvent = ( ) => ({
     type: types.resetMyEvent,
     payload: initialState

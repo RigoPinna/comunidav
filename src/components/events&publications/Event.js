@@ -6,6 +6,7 @@ import { ImageEvent } from './ImageEvent'
 import { ButtonSuscribeEvent } from './ButtonSuscribeEvent'
 import { ButtonSendMessage } from '../inbox/ButtonSendMessage'
 import { useSelector } from 'react-redux'
+import { IconLocation } from '../iconos/IconLocation'
 
 export const Event = ({ evtID, uid, aid,nameAsc,userImg, category,evtName, date, hours, location, imageEvt, requires, description, participants, listParticipants }) => {
     
@@ -46,7 +47,7 @@ export const Event = ({ evtID, uid, aid,nameAsc,userImg, category,evtName, date,
                 {
                     !!description && <p>{description}</p>
                 }
-                <p><strong>Ubicación • {location}</strong></p>
+                <p><strong>Ubicación </strong>• {location}</p>
                 <p className="badge_short badge_color_blue">{ participants } persona(s) inscrita(s)</p>
             </div>
             <div className="__wrapper_publication_and_event_footer">

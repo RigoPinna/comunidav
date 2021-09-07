@@ -154,6 +154,10 @@ main {
             display: block;
             width: 100%;
             font-size: 1em;
+            h3 {
+                font-family: 'SF-Bold';
+                font-size:1em;
+            }
             h3, p {
                 color:$color-black-1;
                 padding:5px 10px;
@@ -165,6 +169,17 @@ main {
                     color:$color-blue-1;
                     font-family: 'SF-Bold';
                     font-size:1em;
+                }
+                strong {
+                    
+                    svg {
+                        width:22px;
+                        height: 62px;
+                        path {
+
+                            stroke:none;
+                        }
+                    }
                 }
                 font-size: 0.875em;
             }
@@ -393,7 +408,7 @@ main {
 
     }
     & > .__react_component_tooltip {
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
     }
 }
 .__wrapper_column_right_grid_sources {

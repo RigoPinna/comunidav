@@ -27,6 +27,8 @@ export const getDataUserLoged = ( uid ) => {
                     cid: dataUser?.idCategory,
                     category: dataUser?.category ,
                     description:  dataUser?.description,
+                    lid:dataUser.lid,
+                    land: dataUser.land,
                     idState: dataUser.idEstado,
                     idMun: dataUser.idMunicipio,
                     isVerify: (dataUser.isVerify === '1') || false, 

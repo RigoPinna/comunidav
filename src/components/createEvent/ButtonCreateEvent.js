@@ -8,7 +8,7 @@ export const ButtonCreateEvent = ({ valuesForm, imageFile, dateInit, dateFinally
     )
     const hanadleCreateEvent = e => {
         e.preventDefault();
-       
+        console.log( OBJ_VALIDATE_TEMPORALLY)
         if ( isValid ) {
             const data = parseDataEvent();
         } else {
