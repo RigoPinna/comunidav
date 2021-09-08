@@ -24,6 +24,7 @@ import { ConfigScreen } from '../components/Pages/ConfigScreen'
 import { useIsVerify } from '../hooks/useIsVerify'
 import { addAllEvents } from '../reducers/myEventsReducer'
 import { CreateEventScreen } from '../components/Pages/CreateEventScreen'
+import { EventScreen } from '../components/Pages/EventScreen'
 
 
 export const DashboardRouters = ({ history, location }) => {
@@ -78,7 +79,7 @@ export const DashboardRouters = ({ history, location }) => {
                   <Route exact path = "/user" component = { ProfileScreen  }/>
                   <Route exact path = "/create" component = { CreateEventScreen }/>
                   <Route exact path = "/home" component = { HomeScreen }/>
-                  <Route exact path = "/event" component = { ProfileScreen }/>
+                  <Route exact path = "/event" component = { EventScreen }/>
                   <Route exact path = "/inbox" component = { InboxScreen }/>
                   <Route exact path = "/search" component = { SearchScreen }/>
                   <Route exact path = "/config" component = { ConfigScreen }/>

@@ -2,8 +2,8 @@ import { fetchGetGroupsEvents } from "../services/fetchGetGroupsEvents";
 import { types } from "../types";
 // [
 //     {
-//         eventID,
-//         eventName,
+//         eid,
+//         nameEvent,
 //         creator: {
 //             uid,
 //             displayName,
@@ -27,6 +27,23 @@ export const addAllGroups = ( uid ) => {
     }
 
 }
+export const registerGroup = ({ nameEvent, imageURL, description, requirement, ubication }, eid, uid, displayName, imgCreator, participants ) => ({
+    type: types.registerToGroup,
+    payload: {
+        eid,
+        nameEvent,
+        image:imageURL,
+        description,
+        ubication,
+        requirement,
+        creator: {
+            uid,
+            displayName,
+            image:imgCreator
+        },
+        participants
+    }
+})
 export const resetGroups = () =>({
     type: types.resetGroups,
     payload: initialState,
@@ -38,9 +55,12 @@ export const groupsReducer = ( state = initialState, action ) => {
 
         case types.addGroupsEvent:
             return [...state, ...action.payload ];
+
+        case types.registerToGroup:
+            return [...state, action.payload ];
         case types.resetGroups:
             return action.payload
-    
+
         default:
             return state;
     }

@@ -22,6 +22,7 @@ export const MESSAGES_ERRORS =  {
     ubication:'Ubicación erronea',
     image:'Asegurate de subir una imagen de tipo .png, .PNG, .jpg, .JPG, .jpeg, .JPEG',
     dateInit:`No puedes ingrear una fecha inicial menor al ${ paseDate( new Date() ).date }`,
-    dateFinally:`Asegúrate que la fecha y hora de finalización sea posterior a la fecha de inicio establecida.`
+    dateFinally:`Asegúrate que la fecha y hora de finalización sea posterior a la fecha de inicio establecida.`,
+    requirement:'El requisito es muy corto, al menos debe de contener 30 caracteres',
     
 }

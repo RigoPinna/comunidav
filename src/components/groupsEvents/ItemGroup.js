@@ -3,23 +3,17 @@ import { Link } from 'react-router-dom';
 import { IconArrowRight } from '../iconos/IconArrowRight';
 import { Avatar } from '../Items/Avatar';
 
-export const ItemGroup = ({ nameEvent = 'Name Event', nameCreator = 'Name Creator Event', imageCreator, participants = [], eid }) => {
+export const ItemGroup = ({eid, nameEvent, description, ubication, image, creator, participants }) => {
     return (
         <div className="__wrapper_item_group animate__animated animate__fadeIn">
             <div className = '__wrapper_group_event '>
                 <h1>{ nameEvent }</h1>
                 <div className = '__wrapper_group_event_body'>
-                    <Avatar image = { imageCreator } name = { nameCreator }/>
+                    <Avatar image = { creator.image} name = { creator.displayName }/>
                     <div>
                         <p>Creado por:</p>
-                        <p>{ nameCreator }</p>   
-                        <Link to = {`/event?query=${eid}`} className="__btn __btn_oval">
-                            <p>Ir ahora</p>
-                            <IconArrowRight />
-                        </Link>
-                    </div>
-                </div>
-                <div className="__wrapper_group_event_footer">
+                        <p>{ creator.displayName }</p> 
+                        <div className="__wrapper_group_event_footer">
                     <p>{ participants.length } participante(s):</p>
                     <div className="__wrapper_list_avatars">
                         {
@@ -35,9 +29,17 @@ export const ItemGroup = ({ nameEvent = 'Name Event', nameCreator = 'Name Creato
                             })
                         }
                     </div>
+                </div>  
+                        <Link to = {`/event?query=${eid}`} className="__btn __btn_oval">
+                            <p>Ir ahora</p>
+                            <IconArrowRight />
+                        </Link>
+                    </div>
                 </div>
             </div>
-            <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9EV6ww-i3DSr2UyyFwFna5fmfIBADKFVbLg&usqp=CAU"} alt="illustration-event"/>
+            {
+                image && <img src={image } alt={ nameEvent }/>
+            }
         </div>
     )
 }

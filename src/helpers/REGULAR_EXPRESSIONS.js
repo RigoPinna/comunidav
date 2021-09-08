@@ -37,6 +37,12 @@ export const REGEX_INPUT_VALUES = {
     code:new RegExp( '^([0-9]{3})-([0-9]{3})-([0-9]{3})$'),
     numberCode: new RegExp('^([0-9]{1,3})$'),
     nameEvent:/^(([a-zA-Z0-9A-ZÀ-ÿ\u00f1\u00d1.$%&/()=?¿!.¡",:;\-_\s]){10,1000})$/,
+    requirement:{
+        test:( value ) => {
+            const regex = /^(([a-zA-Z0-9A-ZÀ-ÿ\u00f1\u00d1.$%&/()=?¿!.¡",:;\-_\s]){10,1000})$/;
+            return value.trim() !== "" ? regex.test( value ) : true;
+        }
+    },
     dateInit:{
         test: ( value ) => {
             const now = new Date();
@@ -49,11 +55,12 @@ export const REGEX_INPUT_VALUES = {
             return (  dateFinally > dateInit );
         }
     },
-    ubication:/^(([a-zA-Z0-9A-ZÀ-ÿ\u00f1\u00d1.$%&/()=?¿!.¡",:;\-_\s]){10,1000})$/,
+    ubication:/^(([a-zA-Z0-9A-ZÀ-ÿ\u00f1\u00d1.$%&/#&()=?¿!.¡",:;\-_\s]){10,1000})$/,
     image:{
         test: ( file ) => {
 
-            return ( !!file ) ? imageFile.test( file.name ) : true;
+            const regex = /^((image)\/(jpeg|png))$/;
+            return ( !!file ) ? regex.test( file.type ) : true;
 
         }
     }

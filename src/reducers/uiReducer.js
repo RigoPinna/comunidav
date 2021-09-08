@@ -3,6 +3,7 @@ import { types } from "../types";
 
 const initialState = {
     loading:true,
+    loadingInComponent:false,
     viewModalImage: false,
     viewModalSuscribe: false,
     viewModalCreateEvent: false,
@@ -56,7 +57,12 @@ export const uiLogout = () => ({
     type:types.uiLogout,
     payload: initialState
 });
-
+export const loadingInComponent = ( loading ) => ({
+    type:types.loadingInComponent,
+    payload: {
+        loadingInComponent: loading
+    }
+})
 
 export const uiReducer = ( state = initialState, action ) => {
 
@@ -66,37 +72,39 @@ export const uiReducer = ( state = initialState, action ) => {
                     ...state,
                     loading: action.payload 
                 };
-        // case types.openModalImage:
-        //     return {
-        //         ...state,
-        //         ...action.payload
-        //     }
-        // case types.closeModalImage:
-        //     return {
-        //         ...state,
-        //         ...action.payload
-        //     }
-        // case types.openModalSuscribe:
-        //     return {
-        //         ...state,
-        //         ...action.payload
-        //     }
-        // case types.closeModalSuscribe:
-        //     return {
-        //         ...state,
-        //         ...action.payload
-        //     }
-        // case types.closeAllModals:
-        //     return {
-        //         ...state,
-        //         ...action.payload
-        //     }
-        case types.uiLogout:
-            return action.payload;
-        default:
+        case types.openModalImage:
             return {
                 ...state,
                 ...action.payload
             }
+        case types.closeModalImage:
+            return {
+                ...state,
+                ...action.payload
+            }
+        case types.openModalSuscribe:
+            return {
+                ...state,
+                ...action.payload
+            }
+        case types.closeModalSuscribe:
+            return {
+                ...state,
+                ...action.payload
+            }
+        case types.closeAllModals:
+            return {
+                ...state,
+                ...action.payload
+            }
+        case types.uiLogout:
+            return action.payload;
+        case types.loadingInComponent:
+            return {
+                ...state,
+                ...action.payload
+            }
+        default:
+            return state;
     }
 }

@@ -1,6 +1,6 @@
 main {
     display: grid;
-    height: calc( 100vh - 55px);
+    min-height: calc( 100vh - 55px);
     grid-gap: 5px;
     grid-template-columns: repeat(15, 1fr);
     grid-template-rows: repeat(10, 1fr);
@@ -110,11 +110,13 @@ main {
     }
 }
 .__wrapper_feed_publications {
-    display: block;
+    display: flex;
     width: 100%;
     min-height: 100px;
     font-size: 1rem;
     padding-bottom:10px;
+    flex-flow: column-reverse;
+    flex-wrap: wrap;
     & > .__loading_wrapper_in_component {
         padding:15px;
     }
@@ -271,26 +273,26 @@ main {
     overflow: hidden;
     margin-bottom: 10px;
     & > img {
-        flex: 1;
+        width:200px; height:100%;
         object-fit: cover;
     }
 
 }
     .__wrapper_group_event {
         display: block;
-        width: 65%;
+        width: calc(100% - 100px);
         background:$always-white;
         padding: 0.625em;
-       
         margin: 0.3125em;
         font-size: 1em;
-        
         h1 {
-            display: block;
             width: 100%;
             position: relative;
             font-size:1.125em;
             color:$color-black-2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             
         }
         & > p {
@@ -302,16 +304,15 @@ main {
             width: 100%;
             min-height: 50px;
             padding-top: 5px;
-            
-            img {
+            & > img {
                 width: 120px;
                 height: 120px;
             }
             & > div {
+                width: 100%;
                 padding-left: 5px;
                 & > p:nth-child(1) {
                     font-family:'SF-Bold';
-                    
                 }
                 p {
                     margin-block:5px;
@@ -328,7 +329,6 @@ main {
             width: 100%;
             height: 40px;
             flex-direction: row;
-            justify-content:flex-end;
             align-items: center;
             & > p {
                 color:$color-primary-purple;
@@ -346,6 +346,7 @@ main {
     display: flex;
     width: 100px;
     height:40px;
+    margin-left: 5px;
     img {
         display:block;
         position: relative;
@@ -353,6 +354,7 @@ main {
         height: 40px;
         margin-left: -8px;
         border: 2px solid $always-white;
+        box-shadow: none;
         
     }
 }
@@ -1012,6 +1014,15 @@ footer {
     }
     .__wrapper_verify .__wrapper_verify_body form .__wrapper_verify_footer {
         padding-top: 14px;
+    }
+    .__wrapper_item_group {
+       
+        & > img {
+            display: none;
+        }
+        .__wrapper_group_event {
+            width: 100%;
+        }
     }
     
 }

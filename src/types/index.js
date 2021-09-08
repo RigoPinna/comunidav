@@ -25,5 +25,8 @@ export const types = {
     updateAvatar: '[user] Update-avatar-user-loged',
     updateUserData: '[user] Update-user-data',
     addTOKEN: '[user] Add-TOKEN',
-    openModalCreateEvent: '[ui] open-Modal-Create-event'
+    openModalCreateEvent: '[ui] open-Modal-Create-event',
+    createEvent: '[event-user] Create-Event',
+    loadingInComponent: '[ui] loading-in-component',
+    registerToGroup: '[ groups-event ] register-to-group',
 }

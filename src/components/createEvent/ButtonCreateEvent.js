@@ -1,32 +1,40 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { paseDate } from '../../helpers/paseDate';
 import { useValidateForm } from '../../hooks/useValidateForm';
-export const ButtonCreateEvent = ({ valuesForm, imageFile, dateInit, dateFinally, validation, setValidation }) => {
-    const  [ OBJ_VALIDATE_TEMPORALLY, isValid ] = useValidateForm(
-        validation,
-        {...valuesForm, ...{ dateInit, dateFinally, image:imageFile }}
-    )
+import { createEvent } from '../../reducers/myEventsReducer';
+import { LoadingInComponent } from '../loadings/LoadingInComponent'
+export const ButtonCreateEvent = ({ valuesForm, imageFile, dateInit,validation, setValidation, imageURL }) => {
+    const dispatch = useDispatch();
+    const { userLogedReducer, uiReducer } = useSelector( state => state );
+    const  [ OBJ_VALIDATE_TEMPORALLY, isValid ] = useValidateForm(validation,{...valuesForm, ...{ dateInit, image:imageFile }})
+    
     const hanadleCreateEvent = e => {
         e.preventDefault();
-        console.log( OBJ_VALIDATE_TEMPORALLY)
         if ( isValid ) {
             const data = parseDataEvent();
+            dispatch( createEvent( userLogedReducer, data ) );
         } else {
-            console.log( "error ")
-            setValidation( OBJ_VALIDATE_TEMPORALLY )
+            setValidation( OBJ_VALIDATE_TEMPORALLY );
         }
-        
     }
 
     function parseDataEvent (){
         const { date: DInit, hour: HInit } = paseDate( dateInit )
-        const { date: DFinally, hour: HFinally } = paseDate( dateFinally )
         return {
             ...valuesForm, 
-            ...{ dateInit:DInit, hourInit:HInit,dateFinally:DFinally,hourFinally:HFinally, image:imageFile } 
+            ...{ dateInit:DInit, hourInit:HInit,image:imageFile, imageURL } 
         }
     }
     return (
-        <button onClick={ hanadleCreateEvent } className="__btn">Crear evento</button>
+        <button 
+            disabled = { uiReducer.loadingInComponent } 
+            onClick={ hanadleCreateEvent } className="__btn">
+               {
+                    uiReducer.loadingInComponent 
+                        ? <LoadingInComponent />
+                        : 'Crear evento'
+               }
+        </button>
     )
 }

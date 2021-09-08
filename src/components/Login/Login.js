@@ -29,7 +29,6 @@ export const Login = ({history}) => {
                     message: '',
                     isLoading: false,
                 });
-                console.log(resp)
                 if ( resp.isVerify ) {
                     localStorage.setItem( 'uid', resp.userID );
                     sessionStorage.setItem( 'token',resp.token );
