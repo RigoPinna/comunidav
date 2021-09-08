@@ -130,6 +130,9 @@ main {
         position: relative;
         font-size: 1em;
         margin: 0.9375em 0;
+        img {
+            box-shadow: none;
+        }
         .__btn_menu_publication {
             position: absolute;
             top:0.625em;
@@ -159,6 +162,7 @@ main {
             h3 {
                 font-family: 'SF-Bold';
                 font-size:1em;
+                text-transform: uppercase;
             }
             h3, p {
                 color:$color-black-1;
@@ -190,10 +194,14 @@ main {
                 width: 100%;
                 min-height: 20px;
                 align-items: center;
-                padding-left: 10px;
+                padding-left: 5px;
+                p {
+                    padding: 0;
+                    margin-left: 5px;
+                }
                 svg {
-                    width:20px;
-                    height: 20px;
+                    width:18px;
+                    height: 18px;
                 }
             }
             .badge_short {
@@ -346,7 +354,7 @@ main {
     display: flex;
     width: 100px;
     height:40px;
-    margin-left: 5px;
+    margin-left: 15px;
     img {
         display:block;
         position: relative;
@@ -356,6 +364,26 @@ main {
         border: 2px solid $always-white;
         box-shadow: none;
         
+    }
+    span {
+        display: flex;
+        width:40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        margin-left: -8px;
+        border: 2px solid $always-white;
+        background:$color-primary-purple;
+        border-radius:100%;
+        color:$always-white;
+        font-size: 0.8em;
+        transition: all 0.3s ease;
+        &:hover {
+            z-index: 1;
+            cursor: pointer;
+            background: #9f5bff;
+            background-image: linear-gradient(338deg, rgba(159,91,255,1) 0%, rgba(132,91,255,1) 47%, rgba(99,91,255,1) 100%);
+        }
     }
 }
 .__wrapper_column_right {

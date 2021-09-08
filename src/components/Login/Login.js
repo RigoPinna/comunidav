@@ -79,7 +79,6 @@ export const Login = ({history}) => {
                 />
 
                 <Link to= "/" className ="__forgot_password">¿Olvidaste tu contraseña?</Link>
-           </form>
            <div className ="__wrapper_login_footer">
                 <button
                     ref ={ btnSubmit }
@@ -97,6 +96,7 @@ export const Login = ({history}) => {
                     ¿No tienes una cuenta?, resgistrate aqui.
                 </Link>
             </div>
+           </form>
         </div>
     </div>
     )

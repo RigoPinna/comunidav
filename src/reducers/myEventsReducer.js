@@ -31,7 +31,6 @@ export const addAllEvents = ( uid ) => {
             }
             dispatch( action );
         })
-
     }
 }
 export const createEvent = ( { uid, aid, displayName, image,category },dataEvent ) => {
