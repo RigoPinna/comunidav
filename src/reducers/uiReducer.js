@@ -7,6 +7,7 @@ const initialState = {
     viewModalImage: false,
     viewModalSuscribe: false,
     viewModalCreateEvent: false,
+    viewModalListParticipants: false,
 }
 export const closeAllModal = () => ({
     type:types.closeAllModals,
@@ -14,6 +15,7 @@ export const closeAllModal = () => ({
         viewModalImage: false,
         viewModalSuscribe: false,
         viewModalCreateEvent: false,
+        viewModalListParticipants: false,
     }
 })
 
@@ -36,6 +38,14 @@ export const openModalCreateEvent = () => ({
     type:types.openModalCreateEvent,
     payload: {
         viewModalCreateEvent: true,
+    }
+});
+export const openModalListParticipants = (list, { uid }) => ({
+    type:types.openModalListParticipants,
+    payload: {
+        viewModalListParticipants: true,
+        creator: uid,
+        participants: list
     }
 });
 export const openModalSuscribe = ( displayName = '',evtName, eid ) => ({
@@ -100,6 +110,11 @@ export const uiReducer = ( state = initialState, action ) => {
         case types.uiLogout:
             return action.payload;
         case types.loadingInComponent:
+            return {
+                ...state,
+                ...action.payload
+            }
+        case types.openModalListParticipants:
             return {
                 ...state,
                 ...action.payload

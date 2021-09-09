@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { ItemUser } from '../Items/ItemUser'
 import { ButtonubMenuEvent } from '../menus/ButtonMenuEvent'
@@ -8,17 +8,21 @@ import { ButtonSendMessage } from '../inbox/ButtonSendMessage'
 import { useSelector } from 'react-redux'
 import { IconLocation } from '../iconos/IconLocation'
 
-export const Event = ({ evtID, uid, aid,nameAsc,userImg, category,evtName, date, hours, location, imageEvt, requires, description, participants, listParticipants }) => {
+export const Event = ({ evtID, uid, aid,nameAsc,userImg, category,evtName, date, hours, location, imageEvt, requires, description, participants }) => {
     
-    const { uid:uidLoged } = useSelector( state => state.userLogedReducer )
-    const isTheCreator = ( uidLoged === uid );
+    const { userLogedReducer } = useSelector( state => state )
+    const [isTheCreator, setisTheCreator] = useState( false )
+    useEffect(() => {
+        if ( !!userLogedReducer.uid ) {
+            setisTheCreator(( userLogedReducer.uid === uid ))
+        }
+    }, [userLogedReducer.uid ])
     
     return (
         <div className = "__wrapper_publication_and_event animate__animated animate__fadeIn">
-  
             <ButtonubMenuEvent 
                 eid = { evtID } 
-                uiLoged = { uidLoged }  
+                uiLoged = {userLogedReducer.uid }  
                 isTheCreator = { isTheCreator }
                 dataCreator = {{
                     uid,
@@ -48,16 +52,15 @@ export const Event = ({ evtID, uid, aid,nameAsc,userImg, category,evtName, date,
                     !!description && <p>{description}</p>
                 }
                 <p><strong>Ubicación </strong>• {location}</p>
-                <p className="badge_short badge_color_blue">{ participants } persona(s) inscrita(s)</p>
+                <p className="badge_short badge_color_blue">{ participants.length } persona(s) inscrita(s)</p>
             </div>
             <div className="__wrapper_publication_and_event_footer">
-                <ButtonSuscribeEvent 
-                    uid = { uidLoged }
-                    isTheCreator = { isTheCreator}
-                    listParticipants = { listParticipants }
+                <ButtonSuscribeEvent
+                    uid= { userLogedReducer.uid } 
+                    participants = { participants }
                     ascName = { nameAsc } 
                     evtName = { evtName }
-                    eid = {evtID} 
+                    eid = { evtID } 
 
                 />
                 {

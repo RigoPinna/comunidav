@@ -67,7 +67,7 @@ export const DashboardRouters = ({ history, location }) => {
         <>
           { uiReducer.viewModalImage && <ModalViewImage /> }
           { uiReducer.viewModalSuscribe && <ModalSuscribeEvent /> }
-          <ModalListParticipants />
+          { uiReducer.viewModalListParticipants && <ModalListParticipants /> }
           <NavBar history = { history } /> 
           {/* <div className ="__wrapper_associationFrom_responsive">
                   <strong>Asociaciones en ...</strong>

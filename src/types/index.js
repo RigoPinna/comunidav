@@ -29,4 +29,5 @@ export const types = {
     createEvent: '[event-user] Create-Event',
     loadingInComponent: '[ui] loading-in-component',
     registerToGroup: '[ groups-event ] register-to-group',
+    openModalListParticipants: '[ui] open-Modal-ListParticipants',
 }
