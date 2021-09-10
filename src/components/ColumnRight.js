@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-
+import ReactTooltip from 'react-tooltip';
 
 import { ContentAsociationsFromRegion } from './ContentAsociationsFromRegion';
 import { ItemUser } from './Items/ItemUser';
@@ -34,12 +34,15 @@ export const ColumnRight = ({history }) => {
     return (
         <div className="__wrapper_column_right">
             <div className="__wrapper_comunm_right_title_section">
-                <h5>Mi perfil • </h5>
+                <h5 >Mi perfil • </h5>
                 { 
                     !isLoading 
-                        && <Link className = "btn_config" to ="/config">
+                        && <>
+                            <Link data-for={"config"} data-tip={"Configuración de cuenta"}  className = "btn_config" to ="/config">
                                 <IconConfig />
                             </Link>
+                            <ReactTooltip id={"config"} place="top" type="dark" effect='solid'/>
+                            </>
                 }
             </div>
             <hr/>

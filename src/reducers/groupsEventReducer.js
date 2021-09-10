@@ -48,7 +48,10 @@ export const resetGroups = () =>({
     type: types.resetGroups,
     payload: initialState,
 })
-
+export const deleteGroup = ( eid ) =>({
+    type: types.deleteGroups,
+    payload: eid
+})
 
 export const groupsReducer = ( state = initialState, action ) => {
     switch ( action.type ) {
@@ -60,7 +63,8 @@ export const groupsReducer = ( state = initialState, action ) => {
             return [...state, action.payload ];
         case types.resetGroups:
             return action.payload
-
+        case  types.deleteGroups:
+            return state.filter( ({ eid }) => +eid !== +action.payload );
         default:
             return state;
     }

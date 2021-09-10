@@ -1,11 +1,11 @@
 import React from 'react'
-import { WrapperModalsOrAlerts } from '../modals/WrapperModalsOrAlerts';
 import { LoadingInComponent } from '../loadings/LoadingInComponent'
+import { WrapperAlert } from './WrapperAlert';
 
-export const Alert = ({ title, contentText = '', isAlertLoading = false,addButtonAccepter = false, actionButtonAccept, textButton = 'Aceptar' }) => {
+export const Alert = ({ title="Titulo", contentText = 'Contenido', isAlertLoading = false,addButtonAccepter = true, actionButtonAccept=()=>{}, textButton = 'Aceptar', addButtonCanceled=false,actionButtonCanceled=()=>{} }) => {
     return (
-        <WrapperModalsOrAlerts>
-            <div className="__wrapper_alert">
+        <WrapperAlert>
+            <div className="__wrapper_alert animate__animated  animate__headShake">
                 <div className="__alert_header">
                     <h3>{title}</h3>
                 </div>
@@ -17,6 +17,14 @@ export const Alert = ({ title, contentText = '', isAlertLoading = false,addButto
                 }
                 </div>
                 <div className = "__alert_footer">
+                    {
+                        addButtonCanceled 
+                            && <button 
+                                    onClick = { actionButtonCanceled }
+                                    className = "__btn">
+                                        Cancelar
+                                </button>
+                    }
                     {
                         addButtonAccepter 
                             && <button 
@@ -30,6 +38,6 @@ export const Alert = ({ title, contentText = '', isAlertLoading = false,addButto
                 </div>
             </div>
             
-        </WrapperModalsOrAlerts>
+        </WrapperAlert>
     )
 }

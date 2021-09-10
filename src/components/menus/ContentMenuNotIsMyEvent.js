@@ -7,7 +7,7 @@ import { IconGroups } from '../iconos/IconGroups';
 export const ContentMenuNotIsMyEvent = ( dataCreator ) => {
     const  { isFavorite, hanldeToggleActionButton } = useToggleFavorite( dataCreator );
     return (
-        <ul className="__modal_submenu_event animate__animated animate__fadeIn">
+        <ul className="__modal_submenu_event animate__animated animate__fadeIn animate__faster">
         <li>
              <button
                  onClick = { hanldeToggleActionButton } 

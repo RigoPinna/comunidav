@@ -26,9 +26,9 @@ export const ItemAssociationFromRegion = ( props ) => {
                 borderColor="#DBDBDB"
                 textColor={"black"}
                 effect = 'solid'
-                delayHide={500}
-                delayShow={500}
-                delayUpdate={500}
+                delayHide={200}
+                delayShow={200}
+                delayUpdate={200}
                 place={'left'}
                 getContent={( dataTip ) => <ItemHoverAscFrom data={ dataTip }/>}
             />

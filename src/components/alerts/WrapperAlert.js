@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const WrapperAlert = () => {
+export const WrapperAlert = ({ children }) => {
     return (
-        <div>
-            
+        <div className = "__modal_alert">
+            { children }
         </div>
     )
 }

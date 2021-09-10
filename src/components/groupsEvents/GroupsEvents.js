@@ -19,10 +19,10 @@ export const GroupsEvents = () => {
         <>
             {
                 groups === statusMountedGroups.loading
-                    ? <LoadingInComponent textLoading ={"Cargando grupos..."} />
-                    : ( groups === statusMountedGroups.empty ) 
-                        ? <IllustrationEmpty message ={"No te has inscrito a algun evento"}/>
-                        : groups.map( group => <ItemGroup key = {`gid-${ group.eid }`} {...group}/> )
+                ? <LoadingInComponent textLoading ={"Cargando grupos..."} />
+                : ( groups === statusMountedGroups.empty ) 
+                ? <IllustrationEmpty message ={"No te has inscrito a algun evento"}/>
+                : groups.map( group => <ItemGroup key = {`gid-${ group.eid }`} {...group}/> )
             }
         </>
     )

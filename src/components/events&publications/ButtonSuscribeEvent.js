@@ -11,13 +11,15 @@ export const ButtonSuscribeEvent = ( {uid, eid, ascName, evtName,participants })
     const [ suscribed, setSuscribed ] = useState({ loading:true, suscribed: false})
     const history = useHistory();
     useEffect(() => {
-        const isSuscribe = participants.some( user => +user.uid === +uid );
-        setSuscribed({ loading:false, suscribed: isSuscribe });
+        if ( !!participants ) {
+
+            const isSuscribe = participants.some( user => +user.uid === +uid );
+            setSuscribed({ loading:false, suscribed: isSuscribe });
+        }
     }, [])
     const handleOnClick = () => {
         if ( suscribed.suscribed ) {
             history.push(`/event?query=${eid}`);
-            
         } else {
             dispatch( openModalSuscribe( ascName,evtName, eid ) );
         }
@@ -32,7 +34,7 @@ export const ButtonSuscribeEvent = ( {uid, eid, ascName, evtName,participants })
                     suscribed.loading 
                         ? <LoadingInComponent /> 
                         : suscribed.suscribed 
-                            ? <> <p>Ir al grupo</p><IconArrowRight /> </> 
+                            ? <>Ir al grupo<IconArrowRight /> </> 
                             : <> <IconSuscribe /><p>Inscribirme</p> </>
                 }
             {/* { 

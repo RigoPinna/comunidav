@@ -2,13 +2,13 @@ import React from 'react'
 import { ContentMenuIsMyEvent } from './ContentMenuIsMyEvent'
 import { ContentMenuNotIsMyEvent } from './ContentMenuNotIsMyEvent'
 
-export const SubMenuEventCreated = ({ isTheCreator, dataCreator }) => {
+export const SubMenuEventCreated = ({ isTheCreator, dataCreator, participants, nameEvent, eid }) => {
    
     return (
         <>
             {
                 isTheCreator 
-                    ? <ContentMenuIsMyEvent />
+                    ? <ContentMenuIsMyEvent participants={participants} nameEvent={nameEvent} eid = { eid }/>
                     : <ContentMenuNotIsMyEvent {...dataCreator}/>
             }
         </>

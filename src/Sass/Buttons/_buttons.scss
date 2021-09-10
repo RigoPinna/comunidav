@@ -52,8 +52,9 @@
 .__btn_menu_publication {
     background:transparent;
     border-radius: 100%;
+    border: 1px solid transparent;
     &:hover {
-        background:$color-button-primary;
+        border:1px solid $color-button-primary;
         svg {
             path {
                 stroke:$color-black-1;

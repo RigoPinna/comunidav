@@ -30,4 +30,7 @@ export const types = {
     loadingInComponent: '[ui] loading-in-component',
     registerToGroup: '[ groups-event ] register-to-group',
     openModalListParticipants: '[ui] open-Modal-ListParticipants',
+    openAlert: '[ui] open-Alert',
+    closeAlert: '[ui] close-Alert',
+    deleteGroups: '[groups-event] delete-Group',
 }

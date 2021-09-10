@@ -107,6 +107,21 @@ $color-button-favorite: #FFC45B;
     backdrop-filter: blur(10px); /* Chrome and Opera */
     background-color: rgba(0, 0, 0, 0.3);
 }
+.leaflet-container {
+    width: 100%;
+    height: 100%;
+}
+.markerComunidav {
+    font-family: 'SF-Bold';
+    &:hover {
+        cursor: pointer;
+    }
+}
+.mapComunidav {
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+}
 
 @mixin small {
     @media only screen and (max-width: 600px) {

@@ -24,6 +24,8 @@ export const Event = ({ evtID, uid, aid,nameAsc,userImg, category,evtName, date,
                 eid = { evtID } 
                 uiLoged = {userLogedReducer.uid }  
                 isTheCreator = { isTheCreator }
+                participants = {  participants }
+                nameEvent = { evtName }
                 dataCreator = {{
                     uid,
                     aid,

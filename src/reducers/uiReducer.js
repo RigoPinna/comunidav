@@ -8,6 +8,7 @@ const initialState = {
     viewModalSuscribe: false,
     viewModalCreateEvent: false,
     viewModalListParticipants: false,
+    viewAlert: false,
 }
 export const closeAllModal = () => ({
     type:types.closeAllModals,
@@ -73,7 +74,24 @@ export const loadingInComponent = ( loading ) => ({
         loadingInComponent: loading
     }
 })
-
+export const openAlert = ( title, contentText, actionButtonAccept = () => {},  addButtonCanceled=false, actionButtonCanceled=()=>{}, textButton="Aceptar" ) => ({
+    type:types.openAlert,
+    payload: {
+        viewAlert: true,
+        title, 
+        contentText, 
+        actionButtonAccept,
+        addButtonCanceled,
+        actionButtonCanceled,
+        textButton,
+    }
+});
+export const closeAlert = () => ({
+    type:types.closeAlert,
+    payload: {
+        viewAlert: false,
+    }
+});
 export const uiReducer = ( state = initialState, action ) => {
 
     switch ( action.type ) {
@@ -115,6 +133,16 @@ export const uiReducer = ( state = initialState, action ) => {
                 ...action.payload
             }
         case types.openModalListParticipants:
+            return {
+                ...state,
+                ...action.payload
+            }
+        case types.openAlert:
+            return {
+                ...state,
+                ...action.payload
+            }
+        case types.closeAlert:
             return {
                 ...state,
                 ...action.payload

@@ -15,7 +15,7 @@ export const HomeScreen = () => {
         </Helmet>
         <div>
             <h1>HOME</h1>
-            <Link to="/profile">
+            <Link to="/mapa">
                 ir a perfil
             </Link>
         </div>
