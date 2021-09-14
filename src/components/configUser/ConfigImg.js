@@ -1,14 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRef } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { REGEX_INPUT_VALUES } from '../../helpers/REGULAR_EXPRESSIONS'
 import { updateAvatar } from '../../reducers/authReducer'
 import { IconCamera } from '../iconos/IconCamera'
 import { IconCheck } from '../iconos/IconCheck'
 
-export const ConfigImg = ({ imageOld, displayName }) => {
+export const ConfigImg = ({ imageOld }) => {
     const dispatch = useDispatch();
-    const [image, setimage] = useState( imageOld )
+    const { uid, displayName } = useSelector(state => state.userLogedReducer)
+    const [ image, setImage ] = useState( imageOld )
+    const [ file, setFile ] = useState( null );
+    const { image: imgRegex } = REGEX_INPUT_VALUES;
+
+    useEffect(() => {
+        if ( !!file ) {
+            const imageURL = URL.createObjectURL( file );
+            setImage ( imageURL)
+        }
+        
+    }, [ file ]);
+
     const inputFile = useRef( null );
+
     const handleClick = ( evt ) => {
         evt.preventDefault();
         inputFile.current.click();
@@ -17,13 +31,15 @@ export const ConfigImg = ({ imageOld, displayName }) => {
     const handleChangeImage = ( ) => {
         const files = inputFile.current.files;
         if ( files.length > 0) {
-            const imageURL = URL.createObjectURL( files[0] );
-            setimage ( imageURL)
+            if(imgRegex.test( files[0] )) {
+                setFile( files[0] );
+                return ;
+            }
         }
     }
     const handleUpdateImage = ( evt ) => {
         evt.preventDefault();
-        dispatch( updateAvatar( image ) );
+        dispatch( updateAvatar({ image, file, displayName, uid }) );
     }
     return (
         <>
@@ -32,7 +48,7 @@ export const ConfigImg = ({ imageOld, displayName }) => {
                     <img src = { image } alt = { displayName }/>
                     <button onClick = { handleClick } className="__btn_camera"><IconCamera /></button>
                 </div>
-                <input onChange = { handleChangeImage }ref ={ inputFile } type ={'file'} />
+                <input onChange = { handleChangeImage } ref ={ inputFile } type ={'file'} />
             </div>
                 {
                     image !== imageOld

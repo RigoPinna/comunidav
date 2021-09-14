@@ -29,8 +29,14 @@ export const getDataUserLoged = ( uid ) => {
                     description:  dataUser?.description,
                     lid:dataUser.lid,
                     land: dataUser.land,
+                    landName: dataUser.landName,
                     idState: dataUser.idEstado,
+                    nameState:dataUser.nameEstado,
                     idMun: dataUser.idMunicipio,
+                    nameMun: dataUser.nameMun,
+                    viewUbication: +dataUser?.viewUbication === 1 || false ,
+                    lat:  dataUser?.lat,
+                    lng: dataUser?.lng,
                     isVerify: (dataUser.isVerify === '1') || false, 
                 }
             }
@@ -50,18 +56,32 @@ export const updateVerify = () => ({
     type:types.updateVerifier,
     payload: {isVerify:true}
 })
-export const updateAvatar = ( image ) => ({
-    type: types.updateAvatar,
-    payload: { image }
+export const updateAvatar = ({ image, displayName, file, uid }) => {
 
-});
+    return ( dispatch ) => {
+        const token = sessionStorage.getItem( 'token' );
+        const formData = generateFormDataFromObject({ displayName ,image:file, uid, token });
+        fetchUpdateUserData( formData ).then( resp => {
+            if ( resp.status === 'accept') {
+                dispatch({
+                    type: types.updateAvatar,
+                    payload: { image }
+                
+                })
+                console.log( resp )
+            }
+        }).catch( e => console.log(e) )
+        
+    }
+
+}
 export const addTOKEN = ( TOKEN ) => ({
     type: types.addTOKEN,
     payload: { TOKEN }
 })
 export const updateUserData = ( newData, oldData ) =>{
         return ( dispatch ) => {
-            
+            console.log(newData,newData?.viewUbication )
             const associationName = ( newData.associationName || oldData.displayName );
             const name = newData?.name || oldData.namePerson;
             const lastName = newData?.lastName || oldData.lastName;
@@ -71,6 +91,9 @@ export const updateUserData = ( newData, oldData ) =>{
             const category = newData?.category || oldData.cid;
             const state = newData?.state || oldData.idState;
             const country = newData?.country || oldData.idMun;
+            const viewUbication = typeof newData.viewUbication !== null ? newData.viewUbication : oldData.viewUbication 
+            const lat = newData?.lat || oldData?.lat;
+            const lng = newData?.lng || oldData.lng;
             const formData = generateFormDataFromObject( newData );
             fetchUpdateUserData( formData ).then( resp => {
                 if ( resp.status === 'accept' ) {
@@ -87,7 +110,10 @@ export const updateUserData = ( newData, oldData ) =>{
                             category: resp?.nameCategory || oldData.category,
                             idState: state,
                             cityName: resp?.state || oldData.cityName,
-                            idMun: country
+                            idMun: country,
+                            viewUbication,
+                            lat,
+                            lng
                         }
                     })
                 }

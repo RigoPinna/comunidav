@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 export const useChangeSelect = (initialState = {}) => {
     const [ inputFormValues, setInputFormValues] = useState( initialState );
+    const [arrays, setArrays] = useState({lands:[], states:[], countries:[]})
 
     const handdleSelectChange = ( evt ) => {
         evt.preventDefault();
@@ -14,13 +15,7 @@ export const useChangeSelect = (initialState = {}) => {
         });
        
     }
-    useEffect(() => {
-        setInputFormValues({...inputFormValues,...{state:0 }})
-    }, [inputFormValues.land,setInputFormValues ])
-    useEffect(() => {
-        setInputFormValues({...inputFormValues,...{country:0 }})
-    }, [inputFormValues.state,setInputFormValues ])
 
-    return [ inputFormValues,setInputFormValues, handdleSelectChange,setInputFormValues ];
+    return [ inputFormValues, handdleSelectChange, setInputFormValues,  ];
     
 }

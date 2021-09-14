@@ -11,7 +11,7 @@ export const useChangeEffectLocation = ({land, state,country }) => {
     const [ arrayCountries, setArrayCountries ] = useState([]);
     useEffect(() => {
         if ( isMounted ) {
-            setArrayStates([])
+            // setArrayStates([])
             fetchGetLands().then( lands => {
                 setArrayLands( lands );
             });
@@ -20,6 +20,7 @@ export const useChangeEffectLocation = ({land, state,country }) => {
     }, [isMounted])
     useLayoutEffect(() => {
         if ( isMounted ) {
+            console.log(land);
             setArrayCountries([])
                 fetchGetStates( land ).then( states => {
                     setArrayStates( states );

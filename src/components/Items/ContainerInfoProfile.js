@@ -33,7 +33,7 @@ export const ContainerInfoProfile = ({ aid, displayName, typeUser, category, des
                         <p >{ !!description ? description : 'Esta asociación no tiene descripción...' }</p>
                 </div>
             </div>
-                <MapaScreen />
+                {/* <MapaScreen /> */}
                 
         </div>
     )

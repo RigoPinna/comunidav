@@ -22,7 +22,7 @@ export const ConfigScreen = () => {
                <title>Comunidav | Settings</title>
 
             </Helmet>
-            <form className="__wrapper_config animate__animated animate__bounce animate__fadeIn">
+            <form className="__wrapper_config animate__animated animate__bounce animate__fadeIn" encType="multipart/form-data">
                 <h1>Configuración de cuenta</h1>
                 <ConfigImg imageOld = { userLogedReducer.image }/>
                 <strong>{ userLogedReducer.displayName }</strong>
@@ -30,7 +30,7 @@ export const ConfigScreen = () => {
                 <WrapperDetails title={'Datos personales(No público)'} Icon ={IconDataPrivate}>
                     <ConfigDataPrivate { ...userLogedReducer} />
                 </WrapperDetails>
-                <WrapperDetails title={'Región(Público)'} Icon ={ IconLocation }>
+                <WrapperDetails title={'Ubicación(Público)'} Icon ={ IconLocation }>
                     <ConfigLocation { ...userLogedReducer } />
                 </WrapperDetails>
                 {

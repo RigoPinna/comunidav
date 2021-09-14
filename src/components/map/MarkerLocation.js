@@ -1,27 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Marker, Popup } from 'react-leaflet'
-export const DraggableMarker = ()=> {
+import { Marker, Popup, Tooltip } from 'react-leaflet'
+export const DraggableMarker = ({ position,setPosition })=> {
+    
     const [draggable, setDraggable] = useState(false)
-    const [position, setPosition] = useState(null)
     const markerRef = useRef(null)
-    useEffect(() => {
-        if ( navigator.geolocation ) {
-            navigator.geolocation.getCurrentPosition((position) =>{
-                setPosition([
-                    position.coords.latitude,
-                    position.coords.longitude 
-                ])
-            },
-            ( error)=>{ console.log( error ); },
-            { enableHighAccuracy:true })
-
-        }
-    }, [])
     const eventHandlers = useMemo(() => ({dragend() {
           const marker = markerRef.current
           if (marker != null) {
             setPosition(marker.getLatLng())
-            console.log(marker.getLatLng())
           }
         },
       }),
@@ -33,19 +19,16 @@ export const DraggableMarker = ()=> {
   
     return (
         <>
-            { !!position && <Marker
-                draggable={draggable}
-                eventHandlers={eventHandlers}
-                position={position}
-                ref={markerRef}>
-                <Popup minWidth={90}>
-                <span onClick={toggleDraggable} className={"markerComunidav"}>
-                    {draggable
-                    ? '¡Listo, arrastra el marcador a tu posición!'
-                    : 'Da clic aqui para mover el marcador'}
-                </span>
-                </Popup>
-            </Marker>
+            { !!position 
+                && <Marker
+                    draggable={true}
+                    eventHandlers={eventHandlers}
+                    position={position}
+                    ref={markerRef}>
+                    <Popup minWidth={90}>
+                        Arrastra el marcador si la posición no es correcta
+                    </Popup>
+                </Marker>
             }
         </>
     )

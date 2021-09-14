@@ -63,7 +63,7 @@ export const Login = ({history}) => {
                     name = "user" 
                     typeInput = {"text"} 
                     inputStyle = {'__input __input_with_icon'} 
-                    placeholder = {'Usuario y/o correo electrónico'}
+                    placeholder = {'Usuario o correo electrónico'}
                     InputIcon = { IconInputUser }
                     value = {inputValues.user}
                     onChange = {handleOnChange}

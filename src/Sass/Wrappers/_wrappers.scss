@@ -421,8 +421,16 @@ main {
         width: 85%;
         margin-bottom: 5px;
     }
+    & > ._item:hover {
+        background:$always-white;
+        border-radius:$br-radius;
+        opacity: 0.8;
+        cursor: pointer;
+
+    }
     .__wrapper_comunm_right_title_section {
         margin-top: 30px;
+        
     }
     .__wrapper_comunm_right_title_section:nth-child(1) {
         margin-top:5px;
@@ -869,6 +877,9 @@ footer {
     overflow: hidden;
     transition: all 0.3s ease;
     margin-block: 10px;
+    strong {
+        font-family: 'SF-Bold';
+    }
     &[open]{
         background: $color-blue-6;
         & summary {

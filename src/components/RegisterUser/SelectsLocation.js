@@ -39,8 +39,6 @@ export const SelectsLocation = () => {
                     />
             }
             <div className = "__input_wrapper">
-                
-
                 <InputSelect
                     onChange = { handdleInputChange }
                     name = { 'state' } 
