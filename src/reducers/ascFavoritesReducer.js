@@ -9,7 +9,9 @@
 //     },
 
 import { fetchGetFavorites } from "../services/fetchGetFavorites";
+import { fetchtoggleFavorite } from "../services/fetchtoggleFavorite";
 import { types } from "../types";
+import { loadingInComponent } from "./uiReducer";
 
 // ]
 const initialState = [];
@@ -28,15 +30,56 @@ export const resetFavorites = () => ({
     payload: initialState
 
 });
-export const removeFavorite = ( aid ) => ({
-    type: types.removeFavorite,
-    payload: aid,
-})
-export const addToFavorites = ( dataAsc ) => ({
-    type: types.addToFavorite,
-    payload: [ dataAsc ],
-    
-})
+
+
+
+export const removeFavorite = ( aid, uid ) => {
+    return async ( dispatch ) => {
+        try {
+            console.log(aid, uid);
+            dispatch( loadingInComponent( true ) );
+            const resp = await fetchtoggleFavorite( aid, uid );
+            if( resp.ok ) {
+                dispatch({
+                    type: types.removeFavorite,
+                    payload: aid,
+                })
+                dispatch( loadingInComponent( false ) );
+            }else {
+                dispatch( loadingInComponent( false ) );
+
+            }
+            
+
+        }catch( err ) {
+            console.log( err )
+        }
+    }
+
+}
+export const addToFavorites = ( dataAsc, uid ) => {
+    return async ( dispatch ) => {
+        try {
+            dispatch( loadingInComponent( true ) );
+            const resp = await fetchtoggleFavorite( dataAsc.aid, uid );
+            if( resp.ok ) {
+                dispatch({
+                    type: types.addToFavorite,
+                    payload: [ dataAsc ],
+                })
+                console.log( resp)
+                dispatch( loadingInComponent( false ) );
+            }else {
+                dispatch( loadingInComponent( false ) );
+
+            }
+            
+
+        }catch( err ) {
+            console.log( err )
+        }
+    }
+}
 
 
 export const favoritesReducer = ( state = initialState, action ) => {

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToFavorites, removeFavorite } from "../reducers/ascFavoritesReducer";
 
 
-export const useToggleFavorite = ( dataCreator ) => {
+export const useToggleFavorite = ( dataCreator, uid ) => {
     const { favoritesReducer } = useSelector( state => state );
     const dispatch = useDispatch();
     const [ isFavorite, setIsFavorite ] = useState( false )
@@ -13,12 +13,12 @@ export const useToggleFavorite = ( dataCreator ) => {
     }, [ favoritesReducer,dataCreator ])
 
     const handleAddToFavorite = () => {
-        dispatch( addToFavorites( dataCreator ) );
+        dispatch( addToFavorites( dataCreator, uid ) );
         setIsFavorite( true );
 
     }
     const handleRemoveFavorite = () => {
-        dispatch( removeFavorite( +dataCreator.aid ) ); 
+        dispatch( removeFavorite( +dataCreator.aid, +uid ) ); 
         setIsFavorite( false );
     }
     const hanldeToggleActionButton = () => {
