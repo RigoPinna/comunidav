@@ -30,6 +30,7 @@ import { WrapperAlert } from '../components/alerts/WrapperAlert'
 import { Alert } from '../components/alerts/Alert'
 import { MapaScreen } from '../components/Pages/MapaScreen'
 
+import { EffectConffetti } from '../components/Conffetti/EffectConffetti'
 
 export const DashboardRouters = ({ history, location }) => {
     useIsLoged( history, location );
@@ -38,16 +39,13 @@ export const DashboardRouters = ({ history, location }) => {
     const uid = localStorage.getItem( 'uid' );
     const token = sessionStorage.getItem( 'token' );
     const [ isMounted ] = useIsMounted();
-   
+    
+    useIsVerify( history, userLogedReducer );
     useEffect(() => {
         if ( isMounted )  {
           if( uid && token) {
             dispatch( getDataUserLoged( uid ) );
             dispatch(addAllFavorites( uid ))
-            dispatch({
-              type: types.loadigApp, 
-              payload: false 
-            });
           } else {
             history.replace('/login')
           }
@@ -55,11 +53,14 @@ export const DashboardRouters = ({ history, location }) => {
           localStorage.removeItem('uid');
         }
     }, [ uid, token, dispatch,isMounted ]);
-    useIsVerify( history, userLogedReducer );
     useEffect(()=> {
       if ( userLogedReducer?.uid ) {
         userLogedReducer.typeUser ==="ASC" && dispatch( addAllEvents( userLogedReducer.uid ));
         dispatch(  addAllGroups( uid) );
+        dispatch({
+          type: types.loadigApp, 
+          payload: false 
+        });
 
       }
     },[ userLogedReducer.uid, dispatch, uid,userLogedReducer.typeUser ])
@@ -68,6 +69,9 @@ export const DashboardRouters = ({ history, location }) => {
     }  
     return (
         <>
+          {
+            uiReducer.viewConffetti && <EffectConffetti />
+          }
           { uiReducer.viewModalImage && <ModalViewImage /> }
           { uiReducer.viewModalSuscribe && <ModalSuscribeEvent /> }
           { uiReducer.viewModalListParticipants && <ModalListParticipants /> }

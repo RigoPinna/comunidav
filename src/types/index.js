@@ -33,4 +33,5 @@ export const types = {
     openAlert: '[ui] open-Alert',
     closeAlert: '[ui] close-Alert',
     deleteGroups: '[groups-event] delete-Group',
+    toggleConffetti: '[ui] toggle-Conffetti'
 }

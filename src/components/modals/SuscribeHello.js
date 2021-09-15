@@ -8,10 +8,14 @@ export const SuscribeHello = ({ userName = 'UserName', evtName = 'Name Event'}) 
         <p>Hola {userName}. </p>
         <br/>
         <p> 
-            Al inscribirte al evento <strong>{ evtName }</strong>, 
-            podras conocer nuevos voluntarios y acceder a las publicaciones
-            en el grupo del evento.
+            Inscribete al evento <strong>{ evtName }</strong> para:
         </p>
+        <ol>
+            <li>Conocer voluntarios.</li>
+            <li>Mantenerte al tanto del estado del evento.</li>
+            <li>Participar en el evento.</li>
+            <li>Publicar y responder preguntas en el grupo.</li>
+        </ol>
             
         </>
     )

@@ -9,6 +9,7 @@ const initialState = {
     viewModalCreateEvent: false,
     viewModalListParticipants: false,
     viewAlert: false,
+    viewConffetti: false
 }
 export const closeAllModal = () => ({
     type:types.closeAllModals,
@@ -49,13 +50,32 @@ export const openModalListParticipants = (list, { uid }) => ({
         participants: list
     }
 });
-export const openModalSuscribe = ( displayName = '',evtName, eid ) => ({
+export const openModalSuscribe = ( event ) => ({
     type:types.openModalImage,
     payload: {
         viewModalSuscribe: true,
-        displayName,
-        eid,
-        evtName,
+        displayName: event.ascName,
+        eid:event.eid,
+        evtName:event.evtName,
+        group: {
+            eid: event.evtID,
+            gid: event.evtID,
+            idCreator: event.uid,
+            nameEvent: event.nameAsc,
+            description: event.description,
+            requirement: event.requires,
+            date:event.date,
+            hours:event.hours,
+            ubication:event.location, 
+            image:event.imageEvt,
+            creator:{
+                uid: event.uid,
+                displayName: event.nameAsc,
+                category: event.category,
+                image: event.userImg,
+            },
+            participants: event.participants
+        }
     }
 });
 export const closeModalSuscribe = () => ({
@@ -72,6 +92,12 @@ export const loadingInComponent = ( loading ) => ({
     type:types.loadingInComponent,
     payload: {
         loadingInComponent: loading
+    }
+})
+export const addConffetti = ( status ) =>({
+    type:types.toggleConffetti,
+    payload: {
+        viewConffetti: status,
     }
 })
 export const openAlert = ( title, contentText, actionButtonAccept = () => {},  addButtonCanceled=false, actionButtonCanceled=()=>{}, textButton="Aceptar" ) => ({
@@ -143,6 +169,11 @@ export const uiReducer = ( state = initialState, action ) => {
                 ...action.payload
             }
         case types.closeAlert:
+            return {
+                ...state,
+                ...action.payload
+            }
+        case types.toggleConffetti :
             return {
                 ...state,
                 ...action.payload

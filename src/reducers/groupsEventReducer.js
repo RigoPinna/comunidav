@@ -27,6 +27,11 @@ export const addAllGroups = ( uid ) => {
     }
 
 }
+export const addGroupsEvent = ( myData, group ) => {
+    return ( dispatch ) => {
+        //TODO: fetch pendiente(front & back)
+    }
+}
 export const registerGroup = ({ nameEvent, imageURL, description, requirement, ubication }, eid, uid, displayName, imgCreator, participants ) => ({
     type: types.registerToGroup,
     payload: {

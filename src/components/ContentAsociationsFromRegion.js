@@ -15,8 +15,8 @@ export const ContentAsociationsFromRegion = ( { historyRouter, userData } ) => {
         if ( isMounted ) {
             if ( userData !== undefined ) {
                 if( isLoading ) {
-                    const { uid, idMun } = userData;
-                    ( asociationsRegionReducer.length <= 0 ) && dispatch( getAssociationsHaveRegion( uid, idMun ) );
+                    const { uid, idState } = userData;
+                    ( asociationsRegionReducer.length <= 0 ) && dispatch( getAssociationsHaveRegion( uid, idState ) );
                     setIsLoading( false );
                 }
             }

@@ -6,22 +6,22 @@ import { IconArrowRight } from '../iconos/IconArrowRight';
 import { IconSuscribe } from '../iconos/IconSuscribe';
 import { LoadingInComponent } from '../loadings/LoadingInComponent';
 
-export const ButtonSuscribeEvent = ( {uid, eid, ascName, evtName,participants }) => {
+export const ButtonSuscribeEvent = ( event ) => {
     const dispatch = useDispatch();
     const [ suscribed, setSuscribed ] = useState({ loading:true, suscribed: false})
     const history = useHistory();
     useEffect(() => {
-        if ( !!participants ) {
+        if ( !!event.participants ) {
 
-            const isSuscribe = participants.some( user => +user.uid === +uid );
+            const isSuscribe = event.participants.some( user => +user.uid === +event.uidLoged );
             setSuscribed({ loading:false, suscribed: isSuscribe });
         }
     }, [])
     const handleOnClick = () => {
         if ( suscribed.suscribed ) {
-            history.push(`/event?query=${eid}`);
+            history.push(`/event?query=${event.eid}`);
         } else {
-            dispatch( openModalSuscribe( ascName,evtName, eid ) );
+            dispatch( openModalSuscribe( event ) );
         }
     }
     return (

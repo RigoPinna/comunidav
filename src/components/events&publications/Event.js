@@ -8,29 +8,29 @@ import { ButtonSendMessage } from '../inbox/ButtonSendMessage'
 import { useSelector } from 'react-redux'
 import { IconLocation } from '../iconos/IconLocation'
 
-export const Event = ({ evtID, uid, aid,nameAsc,userImg, category,evtName, date, hours, location, imageEvt, requires, description, participants }) => {
+export const Event = ( event ) => {
     
     const { userLogedReducer } = useSelector( state => state )
     const [isTheCreator, setisTheCreator] = useState( false )
     useEffect(() => {
         if ( !!userLogedReducer.uid ) {
-            setisTheCreator(( userLogedReducer.uid === uid ))
+            setisTheCreator(( userLogedReducer.uid === event.uid ))
         }
     }, [userLogedReducer.uid ])
     
     return (
         <div className = "__wrapper_publication_and_event animate__animated animate__fadeIn">
             <ButtonubMenuEvent 
-                eid = { evtID } 
+                eid = { event.evtID } 
                 uiLoged = {userLogedReducer.uid }  
                 isTheCreator = { isTheCreator }
-                participants = {  participants }
-                nameEvent = { evtName }
+                participants = {  event.participants }
+                nameEvent = { event.evtName }
                 dataCreator = {{
-                    uid,
-                    aid,
-                    displayName: nameAsc,
-                    category,
+                    uid: event.uid,
+                    aid: event.aid,
+                    displayName: event.nameAsc,
+                    category: event.category,
                 }}
             />
          
@@ -38,31 +38,28 @@ export const Event = ({ evtID, uid, aid,nameAsc,userImg, category,evtName, date,
             <div className = "__wrapper_publication_and_event_header">
                 <ItemUser 
                     typeUser = {'ASC'} 
-                    image = { userImg }
-                    displayName = { nameAsc }
-                    textSecondary = { `Categoria • ${ category }` }
+                    image = { event.userImg }
+                    displayName = { event.nameAsc }
+                    textSecondary = { `Categoria • ${ event.category }` }
 
                 />
             </div>
             <div className = "__wrapper_publication_and_event_body">
-                <h3>{evtName}</h3>
-                <p>Este evento inicia el <time>{date} • {hours}</time></p>
+                <h3>{event.evtName}</h3>
+                <p>Este evento inicia el <time>{event.date} • {event.hours}</time></p>
                 { 
-                    !!imageEvt  && <ImageEvent image = { imageEvt } title = { evtName } />
+                    !!event.imageEvt  && <ImageEvent image = { event.imageEvt } title = { event.evtName } />
                 }
                 {
-                    !!description && <p>{description}</p>
+                    !!event.description && <p>{event.description}</p>
                 }
-                <p><strong>Ubicación </strong>• {location}</p>
-                <p className="badge_short badge_color_blue">{ participants.length } persona(s) inscrita(s)</p>
+                <p><strong>Ubicación </strong>• {event.location}</p>
+                <p className="badge_short badge_color_blue">{ event.participants.length } persona(s) inscrita(s)</p>
             </div>
             <div className="__wrapper_publication_and_event_footer">
                 <ButtonSuscribeEvent
-                    uid= { userLogedReducer.uid } 
-                    participants = { participants }
-                    ascName = { nameAsc } 
-                    evtName = { evtName }
-                    eid = { evtID } 
+                    uidLoged= { userLogedReducer.uid } 
+                    {...event} 
 
                 />
                 {

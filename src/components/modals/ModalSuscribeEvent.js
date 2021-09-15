@@ -9,9 +9,10 @@ import { WrapperModalsOrAlerts } from './WrapperModalsOrAlerts'
 
 export const ModalSuscribeEvent = () => {
     const { uiReducer, userLogedReducer } = useSelector( state => state );
-    const { eid, evtName } = uiReducer;
+    const { eid, evtName, group } = uiReducer;
     const { displayName } = userLogedReducer;
     const [ stateSuscription, setStateSuscription ] = useState( true );
+    console.log( group );
     return (
         <WrapperModalsOrAlerts>
                 <h1>{ stateSuscription ? 'Inscripción' : '¡Inscrito al evento!'}<span></span></h1>   
