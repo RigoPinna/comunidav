@@ -2,7 +2,7 @@ import { fetchCreateEvent } from "../services/fetchCreateEvent";
 import { fetchDeleteEvent } from "../services/fetchDeleteEvent";
 import { fetchGetEventUser } from "../services/fetchGetEventUser";
 import { types } from "../types";
-import { deleteGroup, registerGroup } from "./groupsEventReducer";
+import { deleteGroup, createMyGroup } from "./groupsEventReducer";
 import { closeAlert, loadingInComponent, openAlert } from "./uiReducer";
 //OBJECT EVENT EXAMPLE.
 // uid:number
@@ -63,7 +63,7 @@ export const createEvent = ( { uid, aid, displayName, image,category },dataEvent
                         // listParticipants:participants,
                     }]
                 })
-                dispatch( registerGroup( dataEvent, resp.eid, uid, displayName, image, participants ) );
+                dispatch( createMyGroup( dataEvent, resp.eid, uid, displayName, image, participants ) );
                 dispatch( loadingInComponent( false ) ) 
             }
         } catch( err ) {

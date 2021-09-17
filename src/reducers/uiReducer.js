@@ -100,6 +100,12 @@ export const addConffetti = ( status ) =>({
         viewConffetti: status,
     }
 })
+export const nextStepsuscribe = ( ) =>({
+    type:types.nextStepSuscribe,
+    payload: {
+        nextStepSuscribe: true,
+    }
+})
 export const openAlert = ( title, contentText, actionButtonAccept = () => {},  addButtonCanceled=false, actionButtonCanceled=()=>{}, textButton="Aceptar" ) => ({
     type:types.openAlert,
     payload: {
@@ -174,6 +180,11 @@ export const uiReducer = ( state = initialState, action ) => {
                 ...action.payload
             }
         case types.toggleConffetti :
+            return {
+                ...state,
+                ...action.payload
+            }
+        case types.nextStepSuscribe:
             return {
                 ...state,
                 ...action.payload

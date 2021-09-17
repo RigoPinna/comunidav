@@ -65,7 +65,7 @@ export const ItemGroup = ({eid, nameEvent,date, hour, image, description, ubicat
                         />
                     </div>
                     <ButtonSuscribeEvent
-                        uid = { uid }
+                        uidLoged = { uid }
                         eid = { eid }
                         ascName = { creator.displayName }
                         evtName = {nameEvent}

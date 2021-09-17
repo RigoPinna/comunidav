@@ -25,7 +25,10 @@ export const EffectConffetti = () => {
     return (
         <>
             {
-                viewConffetti && <Confetti width={ width } height={ height }/>
+                viewConffetti 
+                    &&  <div className="__wapper_conffeti">
+                            <Confetti width={ width } height={ height }/>
+                        </div>
             }
         </>
     )

@@ -1,5 +1,7 @@
 import { fetchGetGroupsEvents } from "../services/fetchGetGroupsEvents";
+import { fetchRegisterToGroup } from "../services/fetchRegisterToGroup";
 import { types } from "../types";
+import { addConffetti, closeAlert, loadingInComponent, nextStepsuscribe, openAlert } from "./uiReducer";
 // [
 //     {
 //         eid,
@@ -27,13 +29,42 @@ export const addAllGroups = ( uid ) => {
     }
 
 }
-export const addGroupsEvent = ( myData, group ) => {
-    return ( dispatch ) => {
+export const registerToGroup = ( myData, group) => {
+    return async ( dispatch ) => {
         //TODO: fetch pendiente(front & back)
+        dispatch( loadingInComponent( true ) )
+        const resp = await fetchRegisterToGroup( myData, group );
+        if( resp.ok === true ) {
+            dispatch( addConffetti(true) );
+            let { participants } = group;
+            participants = [ 
+                ...participants, 
+                { 
+                    ui:myData.uid, 
+                    name:myData.name,
+                    lastName:myData.lastName, 
+                    image:myData.image,
+                    nameAsc: ( myData.typeUser === "ASC" ) ? myData.displayName : null,
+                }
+            ]
+            dispatch({
+                type: types.registerToGroup,
+                payload:{ ...group, participants },
+            });
+            dispatch( nextStepsuscribe() );
+        } else {
+            dispatch( openAlert(
+                'Error',
+                'Algo salió mal, intenta más tarde',
+                () => closeAlert()
+            ));
+        }
+        dispatch( loadingInComponent( false ) )
+
     }
 }
-export const registerGroup = ({ nameEvent, imageURL, description, requirement, ubication }, eid, uid, displayName, imgCreator, participants ) => ({
-    type: types.registerToGroup,
+export const createMyGroup = ({ nameEvent, imageURL, description, requirement, ubication }, eid, uid, displayName, imgCreator, participants ) => ({
+    type: types.createMyGroup,
     payload: {
         eid,
         nameEvent,
@@ -64,6 +95,8 @@ export const groupsReducer = ( state = initialState, action ) => {
         case types.addGroupsEvent:
             return [...state, ...action.payload ];
 
+        case types.createMyGroup:
+            return [...state, action.payload ];
         case types.registerToGroup:
             return [...state, action.payload ];
         case types.resetGroups:

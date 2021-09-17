@@ -12,7 +12,6 @@ export const ButtonSuscribeEvent = ( event ) => {
     const history = useHistory();
     useEffect(() => {
         if ( !!event.participants ) {
-
             const isSuscribe = event.participants.some( user => +user.uid === +event.uidLoged );
             setSuscribed({ loading:false, suscribed: isSuscribe });
         }

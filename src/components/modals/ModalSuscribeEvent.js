@@ -12,7 +12,6 @@ export const ModalSuscribeEvent = () => {
     const { eid, evtName, group } = uiReducer;
     const { displayName } = userLogedReducer;
     const [ stateSuscription, setStateSuscription ] = useState( true );
-    console.log( group );
     return (
         <WrapperModalsOrAlerts>
                 <h1>{ stateSuscription ? 'Inscripción' : '¡Inscrito al evento!'}<span></span></h1>   
@@ -25,7 +24,7 @@ export const ModalSuscribeEvent = () => {
                 </div>
                 <div className = "__modal_footer">
                     { stateSuscription 
-                        ? <GroupButtonsHello setStateSuscription = { setStateSuscription } />
+                        ? <GroupButtonsHello setStateSuscription = { setStateSuscription } groupData = { group }/>
                         : <GroupButtonsWelcome />
                     }
                     

@@ -28,10 +28,12 @@ export const types = {
     openModalCreateEvent: '[ui] open-Modal-Create-event',
     createEvent: '[event-user] Create-Event',
     loadingInComponent: '[ui] loading-in-component',
-    registerToGroup: '[ groups-event ] register-to-group',
+    createMyGroup: '[ groups-event ] create-my-group',
     openModalListParticipants: '[ui] open-Modal-ListParticipants',
     openAlert: '[ui] open-Alert',
     closeAlert: '[ui] close-Alert',
     deleteGroups: '[groups-event] delete-Group',
-    toggleConffetti: '[ui] toggle-Conffetti'
+    toggleConffetti: '[ui] toggle-Conffetti',
+    registerToGroup: '[groups-event] register-To-Group',
+    nextStepSuscribe:'[ui] next-step-suscribe',
 }

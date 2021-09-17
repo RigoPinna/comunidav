@@ -1,7 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
-
+import { WrapperFeed } from '../events&publications/WrapperFeed';
 export const HomeScreen = () => {
     return (
         <>
@@ -13,12 +12,12 @@ export const HomeScreen = () => {
                 content="Comunidav,comunidav,Comunidad, comunidav, asociación, asociacion, voluntario"/>
             
         </Helmet>
-        <div>
-            <h1>HOME</h1>
-            <Link to="/mapa">
-                ir a perfil
-            </Link>
+        <div className="__title_pages">
+            <h1>Todos los eventos en $region</h1>
         </div>
+        <WrapperFeed>
+
+        </WrapperFeed>
         </>
     )
 }

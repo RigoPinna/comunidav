@@ -1,17 +1,16 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
-import { useLoadingButton } from '../../hooks/useLoadingButton';
-import { addConffetti } from '../../reducers/uiReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerToGroup } from '../../reducers/groupsEventReducer';
 import { IconArrowRight } from '../iconos/IconArrowRight';
 import { LoadingInComponent } from '../loadings/LoadingInComponent';
 
-export const GroupButtonsHello = ({ setStateSuscription }) => {
-    const [ isLoading, setLoading ] = useLoadingButton();
+export const GroupButtonsHello = ({ setStateSuscription, groupData }) => {
+    const { userLogedReducer, uiReducer } = useSelector( state => state )
     const dispatch = useDispatch();
     const hanldeSuscribe = () => {
-        setLoading( !isLoading )
-        setStateSuscription( false );
-        dispatch( addConffetti(true) );
+        dispatch( registerToGroup( userLogedReducer, groupData, setStateSuscription ) );
+        setStateSuscription( uiReducer.nextStepSuscribe )
+       
     }
     return (
         <>
@@ -19,10 +18,10 @@ export const GroupButtonsHello = ({ setStateSuscription }) => {
             <button 
                 onClick ={ hanldeSuscribe } 
                 className = "__btn"
-                disabled = { isLoading }
+                disabled = { uiReducer.loadingInComponent}
             >
             { 
-                isLoading
+                uiReducer.loadingInComponent
                     ? <LoadingInComponent />
                     : (<>
                         <p>Inscribirme</p>
