@@ -22,11 +22,11 @@ export const SubMenuUserLoged = ({ history, setView }) => {
         dispatch( resetMyEvent() );
         dispatch( uiLogout() );
         localStorage.removeItem( 'uid' );
+        sessionStorage.removeItem( 'token');
         history.replace('/login');
     }
     const handleGoToMyProfile = () => {
-        const uid = localStorage.getItem( 'uid' );
-        history.push(`/user?q=${uid}`);
+        history.push(`/profile`);
         setView( false );
     }
     const handleGoToConfig = () => {

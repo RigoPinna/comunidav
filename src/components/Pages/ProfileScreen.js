@@ -2,7 +2,7 @@ import React,{ useState, useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 
 import {  useSelector } from 'react-redux';
-import { fetchGetInfoUserLoged } from '../../services/fetchGetInfoUserLoged';
+import { fetchGetInfoUser } from '../../services/fetchGetInfoUser';
 import { Profile } from '../profile/Profile';
 import { Helmet } from 'react-helmet';
 
@@ -23,7 +23,7 @@ export const ProfileScreen = (  ) => {
                 setUserData( userLogedReducer )
             } else {
                 // setLoading( true )
-                fetchGetInfoUserLoged( uidURL ).then( data => {
+                fetchGetInfoUser( uidURL ).then( data => {
                     setUserData( data )
                     // setLoading( false )
 

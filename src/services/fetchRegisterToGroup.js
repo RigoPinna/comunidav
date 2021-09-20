@@ -6,6 +6,7 @@ export const fetchRegisterToGroup = async ( { uid },{ eid, idCreator } ) => {
 
     const { API } = SERVER_API;
     const token = sessionStorage.getItem( 'token' );
+    console.log(idCreator)
     const formData = generateFormDataFromObject({ uid, eid, token, idCreator });
     const url = `${ API }registerToGroup.php`;
     const resp = await fetch( url, { method: 'POST', body: formData });

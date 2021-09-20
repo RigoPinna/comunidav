@@ -20,7 +20,7 @@ export const ColumnRight = ({history }) => {
     const [isLoading, setIsLoading] = useState( Object.keys( userLogedReducer ) );
     const [ isMounted ] = useIsMounted();
     const handleGoMyProfile = () => {
-        history.push( `/user?q=${uid}` );
+        history.push( `/profile` );
     }
     useEffect(() => {
         if ( isMounted ) {

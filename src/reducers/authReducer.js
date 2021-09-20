@@ -1,11 +1,11 @@
 import { generateFormDataFromObject } from "../helpers/generateFormDataFromObject";
-import { fetchGetInfoUserLoged } from "../services/fetchGetInfoUserLoged";
+import { fetchGetInfoUser } from "../services/fetchGetInfoUser";
 import { fetchUpdateUserData } from "../services/fetchUpdateUserData";
 import { types } from "../types";
 
 export const getDataUserLoged = ( uid ) => {
     return ( dispatch ) => {
-         fetchGetInfoUserLoged( uid ).then( dataUser => {
+         fetchGetInfoUser( uid ).then( dataUser => {
             const action = {
                 type: types.userLoged,
                 payload: {

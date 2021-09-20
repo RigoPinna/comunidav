@@ -5,8 +5,7 @@ import { ItemUser } from './ItemUser';
 
 export const ItemAssociationFromRegion = ( props ) => {
     const handleRedirectToProfileAsc = ( uid ) => {
-        props.historyRouter.push( `/user?q=${uid}` );
-
+        props.historyRouter.push( `/association/${uid}` );
     }
     return (
         <>

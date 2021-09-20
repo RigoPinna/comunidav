@@ -1,12 +1,12 @@
 import React, { useRef } from 'react'
 import { useGetPalleterColorImg } from '../../hooks/useGetPalleterColorImg';
 import { IconDescription } from '../iconos/IconDescription';
-import { MapaScreen } from '../Pages/MapaScreen';
+import { SubMenuPublicProfile } from '../menus/SubMenuPublicProfile';
 import { ButtonFavorite } from '../profile/ButtonFavorite';
 import { BadgeShort } from './BadgeShort'
 
 
-export const ContainerInfoProfile = ({ aid, displayName, typeUser, category, description, image, isMyProfile,lat,long }) => {
+export const ContainerInfoProfile = ({ aid, displayName, typeUser, category, description, image, isMyProfile,lat,lng, setOptions, options,viewUbication }) => {
     const typeUserNameLong = typeUser === 'ASC' ? 'Asociación' : 'Voluntario';
     const canvasRef = useRef( null )
     const img = useRef( null )
@@ -33,8 +33,9 @@ export const ContainerInfoProfile = ({ aid, displayName, typeUser, category, des
                         <p >{ !!description ? description : 'Esta asociación no tiene descripción...' }</p>
                 </div>
             </div>
-                {/* <MapaScreen /> */}
-                
+            {
+               !isMyProfile && +viewUbication != 0 && <SubMenuPublicProfile options={ options } setOptions={ setOptions }  lat={ lat } lng = { lng }/>
+            } 
         </div>
     )
 }

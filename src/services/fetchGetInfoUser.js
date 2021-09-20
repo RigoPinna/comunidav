@@ -1,6 +1,6 @@
 import { SERVER_API } from "../SERVER-API/SERVER-API";
 
-export const fetchGetInfoUserLoged = async(uid) => {
+export const fetchGetInfoUser = async(uid) => {
     
     const { API } = SERVER_API;
     const formData = new FormData();

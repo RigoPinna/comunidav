@@ -9,62 +9,47 @@ import { ContainerInfoProfile } from '../Items/ContainerInfoProfile'
 import { DoPublicationHeader } from '../Items/DoPublicationHeader'
 import { SubMenuUser } from '../menus/SubMenuUser'
 
-export const Profile = ({ uidURL, userData, userLogedReducer, isMyProfile }) => {
+export const Profile = ({ userData }) => {
     const [ viewOption, setViewOption ] = useState( undefined );
     const [ isMounted ] = useIsMounted();
     useEffect(() => {
-        if   ( isMounted ) {
-            if ( isMyProfile ) {
+        if ( isMounted ) {
+            if( !!userData.uid ) {
                 setViewOption( 
-                    userLogedReducer.typeUser === 'ASC' 
+                    userData.typeUser === 'ASC' 
                     ? OPTION_SUBMEN_USER.viewMyEvents 
                     : OPTION_SUBMEN_USER.viewMyGroups);
-            } else {
-                console.log('entra');
-                ( typeof isMyProfile !== undefined ) && setViewOption( 1 )
-            }
         }
-    }, [ uidURL,isMyProfile,isMounted,userLogedReducer.typeUser ])
+
+        }
+    }, [ userData ])
     return (
         
         <>
+            <ContainerInfoProfile { ...userData } isMyProfile ={ true } />
             {
-                isMyProfile &&
-                    <div className="__title_pages">
-                        <h1>Mi perfil</h1>
-                    </div>
-            }
-            <ContainerInfoProfile { ...userData } isMyProfile ={ isMyProfile } />
-            {
-                ( isMyProfile && userData.typeUser === 'ASC' ) 
+                ( userData.typeUser === 'ASC' ) 
                     && <DoPublicationHeader 
                             displayName={ userData.displayName } 
                             textSecondary = { `Categoria • ${ userData.category }` } 
                             image = { userData.image } 
                         />
             }
-                { 
-                    (isMyProfile ) 
-                        && <SubMenuUser 
-                                setViewOption = { setViewOption }
-                                typeUser = { userData.typeUser }
-                            />
-                        
+            <SubMenuUser setViewOption = { setViewOption } typeUser = { userData.typeUser }/> 
+            <WrapperFeed>
+                {
+                    ( viewOption === OPTION_SUBMEN_USER.viewMyEvents && userData.typeUser === 'ASC' )
+                        && <EventsUser  uid={ userData.uid } />
                 }
-               <WrapperFeed>
-                    {
-                        ( viewOption === OPTION_SUBMEN_USER.viewMyEvents && userData.typeUser === 'ASC' )
-                            && <EventsUser  uid={ uidURL } />
-                    }
-                    {
-                        ( viewOption === OPTION_SUBMEN_USER.viewMyGroups )
-                            && <GroupsEvents />
-                    }
-                    {
-                        ( viewOption === OPTION_SUBMEN_USER.viewMyFav )
-                            && <FavoritesAssociations />
-                    }
-               </WrapperFeed>
+                {
+                    ( viewOption === OPTION_SUBMEN_USER.viewMyGroups )
+                        && <GroupsEvents />
+                }
+                {
+                    ( viewOption === OPTION_SUBMEN_USER.viewMyFav )
+                        && <FavoritesAssociations />
+                }
+            </WrapperFeed>
         </>
     )
 }

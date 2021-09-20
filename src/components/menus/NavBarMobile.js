@@ -4,7 +4,7 @@ import { IconHome } from '../iconos/IconHome'
 import { IconInbox } from '../iconos/IconInbox'
 import { IconSearch } from '../iconos/IconSearch'
 import { IconUser } from '../iconos/IconUser'
-export const NavBarMovile = ({uid}) => {
+export const NavBarMovile = () => {
 
     return (
         <div className ="__navbar_mobile">
@@ -32,7 +32,7 @@ export const NavBarMovile = ({uid}) => {
                         </NavLink>
                     </li>
                     <li className ="_navbar_option_responsive">
-                        <NavLink activeClassName="__navbar_option_active " className="__navbar_option" to = {`/user?q=${uid}`}>
+                        <NavLink activeClassName="__navbar_option_active " className="__navbar_option" to = {`/profile`}>
                             <IconUser />
                             <p>Mi perfil</p>
                             <span></span>

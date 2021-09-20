@@ -9,13 +9,18 @@ import { LoadingInComponent } from '../loadings/LoadingInComponent';
 export const ButtonSuscribeEvent = ( event ) => {
     const dispatch = useDispatch();
     const [ suscribed, setSuscribed ] = useState({ loading:true, suscribed: false})
+    const { groupsReducer } = useSelector( state => state )
     const history = useHistory();
     useEffect(() => {
-        if ( !!event.participants ) {
+        const haveEvent = groupsReducer.some( e => +e.eid === +event.evtID || +e.eid === +event.eid);
+        if( haveEvent ) {
+            setSuscribed({ loading:false, suscribed: true });
+        } else if ( !!event.participants ) {
             const isSuscribe = event.participants.some( user => +user.uid === +event.uidLoged );
             setSuscribed({ loading:false, suscribed: isSuscribe });
         }
-    }, [])
+    }, [ groupsReducer ])
+
     const handleOnClick = () => {
         if ( suscribed.suscribed ) {
             history.push(`/event?query=${event.eid}`);
@@ -36,15 +41,6 @@ export const ButtonSuscribeEvent = ( event ) => {
                             ? <>Ir al grupo<IconArrowRight /> </> 
                             : <> <IconSuscribe /><p>Inscribirme</p> </>
                 }
-            {/* { 
-                !isTheCreator && <IconSuscribe /> 
-            }
-            <p>
-                { textButton !== '' ? textButton : text }
-            </p>
-            { 
-                (isTheCreator || isSuscribe ) && 
-            } */}
         </button>
     )
     

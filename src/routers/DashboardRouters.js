@@ -31,9 +31,11 @@ import { Alert } from '../components/alerts/Alert'
 import { MapaScreen } from '../components/Pages/MapaScreen'
 
 import { EffectConffetti } from '../components/Conffetti/EffectConffetti'
+import { MyProfileScreen } from '../components/Pages/MyProfileScreen'
+import { PublicProfileAsc } from '../components/profile/PublicProfileAsc'
 
 export const DashboardRouters = ({ history, location }) => {
-    useIsLoged( history, location );
+    // useIsLoged( history, location );
     const { uiReducer, userLogedReducer } = useSelector( state => state );
     const dispatch = useDispatch();
     const uid = localStorage.getItem( 'uid' );
@@ -63,7 +65,7 @@ export const DashboardRouters = ({ history, location }) => {
         });
 
       }
-    },[ userLogedReducer.uid, dispatch, uid,userLogedReducer.typeUser ])
+    },[ userLogedReducer.uid, dispatch ])
     if ( uiReducer.loading ) {
         return ( <LoadingScreen />)
     }  
@@ -95,7 +97,8 @@ export const DashboardRouters = ({ history, location }) => {
           <main>
               <section>
                 <Switch>
-                  <Route exact path = "/user" component = { ProfileScreen  }/>
+                  <Route exact path = "/profile" component = { MyProfileScreen } />
+                  <Route exact path = "/association/:uid" component = { PublicProfileAsc  }/>
                   <Route exact path = "/create" component = { CreateEventScreen }/>
                   <Route exact path = "/home" component = { HomeScreen }/>
                   <Route exact path = "/event" component = { EventScreen }/>

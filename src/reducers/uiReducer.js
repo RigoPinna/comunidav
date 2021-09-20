@@ -60,7 +60,7 @@ export const openModalSuscribe = ( event ) => ({
         group: {
             eid: event.evtID,
             gid: event.evtID,
-            idCreator: event.uid,
+            idCreator: event.aid,
             nameEvent: event.nameAsc,
             description: event.description,
             requirement: event.requires,
