@@ -17,20 +17,18 @@ export const useDataPublic = () => {
        ( async () => {
            const resp =  await fetchGetInfoUser( uid );
            if( resp?.uid ) {
-            setUserData(  resp );
-            setStateSearch( STATE_SEARCH_USER.found );
+               if ( !(resp.typeUser === 'VOL') ) {
+                setUserData( resp );
+                setStateSearch( STATE_SEARCH_USER.found )
+
+               } else {
+                setStateSearch( STATE_SEARCH_USER.error404 )
+               }
            } else {
             setStateSearch( STATE_SEARCH_USER.error404 )
            }
        })();
    }, [ uid ]);
-   useEffect(() => {
-       if ( userData?.uid ) {
-           ( !(userData.typeUser === 'ASC') ) && setUserData( null ) 
-       }
-
-   }, [ userData ]);
-
    return  [stateSearch, userData, STATE_SEARCH_USER ]; 
     
 }

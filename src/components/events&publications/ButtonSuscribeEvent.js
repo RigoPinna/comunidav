@@ -23,7 +23,7 @@ export const ButtonSuscribeEvent = ( event ) => {
 
     const handleOnClick = () => {
         if ( suscribed.suscribed ) {
-            history.push(`/event?query=${event.eid}`);
+            history.push(`/event?query=${event.eid || event.evtID}`);
         } else {
             dispatch( openModalSuscribe( event ) );
         }

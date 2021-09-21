@@ -229,7 +229,7 @@ main {
             padding-block:10px ;
             white-space: wrap;
             overflow: hidden;
-  text-overflow: ellipsis;
+            text-overflow: ellipsis;
         }
         .map_asc {
             width:100%;
@@ -987,6 +987,21 @@ footer {
     align-content: space-between;
     .__input_radio {
         width: 50%;
+    }
+}
+.__wrapper_svg_404 {
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    flex-flow: column wrap;
+    h3 {
+        font-family: 'SF-Bold';
+        margin-bottom: 5px;
+    }
+    svg {
+        width: 80%;
+        height: 80%;
     }
 }
 @include medium {
