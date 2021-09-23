@@ -9,7 +9,8 @@ const initialState = {
     viewModalCreateEvent: false,
     viewModalListParticipants: false,
     viewAlert: false,
-    viewConffetti: false
+    viewConffetti: false,
+    isParticipantGroup: false,
 }
 export const closeAllModal = () => ({
     type:types.closeAllModals,
@@ -124,6 +125,12 @@ export const closeAlert = () => ({
         viewAlert: false,
     }
 });
+export const isParticipantGroup = ( isParticipantGroup ) => ({
+    type:types.isParticipantGroup,
+    payload: {
+        isParticipantGroup,
+    }
+})
 export const uiReducer = ( state = initialState, action ) => {
 
     switch ( action.type ) {
@@ -185,6 +192,11 @@ export const uiReducer = ( state = initialState, action ) => {
                 ...action.payload
             }
         case types.nextStepSuscribe:
+            return {
+                ...state,
+                ...action.payload
+            }
+        case types.isParticipantGroup:
             return {
                 ...state,
                 ...action.payload

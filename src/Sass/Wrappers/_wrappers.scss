@@ -1004,6 +1004,112 @@ footer {
         height: 80%;
     }
 }
+.__wrapper_info_event {
+
+    h2 {
+        font-family: 'SF-Bold';
+        font-size:16px;
+        padding: 10px 10px 0 10px;
+    }
+    .__wrapper_info_event_body {
+        padding: 10px;
+        details {
+            margin: 5px 0 2px 0;
+        }
+        details+p {
+            width:100%;
+            white-space:nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 10px;
+            
+        }
+        details[open]+p {
+            display:none;
+        }
+    }
+    .__wrapper_info_footer {
+        border-top: 1px solid #DBDBDB;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        & > div {
+            width: 50%;
+        }
+        .__wrapper_list_avatars {
+            align-items: center;
+            border-left: 1px solid #DBDBDB;
+            padding-left: 10px;
+            p {
+                margin:0 8px 0 0;
+            }
+
+        }
+    }
+}
+
+.__wrapper_group_feed {
+display: block;
+width: 100%;
+margin-top:10px;
+}
+.__wrapper_publication {
+    display: block;
+    padding: 10px;
+    min-height: 100px;
+    margin: 10px 0;
+    position: relative;
+    background:$always-white;
+    border-radius: $br-radius;
+    img {
+        box-shadow:none;
+    }
+    .info_general_evt {
+        width: 100%;
+        p{
+            font-size:12px;
+            color: $color-black-2;
+            padding: 10px;
+        }
+    }
+    form {
+        display: flex;
+        width: 100%;
+        height: auto;
+        margin-top: 10px;
+        button{
+            max-width:62px;
+            margin-left: 5px;
+        }
+    }
+    .container-response {
+        display:block;
+        width: calc(100% - 10px);
+        min-height: 50px;
+        border-left: 1px solid #ccc;
+        margin-left: 10px;
+        .__message_recibed::after {
+            content: '';
+            display: block;
+            position: absolute;
+            left:0;
+            top:0;
+            width:20px;
+            height: 20px;
+            border-left:1px solid #ccc;
+            border-radius:100%;
+            border-top: 1px solid transparent;
+            border-bottom: 1px solid transparent;
+            transform: rotate(-47deg);
+        }
+    }
+    .container-response > p {
+        margin-left: 20px;
+        font-size:10px;
+        font-family: 'SF-Bold';
+    }
+}
+
 @include medium {
     .__wrapper_info {
         font-size:11px;

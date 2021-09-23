@@ -36,4 +36,6 @@ export const types = {
     toggleConffetti: '[ui] toggle-Conffetti',
     registerToGroup: '[groups-event] register-To-Group',
     nextStepSuscribe:'[ui] next-step-suscribe',
+    isParticipantGroup:'[ui] is-participant-group',
+    addInformationGroup:'[group-visit] visited-group',
 }

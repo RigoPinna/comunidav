@@ -6,6 +6,7 @@ import { asociationsRegionReducer } from '../reducers/asocitionsFromRegionReduce
 
 import { userLogedReducer } from "../reducers/authReducer"
 import { groupsReducer } from '../reducers/groupsEventReducer';
+import { groupVisitReducer } from '../reducers/groupVisit';
 import { myEventsReducer } from '../reducers/myEventsReducer';
 import { uiReducer } from '../reducers/uiReducer';
 
@@ -18,8 +19,8 @@ const composeEnhancers =
         myEventsReducer,
         groupsReducer,
         favoritesReducer,
+        groupVisitReducer,
     });
-
 export const store = createStore( 
         reducers,
         composeEnhancers(

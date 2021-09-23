@@ -12,10 +12,11 @@ import ReactTooltip from 'react-tooltip';
 import { ButtonSuscribeEvent } from '../events&publications/ButtonSuscribeEvent';
 import { ButtonMenuGroup } from '../menus/ButtonMenuGroup'
 import { useActionsEvents } from '../../hooks/useActionsEvents';
+import { Participants } from './Participants';
 
 export const ItemGroup = ({eid, nameEvent,date, hour, image, description, ubication, creator, participants }) => {
     const { uid }= useSelector( state => state.userLogedReducer );
-    const { hanldeViewList } = useActionsEvents({ participants, eid });
+   
     return (
         <div className = "__wrapper_publication_and_event animate__animated animate__fadeIn">
             <ButtonMenuGroup  creator = {creator} uid = { uid } eid = { eid }/>
@@ -36,34 +37,7 @@ export const ItemGroup = ({eid, nameEvent,date, hour, image, description, ubicat
                 <p>{!!description ? description : 'Este evento no tiene descripción.'}</p>
                 <ItemInfoFav info = { ubication } Icon = {IconLocation} colorIcon = {'#77A7FF'} />
                 <div className="__wrapper_publication_and_event_footer">
-                    <div className="__wrapper_list_avatars">
-                        <p>Participante(s):</p>
-                        {
-                            participants.map(( user, i ) => {
-                                return (
-                                    ( i < 5 ) 
-                                    && <div key={`prsid-${ Date.now() }-${user.uid}`}  data-for={'prt'} data-tip={!!user.nameAsc ? user.nameAsc : `${ user.name } ${ user.lastName }`}>
-                                        <Avatar 
-                                            
-                                            image = { user.image } 
-                                            name = { user.displayName } 
-                                        />
-                                    </div>
-                                );
-                            })
-                        }
-                        {
-                            participants.length >= 5 &&  <span onClick={hanldeViewList }>+{participants.length - 5}</span>
-                        }
-                        <ReactTooltip 
-                            id={'prt'}
-                            getContent={(dataTip) =><p style={{color:"#FFF"}}>{ dataTip }</p>}
-                            effect='solid'
-                            delayHide={500}
-                            delayShow={100}
-                            delayUpdate={500}
-                        />
-                    </div>
+                    <Participants eid={eid} participants = { participants }/>
                     <ButtonSuscribeEvent
                         uidLoged = { uid }
                         eid = { eid }

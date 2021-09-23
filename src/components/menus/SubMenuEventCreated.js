@@ -9,7 +9,7 @@ export const SubMenuEventCreated = ({ isTheCreator, dataCreator, participants, n
             {
                 isTheCreator 
                     ? <ContentMenuIsMyEvent participants={participants} nameEvent={nameEvent} eid = { eid }/>
-                    : <ContentMenuNotIsMyEvent {...dataCreator}/>
+                    : <ContentMenuNotIsMyEvent {...dataCreator} eid = { eid }/>
             }
         </>
     )

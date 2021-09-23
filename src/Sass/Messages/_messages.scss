@@ -18,3 +18,56 @@
         font-size: 14px;
     }
 }
+.__message_sended, .__message_recibed {
+    width: 100%;
+    position: relative;
+    padding: 10px;
+    
+}
+.__message {
+    display:flex;
+    flex-flow: column wrap;
+    padding-left: 5px;
+    span {
+        font-size: 10px;
+        font-family: 'SF-Bold';
+        color: var(--color-black-2);
+        padding-bottom: 3px;
+    }
+    p {
+        display: block;
+        position: relative;
+        margin-top: 1.5px;
+        padding: 4px 10px;
+        float: right;
+        border-radius: 15px;
+        color: var(--color-black-2);
+        font-family: 'SF-Regular';
+        font-size: 12px;
+        font-style: normal;
+        max-width: 320px;
+        word-wrap: break-word;
+    
+    }
+}
+.__message_sended {
+
+
+}
+.__message_recibed {
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 90%;
+    justify-content: flex-start;
+    img {
+        box-shadow: none;
+        width: 40px;
+        height: 40px;
+    }
+    .__message {
+        p{
+            background: #f3f3f3;
+        }
+    }
+
+}

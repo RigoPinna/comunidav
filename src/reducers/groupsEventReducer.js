@@ -1,7 +1,9 @@
 import { fetchGetGroupsEvents } from "../services/fetchGetGroupsEvents";
+import { fetchIsParticipant } from "../services/fetchIsParticipant";
 import { fetchRegisterToGroup } from "../services/fetchRegisterToGroup";
 import { types } from "../types";
-import { addConffetti, closeAlert, loadingInComponent, nextStepsuscribe, openAlert } from "./uiReducer";
+import { mountInformationGroup } from "./groupVisit";
+import { addConffetti, closeAlert, isParticipantGroup, loadingInComponent, nextStepsuscribe, openAlert } from "./uiReducer";
 // [
 //     {
 //         eid,
@@ -31,7 +33,6 @@ export const addAllGroups = ( uid ) => {
 }
 export const registerToGroup = ( myData, group) => {
     return async ( dispatch ) => {
-        //TODO: fetch pendiente(front & back)
         dispatch( loadingInComponent( true ) )
         const resp = await fetchRegisterToGroup( myData, group );
         if( resp.ok === true ) {
@@ -88,7 +89,14 @@ export const deleteGroup = ( eid ) =>({
     type: types.deleteGroups,
     payload: eid
 })
+export const isRegistered = ( eid, uid ) => {
+    return async ( dispatch ) => {
+        const group = await fetchIsParticipant( eid, uid );
+        dispatch(isParticipantGroup( group.suscribed ));
+        dispatch(mountInformationGroup( group ));
+    }
 
+}
 export const groupsReducer = ( state = initialState, action ) => {
     switch ( action.type ) {
 
