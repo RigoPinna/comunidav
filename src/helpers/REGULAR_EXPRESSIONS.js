@@ -63,5 +63,6 @@ export const REGEX_INPUT_VALUES = {
             return ( !!file ) ? regex.test( file.type ) : true;
 
         }
-    }
+    },
+    pathProfileAsc: /^(\/association\/([0-9]+))$/
 }

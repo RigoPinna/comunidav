@@ -6,6 +6,7 @@ import { Participants } from '../../groupsEvents/Participants'
 import { IconDescription } from '../../iconos/IconDescription'
 import { ItemUser } from '../../Items/ItemUser'
 export const EventHeader = ({ nameEvent, requirement, ubication, description, creator, participants, eid  }) => {
+
     return (
         <>
         <div className = "__wrapper_header_form">

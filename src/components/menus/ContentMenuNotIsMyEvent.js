@@ -1,17 +1,23 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
+import { REGEX_INPUT_VALUES } from '../../helpers/REGULAR_EXPRESSIONS';
 import { useToggleFavorite } from '../../hooks/useToggleFavorite';
 import { IconAssociation } from '../iconos/IconAssociation';
 import { IconFavorite } from '../iconos/IconFavorite';
 import { IconGroups } from '../iconos/IconGroups';
 import { LoadingInComponent } from '../loadings/LoadingInComponent';
-
 export const ContentMenuNotIsMyEvent = ( dataCreator ) => {
+    const { pathProfileAsc } = REGEX_INPUT_VALUES;
+    const location = useLocation();
     const history = useHistory();
     const { uiReducer, userLogedReducer } = useSelector( state => state );
     const  { isFavorite, hanldeToggleActionButton } = useToggleFavorite( dataCreator, userLogedReducer.uid );
-    const hanldeGoToPrfileAssc = () => history.push(`/association/${ dataCreator.uid }`)
+    console.log(location.pathname,pathProfileAsc.test( location.pathname ))
+    const hanldeGoToPrfileAssc = () => {
+        console.log(location);
+        history.push(`/association/${ dataCreator.uid }`)
+    }
     const hanldeGoToEvent = () => history.push(`/event?query=${ dataCreator.eid }`)
     
     return (
@@ -32,12 +38,15 @@ export const ContentMenuNotIsMyEvent = ( dataCreator ) => {
                    
              </button>
          </li>
-         <li>
-             <button className = "__btn" onClick = { hanldeGoToPrfileAssc }>
-                 <IconAssociation />
-                 <p>Visitar asociación</p>
-             </button>
-         </li>
+        {
+            ( !pathProfileAsc.test( location.pathname )) 
+            && <li>
+                    <button className = "__btn" onClick = { hanldeGoToPrfileAssc }>
+                        <IconAssociation />
+                        <p>Visitar asociación</p>
+                    </button>
+                </li>
+        }
          <li>
              <button
                 onClick={ hanldeGoToEvent }

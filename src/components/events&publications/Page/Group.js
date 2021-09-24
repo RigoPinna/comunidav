@@ -8,7 +8,7 @@ export const Group = ( groupVisit ) => {
         <div className ="__wrapper_screen_event">
             <EventHeader { ...groupVisit }/>
         </div>
-        <EventBody publications={ groupVisit.publications } />
+        <EventBody { ...groupVisit } />
         </>
     )
 }

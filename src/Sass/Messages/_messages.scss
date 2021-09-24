@@ -19,7 +19,9 @@
     }
 }
 .__message_sended, .__message_recibed {
-    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    max-width: 90%;
     position: relative;
     padding: 10px;
     
@@ -55,9 +57,6 @@
 
 }
 .__message_recibed {
-    display: flex;
-    flex-flow: row wrap;
-    max-width: 90%;
     justify-content: flex-start;
     img {
         box-shadow: none;

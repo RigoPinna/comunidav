@@ -11,6 +11,7 @@ const initialState = {
     viewAlert: false,
     viewConffetti: false,
     isParticipantGroup: false,
+    addResponse:false,
 }
 export const closeAllModal = () => ({
     type:types.closeAllModals,
@@ -56,7 +57,7 @@ export const openModalSuscribe = ( event ) => ({
     payload: {
         viewModalSuscribe: true,
         displayName: event.ascName,
-        eid:event.eid,
+        eid:event.evtID,
         evtName:event.evtName,
         group: {
             eid: event.evtID,
@@ -105,6 +106,12 @@ export const nextStepsuscribe = ( ) =>({
     type:types.nextStepSuscribe,
     payload: {
         nextStepSuscribe: true,
+    }
+})
+export const addResponseUI = ( add ) =>({
+    type:types.addResponse,
+    payload: {
+       addResponse: add,
     }
 })
 export const openAlert = ( title, contentText, actionButtonAccept = () => {},  addButtonCanceled=false, actionButtonCanceled=()=>{}, textButton="Aceptar" ) => ({
@@ -197,6 +204,11 @@ export const uiReducer = ( state = initialState, action ) => {
                 ...action.payload
             }
         case types.isParticipantGroup:
+            return {
+                ...state,
+                ...action.payload
+            }
+        case types.addResponse:
             return {
                 ...state,
                 ...action.payload

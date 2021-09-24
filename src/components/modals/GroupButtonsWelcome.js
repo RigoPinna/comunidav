@@ -1,10 +1,14 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { closeAllModal } from '../../reducers/uiReducer';
 
 export const GroupButtonsWelcome = () => {
+    const dispatch = useDispatch();
+    
     return (
         <>
-            <button className = "__btn __btn_cancelar">Cerrar</button>
-            <button 
+            <button
+                onClick = { () =>{ dispatch( closeAllModal() )} } 
                 className = "__btn"
             >
                 <p>Entendido, visitar más tarde</p>

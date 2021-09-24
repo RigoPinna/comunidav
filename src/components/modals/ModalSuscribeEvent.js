@@ -7,7 +7,7 @@ import { SuscribeHello } from './SuscribeHello'
 import { SuscribeWelcome } from './SuscribeWelcome'
 import { WrapperModalsOrAlerts } from './WrapperModalsOrAlerts'
 
-export const ModalSuscribeEvent = () => {
+export const ModalSuscribeEvent = React.memo(() => {
     const { uiReducer, userLogedReducer } = useSelector( state => state );
     const { eid, evtName, group } = uiReducer;
     const { displayName } = userLogedReducer;
@@ -31,4 +31,4 @@ export const ModalSuscribeEvent = () => {
                 </div>
         </WrapperModalsOrAlerts>
     )
-}
+});

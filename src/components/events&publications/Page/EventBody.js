@@ -4,7 +4,7 @@ import { DoPublicationHeader } from '../../Items/DoPublicationHeader'
 import { ItemPublication } from '../publications/ItemPublication';
 import { WrapperFeed } from '../WrapperFeed';
 import { CreatePublication } from './CreatePublication';
-export const EventBody = ({ publications }) => {
+export const EventBody = ({ publications, eid }) => {
     const { uid, displayName, category, image } = useSelector( state => state.userLogedReducer );
     return (
         <>
@@ -19,7 +19,7 @@ export const EventBody = ({ publications }) => {
         <h3>Publicaciones</h3>
         <WrapperFeed>
             {
-                publications.map( pbl => <ItemPublication {...pbl} />)
+                publications.map( pbl => <ItemPublication key={`pbl-${pbl.pid}`} {...pbl} eid = { eid }/>)
             }
         </WrapperFeed>
         </>

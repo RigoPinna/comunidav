@@ -4,6 +4,7 @@ import { IconArrowRight } from '../iconos/IconArrowRight'
 import { IllustrationSuscribe } from '../iconos/IllustrationSuscribe'
 
 export const SuscribeWelcome = ( { evtID }) => {
+    console.log(evtID);
    
 
     return (
@@ -18,7 +19,7 @@ export const SuscribeWelcome = ( { evtID }) => {
             </p>
             <br/>
             <strong className = "animate__animated animate__fadeInRight">Mi perfil &gt; Mis grupos </strong>
-            <Link to={`/event/${evtID}`} className = "__btn __btn_oval animate__animated animate__fadeIn" >
+            <Link to={`/event?query=${evtID}`} className = "__btn __btn_oval animate__animated animate__fadeIn" >
                 <p>Ir al grupo ahora</p>
                 <IconArrowRight />
             </Link>

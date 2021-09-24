@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet';
 import { WrapperFeed } from '../events&publications/WrapperFeed';
 export const HomeScreen = () => {
+
     return (
         <>
         <Helmet>
