@@ -20,7 +20,6 @@ export const ConfigScreen = () => {
         <>
             <Helmet>
                <title>Comunidav | Settings</title>
-
             </Helmet>
             <form className="__wrapper_config animate__animated animate__bounce animate__fadeIn" encType="multipart/form-data">
                 <h1>Configuración de cuenta</h1>
@@ -37,7 +36,6 @@ export const ConfigScreen = () => {
                     ( userLogedReducer.typeUser === 'ASC') 
                         && <WrapperDetails title = {'Datos de tu asociación(Público)'} Icon = { IconAssociation }>
                                 <ConfigDataAssociation { ...userLogedReducer }/>
-
                             </WrapperDetails>
                 }
                 <WrapperDetails title={'Restablecer contraseña'} Icon ={ IconInputPassword }>

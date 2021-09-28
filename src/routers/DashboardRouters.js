@@ -5,14 +5,11 @@ import { Redirect, Route, Switch } from 'react-router-dom'
 import { getDataUserLoged } from '../reducers/authReducer'
 import { useIsMounted } from '../hooks/useIsMounted'
 import { types } from '../types'
-import { useIsLoged } from '../hooks/useIsLoged';
-
 import { LoadingScreen } from '../components/loadings/LoadingScreen'
 import { NavBar } from '../components/menus/NavBar'
 import { HomeScreen } from '../components/Pages/HomeScreen'
 import { InboxScreen } from '../components/Pages/InboxScreen'
 import { SearchScreen } from '../components/Pages/SearchScreen'
-import { ProfileScreen } from '../components/Pages/ProfileScreen'
 import { ColumnRight } from '../components/ColumnRight'
 import { ModalViewImage } from '../components/modals/ModalViewImage'
 import { NavBarMovile } from '../components/menus/NavBarMobile'
@@ -26,8 +23,6 @@ import { addAllEvents } from '../reducers/myEventsReducer'
 import { CreateEventScreen } from '../components/Pages/CreateEventScreen'
 import { EventScreen } from '../components/Pages/EventScreen'
 import { ModalListParticipants } from '../components/modals/ModalListParticipants'
-import { WrapperAlert } from '../components/alerts/WrapperAlert'
-import { Alert } from '../components/alerts/Alert'
 import { MapaScreen } from '../components/Pages/MapaScreen'
 
 import { EffectConffetti } from '../components/Conffetti/EffectConffetti'
@@ -41,8 +36,6 @@ export const DashboardRouters = ({ history, location }) => {
     const uid = localStorage.getItem( 'uid' );
     const token = sessionStorage.getItem( 'token' );
     const [ isMounted ] = useIsMounted();
-    
-    useIsVerify( history, userLogedReducer );
     useEffect(() => {
         if ( isMounted )  {
           if( uid && token) {
@@ -77,16 +70,6 @@ export const DashboardRouters = ({ history, location }) => {
           { uiReducer.viewModalImage && <ModalViewImage /> }
           { uiReducer.viewModalSuscribe && <ModalSuscribeEvent /> }
           { uiReducer.viewModalListParticipants && <ModalListParticipants /> }
-          { uiReducer.viewAlert 
-            && <Alert 
-                  title={uiReducer.title} 
-                  contentText = { uiReducer.contentText }
-                  textButton = { uiReducer.textButton || 'Aceptar'} 
-                  actionButtonAccept = { uiReducer.actionButtonAccept }
-                  addButtonCanceled = { uiReducer.addButtonCanceled }
-                  actionButtonCanceled = { uiReducer.actionButtonCanceled }
-                />
-          }
           <NavBar history = { history } /> 
           {/* <div className ="__wrapper_associationFrom_responsive">
                   <strong>Asociaciones en ...</strong>

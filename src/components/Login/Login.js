@@ -32,7 +32,7 @@ export const Login = ({history}) => {
                 if ( resp.isVerify ) {
                     localStorage.setItem( 'uid', resp.userID );
                     sessionStorage.setItem( 'token',resp.token );
-                    history.replace(`user?q=${resp.userID}`);
+                    history.replace(`/profile`);
                     return ;
                 } 
                 localStorage.setItem( 'uid', resp.userID );

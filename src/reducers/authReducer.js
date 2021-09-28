@@ -1,7 +1,9 @@
 import { generateFormDataFromObject } from "../helpers/generateFormDataFromObject";
 import { fetchGetInfoUser } from "../services/fetchGetInfoUser";
+import { fetchUpdatePassword } from "../services/fetchUpdatePassword";
 import { fetchUpdateUserData } from "../services/fetchUpdateUserData";
 import { types } from "../types";
+import { closeAlert, loadingInComponent, openAlert } from "./uiReducer";
 
 export const getDataUserLoged = ( uid ) => {
     return ( dispatch ) => {
@@ -79,6 +81,35 @@ export const addTOKEN = ( TOKEN ) => ({
     type: types.addTOKEN,
     payload: { TOKEN }
 })
+export const updatePasswordUser = ( password, newPassword ) => {
+    return async ( dispatch ) => {
+        dispatch( loadingInComponent( true ) );
+        try {
+            const resp = await fetchUpdatePassword({ password, newPassword });
+            if( resp.status === 'accept' ) {
+                dispatch( openAlert(
+                    '¡Contraseña actualizada!',
+                    resp.msg,
+                    () => dispatch( closeAlert () )
+                ));
+            } else {
+                dispatch( openAlert(
+                    'Error',
+                    'Ups... hubo un error al actualizar tu contraseña, intenta más tarde',
+                    () => dispatch( closeAlert () )
+                ));
+            }
+            dispatch( loadingInComponent( false ) );
+        } catch( err ) {
+            dispatch( openAlert(
+                'Error',
+                'Ups... hubo un error al actualizar tu contraseña, intenta más tarde',
+                () => dispatch( closeAlert () )
+            ));
+            dispatch( loadingInComponent( false ) );
+        }
+    }
+}
 export const updateUserData = ( newData, oldData ) =>{
         return ( dispatch ) => {
             console.log(newData,newData?.viewUbication )

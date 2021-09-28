@@ -1,6 +1,10 @@
 import { useContext, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import { RegisterContext } from "../components/RegisterUser/RegisterContext";
 import { goToassociationData, goToLocationData, goToUserData, isFinishFetching, isFinishProcess, viewAlertRFC } from "../components/RegisterUser/registerReducer";
+import { closeAlert, openAlert } from "../reducers/uiReducer";
+import { fetchLogin } from "../services/fetchLogin";
 import { fetchRegisterUser } from "../services/fetchRegisterUser";
 import { fetchValidateRFC } from "../services/fetchValidateRFC";
 import { fetchValidateUser } from "../services/fetchValidateUser";
@@ -8,15 +12,15 @@ import { useValidateForm } from "./useValidateForm";
 
 
 export const useActionButtonsRegister = ( actualStep, formData, validForm, setValidForm ) => {
+    const history = useHistory();
+    const reduxDispatch = useDispatch();
     const { stateProgress, dispatch } = useContext( RegisterContext );
     const [ OBJ_VALIDATED, isValid ] = useValidateForm(validForm ,formData );
     const [ isLoading, setisLoading ] = useState( false ); 
     const handleGoToNextStep = ( evt ) => {
         evt.preventDefault();
-       
         switch ( actualStep ) {
             case 1:
-                
                 if ( isValid ) {
                     setisLoading( true )
                     fetchValidateRFC( formData.rfc ).then( resp => {
@@ -39,12 +43,19 @@ export const useActionButtonsRegister = ( actualStep, formData, validForm, setVa
                 if ( isValid ) {
                     setisLoading( true );
                     fetchValidateUser(formData.userName, formData.email).then( resp => {
+                        console.log(resp);
                         if ( resp.status === 'accepted') {
                             ( isValid ) 
                                 ? dispatch( goToassociationData( formData ) )
                                 : setValidForm( OBJ_VALIDATED );
                         } else {
-                            alert(`email:${resp.errorEmail}, username:${resp.errorUserName}`)
+                            // alert(`email:${resp.errorEmail}, username:${resp.errorUserName}`)
+                            reduxDispatch( openAlert(
+                                "Error",
+                                `${ !!resp.errorEmail ? `Email: ${resp.errorEmail}.`:""}
+                                ${ !!resp.errorUserName ? `Nombre de usuario: ${resp.errorUserName}`:""}`,
+                                () => reduxDispatch( closeAlert() ),
+                            ))
                         }
                         setisLoading( false );
                     })
@@ -58,17 +69,39 @@ export const useActionButtonsRegister = ( actualStep, formData, validForm, setVa
     }
     const hanldeStartCreateUser = ( evt ) => {
         evt.preventDefault();
-
         if ( stateProgress.totallyStep === actualStep ) {
             if ( isValid ) {
-                dispatch( isFinishProcess( formData, true ) );
                 const userData = {...stateProgress.formData, ...formData };
+                console.log(userData);
                 fetchRegisterUser( userData ).then( resp => {
+                    console.log( resp );
                     if ( resp.status === 'error') {
-                        const msg = `${resp.errorRFC}\n ${resp.errorEmail}\n ${resp.errorUserName}`;
-                        dispatch(isFinishFetching( msg ))
+                        reduxDispatch( openAlert(
+                            "Error",
+                            `${ !!resp.errorEmail ? `Email: ${resp.errorEmail}.`:""}
+                            ${ !!resp.errorUserName ? `Nombre de usuario: ${resp.errorUserName}`:""}
+                            ${ !!resp.errorRFC ? `RFC: ${resp.errorRFC}`:""}`,
+                            () => reduxDispatch( closeAlert() ),
+                        ))
                     } else {
-                        dispatch(isFinishFetching( resp.msg, resp.status ))
+                        reduxDispatch(openAlert(
+                            "¡Bienvenido a Comunidav!",
+                            resp.msg,
+                            () => {
+                                fetchLogin({ user:userData.userName, password:userData.password }).then( resp => {
+                                    localStorage.setItem( 'uid', resp.userID );
+                                    sessionStorage.setItem( 'token',resp.token );
+                                    history.replace("/profile");
+                                    reduxDispatch( closeAlert()); 
+                                });
+                            },
+                            true,
+                            () => {
+                                history.replace('/login');
+                                reduxDispatch( closeAlert());
+                            },
+                            "Iniciar sesión"
+                        ));
                     }
                 }).catch( err => console.log( err ));
                 

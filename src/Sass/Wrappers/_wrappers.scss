@@ -1035,9 +1035,6 @@ footer {
         flex-flow: column wrap;
         .__wrapper_list_avatars {
             align-items: center;
-            justify-content:center;
-            border-left: 1px solid #DBDBDB;
-            padding-left: 10px;
             width: 100%;
             p {
                 margin-right:8px;
@@ -1133,7 +1130,14 @@ margin-top:10px;
         font-family: 'SF-Bold';
     }
 }
-
+.__wrapper_options_search {
+    width:100%;
+    background: $always-white;
+    border-radius: $br-radius;
+    .__wrapper_options_search_body {
+        padding: 10px;
+    }
+}
 @include medium {
     .__wrapper_info {
         font-size:11px;

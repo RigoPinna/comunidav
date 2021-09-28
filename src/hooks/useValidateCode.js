@@ -64,7 +64,6 @@ export const useValidateCode = ( c1, c2, c3 ) => {
         if ( !valueCodes.includes('') ) {
             setisLoading({...isLoading,...{ loadingVerify:true} });
             fetchVerifyUserCode( codes, email ).then( resp => {
-                
                 if ( resp.status === 'accept' ) {
                     setisLoading({...isLoading,...{ loadingVerify:false, errorCode:false } });
                     dispatch( updateVerify() );

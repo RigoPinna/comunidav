@@ -3,6 +3,7 @@ import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { favoritesReducer } from '../reducers/ascFavoritesReducer';
 import { asociationsRegionReducer } from '../reducers/asocitionsFromRegionReducer';
+import { associationSearchReducer } from '../reducers/associationSearchReducer';
 
 import { userLogedReducer } from "../reducers/authReducer"
 import { groupsReducer } from '../reducers/groupsEventReducer';
@@ -20,6 +21,7 @@ const composeEnhancers =
         groupsReducer,
         favoritesReducer,
         groupVisitReducer,
+        associationSearchReducer,
     });
 export const store = createStore( 
         reducers,

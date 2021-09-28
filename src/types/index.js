@@ -38,5 +38,6 @@ export const types = {
     nextStepSuscribe:'[ui] next-step-suscribe',
     isParticipantGroup:'[ui] is-participant-group',
     addInformationGroup:'[group-visit] visited-group',
-    addResponse:'[group-visit] add-response'
+    addResponse:'[group-visit] add-response',
+    addAssociationFromCountry: '[search-asc] get-Asc-From-Country',
 }

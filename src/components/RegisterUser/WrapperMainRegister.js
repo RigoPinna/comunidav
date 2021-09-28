@@ -19,10 +19,8 @@ export const WrapperMainRegister = ({ history }) => {
         <>
         
             { stateProgress.startRegister 
-                &&  (   <div className = "__wrapper_register_content animate__animated animate__fadeIn"> 
-                            <StartRegister />
-                        </div> 
-                    )
+                &&  <StartRegister />
+                    
             }
              { ( !stateProgress.startRegister ) 
                 && <FormRegisterLayout>

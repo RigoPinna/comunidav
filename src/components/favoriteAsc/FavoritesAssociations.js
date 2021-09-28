@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useIsMounted } from '../../hooks/useIsMounted';
 import { IllustrationEmpty } from '../iconos/IllustrationEmpty';
 import { LoadingInComponent } from '../loadings/LoadingInComponent';
-import { ItemFavoriteAsc } from './ItemFavoriteAsc';
+import { ItemAssociation } from './ItemAssociation';
 const statusMountedFavorites = {
     loading: undefined,
     empty: [],
@@ -28,7 +28,7 @@ export const FavoritesAssociations = () => {
                     ? <LoadingInComponent textLoading ={"Cargando favoritos.."} />
                     : ( favorites === statusMountedFavorites.empty ) 
                         ? <IllustrationEmpty message ={"No has guardado asociaciones a tus favoritos"}/>
-                        : favorites.map( fav => <ItemFavoriteAsc key = { `fav-${ fav.idFavorite }` } { ...fav }/> )
+                        : favorites.map( fav => <ItemAssociation key = { `fav-${ fav.idFavorite }` } { ...fav }/> )
             }
         </>
     )

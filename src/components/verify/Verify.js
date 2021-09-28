@@ -95,7 +95,7 @@ export const Verify = ({ uid, email, isVerify, history }) => {
                         title = {'Verificación exitosa'} 
                         contentText = {'Se ha verificado tu cuenta correctamente.'}
                         addButtonAccepter = { true }
-                        actionButtonAccept = {()=> { history.replace(`/user?q=${uid}`)}}
+                        actionButtonAccept = {()=> { history.replace(`/profile`)}}
                     />
             }
         </>

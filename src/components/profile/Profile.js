@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { OPTION_SUBMEN_USER } from '../../helpers/OPTION_SUBMENU_USER'
 import { useIsMounted } from '../../hooks/useIsMounted'
+import { useIsVerify } from '../../hooks/useIsVerify'
 import { EventsUser } from '../events&publications/EventsUser'
 import { WrapperFeed } from '../events&publications/WrapperFeed'
 import { FavoritesAssociations } from '../favoriteAsc/FavoritesAssociations'
@@ -12,6 +13,7 @@ import { SubMenuUser } from '../menus/SubMenuUser'
 export const Profile = ({ userData }) => {
     const [ viewOption, setViewOption ] = useState( undefined );
     const [ isMounted ] = useIsMounted();
+    useIsVerify( userData );
     useEffect(() => {
         if ( isMounted ) {
             if( !!userData.uid ) {
