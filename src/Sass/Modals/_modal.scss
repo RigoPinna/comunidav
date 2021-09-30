@@ -152,10 +152,7 @@
                 }
             }
         }
-    }
-
-       
-        
+    }    
 }
 .__modal_submenu_event {
     width:220px;
@@ -167,7 +164,7 @@
     top:60px;
     right:10px;
     border-radius: $br-radius;
-    box-shadow: $shadow-purple-inputs;
+    box-shadow: $shadows-elements;
     list-style: none;
     z-index: 1;
     overflow:hidden;

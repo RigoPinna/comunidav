@@ -14,7 +14,15 @@ export const useChangeForm = ( initialState = {} ) => {
         });
        
     }
+    const hanldeResetValues = () => {
+        const keys = Object.keys( inputFormValues )
+        let newState = {};
+        keys.forEach( key => {
+            newState = {...newState, [ key ]:"", }
+        })
+        setInputFormValues( newState )
+    }
 
-    return [ inputFormValues, handdleInputChange,setInputFormValues ];
+    return [ inputFormValues, handdleInputChange,setInputFormValues, hanldeResetValues ];
     
 }

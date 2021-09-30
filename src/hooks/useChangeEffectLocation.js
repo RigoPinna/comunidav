@@ -4,7 +4,7 @@ import { fetchGetCountrys } from "../services/fetchGetCountrys";
 import { fetchGetStates } from "../services/fetchGetStates";
 import { fetchGetLands } from "../services/fetchGetLands";
 
-export const useChangeEffectLocation = ({land, state,country }) => {
+export const useChangeEffectLocation = ({land=0, state=0,country=0 }) => {
     const [ isMounted ] = useIsMounted();
     const [ arrayLands, setArrayLands ] = useState([]);
     const [ arrayStates, setArrayStates ] = useState([]);

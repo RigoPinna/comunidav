@@ -28,7 +28,7 @@ export const FavoritesAssociations = () => {
                     ? <LoadingInComponent textLoading ={"Cargando favoritos.."} />
                     : ( favorites === statusMountedFavorites.empty ) 
                         ? <IllustrationEmpty message ={"No has guardado asociaciones a tus favoritos"}/>
-                        : favorites.map( fav => <ItemAssociation key = { `fav-${ fav.idFavorite }` } { ...fav }/> )
+                        : favorites.map( fav => <ItemAssociation key = { `fav-${ fav.idFavorite }` } { ...fav } isProfile={ false}/> )
             }
         </>
     )

@@ -149,9 +149,10 @@
     width: 40px;
     height: 40px;
     border-radius: 100%;
-    position: absolute;
-    right: 10px;
-    top: 10px;
+    position:absolute;
+    right: 5px;
+    top:3.6253em;
+    font-size:1em;
     color: $always-white;
     -webkit-backdrop-filter: blur(10px); /* Safari 9+ */
     backdrop-filter: blur(10px); /* Chrome and Opera */

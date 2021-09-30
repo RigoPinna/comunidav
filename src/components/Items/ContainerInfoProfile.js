@@ -1,40 +1,20 @@
 import React, { useRef } from 'react'
 import { useGetPalleterColorImg } from '../../hooks/useGetPalleterColorImg';
+import { AvatarAssociation } from '../favoriteAsc/AvatarAssociation';
+import { ItemAssociation } from '../favoriteAsc/ItemAssociation';
 import { IconDescription } from '../iconos/IconDescription';
 import { SubMenuPublicProfile } from '../menus/SubMenuPublicProfile';
 import { ButtonFavorite } from '../profile/ButtonFavorite';
 import { BadgeShort } from './BadgeShort'
 
 
-export const ContainerInfoProfile = ({ aid, displayName, typeUser, category, description, image, isMyProfile,lat,lng, setOptions, options,viewUbication }) => {
-    const typeUserNameLong = typeUser === 'ASC' ? 'Asociación' : 'Voluntario';
-    const canvasRef = useRef( null )
-    const img = useRef( null )
-    const  [ palleteColors ] = useGetPalleterColorImg( img.current, canvasRef );
+export const ContainerInfoProfile = ( dataUser ) => {
+    const typeUserNameLong = dataUser.typeUser === 'ASC' ? 'Asociación' : 'Voluntario';
     return (
         <div className = "__wrapper_info  animate__animated animate__fadeIn">
-            <span style = {{background: palleteColors[0] }}></span>
-            { !isMyProfile && <ButtonFavorite aid = {aid} displayName = {displayName} category = { category } image = { image } description = { description }/> }
-
-            <div className="__wrapper_info_header">
-                <canvas ref={canvasRef} style={{display: 'none'}}/>
-                <img ref={img} src={image} crossOrigin="anonymous" alt={displayName}/>
-                    <h2>{ displayName }</h2>
-                    <div>
-                        <BadgeShort typeUser = { typeUser } text = { typeUserNameLong } color = { typeUser }/>
-                        { 
-                            ( !!category )
-                            && <BadgeShort color = { category } text = {`Categoria • ${ category }`}/>
-                        }
-                    </div>
-                    {/* <strong>9 eventos creados</strong> */}
-                <div className="__wrapper_info_description">
-                    <IconDescription />
-                        <p >{ !!description ? description : 'Esta asociación no tiene descripción...' }</p>
-                </div>
-            </div>
+           <ItemAssociation { ...dataUser} isProfile={ true }/>
             {
-               !isMyProfile && +viewUbication != 0 && <SubMenuPublicProfile options={ options } setOptions={ setOptions }  lat={ lat } lng = { lng }/>
+               !dataUser.isMyProfile && +dataUser.viewUbication != 0 && <SubMenuPublicProfile options={ dataUser.options } setOptions={ dataUser.setOptions }  lat={ dataUser.lat } lng = { dataUser.lng }/>
             } 
         </div>
     )
