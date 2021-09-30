@@ -97,6 +97,11 @@ $shadow-purple-elements:$color-primary-purple-3 0px 10px 10px -10px;
 $shadow-purple-inputs:$color-primary-purple-4 0px 3px 12px;
 $bg-button-favorite: #FFF1D9;
 $color-button-favorite: #FFC45B;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 .bg_blur_effect_gray {
     -webkit-backdrop-filter: blur(10px); /* Safari 9+ */
     backdrop-filter: blur(10px); /* Chrome and Opera */

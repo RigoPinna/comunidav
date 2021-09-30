@@ -9,6 +9,7 @@ import { GroupsEvents } from '../groupsEvents/GroupsEvents'
 import { ContainerInfoProfile } from '../Items/ContainerInfoProfile'
 import { DoPublicationHeader } from '../Items/DoPublicationHeader'
 import { SubMenuUser } from '../menus/SubMenuUser'
+import { WrapperFeedAssociations } from './WrapperFeedAssociations'
 
 export const Profile = ({ userData }) => {
     const [ viewOption, setViewOption ] = useState( undefined );
@@ -47,11 +48,14 @@ export const Profile = ({ userData }) => {
                     ( viewOption === OPTION_SUBMEN_USER.viewMyGroups )
                         && <GroupsEvents />
                 }
+            </WrapperFeed>
+            <WrapperFeedAssociations>
                 {
                     ( viewOption === OPTION_SUBMEN_USER.viewMyFav )
                         && <FavoritesAssociations />
+                            
                 }
-            </WrapperFeed>
+            </WrapperFeedAssociations>
         </>
     )
 }

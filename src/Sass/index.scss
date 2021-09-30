@@ -1,3 +1,4 @@
+
 @import './Bases/_bases';
 @import './Buttons/buttons';
 @import './Logos/logos_comunidav';
@@ -14,12 +15,6 @@
 @import './Forms/forms';
 @import './Alerts/alerts';
 
-
- * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 body {
     position: relative;
     background:$bg_app;
