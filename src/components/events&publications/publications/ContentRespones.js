@@ -5,7 +5,6 @@ export const ContentRespones = React.memo(({ resp, pid }) => {
     const content = useRef( null );
     useLayoutEffect(() => {
         if ( !!content.current ) {
-            console.log(content.current.scrollTop)
             content.current.scrollTop = -1000000000;
         }
     }, [ resp ])
@@ -14,12 +13,13 @@ export const ContentRespones = React.memo(({ resp, pid }) => {
             {
                 (resp.length > 0) 
                     && resp.map( 
-                        ({ uid, image, displayName, response }, i ) => {
+                        ({ uid, image, displayName, response, createdat }, i ) => {
                             return <MessageRecibed 
                                         key={`resp-${pid}-${uid}-${i}`} 
                                         image={image} 
                                         displayName={displayName} 
-                                        text={response}/>
+                                        text={response}
+                                        createdat={createdat}/>
                         }
                     )
             }

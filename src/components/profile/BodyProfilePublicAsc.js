@@ -8,7 +8,12 @@ export const BodyProfilePublicAsc = ({ userData }) => {
     const [ options, setOptions ] = useState({ events:true, ubication:false });
     return (
         <>
-            <ContainerInfoProfile { ...userData } isMyProfile ={ false } options={options} setOptions={setOptions} />
+            <ContainerInfoProfile 
+                { ...userData } 
+                isMyProfile ={ false } 
+                options={options} 
+                setOptions={setOptions}
+                viewButtonBack={ true} />
             <WrapperFeed>
                 {
                     options.events && <EventsUser  uid={ userData.uid } />

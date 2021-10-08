@@ -1,6 +1,6 @@
 
 export const getTextFormated = ( text ) => {
-    return ( text !== "") ? removeAccentsAndComas( text) : "";
+    return ( text.length > 0) ? removeAccentsAndComas(text) : "";
 
 }
 const removeAccentsAndComas = ( text ) => {

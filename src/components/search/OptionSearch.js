@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import { getSearchAsc } from '../../helpers/getSearchAsc'
 import { getTextFormated } from '../../helpers/getTextFormated'
 import { useChangeEffectLocation } from '../../hooks/useChangeEffectLocation'
 import { useChangeForm } from '../../hooks/useChangeForm'
@@ -11,30 +12,29 @@ import { Input } from '../Inputs/Input'
 import { InputSelect } from '../Inputs/InputSelect'
 import { InputSwitch } from '../Inputs/InputSwitch'
 import { LoadingInComponent } from '../loadings/LoadingInComponent'
-
-export const OptionSearch = React.memo(({ setState, ascReducer, viewMap, setViewMap }) => {
+const queryString = require('query-string');
+export const OptionSearch = React.memo(({ setState, ascReducer, viewMap, setViewMap, history }) => {
     const dispatch = useDispatch();
-    const [ country,  handdleChangeCountry ] = useChangeSelect({ land:1 });
+    const [ country,  handdleChangeCountry,setSelectCountry ] = useChangeSelect({ land:1 });
     const [ arrayLands ] = useChangeEffectLocation({land:0});
-    const [ inputFormValues, handdleInputChange, ,hanldeResetValues ] = useChangeForm({ search:"" });
+    const [ inputFormValues, handdleInputChange,setInputFormValues ,hanldeResetValues ] = useChangeForm({ search:"" });
+    useLayoutEffect(() => {
+        const {country, search } = queryString.parse( history.location.search );
+        setSelectCountry({ land:country});
+        setInputFormValues({ search: !!search ? search : '' });
+    }, [])
     useEffect(() => {
-        ( country?.land ) && dispatch( getAssociationFromCountry( country.land ) );
+        if( country?.land) {
+            ( country?.land ) && dispatch( getAssociationFromCountry( country.land ) );
+        }
     }, [ country.land ])
     const getAssociatonByTextSearch = e => {
         e.preventDefault();
         const search = getTextFormated( inputFormValues.search );
         if ( search !== "" ) {
+            history.push(`?country=${country.land}&search=${search}`);
             const associations = [...ascReducer];
-            const associationsFiltered = associations.filter( asc => {
-                return (
-                    getTextFormated( asc.displayName).includes( search )
-                    || getTextFormated( asc.nameMun ).includes( search )
-                    || getTextFormated( asc.nameState ).includes( search )
-                    || getTextFormated( asc.landName ).includes( search )
-                    || getTextFormated( asc.category ).includes( search )
-
-                )
-            });
+            const associationsFiltered = getSearchAsc( associations, search );
             setState( associationsFiltered );
             return;
         }
@@ -46,7 +46,6 @@ export const OptionSearch = React.memo(({ setState, ascReducer, viewMap, setView
         setState( ascReducer );
         
     }
-    
     return (
         <>
             <div className="__wrapper_options_search">
@@ -80,6 +79,7 @@ export const OptionSearch = React.memo(({ setState, ascReducer, viewMap, setView
                             value = {inputFormValues.search}
                             onChange = { handdleInputChange }
                         />
+                    <button className = "__btn">Buscar</button>
                     <InputSwitch text="Ver asociaiones en el mapa" hanldeActive={()=> setViewMap( !viewMap )} idSwitch="viewMap" checked={ viewMap } />
                     <input type="reset" onClick={ hanldeResetForm } className ="__btn" value="Restablecer busqueda"/>
                 </form>

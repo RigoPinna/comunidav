@@ -34,6 +34,7 @@ export const getDataUserLoged = ( uid ) => {
                     landName: dataUser.landName,
                     idState: dataUser.idEstado,
                     nameState:dataUser.nameEstado,
+                    abrvEstado:dataUser.abrvEstado,
                     idMun: dataUser.idMunicipio,
                     nameMun: dataUser.nameMun,
                     viewUbication: +dataUser?.viewUbication === 1 || false ,

@@ -12,14 +12,21 @@ export const ButtonBack = () => {
     }
     return (
         <>
-            <button
-                data-for = "btn-back"  
-                data-tip = "Volver"
-                onClick={ hanldeGoBack } 
-                className = "__btn __btn_back">
-                <IconArrowLeft />
-            </button>
-            <ReactTooltip  id='btn-back' type="dark" effect='solid'/>
-         </>
+            {
+                ( history.length >= 1 )
+                    && <>
+                    <button
+                        id="btn-back"
+                        data-for = "btn-back"  
+                        data-tip = "Volver"
+                        onClick={ hanldeGoBack } 
+                        className = "__btn __btn_back">
+                        <IconArrowLeft />
+                    </button>
+                    <ReactTooltip  id='btn-back' type="dark" effect='solid'/>
+                </>
+            }
+            
+        </>
     )
 }

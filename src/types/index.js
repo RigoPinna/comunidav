@@ -40,4 +40,5 @@ export const types = {
     addInformationGroup:'[group-visit] visited-group',
     addResponse:'[group-visit] add-response',
     addAssociationFromCountry: '[search-asc] get-Asc-From-Country',
+    addPublication:'[group-visit] add-Publication'
 }

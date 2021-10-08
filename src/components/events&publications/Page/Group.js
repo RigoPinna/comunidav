@@ -5,10 +5,10 @@ import { EventHeader } from './EventHeader'
 export const Group = ( groupVisit ) => {
     return (
         <>
-        <div className ="__wrapper_screen_event">
-            <EventHeader { ...groupVisit }/>
-        </div>
-        <EventBody { ...groupVisit } />
+            <div className ="__wrapper_screen_event">
+                <EventHeader { ...groupVisit }/>
+            </div>
+            <EventBody />
         </>
     )
 }

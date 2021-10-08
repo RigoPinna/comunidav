@@ -23,6 +23,7 @@ export const ResponsesPublication = ({ responses, pid, eid }) => {
                 displayName,
                 image,
                 response: inputFormValues.response,
+                createdat: Date.now()
             }
             setResp([...resp, newResp ]);
             setInputFormValues({response:""});
@@ -33,7 +34,7 @@ export const ResponsesPublication = ({ responses, pid, eid }) => {
         <>
         <strong>{ (resp.length > 0) ?"Respuestas:" : "No hay respuestas hasta el momento:("}</strong>
         <ContentRespones resp={ resp } pid={ pid }/>
-        <form action="" method="post">
+        <form>
             <Input
                 typeInput="text"
                 name="response"

@@ -2,18 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router'
 import { getAssociationFromCountry } from '../../reducers/associationSearchReducer'
-import { WrapperFeed } from '../events&publications/WrapperFeed'
+
 import { ItemAssociation } from '../favoriteAsc/ItemAssociation'
-import { ItemInfoFav } from '../favoriteAsc/ItemInfoFav'
-import { IconArrowRight } from '../iconos/IconArrowRight'
-import { IconLocation } from '../iconos/IconLocation'
+
 import { IllustrationEmpty } from '../iconos/IllustrationEmpty'
-import { BadgeShort } from '../Items/BadgeShort'
 import { LoadingInComponent } from '../loadings/LoadingInComponent'
 import { MapAssociationsSearch } from '../map/MapAssociationsSearch'
-import { ButtonMenuFavorite } from '../menus/ButtonMenuFavorite'
 import { WrapperFeedAssociations } from '../profile/WrapperFeedAssociations'
 import { OptionSearch } from '../search/OptionSearch'
 const statusMountedAsc = {
@@ -21,6 +17,7 @@ const statusMountedAsc = {
     empty: null,
 }
 export const SearchScreen = () => {
+    const history = useHistory();
     const dispatch = useDispatch();
     const [associations, setAssociations] = useState( statusMountedAsc.loading )
     const { userLogedReducer, associationSearchReducer } = useSelector( state => state );
@@ -49,6 +46,7 @@ export const SearchScreen = () => {
                 landName = { landName }
                 setViewMap = {setViewMap}
                 viewMap = { viewMap }
+                history = { history }
             />
             {
                 viewMap && <MapAssociationsSearch  associations={associations}/>
@@ -60,7 +58,17 @@ export const SearchScreen = () => {
                         ? <LoadingInComponent  textLoading="Cargando asociaciones"/>
                         : associations === statusMountedAsc.empty
                             ? <IllustrationEmpty message ={`No se encontró ninguna asociación`}/>
-                            : associations.map( asc => <ItemAssociation key={`itm-asc-search-${asc.uid}`} {...asc} viewMenuFavorite ={ false }/>)
+                            : associations.map( asc =>{ 
+                                return (
+                                    <ItemAssociation 
+                                        key={`itm-asc-search-${asc.uid}`} 
+                                        {...asc} 
+                                        viewMenuFavorite ={ false }
+                                        viewButtonBack ={ false }
+                                        typeUser = { "ASC" }
+                                        />
+                                )
+                            })
                 }
             </WrapperFeedAssociations>
         </>

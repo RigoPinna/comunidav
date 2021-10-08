@@ -3,7 +3,7 @@ import { IconGroups } from '../iconos/IconGroups'
 import { IconTrash } from '../iconos/IconTrash'
 import { useActionsEvents } from '../../hooks/useActionsEvents'
 export const ContanierMenuGroup = ({ isCreator, eid }) => {
-    const { hanldeDeleteEvent } = useActionsEvents({ eid });
+    const { hanldeDeleteEvent, handleUnsuscribed } = useActionsEvents({ eid });
     return (
         <ul className="__modal_submenu_event animate__animated animate__fadeIn animate__faster">
             {
@@ -15,7 +15,7 @@ export const ContanierMenuGroup = ({ isCreator, eid }) => {
                             </button>
                         </li>  
                     :  <li>
-                            <button className = "__btn">
+                            <button className = "__btn" onClick = { handleUnsuscribed }>
                                 <IconGroups />
                                 <p>Salir de este grupo</p>
                             </button>

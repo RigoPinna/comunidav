@@ -27,7 +27,7 @@ main {
     width: 100%;
     min-height: 12.5em;
     border-radius: $br-radius;
-    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+    // box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
     font-size: 1rem;
     position: relative;
     overflow: hidden;
@@ -37,6 +37,25 @@ main {
         padding: 0;
         margin: 0;
         height:auto;
+        .__wrapper_btn_back {
+            width: 100px;
+            height: 30px;
+            display: flex;
+            flex-flow: row wrap;
+            position: absolute;
+            left: 5px;
+            top:3.6253em;
+            font-size:1em;
+            z-index: 1;
+            align-items: center;
+            label {
+                font-size:14px;
+            }
+            button {
+                padding: 3px;
+                margin-right: 5px;
+            }
+        }
         .__wrapper_item_asc_body {
             & > p {
                 all: unset;
@@ -123,6 +142,7 @@ main {
                 padding:5px 10px;
                 display: inline-block;
                 width: 100%;
+                word-break: break-word;
             }
             p {
                 display: block;
@@ -132,6 +152,7 @@ main {
                 padding:5px 10px;
                 line-height : 25px;
                 font-size: 0.875em;
+                word-break: break-word;
                 time {
                     color:$color-blue-1;
                     font-family: 'SF-Bold';
@@ -555,11 +576,11 @@ main {
 .__wrapper_header_form {
     width: 100%;
     padding: 10px;
-    // height: 50px;
     border-bottom: 1px solid #DBDBDB;
     display: flex;
     flex-flow: row wrap;
-    // align-items: flex-start;
+    background:$always-white;
+    border-radius: $br-radius $br-radius 0 0;
     h1 {
         display: flex;
         align-items:center;
@@ -828,8 +849,7 @@ footer {
     width: 100%;
     min-height: 12.5rem;
     background: $always-white;
-    margin-top: 2.75rem;
-    border-radius: $br-radius;
+    border-radius: 0 0 $br-radius $br-radius;
     box-shadow: $shadows-elements;
     justify-content:center;
     padding: 0.625rem;
@@ -1078,7 +1098,7 @@ margin-top:10px;
         display:flex;
         width: calc(100% - 10px);
         flex-flow: column-reverse nowrap;
-        height: 190px;
+        max-height: 190px;
         overflow-y: auto;
 
 
@@ -1122,7 +1142,7 @@ margin-top:10px;
     font-size:1em;
     position: relative;
     border-radius: $br-radius;
-    box-shadow: $shadows-elements;
+    // box-shadow: $shadows-elements;
     font-size: 1em;
     // overflow: hidden;
     .__btn_favorite {
@@ -1251,6 +1271,46 @@ margin-top:10px;
     width: 100%;
     // min-height:100px;
     flex-wrap: wrap;
+}
+.__wrapper_ilustration_empty_publication {
+    display:flex;
+    width: 100%;
+    justify-content: center;flex-wrap: wrap;
+    padding-bottom: 20px;
+    svg {
+        width:50%;
+        height:auto;
+    }
+     p {
+        text-align: center;
+        font-size: 16px;
+        font-family: 'SF-Bold';
+        width:100%;
+        
+     }
+}
+.__wrapper_not_participant {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-flow: column wrap;
+    & > svg {
+        width: 300px;
+        height: 300px;
+    }
+    strong {
+        font-family: 'SF-Bold';
+        padding: 10px;
+    }
+    p {
+        padding: 10px;
+        font-size: 14px;
+    }
+    button {
+        background: $color-black-1;
+        color:$always-white;
+    }
 }
 @include medium {
     .__wrapper_info {

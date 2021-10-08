@@ -65,7 +65,7 @@ export const addToFavorites = ( dataAsc, uid ) => {
             if( resp.ok ) {
                 dispatch({
                     type: types.addToFavorite,
-                    payload: [ dataAsc ],
+                    payload:{...dataAsc, typeUser:"ASC"},
                 })
                 console.log( resp)
                 dispatch( loadingInComponent( false ) );
@@ -87,7 +87,7 @@ export const favoritesReducer = ( state = initialState, action ) => {
         case types.addAllFavoriteAsc:
             return [...state,...action.payload ];
         case types.addToFavorite: 
-            return [...state, ...action.payload ];
+            return [...state, action.payload ];
         case types.resetFavorites:
             return action.payload;
         case types.removeFavorite: 

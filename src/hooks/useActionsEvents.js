@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { unSuscribedGroup } from "../reducers/groupsEventReducer";
 import { deleteEvent } from "../reducers/myEventsReducer";
 import { openModalListParticipants } from "../reducers/uiReducer";
 
@@ -18,5 +19,9 @@ export const useActionsEvents = ({ participants, eid }) => {
     const hanldeDeleteEvent = () => {
         dispatch( deleteEvent( eid, uid ) );
     }
-    return { hanldeViewList, hanldeGoToEvent, hanldeDeleteEvent };
+    const handleUnsuscribed = () => {
+        dispatch(unSuscribedGroup( eid ));
+
+    }
+    return { hanldeViewList, hanldeGoToEvent, hanldeDeleteEvent, handleUnsuscribed };
 }

@@ -11,6 +11,7 @@ import { IconDataPrivate } from '../iconos/IconDataPrivate'
 import { IconInputPassword } from '../iconos/IconInputPassword'
 import { ConfigDataAssociation } from '../configUser/ConfigDataAssociation'
 import { ConfigLocation } from '../configUser/ConfigLocation'
+import { ButtonBack } from '../ButtonBack/ButtonBack'
 export const ConfigScreen = () => {
 
     const { userLogedReducer }= useSelector(state => state ); 
@@ -21,8 +22,12 @@ export const ConfigScreen = () => {
             <Helmet>
                <title>Comunidav | Settings</title>
             </Helmet>
-            <form className="__wrapper_config animate__animated animate__bounce animate__fadeIn" encType="multipart/form-data">
+            <div className = "__wrapper_header_form">
+               <ButtonBack />
                 <h1>Configuración de cuenta</h1>
+
+           </div>
+            <form className="__wrapper_config animate__animated animate__bounce animate__fadeIn" encType="multipart/form-data">
                 <ConfigImg imageOld = { userLogedReducer.image }/>
                 <strong>{ userLogedReducer.displayName }</strong>
                 <p>@{ userLogedReducer.userName }</p>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDataPublic } from '../../hooks/useDataPublic';
+import { ButtonBack } from '../ButtonBack/ButtonBack';
 import { Illustration404 } from '../iconos/Illustration404';
 import { ProfileScreenLoading } from '../loadings/ProfileScreenLoading';
 import { BodyProfilePublicAsc } from './BodyProfilePublicAsc';

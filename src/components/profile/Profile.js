@@ -29,7 +29,7 @@ export const Profile = ({ userData }) => {
     return (
         
         <>
-            <ContainerInfoProfile { ...userData } isMyProfile ={ true } />
+            <ContainerInfoProfile { ...userData } isMyProfile ={ true } viewButtonBack={false}/>
             {
                 ( userData.typeUser === 'ASC' ) 
                     && <DoPublicationHeader 

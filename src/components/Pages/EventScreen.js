@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import queryString from 'query-string'
 import { useLocation } from 'react-router'
-import { EventBody } from '../events&publications/Page/EventBody'
-import { EventHeader } from '../events&publications/Page/EventHeader'
 import { useDispatch, useSelector } from 'react-redux'
 import { isRegistered } from '../../reducers/groupsEventReducer'
 import { Group } from '../events&publications/Page/Group'
+import { LoadingInComponent } from '../loadings/LoadingInComponent'
+import { NotParticipant } from '../events&publications/Page/NotParticipant'
 
 
 export const EventScreen = ({ history }) => {
@@ -19,8 +19,10 @@ export const EventScreen = ({ history }) => {
             dispatch( isRegistered( eid, uid ));
         }
     }, [])
-    if( !uiReducer.isParticipantGroup ) {
-        return <p>No eres participante</p>
+    if( uiReducer.loadingInComponent ) {
+        return <LoadingInComponent textLoading={'Cargando grupo...'}/>
+    } else if ( !uiReducer.isParticipantGroup ) {
+        return <NotParticipant />
     }
     return (
         <>

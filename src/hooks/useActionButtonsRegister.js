@@ -70,11 +70,11 @@ export const useActionButtonsRegister = ( actualStep, formData, validForm, setVa
     const hanldeStartCreateUser = ( evt ) => {
         evt.preventDefault();
         if ( stateProgress.totallyStep === actualStep ) {
+            setisLoading( true )
             if ( isValid ) {
                 const userData = {...stateProgress.formData, ...formData };
-                console.log(userData);
                 fetchRegisterUser( userData ).then( resp => {
-                    console.log( resp );
+                    setisLoading( false )
                     if ( resp.status === 'error') {
                         reduxDispatch( openAlert(
                             "Error",
@@ -103,11 +103,15 @@ export const useActionButtonsRegister = ( actualStep, formData, validForm, setVa
                             "Iniciar sesión"
                         ));
                     }
-                }).catch( err => console.log( err ));
+                }).catch( err => {
+                    setisLoading( false )
+                });
                 
             } else {
                 setValidForm( OBJ_VALIDATED );
+                setisLoading( false )
             }
+            
         }
     }
     return [ stateProgress.totallyStep, isLoading, handleGoToNextStep, hanldeStartCreateUser ]

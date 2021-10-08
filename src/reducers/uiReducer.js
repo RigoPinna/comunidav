@@ -63,7 +63,7 @@ export const openModalSuscribe = ( event ) => ({
             eid: event.evtID,
             gid: event.evtID,
             idCreator: event.aid,
-            nameEvent: event.nameAsc,
+            nameEvent: event.evtName,
             description: event.description,
             requirement: event.requires,
             date:event.date,
@@ -167,10 +167,7 @@ export const uiReducer = ( state = initialState, action ) => {
                 ...action.payload
             }
         case types.closeAllModals:
-            return {
-                ...state,
-                ...action.payload
-            }
+            return action.payload
         case types.uiLogout:
             return action.payload;
         case types.loadingInComponent:

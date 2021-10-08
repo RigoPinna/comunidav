@@ -6,12 +6,13 @@ import { ImageEvent } from './ImageEvent'
 import { ButtonSuscribeEvent } from './ButtonSuscribeEvent'
 import { ButtonSendMessage } from '../inbox/ButtonSendMessage'
 import { useSelector } from 'react-redux'
-import { IconLocation } from '../iconos/IconLocation'
+import { useTimeAgo } from '../../hooks/useTimeAgo';
 
 export const Event = ( event ) => {
     
     const { userLogedReducer } = useSelector( state => state )
     const [isTheCreator, setisTheCreator] = useState( false )
+    const created = useTimeAgo( event.createdat );
     useEffect(() => {
         if ( !!userLogedReducer.uid ) {
             setisTheCreator(( userLogedReducer.uid === event.uid ))
@@ -40,7 +41,7 @@ export const Event = ( event ) => {
                     typeUser = {'ASC'} 
                     image = { event.userImg }
                     displayName = { event.nameAsc }
-                    textSecondary = { `Categoria • ${ event.category }` }
+                    textSecondary = { created }
 
                 />
             </div>

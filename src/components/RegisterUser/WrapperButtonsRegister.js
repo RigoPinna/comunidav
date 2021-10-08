@@ -14,9 +14,14 @@ export const WrapperButtonsRegister = ({ actualStep, formData, validForm, setVal
                 { 
                     ( totallyStep === actualStep )
                         ? <button 
+                                disabled ={ isLoading }
                                 onClick = { hanldeStartCreateUser }
                                 className = "__btn __btn_created" >
-                                    Crear cuenta
+                                     { 
+                                    isLoading
+                                        ? <LoadingInComponent />
+                                        :'Crear cuenta'
+                                }
                             </button> 
                         : <button onClick = { handleGoToNextStep } className = "__btn " disabled ={ isLoading } >
                                 { 
