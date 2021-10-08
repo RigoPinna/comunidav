@@ -18,7 +18,7 @@ export const NavBarMovile = () => {
                         </NavLink >
                     </li>
                     <li className ="_navbar_option_responsive">
-                        <NavLink activeClassName="__navbar_option_active " className="__navbar_option" to = "/inbox">
+                        <NavLink activeClassName="__navbar_option_active " className="__navbar_option" to = "/chat">
                             <IconInbox/>
                             <p>Inbox</p>
                             <span></span>

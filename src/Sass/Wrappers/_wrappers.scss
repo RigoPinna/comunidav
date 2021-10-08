@@ -1312,6 +1312,23 @@ margin-top:10px;
         color:$always-white;
     }
 }
+.__wrapper_working {
+    display:flex;
+    width: 100%;
+    flex-flow: column wrap;
+    justify-content:center;
+    align-items: center;
+    img {
+        width: 300px;
+        height:300px;
+        border-radius: 30px;
+        padding: 10px;
+    }
+    strong {
+        font-size: 16px;
+        font-family: 'SF-Bold';
+    }
+}
 @include medium {
     .__wrapper_info {
         font-size:11px;

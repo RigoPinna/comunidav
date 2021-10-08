@@ -28,6 +28,7 @@ import { MapaScreen } from '../components/Pages/MapaScreen'
 import { EffectConffetti } from '../components/Conffetti/EffectConffetti'
 import { MyProfileScreen } from '../components/Pages/MyProfileScreen'
 import { PublicProfileAsc } from '../components/profile/PublicProfileAsc'
+import { ChatScreen } from '../components/Pages/ChatScreen'
 
 export const DashboardRouters = ({ history, location }) => {
     // useIsLoged( history, location );
@@ -83,6 +84,7 @@ export const DashboardRouters = ({ history, location }) => {
                   <Route exact path = "/profile" component = { MyProfileScreen } />
                   <Route exact path = "/association/:uid" component = { PublicProfileAsc  }/>
                   <Route exact path = "/create" component = { CreateEventScreen }/>
+                  <Route exact path = "/chat" component = { ChatScreen }/>
                   <Route exact path = "/home" component = { HomeScreen }/>
                   <Route exact path = "/event" component = { EventScreen }/>
                   <Route exact path = "/inbox" component = { InboxScreen }/>
