@@ -9,6 +9,7 @@ import { RegisterScreen } from '../components/Pages/RegisterScreen';
 import { DashboardRouters } from './DashboardRouters';
 import { useSelector } from 'react-redux'
 import { Alert } from '../components/alerts/Alert'
+import { ResetPasswordScreen } from '../components/Pages/ResetPasswordScreen';
 export const AppRouter = () => {
     const { uiReducer, userLogedReducer } = useSelector( state => state );
     
@@ -28,6 +29,7 @@ export const AppRouter = () => {
                 <Switch>
                     <Route exact path ="/login" component = { LoginScreen } />
                     <Route exact path ="/register" component = { RegisterScreen } />
+                    <Route exact path="/forget" component = { ResetPasswordScreen } />
                     <Route path="/" component = { DashboardRouters } />
                 </Switch>
             </Router>

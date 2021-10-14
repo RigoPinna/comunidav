@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Helmet } from 'react-helmet'
 import { EventsUser } from '../events&publications/EventsUser'
 import { WrapperFeed } from '../events&publications/WrapperFeed'
 import { ContainerInfoProfile } from '../Items/ContainerInfoProfile'
@@ -8,6 +9,9 @@ export const BodyProfilePublicAsc = ({ userData }) => {
     const [ options, setOptions ] = useState({ events:true, ubication:false });
     return (
         <>
+        <Helmet>
+            <title>Comunidav | {userData.displayName}</title>
+        </Helmet>
             <ContainerInfoProfile 
                 { ...userData } 
                 isMyProfile ={ false } 

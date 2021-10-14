@@ -78,7 +78,7 @@ export const Login = ({history}) => {
                     onChange = {handleOnChange}
                 />
 
-                <Link to= "/" className ="__forgot_password">¿Olvidaste tu contraseña?</Link>
+                <Link to= "/forget" className ="__forgot_password">¿Olvidaste tu contraseña?</Link>
            <div className ="__wrapper_login_footer">
                 <button
                     ref ={ btnSubmit }

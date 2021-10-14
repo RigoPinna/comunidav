@@ -1372,6 +1372,58 @@ margin-top:10px;
         font-family: 'SF-Bold';
     }
 }
+.__wrapper_forget_pass_content {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    .__logo_comunidav {
+        svg {
+            width: 30px;
+            .circle_red {
+                fill:$color-black-3;
+            }
+            .circle_purple {
+                stroke:$color-black-4;
+            }
+        }
+        p {
+            font-size:12px;
+            padding-left: 5px;
+            color:$color-black-3;
+            font-family: 'SF-Bold';
+        }
+    }
+    form {
+        width: 350px;
+        background: $always-white;
+        padding: 10px;
+        border-radius: $br-radius;
+        box-shadow: $shadows-elements;
+        margin-top: 10px;
+        label {
+            font-size:14px;
+            display: block;
+            margin:15px 0 5px 0;
+            color: $color-black-2;
+        }
+        button {
+            width: 100%;
+            margin-top: 10px;
+        }
+        & > .__wrapper_codes_inputs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+    }
+    h1 {
+        font-size:18px;
+        font-family: 'SF-Bold';
+    }
+}
 @include small {
     body { 
         overflow-x: hidden;
