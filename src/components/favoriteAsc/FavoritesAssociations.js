@@ -30,7 +30,7 @@ export const FavoritesAssociations = () => {
                         ? <IllustrationEmpty message ={"No has guardado asociaciones a tus favoritos"}/>
                         : favorites.map( fav =>{ 
                         return <ItemAssociation 
-                                    key = { `fav-${ fav.idFavorite }` } 
+                                    key = { `fav-${ fav.aid }` } 
                                     { ...fav } 
                                     isProfile={ false }
                                     viewButtonBack={ false }

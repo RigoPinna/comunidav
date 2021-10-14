@@ -1,25 +1,24 @@
-import React, { useRef, useState } from 'react'
-import { useChangeForm } from '../../hooks/useChangeForm';
-import { useValidateCode } from '../../hooks/useValidateCode';
-import { Alert } from '../alerts/Alert';
-import { ComunidavLogo } from '../iconos/ComunidavLogo';
-import { IconMail } from '../iconos/IconMail';
-import { IconSendMessage } from '../iconos/IconSendMessage';
-import { Input } from '../Inputs/Input';
-import { ResetPassword } from '../resetPassword/ResetPassword';
-import { SendToken } from '../resetPassword/SendToken';
-import { VerifyToken } from '../resetPassword/VerifyToken';
+import React, { useState } from 'react'
+import { Alert } from '../alerts/Alert'
+import { ComunidavLogo } from '../iconos/ComunidavLogo'
+import { ResetPassword } from '../resetPassword/ResetPassword'
+import { SendToken } from '../resetPassword/SendToken'
+import { VerifyToken } from '../resetPassword/VerifyToken'
 
 export const ResetPasswordScreen = () => {
-    const [ user, setUser ] = useState({ email:'riguxc@gmail.com', verify:true, token:"739-310-689" })
+    const [ user, setUser ] = useState({ email:'', verify:true, token:"" })
     const [ viewAlert, setViewAlert ] = useState({ viewAlert: false })
-    const [ step, setStep ] = useState({ sendEmail: false, verifyToken:false, resetPass: true })
+    const [ step, setStep ] = useState({ sendEmail: true, verifyToken:false, resetPass: false })
    
     return (
         <div className="__wrapper_forget_pass_content">
             <ComunidavLogo />
             <form>
-                <h1>Recuperar contraseña</h1>
+                <h1>
+                    { step.sendEmail && "Recuperar contraseña" }
+                    { step.verifyToken && "Verificar usuario" }
+                    { step.resetPass && "Actualizar contraseña"}
+                </h1>
                 {
                     ( step.sendEmail ) 
                         && <SendToken  

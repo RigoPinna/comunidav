@@ -28,7 +28,7 @@
     "sass": "1.39.2",
     "web-vitals": "1.1.2"
   },
-  "homepage": "https://prueba.comunidav.org",
+  "homepage": "https://app.comunidav.org",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
