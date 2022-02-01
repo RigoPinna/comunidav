@@ -1,9 +1,9 @@
 const date = /(^(lunes|martes|miércoles|jueves|viernes|sabado|domingo), ([0-9]{1,2}) (de) (enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre) (de) ([0-9]{4}))$/;
 const imageFile = /(^(lunes|martes|miercoles|jueves|viernes|sabado|domingo), ([0-9]{1,2}) (de) (enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre) (de) ([0-9]{4}))$/;
 export const REGEX_INPUT_VALUES = {
-    name:/(^([A-Za-z]+)([\w]*))$/,
-    lastName:/([A-Za-z\s]{2,20})$/,
-    secondlastName:/([A-Za-z\s]{2,20})$/,
+    name:/(^([A-Za-z]+)([A-Za-z\s]*))$/,
+    lastName:/([A-Za-z\s]{2,40})$/,
+    secondlastName:/([A-Za-z\s]{2,40})$/,
     phone:new RegExp( '^([0-9]{10})$'),
     rfc:new RegExp( '^((^[A-Z]{1})([A-Z0-9]{12}))$' ),
     land:{

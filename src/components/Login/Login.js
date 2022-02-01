@@ -50,52 +50,54 @@ export const Login = ({history}) => {
     }
     return (
         <div className="__wrapper_login">
-        <ComunidavLogo />
-        <h1>Iniciar sesión <span></span></h1>
-        <p>Nosotros tenemos que ser el cambio que queremos ver en el mundo.</p>
-        <div className ="__wrapper_login_body">
-           <form autoComplete ="false">
-                { 
-                    stateResp.isError 
-                    && <MessageErrorInput  messageError = { stateResp.message }/> 
-                }
-               <Input
-                    name = "user" 
-                    typeInput = {"text"} 
-                    inputStyle = {'__input __input_with_icon'} 
-                    placeholder = {'Usuario o correo electrónico'}
-                    InputIcon = { IconInputUser }
-                    value = {inputValues.user}
-                    onChange = {handleOnChange}
-                />
-               <Input
-                    name = "password" 
-                    typeInput = {"password"} 
-                    inputStyle = {'__input __input_with_icon'} 
-                    placeholder = {'Contraseña'}
-                    InputIcon = { IconInputPassword }
-                    value = {inputValues.password}
-                    onChange = {handleOnChange}
-                />
-
-                <Link to= "/forget" className ="__forgot_password">¿Olvidaste tu contraseña?</Link>
-           <div className ="__wrapper_login_footer">
-                <button
-                    ref ={ btnSubmit }
-                    onClick = { verifyLogin }
-                    className = "__btn"
-                    disabled = {  stateResp.isLoading }
-                    >
-                        { 
-                             stateResp.isLoading
-                                ? <LoadingInComponent />
-                                : 'Iniciar sesión' 
-                        }
-                </button>
-                <Link className ="__btn_register" to='/register'>
-                    ¿No tienes una cuenta?, resgistrate aqui.
-                </Link>
+            <div onClick={ ()=> window.location.href="https://comunidav.org/" }>
+                <ComunidavLogo />
             </div>
+            <h1>Iniciar sesión <span></span></h1>
+            <p>Nosotros tenemos que ser el cambio que queremos ver en el mundo.</p>
+            <div className ="__wrapper_login_body">
+            <form autoComplete ="false">
+                    { 
+                        stateResp.isError 
+                        && <MessageErrorInput  messageError = { stateResp.message }/> 
+                    }
+                <Input
+                        name = "user" 
+                        typeInput = {"text"} 
+                        inputStyle = {'__input __input_with_icon'} 
+                        placeholder = {'Usuario o correo electrónico'}
+                        InputIcon = { IconInputUser }
+                        value = {inputValues.user}
+                        onChange = {handleOnChange}
+                    />
+                <Input
+                        name = "password" 
+                        typeInput = {"password"} 
+                        inputStyle = {'__input __input_with_icon'} 
+                        placeholder = {'Contraseña'}
+                        InputIcon = { IconInputPassword }
+                        value = {inputValues.password}
+                        onChange = {handleOnChange}
+                    />
+
+                    <Link to= "/forget" className ="__forgot_password">¿Olvidaste tu contraseña?</Link>
+            <div className ="__wrapper_login_footer">
+                    <button
+                        ref ={ btnSubmit }
+                        onClick = { verifyLogin }
+                        className = "__btn"
+                        disabled = {  stateResp.isLoading }
+                        >
+                            { 
+                                stateResp.isLoading
+                                    ? <LoadingInComponent />
+                                    : 'Iniciar sesión' 
+                            }
+                    </button>
+                    <Link className ="__btn_register" to='/register'>
+                        ¿No tienes una cuenta?, resgistrate aqui.
+                    </Link>
+                </div>
            </form>
         </div>
     </div>
