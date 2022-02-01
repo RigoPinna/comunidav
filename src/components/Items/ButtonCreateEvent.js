@@ -1,8 +1,11 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 export const ButtonCreateEvent = () => {
+    
     return (
-        <button className="__btn">
+        <>
+        <Link to={'/create'}
+            className="__btn">
             <svg 
                 fill="currentColor" 
                 viewBox="0 0 20 20" 
@@ -12,6 +15,7 @@ export const ButtonCreateEvent = () => {
                     />
             </svg>
            <p>Crear evento</p>
-        </button>
+        </Link>
+        </>
     )
 }

@@ -5,43 +5,45 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
+    <meta 
+      name="description" 
+      content="Comunidav brinda un espacio para asociaciones y voluntarios interesados en ayudar a la sociedad sin fin de lucro">
+    <meta 
+      name="keywords" 
+      content="comunidad, voluntario,voluntarios, asociacion, asociación, asociaciones, apoyo, donaciones,donar, evento, eventos, sociedad, sociedades">
+    <meta name="copyright" content="Comunidav">
+    <meta name="robots" content="index"/>
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
+    <meta property="og:title" content="Coumunidav" />
+    <meta property="og:url" content=" https://app.comunidav.org/" />
+    <meta property="og:image" content="%PUBLIC_URL%/logo192.png" />
+    <meta property="og:description" content="Comunidav brinda un espacio para asociaciones y voluntarios interesados en ayudar a la sociedad sin fin de lucro" />
+
+    <meta name="twitter:card" content="summary">
+    <!-- <meta name="twitter:site" content="@publisher_handle"> -->
+    <meta name="twitter:title" content="Comunidav">
+    <meta name="twitter:description" content="Comunidav brinda un espacio para asociaciones y voluntarios interesados en ayudar a la sociedad sin fin de lucro">
+    <meta name=”twitter:image” content="https://scontent.frex1-1.fna.fbcdn.net/v/t1.6435-9/118654508_197841671773490_7126913933675084821_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=e3f864&_nc_ohc=PLCdutuKw58AX8s1LuK&_nc_oc=AQmEXjyxsr-UmGw_e8HdPG5HovLAun5usMdJiw36FLBImMrnSKJ6aLmf-DRhGAmSfA5CNHV8eqqkk3GVhETUTumD&tn=DC2O5Kl7fXq8erkL&_nc_ht=scontent.frex1-1.fna&oh=fdeaf4183e6ec5673b5de6f125b053a6&oe=618A3965"> 
+
     <title>Comunidav</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""/>
+      <meta name="copyright" content="Comunidav">
+      <meta http-equiv="cache-control" content="no-cache"/>
+      <meta name="robots" content="index"/>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>Si estás viendo este mensaje, activa el lenguaje javascript en tu navegador para utilizar esta app</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <!-- Polyfill Intl.RelativeTimeFormat, its dependencies & `en` locale data -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=Intl.RelativeTimeFormat,Intl.RelativeTimeFormat.~locale.en"></script>
   </body>
 </html>

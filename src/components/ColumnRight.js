@@ -1,41 +1,70 @@
 
-import React from 'react'
-import { Link, Redirect } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
+import ReactTooltip from 'react-tooltip';
 
-import { useGetInfoUserLoged } from '../hooks/useGetInfoUserLoged';
 import { ContentAsociationsFromRegion } from './ContentAsociationsFromRegion';
 import { ItemUser } from './Items/ItemUser';
 import { IconConfig } from './iconos/IconConfig';
 import { InfoAndTools } from './InfoAndTools';
 import { FooterPage } from './FooterPage';
+import { useSelector } from 'react-redux';
+import { ItemUserLoading } from './loadings/ItemUserLoading';
+import { useIsMounted } from '../hooks/useIsMounted';
 
 
 export const ColumnRight = ({history }) => {
 
-    const [ userDataLoged ] = useGetInfoUserLoged();
+    const { userLogedReducer } = useSelector( state => state );
+    const uid = localStorage.getItem( 'uid' );
+    const [isLoading, setIsLoading] = useState( Object.keys( userLogedReducer ) );
+    const [ isMounted ] = useIsMounted();
     const handleGoMyProfile = () => {
-        history.push( '/profile' );
+        history.push( `/profile` );
     }
+    useEffect(() => {
+        if ( isMounted ) {
+            if( isLoading ) {
+
+                ( Object.keys( userLogedReducer ).length > 0 )
+                 && setIsLoading( !isLoading)
+            }
+        }
+    }, [ userLogedReducer, setIsLoading, isLoading, isMounted ])
     return (
         <div className="__wrapper_column_right">
             <div className="__wrapper_comunm_right_title_section">
-                <h5>Mi perfil • </h5>
-                <Link className = "btn_config" to ="/configuration">
-                    <IconConfig />
-                </Link>
+                <h5 >Mi perfil • </h5>
+                { 
+                    !isLoading 
+                        && <>
+                            <Link data-for={"config"} data-tip={"Configuración de cuenta"}  className = "btn_config" to ="/config">
+                                <IconConfig />
+                            </Link>
+                            <ReactTooltip id={"config"} place="top" type="dark" effect='solid'/>
+                            </>
+                }
             </div>
             <hr/>
-            <ItemUser 
-                handle = { () => { handleGoMyProfile() } }
-                displayName = { userDataLoged.displayName } 
-                textSecondary = { userDataLoged.category }
-                image = { userDataLoged.image }
-            />
+            { 
+                ( !isLoading )
+                    ? <ItemUser 
+                        handle = { () => { handleGoMyProfile() } }
+                        displayName = { userLogedReducer.displayName } 
+                        textSecondary = {userLogedReducer.typeUser === 'ASC' ? `Categoria • ${userLogedReducer.category}`: userLogedReducer.userName }
+                        image = { userLogedReducer.image }
+                        typeUser = {userLogedReducer.typeUser}    
+                    />
+                    : <ItemUserLoading />
+            }
             <div className="__wrapper_comunm_right_title_section">
-                <h5>Asociaciones en {userDataLoged.cityName}</h5>
+                <h5>Asociaciones en {userLogedReducer.cityName}</h5>
             </div>
             <hr/>
-            <ContentAsociationsFromRegion/>
+            {
+                !isLoading 
+                    && <ContentAsociationsFromRegion userData = { userLogedReducer } historyRouter = { history }/>
+            }
             <div className="__wrapper_comunm_right_title_section">
                 <h5>Información y herramientas</h5>
             </div>

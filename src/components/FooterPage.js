@@ -5,7 +5,7 @@ export const FooterPage = () => {
     return (
         <footer>
             <ComunidavLogo />
-            <p>© Comunidav de Donadores, Asociaciones y Voluntarios</p>
+            <p>© Comunidad de Donadores, Asociaciones y Voluntarios</p>
         </footer>
     )
 }

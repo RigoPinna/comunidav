@@ -13,13 +13,13 @@ export const ItemUser = ( { typeUser = 'ASC', displayName='name lastname ', imag
             />
             <BadgeShort 
                 typeUser = {typeUser} 
+                color = {typeUser} 
                 text = { typeUser }
             />
             <div className = "info-Contact">
                 <strong >{ displayName }</strong>
                 <p>{ textSecondary }</p>
             </div>
-            
         </div>
     )
 }

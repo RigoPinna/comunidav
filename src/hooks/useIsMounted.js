@@ -5,7 +5,6 @@ export const useIsMounted = () => {
 
     const isMounted = useRef( true );
     useEffect(() => {
-        
         return () => {
             isMounted.current = false;
         }

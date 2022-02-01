@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { closeModalImage } from '../../reducers/uiReducer';
+import { useDispatch } from 'react-redux'
+import { closeAllModal } from '../../reducers/uiReducer';
+import { IconX } from '../iconos/IconX';
 
 export const ButtonCloseModal = () => {
     const dispatch = useDispatch();
@@ -11,23 +12,12 @@ export const ButtonCloseModal = () => {
         const contenFather = btnClose.parentNode;
         contenFather.classList.add( 'animate__fadeOutDown' )
         setTimeout(() => {
-            dispatch( closeModalImage() );
+            dispatch( closeAllModal() );
         }, 200);
     }
     return (
         <button ref = { buttonRef } onClick = { handleCloseModal } className = '__btn __btn_close'>
-            <svg 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-                >
-                    <path 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round" 
-                        strokeWidth={2} 
-                        d="M6 18L18 6M6 6l12 12" 
-                    />
-            </svg>
+           <IconX />
         </button>
     )
 }

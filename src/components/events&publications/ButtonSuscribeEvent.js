@@ -1,11 +1,47 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import { openModalSuscribe } from '../../reducers/uiReducer';
+import { IconArrowRight } from '../iconos/IconArrowRight';
+import { IconSuscribe } from '../iconos/IconSuscribe';
+import { LoadingInComponent } from '../loadings/LoadingInComponent';
 
-export const ButtonSuscribeEvent = ( { text = "Inscribirme"}) => {
+export const ButtonSuscribeEvent = ( event ) => {
+    const dispatch = useDispatch();
+    const [ suscribed, setSuscribed ] = useState({ loading:true, suscribed: false})
+    const { groupsReducer } = useSelector( state => state )
+    const history = useHistory();
+    useEffect(() => {
+        const haveEvent = groupsReducer.some( e => +e.eid === +event.evtID || +e.eid === +event.eid);
+        if( haveEvent ) {
+            setSuscribed({ loading:false, suscribed: true });
+        } else if ( !!event.participants ) {
+            const isSuscribe = event.participants.some( user => +user.uid === +event.uidLoged );
+            setSuscribed({ loading:false, suscribed: isSuscribe });
+        }
+    }, [ groupsReducer ])
+
+    const handleOnClick = () => {
+        if ( suscribed.suscribed ) {
+            history.push(`/event?query=${event.eid || event.evtID}`);
+        } else {
+            dispatch( openModalSuscribe( event ) );
+        }
+    }
     return (
-        <button className = "__btn __btn_suscribe">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" /></svg>
-            <p>{ text }</p>
-            
+        <button
+            disabled = { suscribed.loading }
+            onClick={ handleOnClick } 
+            className = "__btn __btn_suscribe"
+            >
+                {
+                    suscribed.loading 
+                        ? <LoadingInComponent /> 
+                        : suscribed.suscribed 
+                            ? <>Ir al grupo<IconArrowRight /> </> 
+                            : <> <IconSuscribe /><p>Inscribirme</p> </>
+                }
         </button>
     )
+    
 }

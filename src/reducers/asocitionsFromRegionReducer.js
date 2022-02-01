@@ -15,9 +15,16 @@ export const getAssociationsHaveRegion = ( uid, idMun ) => {
         
     }
 }
+export const restAssociationFromRegio = () => ({
+    type: types.restAssociationFromRegio,
+    payload:[],
+})
 export const asociationsRegionReducer = ( state = [], action ) => {
     switch ( action.type ) {
         case types.associationFromRegio:
+            
+            return action.payload;
+        case types.restAssociationFromRegio:
             
             return action.payload;
     

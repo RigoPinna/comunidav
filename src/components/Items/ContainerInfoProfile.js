@@ -1,26 +1,22 @@
 import React from 'react'
-import { Avatar } from './Avatar'
-import { BadgeShort } from './BadgeShort'
+import { ItemAssociation } from '../favoriteAsc/ItemAssociation';
 
-export const ContainerInfoProfile = ({ userName, displayName, typeUser, category, description, image }) => {
-    const typeUserNameLong = typeUser === 'ASC' ? 'Asociación' : 'Voluntario';
+import { SubMenuPublicProfile } from '../menus/SubMenuPublicProfile';
+
+
+
+export const ContainerInfoProfile = ( dataUser ) => {
+    const typeUserNameLong = dataUser.typeUser === 'ASC' ? 'Asociación' : 'Voluntario';
     return (
-        <div className = "__wrapper_info">
-                <div className="__wrapper_info_header">
-                    <Avatar image = { image } name = { displayName } /> 
-                    <div className="__wrapper_info_header_text">
-                        <h2>{ displayName }</h2>
-                        <BadgeShort typeUser = { typeUser } text = { typeUserNameLong }/>
-                        { 
-                            ( !!category )
-                                && <BadgeShort color = { category } text = {`Categoria ${ category }`}/>
-                        }
-                    </div> 
-                </div>
-                    <div>
-                        <strong>{userName}</strong>
-                        <p>{ !!description ? description : '' }</p>
-                    </div>
-            </div>
+        <div className = "__wrapper_info  animate__animated animate__fadeIn">
+           <ItemAssociation 
+                { ...dataUser } 
+                isProfile = { true } 
+                viewButtonBack = { dataUser.viewButtonBack } 
+                />
+            {
+               (!dataUser.isMyProfile && +dataUser.viewUbication != 0) && <SubMenuPublicProfile options={ dataUser.options } setOptions={ dataUser.setOptions }  lat={ dataUser.lat } lng = { dataUser.lng }/>
+            } 
+        </div>
     )
 }

@@ -3,20 +3,32 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@formatjs/intl-relativetimeformat": "^9.3.1",
+    "@roderickhsiao/intl-relativetimeformat": "^9.0.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "animate.css": "^4.1.1",
-    "node-sass": "^4.14.1",
+    "animate.css": "4.1.1",
+    "leaflet": "^1.7.1",
+    "node-sass": "6.0.1",
+    "query-string": "7.0.1",
     "react": "^17.0.2",
+    "react-confetti": "^6.0.1",
+    "react-datetime-picker": "^3.4.0",
     "react-dom": "^17.0.2",
-    "react-redux": "^7.2.4",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.1",
-    "redux": "^4.1.0",
-    "redux-thunk": "^2.3.0",
-    "web-vitals": "^1.1.2"
+    "react-helmet": "6.1.0",
+    "react-leaflet": "^3.2.1",
+    "react-redux": "7.2.4",
+    "react-router-dom": "5.2.0",
+    "react-scripts": "4.0.3",
+    "react-tooltip": "4.2.21",
+    "react-use": "^17.3.1",
+    "redux": "4.1.0",
+    "redux-thunk": "2.3.0",
+    "sass": "1.39.2",
+    "web-vitals": "1.1.2"
   },
+  "homepage": "https://app.comunidav.org",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -29,16 +41,9 @@
       "react-app/jest"
     ]
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ]
 }

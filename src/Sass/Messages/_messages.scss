@@ -1,0 +1,77 @@
+.__messages_error {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 40px;
+    background:$color-red-5;
+    padding: 5px;
+    border-left: 4px solid $color-red-1;
+    color: $color-red-1;
+    flex-wrap: wrap;
+    svg {
+        width:24px;
+        height:24px;
+        fill: $color-red-1;
+    }
+    p {
+        margin-left: 5px;
+        font-size: 14px;
+    }
+}
+.__message_sended, .__message_recibed {
+    display: flex;
+    flex-flow: row nowrap;
+    max-width: 90%;
+    position: relative;
+    padding: 10px;
+    
+}
+.__message {
+    display:flex;
+    flex-flow: column wrap;
+    padding-left: 5px;
+    span {
+        font-size: 10px;
+        font-family: 'SF-Bold';
+        color: var(--color-black-2);
+        padding-bottom: 3px;
+    }
+
+    p {
+        display: block;
+        position: relative;
+        margin-top: 1.5px;
+        padding: 4px 10px;
+        float: right;
+        border-radius: 15px;
+        color: var(--color-black-2);
+        font-family: 'SF-Regular';
+        font-size: 12px;
+        font-style: normal;
+        max-width: 320px;
+        word-wrap: break-word;
+        sub {
+            color: #a09e9e;
+            padding-left:5px;
+        }
+    
+    }
+}
+.__message_sended {
+
+
+}
+.__message_recibed {
+    justify-content: flex-start;
+    img {
+        box-shadow: none;
+        width: 40px;
+        height: 40px;
+    }
+    .__message {
+        p{
+            background: #f3f3f3;
+        }
+    }
+
+}

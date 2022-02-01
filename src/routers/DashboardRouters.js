@@ -1,58 +1,105 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect, Route, Switch } from 'react-router-dom'
-import { ColumnRight } from '../components/ColumnRight'
-import { LoadingScreen } from '../components/loadings/LoadingScreen'
-import { ProfileScreenLoading } from '../components/loadings/ProfileScreenLoading'
 
+import { getDataUserLoged } from '../reducers/authReducer'
+import { useIsMounted } from '../hooks/useIsMounted'
+import { types } from '../types'
+import { LoadingScreen } from '../components/loadings/LoadingScreen'
 import { NavBar } from '../components/menus/NavBar'
-import { ModalViewImage } from '../components/modals/ModalViewImage'
 import { HomeScreen } from '../components/Pages/HomeScreen'
 import { InboxScreen } from '../components/Pages/InboxScreen'
-import { ProfileScreen } from '../components/Pages/ProfileScreen'
 import { SearchScreen } from '../components/Pages/SearchScreen'
-import { useIsMounted } from '../hooks/useIsMounted'
-import { getDataUserLoged } from '../reducers/authReducer'
-import { types } from '../types'
+import { ColumnRight } from '../components/ColumnRight'
+import { ModalViewImage } from '../components/modals/ModalViewImage'
+import { NavBarMovile } from '../components/menus/NavBarMobile'
+import { ModalSuscribeEvent } from '../components/modals/ModalSuscribeEvent'
+import { addAllGroups } from '../reducers/groupsEventReducer'
+import { addAllFavorites } from '../reducers/ascFavoritesReducer'
+import { VerifyScreen } from '../components/Pages/VerifyScreen'
+import { ConfigScreen } from '../components/Pages/ConfigScreen'
+import { useIsVerify } from '../hooks/useIsVerify'
+import { addAllEvents } from '../reducers/myEventsReducer'
+import { CreateEventScreen } from '../components/Pages/CreateEventScreen'
+import { EventScreen } from '../components/Pages/EventScreen'
+import { ModalListParticipants } from '../components/modals/ModalListParticipants'
+import { MapaScreen } from '../components/Pages/MapaScreen'
 
+import { EffectConffetti } from '../components/Conffetti/EffectConffetti'
+import { MyProfileScreen } from '../components/Pages/MyProfileScreen'
+import { PublicProfileAsc } from '../components/profile/PublicProfileAsc'
+import { ChatScreen } from '../components/Pages/ChatScreen'
 
-export const DashboardRouters = ({ history, location, match }) => {
-  
-      const { uiReducer } = useSelector( state => state );
-      const dispatch = useDispatch();
-      const [ isLoadingApp, setLoadingApp ] = useState( uiReducer.loading );
-      const [ isMounted ] = useIsMounted();
-
-      useEffect(() => {
+export const DashboardRouters = ({ history, location }) => {
+    // useIsLoged( history, location );
+    const { uiReducer, userLogedReducer } = useSelector( state => state );
+    const dispatch = useDispatch();
+    const uid = localStorage.getItem( 'uid' );
+    const token = sessionStorage.getItem( 'token' );
+    const [ isMounted ] = useIsMounted();
+    useEffect(() => {
         if ( isMounted )  {
-          dispatch( getDataUserLoged( 174 ) );
-          dispatch({
-            type: types.loadigApp, 
-            payload: false 
-          });
-          setLoadingApp( false );
+          if( uid && token) {
+            dispatch( getDataUserLoged( uid ) );
+            dispatch(addAllFavorites( uid ))
+          } else {
+            history.replace('/login')
+          }
+        } else {
+          localStorage.removeItem('uid');
         }
-        
-      }, [ dispatch, isMounted ])
-      if (isLoadingApp ) {
-          return ( <LoadingScreen />)
-      }  
-  return (
-      <>
-        { uiReducer.viewModalImage && <ModalViewImage /> }
-        <NavBar />  
-        <main>
-            <Switch>
-              
-              <Route exact path = "/profile" component={ProfileScreen}/>
-              <Route exact path = "/home" component={HomeScreen}/>
-              <Route exact path = "/inbox" component={InboxScreen}/>
-              <Route exact path = "/search" component={SearchScreen}/>
-              <Redirect to="/profile" />
+    }, [ uid, token, dispatch,isMounted ]);
+    useEffect(()=> {
+      if ( userLogedReducer?.uid ) {
+        userLogedReducer.typeUser ==="ASC" && dispatch( addAllEvents( userLogedReducer.uid ));
+        dispatch(  addAllGroups( uid) );
+        dispatch({
+          type: types.loadigApp, 
+          payload: false 
+        });
 
-            </Switch>
-            <ColumnRight history = {history} />
-        </main>
-      </>
-  )
+      }
+    },[ userLogedReducer.uid, dispatch ])
+    if ( uiReducer.loading ) {
+        return ( <LoadingScreen />)
+    }  
+    return (
+        <>
+          {
+            uiReducer.viewConffetti && <EffectConffetti />
+          }
+          { uiReducer.viewModalImage && <ModalViewImage /> }
+          { uiReducer.viewModalSuscribe && <ModalSuscribeEvent /> }
+          { uiReducer.viewModalListParticipants && <ModalListParticipants /> }
+          <NavBar history = { history } /> 
+          {/* <div className ="__wrapper_associationFrom_responsive">
+                  <strong>Asociaciones en ...</strong>
+                  <div className ="__wrapper_colunm_right_content_asociations">
+                  <ContentAsociationsFromRegion historyRouter = { history }/>
+                  </div>
+                </div>  */}
+          <main>
+              <section>
+                <Switch>
+                  <Route exact path = "/profile" component = { MyProfileScreen } />
+                  <Route exact path = "/association/:uid" component = { PublicProfileAsc  }/>
+                  <Route exact path = "/create" component = { CreateEventScreen }/>
+                  <Route exact path = "/chat" component = { ChatScreen }/>
+                  <Route exact path = "/home" component = { HomeScreen }/>
+                  <Route exact path = "/event" component = { EventScreen }/>
+                  <Route exact path = "/inbox" component = { InboxScreen }/>
+                  <Route exact path = "/search" component = { SearchScreen }/>
+                  <Route exact path = "/config" component = { ConfigScreen }/>
+                  <Route exact path ="/verify" component = { VerifyScreen } />
+                  <Route exact path ="/mapa" component = { MapaScreen } />
+                  <Redirect exact to="/home" />
+                </Switch>
+              </section>
+          </main>
+          {
+            userLogedReducer.isVerify && <ColumnRight history = {history} />
+          }
+          <NavBarMovile uid ={ uid }  />
+        </>
+    )
 }

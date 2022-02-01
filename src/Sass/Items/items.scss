@@ -30,12 +30,23 @@
             font-family: 'SF-Bold';
             text-decoration: none;
             color:$color-black-1;
+            white-space:nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            display: block;
         }
         p {
             font-size: 0.875em;
             font-family: 'SF-Regular';
             text-decoration: none;
             color:$color-black-3;
+            white-space:nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            display: block;
+            
         }
         
     }
@@ -60,6 +71,18 @@
         width: 50%;
         background:lighten( $color-black-4, 22% );
     }
+    .__modal_info_user {
+        display:block;
+        width:200px;
+        min-height: 100px;
+        position: absolute;
+        left: -210px;
+        top:0;
+        background:$always-white;
+        z-index: 2;
+        border-radius: $br-radius;
+        box-shadow:$shadows-elements;
+    }
 }
 .__itme_avatar {
         width: 3.125em;
@@ -68,6 +91,7 @@
         object-fit: cover;
         image-rendering: pixelated;
         font-size: 1em;
+        box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%,0.2)
 }
 ._item_loading {
     animation: animation_loading_item 1.2s ease-in-out forwards infinite;
@@ -110,6 +134,10 @@
     border-radius: 20px;
     
 }
+.badge_color_blue {
+    background:$color-blue-5;
+    color:$color-blue-1;
+}
 .badge_asc {
     background:$color-asc;
     color:#FFF;
@@ -145,6 +173,60 @@
 .cat-Ani {
     background: $color-cat-Anim;
      color:$always-white;
+}
+.__item_tootTip_asc_from_region {
+    width: 350px;
+    min-height: 100px;
+    .__item_tootTip_asc_from_region_header {
+        display: flex;
+        width: 100%;
+        height: 100px;
+        flex-direction: row;
+        align-items:center;
+        & > img {
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+            margin-right:5px;
+            box-shadow:none !important;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        & > div {
+            max-height:100px;
+            strong {
+                font-family: 'SF-Bold';
+                width: calc(100% - 50px);
+                font-size: 1.3em;
+            }
+            div {
+                display: flex;
+                width:100%;
+                height:30px;
+                flex-direction: row;
+                align-items: center;
+                margin-block:5px;
+                svg {
+                    width: 20px;
+                    height: 20px;
+                    margin-right: 2px;
+                }
+                p {
+                    width: 200px;
+                    font-size:12px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius:$br-radius;
+                    margin-left: 5px;
+                }
+            }
+            }
+    }
 }
 @keyframes animation_loading_item {
     from {

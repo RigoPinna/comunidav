@@ -10,6 +10,9 @@
     transition: all 0.3s ease;
     letter-spacing: 0.8px;
     background:$color-button-primary;
+    text-decoration: none;
+    color:$color-black-2;
+    
     &:hover {
         background:$color-primary-purple;
         color:$always-white;
@@ -20,6 +23,11 @@
         background:lighten($color-primary-purple, 20%);
         transform: scale(0.98);
 
+    }
+    &:disabled {
+        transform: scale(1);
+        background:$color-primary-purple-5;
+        cursor:progress;
     }
     svg {
         width: 20px;
@@ -44,8 +52,9 @@
 .__btn_menu_publication {
     background:transparent;
     border-radius: 100%;
+    border: 1px solid transparent;
     &:hover {
-        background:$color-button-primary;
+        border:1px solid $color-button-primary;
         svg {
             path {
                 stroke:$color-black-1;
@@ -57,38 +66,128 @@
 
     }
     svg {
-        
         width: 20px;
         height: 20px;
     }
 }
-.__btn_view_image {
-    display: flex;
-    justify-content:center;
-    align-items:center;
-    padding:10px;
-    border: none;
-    outline: none;
-    border-radius:$br-radius;
-    transition: all 0.3s ease;
-    svg {
-        width: 20px;
-        height: 20px;
-       path {
-           stroke:$always-white;
-       }
-    }
-    &:hover {
-        background:$color-black-2;
-        cursor: pointer;
-        transform: scale(1.1);
-    }
-}
+
 .__btn_close {
     border-radius: 100%;
     &:hover {
         background:$color-red-1;
     }
+}
+.__btn_cancelar {
+    background:$always-white;
+    color:$color-red-2;
+    border: 1px solid $color-red-5;
+    &:hover {
+        background:$color-red-1;
+        border:0;
+    }
+}
+.__btn_oval {
+    background:$color-blue-5;
+    color:$color-blue-1;
+    border-radius:100px;
+    text-decoration: none;
+    border-radius: 40px;
+    &:hover {
+        background:$color-blue-1;
+        color:$always-white;
+
+    }
+}
+.__btn_register {
+    text-decoration:none;
+    color:$color-black-2;
+    font-family: 'SF-Bold';
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    &:hover {
+        color:$color-primary-purple;
+        text-decoration: underline;
+    }
+
+}
+.__btn_created {
+    background: linear-gradient(338deg, rgba(159,91,255,1) 0%, rgba(132,91,255,1) 47%, rgba(99,91,255,1) 100%);
+    color:$always-white;
+    background-size: 1px 100px;
+    transition: all 0.5s ease;
+    &:hover {
+        background: linear-gradient(338deg, rgba(159,91,255,1) 0%, rgba(132,91,255,1) 47%, rgba(99,91,255,1) 100%);
+        background-position: 102px 0px;
+        transition: all 0.5s ease;
+    }
+}
+.__btn_camera {
+    display: flex;
+    padding:5px;
+    border-radius:100%;
+    position: absolute;
+    bottom: 5px;
+    right: 16px;
+    border: 2px solid $always-white;
+    justify-content:center;
+    align-items: center;
+    background: linear-gradient(338deg, rgba(159,91,255,1) 0%, rgba(132,91,255,1) 47%, rgba(99,91,255,1) 100%);
+    color:$always-white;
+    transition: all 0.3s ease;
+    svg {
+        width: 22px;
+        height: 22px;
+    }
+    &:hover {
+        opacity:0.9;
+        cursor: pointer;
+    }
+}
+.__btn_favorite {
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    position:absolute;
+    right: 5px;
+    top:3.6253em;
+    font-size:1em;
+    color: $always-white;
+    -webkit-backdrop-filter: blur(10px); /* Safari 9+ */
+    backdrop-filter: blur(10px); /* Chrome and Opera */
+    background-color: rgba(0, 0, 0, 0.3);
+    &:hover {
+        background:$bg-button-favorite;
+        svg {
+            fill: $color-button-favorite;
+            stroke: $color-button-favorite;
+        }
+    }
+}
+.__btn_favorite_active {
+    svg {
+        fill: $color-button-favorite;
+        stroke: $color-button-favorite;
+    }
+
+}
+.__btn_back {
+    border-radius:100%;
+    svg {
+        width:22px;
+        height: 22px;
+    }
+}
+.__btn_image {
+    background:$color-blue-5;
+    color:$color-blue-1;
+}
+@include small {
+    .__btn {
+        font-size:12px;
+    }
+        
 }
 @keyframes animation_rotate_element {
     0% {
