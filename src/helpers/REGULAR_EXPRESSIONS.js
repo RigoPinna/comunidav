@@ -8,14 +8,14 @@ export const REGEX_INPUT_VALUES = {
     rfc:new RegExp( '^((^[A-Z]{1})([A-Z0-9]{12}))$' ),
     land:{
         test: (value ) => {
-            const regex =  /(^([0-2]{1}))$/;
+            const regex =  /(^([0-3]{1}))$/;
             return ( +value > 0 && regex.test( value ) );
     
         }
     },
     state:{
         test: (value ) => {
-            const regex =  /(^([0-9]{1,2}))$/;
+            const regex =  /(^([0-9]{1,5}))$/;
             return ( +value > 0 && regex.test( value ) );
     
         }
