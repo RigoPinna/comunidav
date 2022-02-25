@@ -43,7 +43,6 @@ export const useActionButtonsRegister = ( actualStep, formData, validForm, setVa
                 if ( isValid ) {
                     setisLoading( true );
                     fetchValidateUser(formData.userName, formData.email).then( resp => {
-                        console.log(resp);
                         if ( resp.status === 'accepted') {
                             ( isValid ) 
                                 ? dispatch( goToassociationData( formData ) )

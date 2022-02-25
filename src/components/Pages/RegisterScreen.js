@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react'
 import { Helmet } from 'react-helmet'
+import { ComunidavLogo } from '../iconos/ComunidavLogo'
 import { RegisterContext } from '../RegisterUser/RegisterContext'
 import { initialState, registerReducer } from '../RegisterUser/registerReducer'
 import { WrapperMainRegister } from '../RegisterUser/WrapperMainRegister'
@@ -18,6 +19,7 @@ export const RegisterScreen = ({ history }) => {
                 
         </Helmet>
         <section className = "__wrapper_register">
+            
             <RegisterContext.Provider value = { { stateProgress, dispatch } }>
                 <WrapperMainRegister history = { history }/>
             </RegisterContext.Provider>

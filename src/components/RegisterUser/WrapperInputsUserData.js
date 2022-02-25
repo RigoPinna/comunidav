@@ -11,9 +11,11 @@ export const WrapperInputsUserData = () => {
     const { stateProgress } = useContext( RegisterContext );
     const { formData } = stateProgress;
     const [ inputFormValues, handdleInputChange ] = useChangeForm({ email:formData.email || '', userName:formData.userName || '', 
-                                                                    password:formData.password || '',confirmPass:formData.confirmPass || '' });
-
-    const [ validForm, setValidForm ] = useState({ email: false, userName: false, password: false,confirmPass: false })
+                                                                    password:formData.password || '',confirmPass:formData.confirmPass || '' })
+    const [ validForm, setValidForm ] = useState({ email: false, userName: false, password: false,confirmPass: false, terms:false })
+    const hanldeTerms = () => {
+        setValidForm({ ...validForm, terms:!validForm.terms })
+    }
     return (
         <div className="animate__animated animate__fadeIn">
             <Input
@@ -81,6 +83,17 @@ export const WrapperInputsUserData = () => {
                         descriptionError = { validForm.errorconfirmPass }
                     />
             }
+            <div>
+                <input
+                    type="checkbox"
+                    checked={ validForm.terms } 
+                    name="terms" 
+                    onChange={ hanldeTerms } 
+                />
+                <label class="__forms_txt_terms">
+                    Acepto los <a href="/">"Términos y condiciones de uso"</a> y <a href="/">"Aviso de privacidad"</a>.
+                </label>
+            </div>
             <WrapperButtonsRegister 
                 actualStep = { stateProgress.actualStep } 
                 formData = { inputFormValues }

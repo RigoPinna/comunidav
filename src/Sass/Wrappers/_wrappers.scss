@@ -763,6 +763,24 @@ footer {
     }
 }
 .__wrapper_register {
+    .__logo_comunidav {
+        svg {
+            width: 30px;
+            .circle_red {
+                fill:$color-black-3;
+            }
+            .circle_purple {
+                stroke:$color-black-4;
+            }
+        }
+        p {
+            font-size:12px;
+            padding-left: 5px;
+            color:$color-black-3;
+            font-family: 'SF-Bold';
+        }
+    }
+    
     .__wrapper_register_content {
         display: block;
         width:900px;
@@ -770,6 +788,7 @@ footer {
         & > h1, h2 {
             font-family: 'SF-Bold';
         }
+
     }
 }
 .__wrapper_associationFrom_responsive {
