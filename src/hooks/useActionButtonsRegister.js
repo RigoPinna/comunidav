@@ -70,7 +70,7 @@ export const useActionButtonsRegister = ( actualStep, formData, validForm, setVa
         evt.preventDefault();
         if ( stateProgress.totallyStep === actualStep ) {
             setisLoading( true )
-            if ( isValid ) {
+            if ( isValid &&  OBJ_VALIDATED.terms ) {
                 const userData = {...stateProgress.formData, ...formData };
                 fetchRegisterUser( userData ).then( resp => {
                     setisLoading( false )
@@ -103,10 +103,21 @@ export const useActionButtonsRegister = ( actualStep, formData, validForm, setVa
                         ));
                     }
                 }).catch( err => {
+                    reduxDispatch( openAlert(
+                        "Upps",
+                        `Al parecer algo salió mal, intente más tarde`,
+                        () => reduxDispatch( closeAlert() )
+                    ))
                     setisLoading( false )
-                });
-                
+
+                });             
             } else {
+                !OBJ_VALIDATED.terms &&
+                reduxDispatch( openAlert(
+                    "Error",
+                    `Por favor, acepta nuestros terminos y condiciones y aviso de privacidad para poder crear tu cuenta.`,
+                    () => reduxDispatch( closeAlert() )
+                ))
                 setValidForm( OBJ_VALIDATED );
                 setisLoading( false )
             }
