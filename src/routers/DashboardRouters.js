@@ -29,6 +29,7 @@ import { EffectConffetti } from '../components/Conffetti/EffectConffetti'
 import { MyProfileScreen } from '../components/Pages/MyProfileScreen'
 import { PublicProfileAsc } from '../components/profile/PublicProfileAsc'
 import { ChatScreen } from '../components/Pages/ChatScreen'
+import { openAlert } from '../reducers/uiReducer'
 
 export const DashboardRouters = ({ history, location }) => {
     // useIsLoged( history, location );
@@ -51,6 +52,7 @@ export const DashboardRouters = ({ history, location }) => {
     }, [ uid, token, dispatch,isMounted ]);
     useEffect(()=> {
       if ( userLogedReducer?.uid ) {
+        dispatch( openAlert('Termios de uso y aviso de privasidad',`**Hola, ${userLogedReducer.namePerson}.**\n\nHan ocurrido algunos cambios importantes en **Comunidav**, se han actualizando nuestros **"Términos y condiciones"** y **"Aviso de privacidad.**\n\n\n Por lo que para continuar debes aceptar dichos "Términos y condiciones" y "Aviso de privacidad"`,()=>{}) )
         userLogedReducer.typeUser ==="ASC" && dispatch( addAllEvents( userLogedReducer.uid ));
         dispatch(  addAllGroups( uid) );
         dispatch({
@@ -72,12 +74,6 @@ export const DashboardRouters = ({ history, location }) => {
           { uiReducer.viewModalSuscribe && <ModalSuscribeEvent /> }
           { uiReducer.viewModalListParticipants && <ModalListParticipants /> }
           <NavBar history = { history } /> 
-          {/* <div className ="__wrapper_associationFrom_responsive">
-                  <strong>Asociaciones en ...</strong>
-                  <div className ="__wrapper_colunm_right_content_asociations">
-                  <ContentAsociationsFromRegion historyRouter = { history }/>
-                  </div>
-                </div>  */}
           <main>
               <section>
                 <Switch>

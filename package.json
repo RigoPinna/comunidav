@@ -18,6 +18,7 @@
     "react-dom": "^17.0.2",
     "react-helmet": "6.1.0",
     "react-leaflet": "^3.2.1",
+    "react-markdown": "^8.0.0",
     "react-redux": "7.2.4",
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.3",
@@ -25,6 +26,7 @@
     "react-use": "^17.3.1",
     "redux": "4.1.0",
     "redux-thunk": "2.3.0",
+    "rehype-raw": "^6.1.1",
     "sass": "1.39.2",
     "web-vitals": "1.1.2"
   },

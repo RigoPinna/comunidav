@@ -16,8 +16,11 @@ export const useValidateForm = ( formValidations , formData ) => {
             };
         }
     });
+    const { terms } =  OBJ_VALIDATE_TEMPORALLY
+    delete OBJ_VALIDATE_TEMPORALLY.terms
+    const isValid = !Object.values(  OBJ_VALIDATE_TEMPORALLY ).includes( true )
+    OBJ_VALIDATE_TEMPORALLY = { ...OBJ_VALIDATE_TEMPORALLY, terms }
 
-    const isValid = !Object.values(  OBJ_VALIDATE_TEMPORALLY ).includes( true );
     
     
 

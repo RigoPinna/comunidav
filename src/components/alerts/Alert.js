@@ -1,6 +1,8 @@
 import React from 'react'
 import { LoadingInComponent } from '../loadings/LoadingInComponent'
 import { WrapperAlert } from './WrapperAlert';
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw'
 
 export const Alert = ({ title="Titulo", contentText = 'Contenido', isAlertLoading = false,addButtonAccepter = true, actionButtonAccept=()=>{}, textButton = 'Aceptar', addButtonCanceled=false,actionButtonCanceled=()=>{} }) => {
     return (
@@ -13,7 +15,7 @@ export const Alert = ({ title="Titulo", contentText = 'Contenido', isAlertLoadin
                 { 
                     isAlertLoading 
                         ? <LoadingInComponent textLoading = { contentText } />
-                        :  <p>{ contentText }</p>
+                        :  <ReactMarkdown rehypePlugins={[rehypeRaw]} children={ contentText } />
                 }
                 </div>
                 <div className = "__alert_footer">

@@ -70,9 +70,10 @@ export const useActionButtonsRegister = ( actualStep, formData, validForm, setVa
         evt.preventDefault();
         if ( stateProgress.totallyStep === actualStep ) {
             setisLoading( true )
+            console.log(isValid, OBJ_VALIDATED.terms)
             if ( isValid &&  OBJ_VALIDATED.terms ) {
                 const userData = {...stateProgress.formData, ...formData };
-                fetchRegisterUser( userData ).then( resp => {
+                fetchRegisterUser( {...userData, terms:OBJ_VALIDATED.terms } ).then( resp => {
                     setisLoading( false )
                     if ( resp.status === 'error') {
                         reduxDispatch( openAlert(
@@ -109,7 +110,6 @@ export const useActionButtonsRegister = ( actualStep, formData, validForm, setVa
                         () => reduxDispatch( closeAlert() )
                     ))
                     setisLoading( false )
-
                 });             
             } else {
                 !OBJ_VALIDATED.terms &&
