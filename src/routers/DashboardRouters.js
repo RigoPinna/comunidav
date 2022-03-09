@@ -52,7 +52,7 @@ export const DashboardRouters = ({ history, location }) => {
     }, [ uid, token, dispatch,isMounted ]);
     useEffect(()=> {
       if ( userLogedReducer?.uid ) {
-        dispatch( openAlert('Termios de uso y aviso de privasidad',`**Hola, ${userLogedReducer.namePerson}.**\n\nHan ocurrido algunos cambios importantes en **Comunidav**, se han actualizando nuestros **"Términos y condiciones"** y **"Aviso de privacidad.**\n\n\n Por lo que para continuar debes aceptar dichos "Términos y condiciones" y "Aviso de privacidad"`,()=>{}) )
+        dispatch( openAlert('Termios de uso y aviso de privacidad',`**Hola, ${userLogedReducer.namePerson}.**\n\nHan ocurrido algunos cambios importantes en **Comunidav**, se han actualizando nuestros **"Términos y condiciones"** y **"Aviso de privacidad.**\n\n\n Por lo que para continuar debes aceptar dichos "Términos y condiciones" y "Aviso de privacidad"`,()=>{}) )
         userLogedReducer.typeUser ==="ASC" && dispatch( addAllEvents( userLogedReducer.uid ));
         dispatch(  addAllGroups( uid) );
         dispatch({
