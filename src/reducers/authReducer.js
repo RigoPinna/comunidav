@@ -41,6 +41,7 @@ export const getDataUserLoged = ( uid ) => {
                     lat:  dataUser?.lat,
                     lng: dataUser?.lng,
                     isVerify: (dataUser.isVerify === '1') || false, 
+                    terms: ( dataUser.terms === '1' )
                 }
             }
             dispatch( action );
@@ -156,7 +157,14 @@ export const updateUserData = ( newData, oldData ) =>{
 
         }
     }
+export const acceptTerms = () =>  {
+    return ( dispatch, getState ) => {
+        const { uid } = getState().userLogedReducer
+        
 
+
+    }
+}
 export const userLogedReducer = ( state = {}, action ) => {
     
     switch ( action.type ) {

@@ -52,9 +52,9 @@ export const DashboardRouters = ({ history, location }) => {
     }, [ uid, token, dispatch,isMounted ]);
     useEffect(()=> {
       if ( userLogedReducer?.uid ) {
-        dispatch( openAlert(
+        !userLogedReducer.terms && dispatch( openAlert(
           'Termios de uso y aviso de privacidad',
-          `**Hola, ${userLogedReducer.namePerson}.**\n\nHan ocurrido algunos cambios importantes en **Comunidav**, se han actualizando nuestros [**"Términos y condiciones"**](https://comunidav.org) y  [**"Aviso de privacidad".**](https://comunidav.org)\n\n\n Por lo que para continuar debes aceptar dichos "Términos y condiciones" y "Aviso de privacidad"`,
+          `**Hola, ${userLogedReducer.namePerson}.**\n\nHan ocurrido algunos cambios importantes en **Comunidav**, se han actualizando nuestros [**"Términos y condiciones"**](https://comunidav.org/terminos-y-condiciones-de-uso/) y  [**"Aviso de privacidad".**](https://comunidav.org/aviso-de-privacidad/)\n\n\n Por lo que para continuar debes aceptar dichos "Términos y condiciones" y "Aviso de privacidad".\n\n\n\n **Al dar clic en "Aceptar" estás aceptando nuestros [**"Términos y condiciones"**](https://comunidav.org/terminos-y-condiciones-de-uso/) y  [**"Aviso de privacidad"**](https://comunidav.org/aviso-de-privacidad/).**`,
           ()=>{}) 
         );
         userLogedReducer.typeUser ==="ASC" && dispatch( addAllEvents( userLogedReducer.uid ));
