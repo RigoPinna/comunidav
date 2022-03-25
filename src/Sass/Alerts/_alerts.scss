@@ -22,6 +22,18 @@
             p {
                 font-size:12px;
             }
+            a {
+
+                text-decoration: none;
+                font-family:  "SF-Bold";
+                color:$color-primary-purple;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+            hr {
+                margin:10px 0;
+            }
         }
         .__alert_footer {
             display: flex;

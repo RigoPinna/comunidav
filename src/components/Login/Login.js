@@ -46,7 +46,9 @@ export const Login = ({history}) => {
                     isLoading: false,
                 });
             }
-        });
+        }).catch(e => {
+            console.log(e)
+        })
     }
     return (
         <div className="__wrapper_login">

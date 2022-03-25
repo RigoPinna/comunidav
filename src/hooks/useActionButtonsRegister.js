@@ -43,7 +43,6 @@ export const useActionButtonsRegister = ( actualStep, formData, validForm, setVa
                 if ( isValid ) {
                     setisLoading( true );
                     fetchValidateUser(formData.userName, formData.email).then( resp => {
-                        console.log(resp);
                         if ( resp.status === 'accepted') {
                             ( isValid ) 
                                 ? dispatch( goToassociationData( formData ) )
@@ -71,9 +70,10 @@ export const useActionButtonsRegister = ( actualStep, formData, validForm, setVa
         evt.preventDefault();
         if ( stateProgress.totallyStep === actualStep ) {
             setisLoading( true )
-            if ( isValid ) {
+            console.log(isValid, OBJ_VALIDATED.terms)
+            if ( isValid &&  OBJ_VALIDATED.terms ) {
                 const userData = {...stateProgress.formData, ...formData };
-                fetchRegisterUser( userData ).then( resp => {
+                fetchRegisterUser( {...userData, terms:OBJ_VALIDATED.terms } ).then( resp => {
                     setisLoading( false )
                     if ( resp.status === 'error') {
                         reduxDispatch( openAlert(
@@ -104,10 +104,20 @@ export const useActionButtonsRegister = ( actualStep, formData, validForm, setVa
                         ));
                     }
                 }).catch( err => {
+                    reduxDispatch( openAlert(
+                        "Upps",
+                        `Al parecer algo salió mal, intente más tarde`,
+                        () => reduxDispatch( closeAlert() )
+                    ))
                     setisLoading( false )
-                });
-                
+                });             
             } else {
+                !OBJ_VALIDATED.terms &&
+                reduxDispatch( openAlert(
+                    "Error",
+                    `Por favor, acepta nuestros terminos y condiciones y aviso de privacidad para poder crear tu cuenta.`,
+                    () => reduxDispatch( closeAlert() )
+                ))
                 setValidForm( OBJ_VALIDATED );
                 setisLoading( false )
             }

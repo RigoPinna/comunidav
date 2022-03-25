@@ -29,6 +29,8 @@ import { EffectConffetti } from '../components/Conffetti/EffectConffetti'
 import { MyProfileScreen } from '../components/Pages/MyProfileScreen'
 import { PublicProfileAsc } from '../components/profile/PublicProfileAsc'
 import { ChatScreen } from '../components/Pages/ChatScreen'
+import { closeAlert, openAlert } from '../reducers/uiReducer'
+import { fetchAcceptTerms } from '../services/fetchAcceptTerms'
 
 export const DashboardRouters = ({ history, location }) => {
     // useIsLoged( history, location );
@@ -51,8 +53,16 @@ export const DashboardRouters = ({ history, location }) => {
     }, [ uid, token, dispatch,isMounted ]);
     useEffect(()=> {
       if ( userLogedReducer?.uid ) {
+        !userLogedReducer.terms && dispatch( openAlert(
+          'Términos y Condiciones de Uso y Aviso de Privacidad',
+          `**Hola, ${userLogedReducer.namePerson}.**\n\nHan ocurrido algunos cambios importantes en **Comunidav**, se han actualizando nuestros [**"Términos y condiciones de uso"**](https://comunidav.org/terminos-y-condiciones-de-uso/) y  [**"Aviso de privacidad".**](https://comunidav.org/aviso-de-privacidad/)\n\n -------------------------- \n\n**Al dar clic en "Aceptar" estás aceptando nuestros [**"Términos y condiciones de uso"**](https://comunidav.org/terminos-y-condiciones-de-uso/) y  [**"Aviso de privacidad"**](https://comunidav.org/aviso-de-privacidad/).**`,
+          async () => { 
+              const { ok } = await fetchAcceptTerms( userLogedReducer.uid )
+              ok ? dispatch(closeAlert()) : dispatch( openAlert("Error","Ups hubo un error"))
+          }) 
+        );
         userLogedReducer.typeUser ==="ASC" && dispatch( addAllEvents( userLogedReducer.uid ));
-        dispatch(  addAllGroups( uid) );
+        userLogedReducer.typeUser ==="ASC" && dispatch(  addAllGroups( uid) );
         dispatch({
           type: types.loadigApp, 
           payload: false 
@@ -72,12 +82,6 @@ export const DashboardRouters = ({ history, location }) => {
           { uiReducer.viewModalSuscribe && <ModalSuscribeEvent /> }
           { uiReducer.viewModalListParticipants && <ModalListParticipants /> }
           <NavBar history = { history } /> 
-          {/* <div className ="__wrapper_associationFrom_responsive">
-                  <strong>Asociaciones en ...</strong>
-                  <div className ="__wrapper_colunm_right_content_asociations">
-                  <ContentAsociationsFromRegion historyRouter = { history }/>
-                  </div>
-                </div>  */}
           <main>
               <section>
                 <Switch>

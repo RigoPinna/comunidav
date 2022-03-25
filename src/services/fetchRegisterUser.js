@@ -1,6 +1,6 @@
 import { SERVER_API } from "../SERVER-API/SERVER-API";
 
-export const fetchRegisterUser = async({name,lastName,secondlastName, phone, rfc, country, userName, email, password, associationName, description, category}) => {
+export const fetchRegisterUser = async({ name,lastName,secondlastName, phone, rfc, country, userName, email, password, associationName, description, category, terms }) => {
     
     const { API } = SERVER_API;
     const formData = new FormData();
@@ -14,6 +14,7 @@ export const fetchRegisterUser = async({name,lastName,secondlastName, phone, rfc
     formData.append( 'userName', userName );
     formData.append( 'email', email );
     formData.append( 'password', password );
+    formData.append('terms', terms ? 1 : 0)
     if ( !!associationName ) {
         formData.append( 'associationName', associationName );
         formData.append( 'description', description );

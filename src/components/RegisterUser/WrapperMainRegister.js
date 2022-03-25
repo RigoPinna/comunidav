@@ -10,6 +10,7 @@ import { WrapperInputsUserData } from './WrapperInputsUserData';
 import { Alert } from '../alerts/Alert';
 import { WrapperInputsDataAsc } from './WrapperInputsDataAsc';
 import { isFinishProcess, viewAlertRFC } from './registerReducer';
+import { ComunidavLogo } from '../iconos/ComunidavLogo';
 
 export const WrapperMainRegister = ({ history }) => {
 
@@ -17,13 +18,13 @@ export const WrapperMainRegister = ({ history }) => {
     
     return (
         <>
-        
             { stateProgress.startRegister 
                 &&  <StartRegister />
-                    
+                
             }
              { ( !stateProgress.startRegister ) 
                 && <FormRegisterLayout>
+                    <ComunidavLogo />
                         <TitleRegister />   
                         <LodingLinear 
                             progress = { stateProgress.progress } 

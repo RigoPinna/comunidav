@@ -64,5 +64,11 @@ export const REGEX_INPUT_VALUES = {
 
         }
     },
-    pathProfileAsc: /^(\/association\/([0-9]+))$/
+    pathProfileAsc: /^(\/association\/([0-9]+))$/,
+    terms:{
+        test:( value ) => {
+            console.log("terms:", value)
+            return !value 
+        }
+    }
 }

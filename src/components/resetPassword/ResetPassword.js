@@ -24,7 +24,6 @@ export const ResetPassword = ({ user, setViewAlert }) => {
                 code: user.token,
                 password: inputFormValues.password,
             }
-            console.log( data )
             fetchResetPassword({step:"resetPass", data }).then( resp => {
                 console.log( resp )
                 if( resp.ok ) {
