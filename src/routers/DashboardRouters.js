@@ -29,7 +29,8 @@ import { EffectConffetti } from '../components/Conffetti/EffectConffetti'
 import { MyProfileScreen } from '../components/Pages/MyProfileScreen'
 import { PublicProfileAsc } from '../components/profile/PublicProfileAsc'
 import { ChatScreen } from '../components/Pages/ChatScreen'
-import { openAlert } from '../reducers/uiReducer'
+import { closeAlert, openAlert } from '../reducers/uiReducer'
+import { fetchAcceptTerms } from '../services/fetchAcceptTerms'
 
 export const DashboardRouters = ({ history, location }) => {
     // useIsLoged( history, location );
@@ -53,9 +54,12 @@ export const DashboardRouters = ({ history, location }) => {
     useEffect(()=> {
       if ( userLogedReducer?.uid ) {
         !userLogedReducer.terms && dispatch( openAlert(
-          'Termios de uso y aviso de privacidad',
-          `**Hola, ${userLogedReducer.namePerson}.**\n\nHan ocurrido algunos cambios importantes en **Comunidav**, se han actualizando nuestros [**"Términos y condiciones"**](https://comunidav.org/terminos-y-condiciones-de-uso/) y  [**"Aviso de privacidad".**](https://comunidav.org/aviso-de-privacidad/)\n\n\n Por lo que para continuar debes aceptar dichos "Términos y condiciones" y "Aviso de privacidad".\n\n\n\n **Al dar clic en "Aceptar" estás aceptando nuestros [**"Términos y condiciones"**](https://comunidav.org/terminos-y-condiciones-de-uso/) y  [**"Aviso de privacidad"**](https://comunidav.org/aviso-de-privacidad/).**`,
-          ()=>{}) 
+          'Términos y Condiciones de Uso y Aviso de Privacidad',
+          `**Hola, ${userLogedReducer.namePerson}.**\n\nHan ocurrido algunos cambios importantes en **Comunidav**, se han actualizando nuestros [**"Términos y condiciones de uso"**](https://comunidav.org/terminos-y-condiciones-de-uso/) y  [**"Aviso de privacidad".**](https://comunidav.org/aviso-de-privacidad/)\n\n -------------------------- \n\n**Al dar clic en "Aceptar" estás aceptando nuestros [**"Términos y condiciones de uso"**](https://comunidav.org/terminos-y-condiciones-de-uso/) y  [**"Aviso de privacidad"**](https://comunidav.org/aviso-de-privacidad/).**`,
+          async () => { 
+              const { ok } = await fetchAcceptTerms( userLogedReducer.uid )
+              ok ? dispatch(closeAlert()) : dispatch( openAlert("Error","Ups hubo un error"))
+          }) 
         );
         userLogedReducer.typeUser ==="ASC" && dispatch( addAllEvents( userLogedReducer.uid ));
         userLogedReducer.typeUser ==="ASC" && dispatch(  addAllGroups( uid) );
